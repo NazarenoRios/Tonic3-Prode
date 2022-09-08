@@ -22,34 +22,36 @@ User.init(
     },
     email: {
       type: DataTypes.STRING,
+      unique: true,
     },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    emailToken: {
+      type: DataTypes.STRING,
+    },
+    isVerified: {
+      type: DataTypes.BOOLEAN,
+      defaultValue:false,
+    },
     salt: {
       type: DataTypes.STRING,
-      //allowNull: false
     },
     phone: {
       type: DataTypes.BIGINT,
-      allowNull: false,
     },
     state: {
       type: DataTypes.STRING,
-      allowNull: false,
     },
     city: {
       type: DataTypes.STRING,
-      allowNull: false,
     },
     address: {
       type: DataTypes.TEXT,
-      allowNull: false,
     },
     zip: {
       type: DataTypes.INTEGER,
-      allowNull: false,
     },
     admin: {
       type: DataTypes.BOOLEAN,

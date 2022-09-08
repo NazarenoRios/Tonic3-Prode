@@ -22,7 +22,7 @@ app.use(cookieParser());
 app.use(cors()) 
 
 // Express Routing
-//app.use("/api", routes);
+app.use("/api", routes);
 
 
 db.sync({ force: false }).then(() => {
