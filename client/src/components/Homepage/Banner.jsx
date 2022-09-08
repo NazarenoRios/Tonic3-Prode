@@ -1,120 +1,147 @@
-/* This example requires Tailwind CSS v2.0+ */
-import { Fragment } from 'react'
-import { Popover, Transition } from '@headlessui/react'
+import { Fragment } from "react";
+import { Popover, Transition } from "@headlessui/react";
 import {
-  ArrowPathIcon,
   Bars3Icon,
   BookmarkSquareIcon,
   CalendarIcon,
-  ChartBarIcon,
-  CursorArrowRaysIcon,
   LifebuoyIcon,
-  PhoneIcon,
   PlayIcon,
   ShieldCheckIcon,
-  Squares2X2Icon,
   XMarkIcon,
-} from '@heroicons/react/24/outline'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
+} from "@heroicons/react/24/outline";
+
+import estudiantes from "../../assets/teams-logos/estudiantes.png";
+
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { Link } from "react-router-dom";
+import { BannerDesign } from "./StyledComponents";
 
 const solutions = [
   {
-    name: 'Analytics',
-    description: 'Get a better understanding of where your traffic is coming from.',
-    href: '#',
-    icon: ChartBarIcon,
+    name: "FIFA",
+    description:
+      "Get a better understanding of where your traffic is coming from.",
+    description2: "Fédération Internationale de Football Association",
+    href: "#",
+    icon: "https://prodeenlinea.com/images/icons/flag_copas_fifa.png",
   },
   {
-    name: 'Engagement',
-    description: 'Speak directly to your customers in a more meaningful way.',
-    href: '#',
-    icon: CursorArrowRaysIcon,
+    name: "UEFA",
+    description: "Speak directly to your customers in a more meaningful way.",
+    description2: "Union of European Football Associations",
+    href: "#",
+    icon: "https://prodeenlinea.com/images/icons/flag_uefa.png",
   },
-  { name: 'Security', description: "Your customers' data will be safe and secure.", href: '#', icon: ShieldCheckIcon },
   {
-    name: 'Integrations',
+    name: "Conmebol",
+    description: "Your customers' data will be safe and secure.",
+    description2: "Confederación Sudamericana de Fútbol ",
+    href: "#",
+    icon: "https://prodeenlinea.com/images/icons/flag_conmebol.png",
+  },
+  {
+    name: "Argentina",
     description: "Connect with third-party tools that you're already using.",
-    href: '#',
-    icon: Squares2X2Icon,
+    description2: "Copa Argentina AXION energy",
+    href: "#",
+    icon: "https://prodeenlinea.com/images/icons/flag_argentina.png",
   },
   {
-    name: 'Automations',
-    description: 'Build strategic funnels that will drive your customers to convert',
-    href: '#',
-    icon: ArrowPathIcon,
+    name: "Brasil",
+    description: "Build strategic funnels that will drive your customers to convert",
+    description2: "Copa de Brasil",
+    href: "#",
+    icon: "https://prodeenlinea.com/images/icons/flag_brasil.png",
   },
-]
-const callsToAction = [
-  { name: 'Watch Demo', href: '#', icon: PlayIcon },
-  { name: 'Contact Sales', href: '#', icon: PhoneIcon },
-]
+];
+const callsToAction = [{ name: "Watch Online", href: "#", icon: PlayIcon }];
 const resources = [
   {
-    name: 'Help Center',
-    description: 'Get all of your questions answered in our forums or contact support.',
-    href: '#',
+    name: "Help Center",
+    description:
+      "Get all of your questions answered in our forums or contact support.",
+    href: "#",
     icon: LifebuoyIcon,
   },
   {
-    name: 'Guides',
-    description: 'Learn how to maximize our platform to get the most out of it.',
-    href: '#',
+    name: "Guides",
+    description:
+      "Learn how to maximize our platform to get the most out of it.",
+    href: "#",
     icon: BookmarkSquareIcon,
   },
   {
-    name: 'Events',
-    description: 'See what meet-ups and other events we might be planning near you.',
-    href: '#',
+    name: "Events",
+    description:
+      "See what meet-ups and other events we might be planning near you.",
+    href: "#",
     icon: CalendarIcon,
   },
-  { name: 'Security', description: 'Understand how we take your privacy seriously.', href: '#', icon: ShieldCheckIcon },
-]
+  {
+    name: "Security",
+    description: "Understand how we take your privacy seriously.",
+    href: "#",
+    icon: ShieldCheckIcon,
+  },
+];
 const recentPosts = [
-  { id: 1, name: 'Boost your conversion rate', href: '#' },
-  { id: 2, name: 'How to use search engine optimization to drive traffic to your site', href: '#' },
-  { id: 3, name: 'Improve your customer experience', href: '#' },
-]
+  { id: 1, name: "Boost your conversion rate", href: "#" },
+  {
+    id: 2,
+    name: "How to use search engine optimization to drive traffic to your site",
+    href: "#",
+  },
+  { id: 3, name: "Improve your customer experience", href: "#" },
+];
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
 
 export default function Banner() {
   return (
-    <Popover className="relative bg-white">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <div className="flex items-center justify-between border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
-          <div className="flex justify-start lg:w-0 lg:flex-1">
-            <a href="#">
-              <span className="sr-only">Your Company</span>
-              <img
-                className="h-8 w-auto sm:h-10"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                alt=""
-              />
-            </a>
-          </div>
+    <Popover style={{ zIndex: "10000" }} className="relative bg-white">
+      <BannerDesign className="h-32 md:h-72 px-4 sm:px-6 content-center">
+        <div className="flex-1 flex justify-center mr-auto">
+          <Link to="#">
+            <img
+              className="h-14 w-auto md:h-20 md:mt-16 mt-8"
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Logo_Actual_del_Club_Estudiantes_de_La_Plata.png/200px-Logo_Actual_del_Club_Estudiantes_de_La_Plata.png"
+              alt=""
+            />
+          </Link>
+        </div>
+        <div className="flex items-center justify-between py-6 md:justify-start md:space-x-10 mt-4">
           <div className="-my-2 -mr-2 md:hidden">
-            <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
-              <span className="sr-only">Open menu</span>
-              <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+            <Popover.Button className="inline-flex items-center justify-center rounded-md bg-transparent p-2 text-white hover:text-gray-300 focus:outline-none absolute bottom-0 right-0">
+              <span style={{ color: "#5af7dc" }} className="">
+                MENU
+              </span>
+              <Bars3Icon
+                style={{ color: "#5af7dc" }}
+                className="h-6 w-6"
+                aria-hidden="true"
+              />
             </Popover.Button>
           </div>
-          <Popover.Group as="nav" className="hidden space-x-10 md:flex">
+          <Popover.Group
+            as="nav"
+            className="hidden space-x-10 md:flex flex-1 justify-center mr-auto"
+          >
             <Popover className="relative">
               {({ open }) => (
                 <>
                   <Popover.Button
                     className={classNames(
-                      open ? 'text-gray-900' : 'text-gray-500',
-                      'group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+                      open ? "text-white" : "text-white",
+                      "group inline-flex items-center rounded-md bg-transparent text-base hover:text-gray-300 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                     )}
                   >
-                    <span>Solutions</span>
+                    <span>Tournaments</span>
                     <ChevronDownIcon
                       className={classNames(
-                        open ? 'text-gray-600' : 'text-gray-400',
-                        'ml-2 h-5 w-5 group-hover:text-gray-500'
+                        open ? "text-white" : "text-white",
+                        "ml-2 h-5 w-5 group-hover:text-gray-300"
                       )}
                       aria-hidden="true"
                     />
@@ -138,10 +165,19 @@ export default function Banner() {
                               href={item.href}
                               className="-m-3 flex items-start rounded-lg p-3 hover:bg-gray-50"
                             >
-                              <item.icon className="h-6 w-6 flex-shrink-0 text-indigo-600" aria-hidden="true" />
+                              <img
+                                alt=""
+                                src={item.icon}
+                                className="h-6 w-6 flex-shrink-0 text-indigo-600"
+                                aria-hidden="true"
+                              />
                               <div className="ml-4">
-                                <p className="text-base font-medium text-gray-900">{item.name}</p>
-                                <p className="mt-1 text-sm text-gray-500">{item.description}</p>
+                                <p className="text-base font-medium text-gray-900 font-bold">
+                                  {item.name}
+                                </p>
+                                <p className="mt-1 text-sm text-gray-500">
+                                  {item.description}
+                                </p>
                               </div>
                             </a>
                           ))}
@@ -153,7 +189,10 @@ export default function Banner() {
                                 href={item.href}
                                 className="-m-3 flex items-center rounded-md p-3 text-base font-medium text-gray-900 hover:bg-gray-100"
                               >
-                                <item.icon className="h-6 w-6 flex-shrink-0 text-gray-400" aria-hidden="true" />
+                                <item.icon
+                                  className="h-6 w-6 flex-shrink-0 text-gray-400"
+                                  aria-hidden="true"
+                                />
                                 <span className="ml-3">{item.name}</span>
                               </a>
                             </div>
@@ -166,27 +205,33 @@ export default function Banner() {
               )}
             </Popover>
 
-            <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
-              Pricing
-            </a>
-            <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
-              Docs
-            </a>
+            <Link
+              to="#"
+              className="text-base font-medium text-white hover:text-gray-300"
+            >
+              Teams
+            </Link>
+            <Link
+              to="#"
+              className="text-base font-medium text-white hover:text-gray-300"
+            >
+              Players
+            </Link>
 
             <Popover className="relative">
               {({ open }) => (
                 <>
                   <Popover.Button
                     className={classNames(
-                      open ? 'text-gray-900' : 'text-gray-500',
-                      'group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+                      open ? "text-white" : "text-white",
+                      "group inline-flex items-center rounded-md bg-transparent text-base font-medium hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                     )}
                   >
                     <span>More</span>
                     <ChevronDownIcon
                       className={classNames(
-                        open ? 'text-gray-600' : 'text-gray-400',
-                        'ml-2 h-5 w-5 group-hover:text-gray-500'
+                        open ? "text-white" : "text-white",
+                        "ml-2 h-5 w-5 group-hover:text-gray-300"
                       )}
                       aria-hidden="true"
                     />
@@ -210,21 +255,36 @@ export default function Banner() {
                               href={item.href}
                               className="-m-3 flex items-start rounded-lg p-3 hover:bg-gray-50"
                             >
-                              <item.icon className="h-6 w-6 flex-shrink-0 text-indigo-600" aria-hidden="true" />
+                              <item.icon
+                                className="h-6 w-6 flex-shrink-0 text-indigo-600"
+                                aria-hidden="true"
+                              />
                               <div className="ml-4">
-                                <p className="text-base font-medium text-gray-900">{item.name}</p>
-                                <p className="mt-1 text-sm text-gray-500">{item.description}</p>
+                                <p className="text-base font-medium text-gray-900">
+                                  {item.name}
+                                </p>
+                                <p className="mt-1 text-sm text-gray-500">
+                                  {item.description}
+                                </p>
                               </div>
                             </a>
                           ))}
                         </div>
                         <div className="bg-gray-50 px-5 py-5 sm:px-8 sm:py-8">
                           <div>
-                            <h3 className="text-base font-medium text-gray-500">Recent Posts</h3>
-                            <ul role="list" className="mt-4 space-y-4">
+                            <h3 className="text-base font-medium text-gray-500">
+                              Recent Posts
+                            </h3>
+                            <ul className="mt-4 space-y-4">
                               {recentPosts.map((post) => (
-                                <li key={post.id} className="truncate text-base">
-                                  <a href={post.href} className="font-medium text-gray-900 hover:text-gray-700">
+                                <li
+                                  key={post.id}
+                                  className="truncate text-base"
+                                >
+                                  <a
+                                    href={post.href}
+                                    className="font-medium text-gray-900 hover:text-gray-700"
+                                  >
                                     {post.name}
                                   </a>
                                 </li>
@@ -232,10 +292,13 @@ export default function Banner() {
                             </ul>
                           </div>
                           <div className="mt-5 text-sm">
-                            <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+                            <Link
+                              to="#"
+                              className="font-medium text-indigo-600 hover:text-indigo-500"
+                            >
                               View all posts
                               <span aria-hidden="true"> &rarr;</span>
-                            </a>
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -245,19 +308,8 @@ export default function Banner() {
               )}
             </Popover>
           </Popover.Group>
-          <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
-            <a href="#" className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
-              Sign in
-            </a>
-            <a
-              href="#"
-              className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
-            >
-              Sign up
-            </a>
-          </div>
         </div>
-      </div>
+      </BannerDesign>
 
       <Transition
         as={Fragment}
@@ -268,14 +320,17 @@ export default function Banner() {
         leaveFrom="opacity-100 scale-100"
         leaveTo="opacity-0 scale-95"
       >
-        <Popover.Panel focus className="absolute inset-x-0 top-0 origin-top-right transform p-2 transition md:hidden">
+        <Popover.Panel
+          focus
+          className="absolute inset-x-0 top-0 origin-top-right transform p-2 transition md:hidden"
+        >
           <div className="divide-y-2 divide-gray-50 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
             <div className="px-5 pt-5 pb-6">
               <div className="flex items-center justify-between">
                 <div>
                   <img
                     className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                    src={estudiantes}
                     alt="Your Company"
                   />
                 </div>
@@ -294,8 +349,16 @@ export default function Banner() {
                       href={item.href}
                       className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
                     >
-                      <item.icon className="h-6 w-6 flex-shrink-0 text-indigo-600" aria-hidden="true" />
-                      <span className="ml-3 text-base font-medium text-gray-900">{item.name}</span>
+                      <img
+                        alt=""
+                        src={item.icon}
+                        className="h-6 w-6 flex-shrink-0 text-indigo-600"
+                        aria-hidden="true"
+                      />
+                      <span className="mx-3 text-base font-medium text-gray-900 font-bold">
+                        {item.name}
+                      </span>
+                      <span className="text-gray-500" style={{fontSize:"14px"}}>{item.description2}</span>
                     </a>
                   ))}
                 </nav>
@@ -303,13 +366,6 @@ export default function Banner() {
             </div>
             <div className="space-y-6 py-6 px-5">
               <div className="grid grid-cols-2 gap-y-4 gap-x-8">
-                <a href="#" className="text-base font-medium text-gray-900 hover:text-gray-700">
-                  Pricing
-                </a>
-
-                <a href="#" className="text-base font-medium text-gray-900 hover:text-gray-700">
-                  Docs
-                </a>
                 {resources.map((item) => (
                   <a
                     key={item.name}
@@ -320,24 +376,10 @@ export default function Banner() {
                   </a>
                 ))}
               </div>
-              <div>
-                <a
-                  href="#"
-                  className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
-                >
-                  Sign up
-                </a>
-                <p className="mt-6 text-center text-base font-medium text-gray-500">
-                  Existing customer?{' '}
-                  <a href="#" className="text-indigo-600 hover:text-indigo-500">
-                    Sign in
-                  </a>
-                </p>
-              </div>
             </div>
           </div>
         </Popover.Panel>
       </Transition>
     </Popover>
-  )
+  );
 }
