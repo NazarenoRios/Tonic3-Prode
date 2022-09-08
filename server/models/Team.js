@@ -19,7 +19,8 @@ Team.init({
         type : S.STRING
       },
       state : {
-        type : S.INTEGER
+        type : S.BOOLEAN,
+        defaultValue: true
       }
 }, { sequelize: db, modelName: "team" })
 
