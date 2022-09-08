@@ -18,4 +18,5 @@ Match.belongsToMany(Team,{as:'teamID',through:"data_match"})
 
 Match.belongsTo(Tournament);
 
-module.exports = { User, Match ,Data_match};
+
+module.exports = { User,Tournament,Team,Player,Match ,Data_match };
