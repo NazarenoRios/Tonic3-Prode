@@ -61,7 +61,6 @@ export const TeamHome = styled.div`
   display: flex;
   flex: 1 0 30%;
   justify-content: flex-end;
-  position: relative;
 `;
 
 export const TeamHomeName = styled.div`
@@ -80,7 +79,6 @@ export const TeamAway = styled.div`
   display: flex;
   flex: 1 0 30%;
   justify-content: flex-end;
-  position: relative;
 `;
 
 export const TeamAwayName = styled.div`
@@ -163,3 +161,15 @@ export const MatchResult = styled.div``;
 export const MatchPointHome = styled.span``;
 export const MatchPointAway = styled.span``;
 export const MatchPointDivisor = styled.span``;
+
+
+//Banner 
+export const BannerDesign = styled.div`
+  /* background-image: url("https://pbs.twimg.com/media/FCFz1faUUAAQKcC?format=jpg&name=large"); */
+  background-image: url("https://img.uefa.com/imgml/uefacom/ucl/2021/backgroundDark01L.jpg");
+  /* background-image: url("https://pbs.twimg.com/media/DfLNzUaWsAAnVmi.jpg"); */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+`
