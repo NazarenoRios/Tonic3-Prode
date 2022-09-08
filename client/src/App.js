@@ -1,9 +1,15 @@
+import React from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+
+import Homepage from "./pages/Homepage";
 
 function App() {
   return (
-    <div className="App">
-      Hello World
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+      </Routes>
+    </>
   );
 }
 
