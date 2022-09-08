@@ -17,4 +17,4 @@ Team.hasOne(Match, { as: "AwayTeam", foreignKey: "awayTeamId" });
 
 Match.belongsTo(Team);
 
-module.exports = { User };
+module.exports = { User,Tournament,Team,Player };

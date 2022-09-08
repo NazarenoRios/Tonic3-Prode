@@ -1,19 +1,18 @@
 const { Op } = require("sequelize")
-const { Tournament } = require("../models")
+const Player = require("../models/Player")
 
-class TournamentServices {
-
-    static async createTournament (body){
+class PlayerServices{
+    static async createPlayer (body){
         try{
-           return await Tournament.create(body)
+           return await Player.create(body)
         } catch(error){
             console.log(error)
         }
     }
 
-    static async getAllTournament (){
+    static async getAllPlayers (){
         try{
-           return await Tournament.findAll()
+           return await Player.findAll()
         } catch(error){
             console.log(error)
         }
@@ -21,7 +20,7 @@ class TournamentServices {
 
     static async findByid(id){
         try{
-           return await Tournament.findByPk(id)
+           return await Player.findByPk(id)
             
         } catch(error){
             console.log(error)
@@ -30,7 +29,7 @@ class TournamentServices {
 
     static async findByName(name){
         try{
-           return await Tournament.findAll({
+           return await Player.findAll({
             where:{name: {
                 [Op.iLike]: `%${name}%`
             }}
@@ -41,26 +40,25 @@ class TournamentServices {
         }
     }
 
-    static async modifyTournament(tournament,{name,logo,description,matches}){
+    static async modifyPlayer(player,{fullname,img,info,goals}){
         try{
-        tournament.name = name
-        tournament.logo = logo
-        tournament.description= description
-        tournament.matches = matches
-        return await tournament.save()
+            player.fullname = fullname
+            player.img = img
+            player.info = info
+            player.goals = goals
+        return await Player.save()
         } catch(error){
             console.log(error)
         }
     }
 
-    static async deleteTournament(id){
+    static async deletePlayer(id){
         try{
-          return await Tournament.destroy({ where:{id} })       
+          return await Player.destroy({ where:{id} })       
         } catch(error){
            return res.sendStatus(500).json({message:error.message})
         }
     }
-
 }
 
-module.exports = TournamentServices
+module.exports = PlayerServices

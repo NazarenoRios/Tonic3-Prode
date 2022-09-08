@@ -1,19 +1,17 @@
-const { Op } = require("sequelize")
-const { Team } = require("../models")
+const Award = require("../models/Award")
 
-class TeamServices {
-
-    static async createTeam (body){
+class AwardSevices {
+    static async createAward (body){
         try{
-           return await Team.create(body)
+           return await Award.create(body)
         } catch(error){
             console.log(error)
         }
     }
 
-    static async getAllTeams (){
+    static async getAllAward (){
         try{
-           return await Team.findAll()
+           return await Award.findAll()
         } catch(error){
             console.log(error)
         }
@@ -21,7 +19,7 @@ class TeamServices {
 
     static async findByid(id){
         try{
-           return await Team.findByPk(id)
+           return await Award.findByPk(id)
             
         } catch(error){
             console.log(error)
@@ -30,7 +28,7 @@ class TeamServices {
 
     static async findByName(name){
         try{
-           return await Team.findAll({
+           return await Award.findAll({
             where:{name: {
                 [Op.iLike]: `%${name}%`
             }}
@@ -41,24 +39,24 @@ class TeamServices {
         }
     }
 
-    static async modifyTeam(team,{name,logo,info}){
+    static async modifyAward(award,{name,img,info}){
         try{
-        team.name = name
-        team.logo = logo
-        team.info= info
-        return await team.save()
+            award.name = name
+            award.img = img
+            award.info = info
+        return await Award.save()
         } catch(error){
             console.log(error)
         }
     }
 
-    static async deleteTeam(id){
+    static async deleteAward(id){
         try{
-          return await Team.destroy({ where:{id} })       
+          return await Award.destroy({ where:{id} })       
         } catch(error){
            return res.sendStatus(500).json({message:error.message})
         }
     }
 }
 
-module.exports = TeamServices
+module.exports = AwardSevices
