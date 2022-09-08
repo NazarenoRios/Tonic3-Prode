@@ -1,5 +1,6 @@
 const db = require('../config/db')
 const S=require('sequelize')
+const Data_match = require('./Data_match')
 
 
 class Match extends S.Model{}
@@ -8,7 +9,6 @@ class Match extends S.Model{}
 Match.init({
     date:{
         type:S.DATE,
-        allowNull:false
     },
     winner:{
         //WINNER VA A SER TEAM_ID DEL EQUIPO GANADOR
@@ -18,5 +18,11 @@ Match.init({
         type:S.TEXT
     }
 },{sequelize:db,modelName:'match'})
+
+Match.addHook('afterBulkCreate',(data)=>{
+    console.log(data[0],data[1],data)
+   // Match.findAll({where:{tournamentId:data[0].tournamentId}})
+   // Data_match.bulkCreate()
+})
 
 module.exports=Match
