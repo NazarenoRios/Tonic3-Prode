@@ -41,11 +41,12 @@ class TeamServices {
         }
     }
 
-    static async modifyTeam(team,{name,logo,info}){
+    static async modifyTeam(team,{name,logo,info,phase}){
         try{
         team.name = name
         team.logo = logo
         team.info= info
+        team.phase = phase
         return await team.save()
         } catch(error){
             console.log(error)
