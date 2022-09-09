@@ -16,6 +16,12 @@ Match.init({
     },
     info:{
         type:S.TEXT
+    },
+    match_end:{
+        type:S.BOOLEAN
+    },
+    fase:{
+        type:S.INTEGER
     }
 },{sequelize:db,modelName:'match'})
 

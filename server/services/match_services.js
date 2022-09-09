@@ -9,7 +9,7 @@ class Match_services {
     try {
        Data_match.bulkCreate(matches)
        .catch(e=>e)
-    } 
+    }
     catch (e) {
       console.log(e);
       return false;
