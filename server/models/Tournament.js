@@ -14,12 +14,15 @@ Tournament.init({
       description : {
         type : S.TEXT
       },
-      matches : {
-        type : S.STRING
+      participants : {
+        type: S.INTEGER
+      },
+      phase : {
+        type: S.INTEGER
       },
       state : {
         type : S.BOOLEAN,
-        defaultValue: true
+        defaultValue : false
       }
 }, { sequelize: db, modelName: "tournament" })
 

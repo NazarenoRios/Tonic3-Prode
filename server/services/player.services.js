@@ -40,13 +40,24 @@ class PlayerServices{
         }
     }
 
-    static async modifyPlayer(player,{fullname,img,info,goals}){
+    static async modifyPlayer(player,{fullname,age,img,info,goals,teamId}){
         try{
             player.fullname = fullname
+            player.age = age
             player.img = img
             player.info = info
             player.goals = goals
-        return await Player.save()
+            player.teamId = teamId
+        return player.save()
+        } catch(error){
+            console.log(error)
+        }
+    }
+
+    static async asignTeam(player,{teamId}){
+        try{
+            player.teamId = teamId
+        return player.save()
         } catch(error){
             console.log(error)
         }

@@ -41,12 +41,12 @@ class TournamentServices {
         }
     }
 
-    static async modifyTournament(tournament,{name,logo,description,matches}){
+    static async modifyTournament(tournament,{name,logo,description,participants}){
         try{
         tournament.name = name
         tournament.logo = logo
         tournament.description= description
-        tournament.matches = matches
+        tournament.participants = participants
         return await tournament.save()
         } catch(error){
             console.log(error)

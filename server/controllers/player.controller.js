@@ -47,6 +47,16 @@ class PlayerController{
         }
     }
 
+    static async asignTeam(req,res){
+        try{
+            const player = await PlayerServices.findByid(req.params.id)
+            const updatedPlayer = await PlayerServices.asignTeam(player,req.body)
+            return res.status(200).send(updatedPlayer)
+        } catch(error){
+            console.log(error)
+        }
+    }
+
     static async deletePlayer(req,res){
         try{
             await PlayerServices.deletePlayer(req.params.id)

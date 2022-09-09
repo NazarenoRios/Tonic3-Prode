@@ -15,12 +15,9 @@ Team.init({
       info : {
         type : S.TEXT
       },
-      matches : {
-        type : S.STRING
-      },
       state : {
         type : S.BOOLEAN,
-        defaultValue: true
+        defaultValue: false,
       }
 }, { sequelize: db, modelName: "team" })
 

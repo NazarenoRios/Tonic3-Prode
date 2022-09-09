@@ -12,6 +12,8 @@ router.get("/:id",PlayerController.findByid)
 router.get("/search/:name",PlayerController.findByName)
 //ruta para modificar un jugador
 router.put("/modify/:id",PlayerController.modifyPlayer)
+//ruta para asignar un jugador a un equipo
+router.put("/team/:id",PlayerController.asignTeam)
 //ruta para eliminar un jugador
 router.delete("/:id",PlayerController.deletePlayer)
 
