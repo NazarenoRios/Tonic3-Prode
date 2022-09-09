@@ -39,7 +39,7 @@ export const PodiumTable2 = () => {
         variants={list}
       >
         {data.map((premio, i) => (
-          <motion.div className="w-96 py-5 px-5 text-center rounded-xl" style={{ background: "rgb(7, 9, 94)" }} key={i} variants={item}>
+          <motion.div className="w-96 py-5 px-5 text-center rounded-xl" style={{ background: "#172236" }} key={i} variants={item}>
             <span className="text-white">{premio.premio}</span>
           </motion.div>
         ))}

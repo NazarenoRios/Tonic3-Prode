@@ -40,7 +40,7 @@ export default function PodiumStep({ podium, winner }) {
       </motion.div>
       <motion.div
         style={{
-          backgroundColor: 'rgb(7, 9, 94)',
+          backgroundColor: '#172236',
           borderColor: 'rgba(190,24,93,1)',
           borderTopLeftRadius: '.5rem',
           borderTopRightRadius: '.5rem',

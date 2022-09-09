@@ -1,14 +1,15 @@
 import React from "react";
 
+import { useDispatch } from "react-redux"
 import { GoogleLogin } from "@react-oauth/google";
-import axios from "axios";
+import { googleLogin } from "../state/user";
 
 function Modal() {
 
+  const dispatch = useDispatch();
+
   const sucessGoogleResponse = (tokenResponse) => {
-    axios.put("/api/users/googlelogin", {
-      credential: tokenResponse.credential,
-    });
+    dispatch(googleLogin(tokenResponse))
   };
 
   return (

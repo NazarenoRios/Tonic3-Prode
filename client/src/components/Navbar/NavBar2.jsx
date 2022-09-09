@@ -7,12 +7,12 @@ import {faUserAstronaut} from '@fortawesome/free-solid-svg-icons'
 export default function NavBar2() {
     const [navbar, setNavbar] = useState(false);
     return (
-        <nav className="w-full" style={{background: '#f1f3f8'}} >
-            <div className="justify-between  mx-auto lg:max-w-7xl md:flex mr-3 py-3">
+        <nav className="w-full" style={{background: "linear-gradient(45deg, #adadad,#bab7b7, #f1f3f8, #bab7b7, #adadad)"}} >
+            <div className="justify-between  mx-auto lg:max-w-7xl md:flex mr-3 py-2">
                 <div>
                     <div className="flex items-center justify-left md:block md:absolute md:left-2">
                         <Link to="/">
-                        <h2 className="font-bold text-m ml-2" style={{marginTop:'1.5px'}}>LOGO</h2>
+                        <h2 className="font-bold text-m ml-2" style={{marginTop:'1.5px'}}>PRODE.COM</h2>
                         </Link>
                         <div className="md:hidden">
                             <button

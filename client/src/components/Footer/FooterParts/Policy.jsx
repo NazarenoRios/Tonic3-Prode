@@ -20,7 +20,7 @@ function Policy() {
           </li>
         </ul>
       </div>
-      <div>&copy; 2022 OLYMPIC SPORTS</div>
+      <div>&copy; TONIC3 PRODE</div>
     </PolicySection>
   )
 }

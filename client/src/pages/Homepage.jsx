@@ -5,6 +5,7 @@ import Banner from '../components/Homepage/Banner'
 import Fixture from '../components/Homepage/Fixture.tsx'
 import PrizePodium from '../components/Homepage/PrizePodium'
 import Footer from '../components/Footer/Footer'
+import TutorialSection from '../components/Homepage/TutorialSection'
 
 function Homepage() {
   return (
@@ -13,6 +14,7 @@ function Homepage() {
         <Banner/>
         <Fixture/>
         <PrizePodium/>
+        <TutorialSection/>
         <Footer/>
     </>
   )
