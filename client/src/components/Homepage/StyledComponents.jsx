@@ -162,14 +162,31 @@ export const MatchPointHome = styled.span``;
 export const MatchPointAway = styled.span``;
 export const MatchPointDivisor = styled.span``;
 
-
-//Banner 
+//Banner
 export const BannerDesign = styled.div`
   /* background-image: url("https://pbs.twimg.com/media/FCFz1faUUAAQKcC?format=jpg&name=large"); */
-  background-image: url("https://img.uefa.com/imgml/uefacom/ucl/2021/backgroundDark01L.jpg");
-  /* background-image: url("https://pbs.twimg.com/media/DfLNzUaWsAAnVmi.jpg"); */
+  /* background-image: url("https://img.uefa.com/imgml/uefacom/ucl/2021/backgroundDark01L.jpg"); */
+  background-image: url("https://pbs.twimg.com/media/DfLNzUaWsAAnVmi.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  
-`
+`;
+
+//VIDEO TUTORIAL
+
+export const TutorialTitle = styled.h1`
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: inline-block;
+  background-image: linear-gradient(to right, #36b3a8, #0052aa);
+  -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: 0.2rem;
+  transition: all 0.2s;
+
+  &:hover {
+    transform: skewY(2deg) skewX(15deg) scale(1.1);
+    text-shadow: 0.5rem 1rem 2rem rgba($color-black, 0.2);
+  }
+`;
