@@ -12,13 +12,18 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Provider } from "react-redux";
 import store from "./state/store";
 
+//ContextProvider
+import { ContextProvider } from "./contexts/ContextProvider"
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Router>
       <Provider store={store}>
         <GoogleOAuthProvider clientId="1003614733230-e43jmqg38ura9fdcru8n7nb2qknpab1l.apps.googleusercontent.com">
-          <App />
+          <ContextProvider>
+            <App />
+          </ContextProvider>
         </GoogleOAuthProvider>
       </Provider>
     </Router>

@@ -1,14 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
+
+body {
+  margin: 0;
+  padding:0;
+  font-family: "Open Sans", sans-serif;
+  background: #f1f3f8;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
+/* @font-face {
   font-family: "Roboto Regular";
   src: local("Roboto Regular"),
     url(./assets/fonts/Roboto-Regular.ttf) format("truetype");
-}
-
-body {
-  font-family: 'Roboto Regular', sans-serif;
-  background: #f1f3f8;
-}
+} */
