@@ -224,12 +224,12 @@ function Fixture() {
               </TeamHome>
 
               <MatchTime>
-                <MatchVs>vs</MatchVs>
-                {/* <MatchResult>
+                {/* <MatchVs>vs</MatchVs> */}
+                <MatchResult>
                   <MatchPointHome>2</MatchPointHome>
                   <MatchPointDivisor>-</MatchPointDivisor>
                   <MatchPointAway>0</MatchPointAway>
-                </MatchResult> */}
+                </MatchResult>
               </MatchTime>
 
               <TeamAway>
@@ -238,11 +238,11 @@ function Fixture() {
               </TeamAway>
             </MatchBase>
 
-            <MatchModal>
+            {/* <MatchModal>
               <MatchModalText>Vote now</MatchModalText>
-            </MatchModal>
+            </MatchModal> */}
 
-            {/* <MatchVotedContainer>
+            <MatchVotedContainer>
               <MatchVotedMessage>You voted</MatchVotedMessage>
               <MatchModalVoted>
                 <MatchVotedResult>
@@ -251,7 +251,7 @@ function Fixture() {
                   <MatchVotedAway>(7) Bayern Munich</MatchVotedAway>
                 </MatchVotedResult>
               </MatchModalVoted>
-            </MatchVotedContainer> */}
+            </MatchVotedContainer>
           </Match>
         ))}
       </div>
