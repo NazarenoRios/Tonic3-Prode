@@ -1,7 +1,7 @@
 import React from 'react'
 
 import NavBar2 from '../components/Navbar/NavBar2'
-import Banner from '../components/Homepage/Banner'
+import Banner from '../common/Banner/Banner'
 import Fixture from '../components/Homepage/Fixture.tsx'
 import PrizePodium from '../components/Homepage/PrizePodium'
 import Footer from '../components/Footer/Footer'

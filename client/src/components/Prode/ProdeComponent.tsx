@@ -46,9 +46,11 @@ import {
   MatchVotedAway,
   MatchVotedMessage,
   MatchVotedContainer,
+  TableTitle,
 } from "./StyledComponents";
+import GeneralTable from "./GeneralTable/GeneralTable";
 
-function Fixture() {
+function ProdeComponent() {
   const matches = [
     {
       LocalTeam: "Estudiantes",
@@ -171,7 +173,10 @@ function Fixture() {
           ref={rowRef}
         >
           {matchesInfo.map((match, i) => (
-            <div key={i} className="h-28 min-w-[150px] md:min-w-[160px] md:min-h-[100px]">
+            <div
+              key={i}
+              className="h-28 min-w-[150px] md:min-w-[160px] md:min-h-[100px]"
+            >
               <div className="border rounded-3xl h-24 text-center grid justify-center items-center">
                 <span style={{ fontSize: "12px" }} className="mt-3">
                   {match.fase}
@@ -240,7 +245,7 @@ function Fixture() {
             </MatchBase>
 
             <MatchModal>
-              <MatchModalText>See more</MatchModalText>
+              <MatchModalText>Vote now</MatchModalText>
             </MatchModal>
 
             {/* <MatchVotedContainer>
@@ -253,11 +258,38 @@ function Fixture() {
                 </MatchVotedResult>
               </MatchModalVoted>
             </MatchVotedContainer> */}
+
+            <MatchTop>
+              <MatchInfo>
+                <MatchInfoData>
+                  <MatchName>
+                    You have until 16:00hs to vote this match
+                  </MatchName>
+                </MatchInfoData>
+              </MatchInfo>
+            </MatchTop>
           </Match>
         ))}
       </div>
+
+      <div className="mt-36 bg-[#172236]">
+        {/* <img style={{height:"120vh", width:"100vw"}} src="https://img.uefa.com/imgml/uefacom/ucl/2021/backgroundDark01L.jpg" alt="" className="absolute"/> */}
+        <img style={{height:"120vh", width:"100vw"}} src="https://pbs.twimg.com/media/FCFz1faUUAAQKcC?format=jpg&name=large" alt="" className="absolute"/>
+
+      <div className="flex justify-center">
+        <TableTitle className="text-center mt-12 z-10">
+          TABLE POINTS
+        </TableTitle>
+      </div>
+      <div
+        className="container mx-auto grid grid-cols-1 md:grid-cols-2 md:gap-2 mt-6 align-middle content-center text-white h-auto font-bold"
+      >
+        <GeneralTable/>
+        <GeneralTable/>
+      </div>
+    </div>
     </>
   );
 }
 
-export default Fixture;
+export default ProdeComponent;

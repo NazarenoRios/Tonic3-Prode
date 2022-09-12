@@ -8,8 +8,9 @@ function Modal() {
 
   const dispatch = useDispatch();
 
-  const sucessGoogleResponse = (tokenResponse) => {
-    dispatch(googleLogin(tokenResponse))
+  const sucessGoogleResponse = async (tokenResponse) => {
+    const log = await dispatch(googleLogin(tokenResponse))
+    const reload = await window.location.reload()
   };
 
   return (
