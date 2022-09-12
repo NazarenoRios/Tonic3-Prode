@@ -1,4 +1,5 @@
 import React from "react";
+import Cookies from 'js-cookie';
 
 import { useDispatch } from "react-redux"
 import { GoogleLogin } from "@react-oauth/google";
@@ -8,10 +9,19 @@ function Modal() {
 
   const dispatch = useDispatch();
 
+  const fetchData = async () => {
+    const setName = await sessionStorage.setItem("name", Cookies.get('name'))
+    const setLastName = await sessionStorage.setItem("lastname", Cookies.get('lastname'))
+    const setEmail = await sessionStorage.setItem("email", Cookies.get('email'))
+    const setPassword= await sessionStorage.setItem("password", Cookies.get('password'))
+  }
+
   const sucessGoogleResponse = async (tokenResponse) => {
     const log = await dispatch(googleLogin(tokenResponse))
+    const setInfo = await fetchData()
     const reload = await window.location.reload()
   };
+
 
   return (
     <div className="relative flex justify-center items-center" style={{zIndex:"100000"}}>

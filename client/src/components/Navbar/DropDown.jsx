@@ -13,7 +13,8 @@ export default function DropDown({ navbar }) {
   const handleLogout = async () => {
     try {
       const logout = await axios.post("/api/user/logout");
-      const reload = window.location.reload();
+      const clear = await sessionStorage.clear();
+      const reload = await window.location.reload();
     } catch (error) {
       console.log(error);
     }
