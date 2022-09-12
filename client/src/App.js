@@ -6,7 +6,6 @@ import "./App.css";
 
 import Homepage from "./pages/Homepage";
 import { getUser } from "./state/user";
-import Modal from "./common/Modal";
 import Profile from "./pages/Profile";
 
 // Admin Section
@@ -14,6 +13,7 @@ import Profile from "./pages/Profile";
 import { Orders, Calendar, Employees, Dashboard, Customers, Kanban, Line, Area, Bar, Pie, ColorMapping, Tournaments} from "./pages/AdminPanel";
 import Prode from "./pages/Prode";
 import Register from "./pages/Register";
+import Registered from "./pages/Registered";
 
 function App() {
 
@@ -59,6 +59,7 @@ function App() {
       ) : (
         <Routes>
           <Route path="/" element={<Register />} />
+          <Route path="/registered" element={<Registered />} />
         </Routes>
       )}
     </>
