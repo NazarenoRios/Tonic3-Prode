@@ -7,6 +7,7 @@ import "./App.css";
 import Homepage from "./pages/Homepage";
 import { getUser } from "./state/user";
 import Modal from "./common/Modal";
+import Profile from "./pages/Profile";
 
 // Admin Section
 
@@ -29,6 +30,7 @@ function App() {
         <Routes>
           {/* User Section */}
           <Route path="/" element={<Homepage />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/prode" element={<Prode />} />
           <Route path="/register" element={<Register/>} />
 
