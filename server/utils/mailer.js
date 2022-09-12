@@ -1,5 +1,6 @@
 const nodemailer = require("nodemailer");
 const { google } = require("googleapis");
+const { User } = require("../models")
 const OAuth2 = google.auth.OAuth2;
 require("dotenv").config();
 
@@ -14,25 +15,27 @@ oauth2Client.setCredentials({
 
 async function sendMail(id) {
   try {
-    const user2 = await User.findOne({ where: { id: id } });
+    const userLogged = await User.findOne({ where: { id: id } });
     const accessToken = await oauth2Client.getAccessToken();
     const transport = nodemailer.createTransport({
       service: "gmail",
       auth: {
         type: "OAuth2",
-        user: "prodetonic3@gmail.com",
+        user: process.env.MAIL_ADDRESS,
         clientId: process.env.CLIENT_ID,
         clientSecret: process.env.CLIENT_SECRET,
         refreshToken: process.env.REFRESH_TOKEN,
         accessToken: accessToken,
       },
     });
+    const currentURL = "http://localhost:3001/"
     const mailOptions = {
-      from: "prodetonic3@gmail.com",
-      to: `${user2.dataValues.email}`,
+      from: process.env.MAIL_ADDRESS,
+      to: `${userLogged.dataValues.email}`,
       subject: "Confirm your Email Address",
-      text: "",
-      html: "<h1><h1>",
+      text: "Please click the link below to confirm your email address.",
+      html: `<h1>Please click the link below to confirm your email address.<h1>
+            <a href= ${currentURL + "api/user/verifyEmail"+ "/" + userLogged.dataValues.emailToken}> Verify your Email</a>`,
     };
     const result = await transport.sendMail(mailOptions);
     return result;
