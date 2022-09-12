@@ -7,6 +7,7 @@ import Cookies from 'js-cookie';
 import Homepage from "./pages/Homepage";
 import { getUser } from "./state/user";
 import Modal from "./common/Modal";
+import Profile from "./pages/Profile";
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
       {Cookies.get("token") !== undefined ? (
         <Routes>
           <Route path="/" element={<Homepage />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       ) : (
         <Modal/>
