@@ -14,7 +14,6 @@ export const googleLogin = createAsyncThunk("GOOGLE_LOGIN", async (tokenResponse
 export const getUser = createAsyncThunk("GET_USER", async () => {
     try {
         const res = await axios.get("/api/user/me")
-        console.log(res)
         return res.data
     } catch (err) {
         return err.message

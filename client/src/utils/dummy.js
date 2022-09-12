@@ -474,7 +474,7 @@ export const links = [
     title: 'Dashboard',
     links: [
       {
-        name: 'General Panel',
+        name: 'Admin-Panel',
         icon: <FiShoppingBag />,
       },
     ],

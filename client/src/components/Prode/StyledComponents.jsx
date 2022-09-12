@@ -180,3 +180,28 @@ export const TutorialTitle = styled.h1`
     text-shadow: 0.5rem 1rem 2rem rgba($color-black, 0.2);
   }
 `;
+
+// TABLE
+
+export const TableDesign = styled.div`
+  background-image: url("https://img.uefa.com/imgml/uefacom/ucl/2021/backgroundDark01L.jpg");
+  object-fit: cover;
+  background-repeat: no-repeat;
+`;
+
+export const TableTitle = styled.h1`
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: inline-block;
+  background-image: linear-gradient(to right, #9439fc, #b200c2);
+  -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: 0.2rem;
+  transition: all 0.2s;
+
+  &:hover {
+    transform: skewY(2deg) skewX(15deg) scale(1.1);
+    text-shadow: 0.5rem 1rem 2rem rgba($color-black, 0.2);
+  }
+`;

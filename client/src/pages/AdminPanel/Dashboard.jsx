@@ -4,15 +4,30 @@ import { GoPrimitiveDot } from "react-icons/go";
 import { DropDownListComponent } from "@syncfusion/ej2-react-dropdowns";
 import { useStateContext } from "../../contexts/ContextProvider";
 
-import { Stacked, Pie, Button, LineChart, SparkLine, Navbar, Footer, Sidebar } from "../../components/AdminPanel";
-import { earningData, recentTransactions, dropdownData, SparklineAreaData, ecomPieChartData } from "../../utils/dummy";
+import {
+  Stacked,
+  Pie,
+  Button,
+  LineChart,
+  SparkLine,
+  Navbar,
+  Footer,
+  Sidebar,
+} from "../../components/AdminPanel";
+import {
+  earningData,
+  recentTransactions,
+  dropdownData,
+  SparklineAreaData,
+  ecomPieChartData,
+} from "../../utils/dummy";
 
-const DropDown = ({ currentMode }) => (
+const DropDown = () => (
   <div className="w-28 border-1 border-color px-2 py-1 rounded-md">
     <DropDownListComponent
       id="time"
       fields={{ text: "Time", value: "Id" }}
-      style={{ border: "none", color: currentMode === "Dark" && "white" }}
+      style={{ border: "none" }}
       value="1"
       dataSource={dropdownData}
       popupHeight="220px"
@@ -22,7 +37,7 @@ const DropDown = ({ currentMode }) => (
 );
 
 const Dashboard = () => {
-  const { currentColor, currentMode, activeMenu } = useStateContext();
+  const { currentColor, activeMenu } = useStateContext();
 
   return (
     <>
@@ -39,15 +54,15 @@ const Dashboard = () => {
         <div
           className={
             activeMenu
-              ? "dark:bg-main-dark-bg  bg-main-bg min-h-screen md:ml-72 w-full  "
-              : "bg-main-bg dark:bg-main-dark-bg  w-full min-h-screen flex-2 "
+              ? "bg-[#f1f3f8] min-h-screen md:ml-72 w-full  "
+              : "bg-[#f1f3f8] w-full min-h-screen flex-2 "
           }
         >
           <div>
-            <div className="fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full ">
+            <div style={{top:"0"}} className="fixed md:static bg-[#f1f3f8] dark:bg-main-dark-bg navbar w-full ">
               <Navbar />
             </div>
-            <div className="mt-24">
+            <div className="mt-24 bg-[#f1f3f8]">
               <div className="flex flex-wrap lg:flex-nowrap justify-center ">
                 <div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg h-44 rounded-xl w-full lg:w-80 p-8 pt-9 m-3 bg-hero-pattern bg-no-repeat bg-cover bg-center">
                   <div className="flex justify-between items-center">
@@ -163,11 +178,7 @@ const Dashboard = () => {
                       </div>
                     </div>
                     <div>
-                      <Stacked
-                        currentMode={currentMode}
-                        width="320px"
-                        height="360px"
-                      />
+                      <Stacked width="320px" height="360px" />
                     </div>
                   </div>
                 </div>
@@ -224,7 +235,7 @@ const Dashboard = () => {
                 <div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg p-6 rounded-2xl">
                   <div className="flex justify-between items-center gap-2">
                     <p className="text-xl font-semibold">Recent Transactions</p>
-                    <DropDown currentMode={currentMode} />
+                    <DropDown />
                   </div>
                   <div className="mt-10 w-72 md:w-400">
                     {recentTransactions.map((item) => (
@@ -272,7 +283,7 @@ const Dashboard = () => {
                 <div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg p-6 rounded-2xl w-96 md:w-760">
                   <div className="flex justify-between items-center gap-2 mb-10">
                     <p className="text-xl font-semibold">Sales Overview</p>
-                    <DropDown currentMode={currentMode} />
+                    <DropDown />
                   </div>
                   <div className="md:w-full overflow-auto">
                     <LineChart />
