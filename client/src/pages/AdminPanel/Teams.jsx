@@ -1,21 +1,11 @@
 import React from "react";
-import {
-  GridComponent,
-  Inject,
-  ColumnsDirective,
-  ColumnDirective,
-  Search,
-  Page,
-} from "@syncfusion/ej2-react-grids";
 
-import { employeesData, tournamentGrid } from "../../utils/dummy";
 import { Footer, Header, Navbar, Sidebar } from "../../components/AdminPanel";
 import { useStateContext } from "../../contexts/ContextProvider";
+import TeamsModel from "./Teams/TeamsModel.tsx";
 
 const Teams = () => {
-  const toolbarOptions = ["Search"];
   const { activeMenu } = useStateContext();
-  const editing = { allowDeleting: true, allowEditing: true };
 
   return (
     <>
@@ -45,22 +35,7 @@ const Teams = () => {
             </div>
             <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
               <Header category="Page" title="Employees" />
-              <GridComponent
-                dataSource={employeesData}
-                width="auto"
-                allowPaging
-                allowSorting
-                pageSettings={{ pageCount: 5 }}
-                editSettings={editing}
-                toolbar={toolbarOptions}
-              >
-                <ColumnsDirective>
-                  {tournamentGrid.map((item, index) => (
-                    <ColumnDirective key={index} {...item} />
-                  ))}
-                </ColumnsDirective>
-                <Inject services={[Search, Page]} />
-              </GridComponent>
+              <TeamsModel/>
             </div>
             <Footer />
           </div>

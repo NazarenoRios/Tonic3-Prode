@@ -26,9 +26,7 @@ root.render(
       <Provider store={store}>
         <GoogleOAuthProvider clientId="1003614733230-e43jmqg38ura9fdcru8n7nb2qknpab1l.apps.googleusercontent.com">
           <ContextProvider>
-            <ChakraProvider theme={theme}>
               <App />
-            </ChakraProvider>
           </ContextProvider>
         </GoogleOAuthProvider>
       </Provider>
