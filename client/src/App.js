@@ -6,7 +6,7 @@ import "./App.css";
 
 import Homepage from "./pages/Homepage";
 import { getUser } from "./state/user";
-import Profile from "./pages/Profile";
+
 
 // Admin Section
 
@@ -14,6 +14,9 @@ import { Orders, Calendar, Employees, Dashboard, Customers, Kanban, Line, Area, 
 import Prode from "./pages/Prode";
 import Register from "./pages/Register";
 import Registered from "./pages/Registered";
+import CustomUser from "./pages/UserPanel/EditUser";
+
+
 
 function App() {
 
@@ -30,9 +33,9 @@ function App() {
         <Routes>
           {/* User Section */}
           <Route path="/" element={<Homepage />} />
-          <Route path="/profile" element={<Profile />} />
           <Route path="/prode" element={<Prode />} />
           <Route path="/register" element={<Register/>} />
+          <Route path="/Edit-User" element={<CustomUser/>} />
 
           {/* Admin Section */}
 
