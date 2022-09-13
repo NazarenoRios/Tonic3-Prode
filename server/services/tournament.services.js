@@ -1,5 +1,5 @@
 const { Op } = require("sequelize")
-const { Tournament } = require("../models")
+const { Tournament, Tournament_teams } = require("../models")
 
 class TournamentServices {
 
@@ -50,6 +50,17 @@ class TournamentServices {
         return await tournament.save()
         } catch(error){
             console.log(error)
+        }
+    }
+
+    static async addTeam(idTournament,idTeam){
+        try{
+               return await Tournament_teams.create({
+                        teamId : idTeam,
+                        tournamentId : idTournament
+                  })
+        }catch(error){
+            console.log(error);
         }
     }
 
