@@ -3,7 +3,8 @@ const S=require('sequelize')
 const Data_match = require('./Data_match')
 
 
-class Match extends S.Model{}
+class Match extends S.Model{
+}
 
 
 Match.init({
@@ -32,10 +33,12 @@ Match.init({
 
 },{sequelize:db,modelName:'match'})
 
-Match.addHook('afterBulkCreate',(data)=>{
-    console.log(data[0],data[1],data)
-   // Match.findAll({where:{tournamentId:data[0].tournamentId}})
-   // Data_match.bulkCreate()
+Match.addHook('afterBulkCreate',(matches)=>{
+    let matches_id=[]
+    matches.forEach(match=>{
+        for(let i=0 ;i<2 ; i++)matches_id.push({matchId:match.id})
+    })
+    Data_match.bulkCreate(matches_id)
 })
 
 module.exports=Match

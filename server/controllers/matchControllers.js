@@ -26,18 +26,6 @@ class MatchControllers {
             return res.sendStatus(404)
         }
     }
-    static async createMatchesController(req,res){
-        if(!req.body)return res.sendStatus(400)
-        try{
-            const matches= await Match_services.createMatches(req.body)
-            if(!matches)return res.sendStatus(400)
-            else return res.sendStatus(204)
-        }
-        catch(e){
-            console.log(e)
-            return res.sendStatus(404)
-        }
-    }
 }
 
 module.exports=MatchControllers
