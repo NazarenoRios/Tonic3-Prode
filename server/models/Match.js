@@ -22,7 +22,14 @@ Match.init({
     },
     fase:{
         type:S.INTEGER
+    },
+    match: {
+        type: S.INTEGER
+    },
+    next : {
+        type: S.INTEGER
     }
+
 },{sequelize:db,modelName:'match'})
 
 Match.addHook('afterBulkCreate',(data)=>{

@@ -19,6 +19,9 @@ class Match_services {
     return await Match.findAll({ where: { tournamentId } });
   }
   static async createMatches(matches) {
+    matches.forEach(match => {
+      if(!match.tournamentId)return false
+    });
     return await Match.bulkCreate(matches);
   }
 }
