@@ -45,6 +45,9 @@ User.init(
     phone: {
       type: DataTypes.BIGINT,
     },
+    country: {
+      type: DataTypes.STRING,
+    },
     state: {
       type: DataTypes.STRING,
     },

@@ -57,7 +57,7 @@ function RegisterForm() {
 
   return (
     <>
-      {email && email !== undefined ? (
+      {email ? (
         <div className="flex h-screen bg-[#172236]">
           {/* <Img className="relative ml-56 imgLeft mt-96" src={leftImg} alt="" /> */}
           <FormBackground autoPlay muted alt="" src={BackgroundVideo} />

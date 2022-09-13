@@ -8,12 +8,11 @@ import {
   Page,
 } from "@syncfusion/ej2-react-grids";
 
-import { employeesData, employeesGrid } from "../../utils/dummy";
+import { employeesData, tournamentGrid } from "../../utils/dummy";
 import { Footer, Header, Navbar, Sidebar } from "../../components/AdminPanel";
 import { useStateContext } from "../../contexts/ContextProvider";
 
-const Employees = () => {
-  
+const Teams = () => {
   const toolbarOptions = ["Search"];
   const { activeMenu } = useStateContext();
   const editing = { allowDeleting: true, allowEditing: true };
@@ -38,7 +37,10 @@ const Employees = () => {
           }
         >
           <div>
-            <div style={{top:"0"}} className="fixed md:static bg-[#f1f3f8] dark:bg-main-dark-bg navbar w-full ">
+            <div
+              style={{ top: "0" }}
+              className="fixed md:static bg-[#f1f3f8] dark:bg-main-dark-bg navbar w-full "
+            >
               <Navbar />
             </div>
             <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
@@ -53,8 +55,7 @@ const Employees = () => {
                 toolbar={toolbarOptions}
               >
                 <ColumnsDirective>
-                  {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-                  {employeesGrid.map((item, index) => (
+                  {tournamentGrid.map((item, index) => (
                     <ColumnDirective key={index} {...item} />
                   ))}
                 </ColumnsDirective>
@@ -68,4 +69,4 @@ const Employees = () => {
     </>
   );
 };
-export default Employees;
+export default Teams;

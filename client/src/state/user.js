@@ -11,9 +11,9 @@ export const googleLogin = createAsyncThunk("GOOGLE_LOGIN", async (tokenResponse
     }
 })
 
-export const sendRegister = createAsyncThunk("REGISTER", async ({name,lastname,email,password,state,city,address,zip,phone}) => {
+export const sendRegister = createAsyncThunk("REGISTER", async ({name,lastname,email,password,country,state,city,address,zip,phone}) => {
     try {
-        const res = await axios.post("/api/user/register", {name, lastname, email, password, state, city, address, zip, phone})
+        const res = await axios.post("/api/user/register", {name, lastname, email, password,country,state, city, address, zip, phone})
         return res.data
     } catch (err) {
         return err.message
