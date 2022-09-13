@@ -20,7 +20,7 @@ Data_match.belongsToMany(Player, { through: "player_data" });
 
 Team.belongsToMany(Match,{as:'matchID',through:"data_match"})
 Match.belongsToMany(Team,{as:'teamID',through:"data_match"})
-
+Data_match.belongsTo(Match)
 Match.belongsTo(Tournament);
 
 
