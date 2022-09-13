@@ -1,22 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
 
 import { Footer, Navbar, Sidebar } from "../../components/AdminPanel";
 import { useStateContext } from "../../contexts/ContextProvider";
-import { getTournaments } from "../../state/tournaments";
-import TournamentsModel from "./Tournaments/TournamentsModel";
+import TournamentsModel from "./Tournaments/TournamentsModel.tsx";
 
 const Orders = () => {
 
   const { activeMenu } = useStateContext();
-
-  const [tournaments, setTournaments] = useState([]);
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getTournaments(setTournaments));
-  }, []);
 
   return (
     <>
@@ -42,7 +32,7 @@ const Orders = () => {
               <Navbar />
             </div>
             <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
-              <TournamentsModel tournaments={tournaments} setTournaments={setTournaments}/>
+              <TournamentsModel/>
             </div>
             <Footer />
           </div>

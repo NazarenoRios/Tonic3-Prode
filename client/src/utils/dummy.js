@@ -80,15 +80,12 @@ export const kanbanGrid = [
 
   { headerText: "Done", keyField: "Close", allowToggle: true },
 ];
-const gridEmployeeProfile = (props) => (
-  <div className="flex items-center gap-2">
-    <img
+const gridTournamentLogo = (props) => (
+  <img
       className="rounded-full w-10 h-10"
-      src={props.EmployeeImage}
-      alt="employee"
+      src={props.logo}
+      alt="logo"
     />
-    <p>{props.Name}</p>
-  </div>
 );
 
 const gridEmployeeCountry = (props) => (
@@ -468,27 +465,38 @@ export const customersGrid = [
   },
 ];
 
+
 export const tournamentGrid = [
   { type: "checkbox", width: "50" },
-  { field: "id", headerText: "Id", width: "125", textAlign: "Center" },
+  // { field: "id", headerText: "Id", width: "125", textAlign: "Center" },
 
-  {
-    headerText: "Logo",
-    width: "150",
-    template: gridEmployeeProfile,
-    textAlign: "Center",
-  },
-  { field: "logo", headerText: "", width: "0", textAlign: "Center" },
+  { headerText: "Logo", width: "150", template: gridTournamentLogo, textAlign: "Center", field:"logo"},
+  // { field: "logo", headerText: "", width: "0", textAlign: "Center" },
   { field: "name", headerText: "Name", width: "170", textAlign: "Center" },
-  { headerText: "Phase", field: "phase", width: "120", textAlign: "Center" },
+  { headerText: "Phase", field: "phase", width: "120", textAlign: "Center"},
+
+  // { headerText: "Phase", field: "phase", width: "120", textAlign: "Center", editType:"dropdownedit" },
 
   {
     field: "participants",
-    headerText: "Participants",
+    headerText: "Teams",
     width: "135",
-    format: "yMd",
     textAlign: "Center",
+    
   },
+
+  { field: "state", headerText: "State", width: "120", textAlign: "Center" },
+
+];
+
+export const teamsGrid = [
+  { type: "checkbox", width: "50" },
+  // { field: "id", headerText: "Id", width: "125", textAlign: "Center" },
+
+  { headerText: "Logo", width: "150", template: gridTournamentLogo, textAlign: "Center", field:"logo"},
+  // { field: "logo", headerText: "", width: "0", textAlign: "Center" },
+  { field: "name", headerText: "Name", width: "170", textAlign: "Center" },
+  { headerText: "Info", field: "info", width: "120", textAlign: "Center"},
 
   { field: "state", headerText: "State", width: "120", textAlign: "Center" },
 

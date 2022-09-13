@@ -24,8 +24,6 @@ function App() {
     dispatch(getUser());
   }, [user.id]);
 
-  console.log(user)
-
   return (
     <>
       {user.isVerified ? (
