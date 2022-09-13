@@ -53,7 +53,7 @@ exports.googlelogin = (req, res) => {
 };
 
 exports.register = (req, res) => {
-  const { email, name, lastname , phone, state, city, address, zip, password } = req.body;
+  const { email, name, lastname , phone, country , state, city, address, zip, password } = req.body;
   User.findOne({ where: { email: req.body.email } }).then((user) => {
     if (!user) {
       User.create({
@@ -67,6 +67,7 @@ exports.register = (req, res) => {
         isVerified: false,
         admin: false,
         phone: phone,
+        country: country,
         state: state,
         city: city,
         address: address,

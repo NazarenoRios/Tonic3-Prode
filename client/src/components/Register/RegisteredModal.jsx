@@ -1,6 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
+import Modal from "../../common/Modal";
+import Cookies from "js-cookie";
 
-function RegisteredModal() {
+import { FormBackground } from "./StyledComponents";
+import BackgroundVideo from "../../assets/videos/FormBackground.mp4";
+
+function RegisterForm() {
+  const [name, setName] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    setName(sessionStorage.getItem("name"));
+    setLastname(sessionStorage.getItem("lastname"));
+    setEmail(sessionStorage.getItem("email"));
+    setPassword(sessionStorage.getItem("password"));
+  }, []);
+
   return (
     <div
       className="relative flex justify-center items-center"
@@ -10,29 +28,27 @@ function RegisteredModal() {
         id="menu"
         className="w-full h-full bg-gray-900 bg-opacity-80 top-0 fixed sticky-0"
       >
-        <div className="2xl:container 2xl:mx-auto py-48 px-4 md:px-28 flex justify-center items-center">
+        <div className="2xl:container  2xl:mx-auto py-48 px-4 md:px-28 flex justify-center items-center">
           <div className="w-96 md:w-auto dark:bg-gray-800 relative flex flex-col justify-center items-center bg-white py-16 px-4 md:px-24 xl:py-24 xl:px-36">
             <div className="mt-12">
               <h1
                 role="main"
                 className="text-3xl dark:text-white lg:text-4xl font-semibold leading-7 lg:leading-9 text-center text-gray-800"
               >
-                Congratulations!
+                Congratulations! 😊
               </h1>
             </div>
             <div className="mt">
-              <p className="mt-6 sm:w-96 text-base dark:text-white leading-7 text-center text-gray-800 mb-5">
-                You have successfully registered, now you must confirm your
-                email to be able to log in
+              <p className="mt-6 sm:w-80 text-base dark:text-white leading-7 text-center text-gray-800 mb-5">
+                You have successfully registered, now you must accept the
+                verification email
               </p>
             </div>
-            <span className="text-gray-500 text-xs">Don`t forget to check your spam folder</span>
-            {/* <GoogleLogin
-              onSuccess={sucessGoogleResponse}
-              onError={() => {
-                console.log("Login Failed");
-              }}
-            /> */}
+            <div className="mt">
+              <span className="mt-6 text-center text-sm font-bold text-red-500">
+                Don't forget to check the spam folder
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -40,4 +56,4 @@ function RegisteredModal() {
   );
 }
 
-export default RegisteredModal;
+export default RegisterForm;

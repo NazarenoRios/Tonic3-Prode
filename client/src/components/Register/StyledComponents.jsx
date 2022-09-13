@@ -2,9 +2,17 @@ import styled from "styled-components";
 
 export const FormBackground = styled.video`
   object-fit: cover;
-  height: 100vh;
-  width: 100vw;
+  height: 104vh;
+  width: 110vw;
   position: absolute;
+
+  /* @media screen and (max-width: 535px) {
+    margin-left: 12px;
+  } */
+
+  /* @media screen and (max-width: 396px) {
+    margin-left: 15px;
+  } */
 `;
 
 export const Img = styled.img`

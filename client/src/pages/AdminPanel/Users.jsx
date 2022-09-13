@@ -16,7 +16,7 @@ import { customersData, customersGrid } from "../../utils/dummy";
 import { Footer, Header, Navbar, Sidebar } from "../../components/AdminPanel";
 import { useStateContext } from "../../contexts/ContextProvider";
 
-const Customers = () => {
+const Users = () => {
   const selectionsettings = { persistSelection: true };
   const toolbarOptions = ["Delete"];
   const editing = { allowDeleting: true, allowEditing: true };
@@ -76,4 +76,4 @@ const Customers = () => {
   );
 };
 
-export default Customers;
+export default Users;
