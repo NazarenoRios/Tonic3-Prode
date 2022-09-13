@@ -5,7 +5,7 @@ require("dotenv").config();
 const { createHmac } = require("node:crypto");
 const mailer = require("../utils/mailer");
 
-const geoip = require('geoip-lite');
+const geoip = require("geoip-lite");
 
 const { OAuth2Client } = require("google-auth-library");
 const router = require("../routes");
@@ -59,7 +59,7 @@ exports.googlelogin = (req, res) => {
 };
 
 exports.register = (req, res) => {
-  const { email, name, lastname , phone, country , state, city, address, zip, password } = req.body;
+  const {email,name,lastname,phone,country,state,city,address,zip,password,} = req.body;
   User.findOne({ where: { email: req.body.email } }).then((user) => {
     if (!user) {
       User.create({
@@ -91,37 +91,28 @@ exports.register = (req, res) => {
   });
 };
 
-exports.verifyEmail = async(req, res) => {
+exports.verifyEmail = async (req, res) => {
   try {
-    const { emailToken } = req.params
-    const user = await User.findOne({ where: { emailToken: emailToken } })
-    if (user){
-      User.update({ isVerified: true, emailToken: null },{ where: { emailToken: emailToken } })
-      res.redirect("http://localhost:3000/")
-      res.sendStatus(204)
+    const { emailToken } = req.params;
+    const user = await User.findOne({ where: { emailToken: emailToken } });
+    if (user) {
+      User.update(
+        { isVerified: true, emailToken: null },
+        { where: { emailToken: emailToken } }
+      );
+      res.redirect("http://localhost:3000/");
+      res.sendStatus(204);
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
 exports.validation = (req, res) => {
-  res.send(req.user)
+  res.send(req.user);
 };
 
 exports.logout = (req, res) => {
-  res.clearCookie("token")
-  res.sendStatus(204)
+  res.clearCookie("token");
+  res.sendStatus(204);
 };
-
-exports.showIP = async (req, res) => {
-  try {
-  const geo = geoip.lookup(req.headers['x-forwarded-for'] || req.connection.remoteAddress);
-  console.log(req.ip)
-  res.json({country: geo.country});
-  }
-  catch(error) {
-    console.log(error)
-  }
-  
-}
