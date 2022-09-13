@@ -131,8 +131,11 @@ function Fixture() {
     }
   };
 
+  // #f1f3f8
+
   return (
     <>
+      <div className="bg-[#f1f3f8]">
       <h1
         style={{ fontSize: "48px", color: "#30316e" }}
         className="container mx-auto grid md:grid-cols-2 md:gap-2 mt-12"
@@ -255,6 +258,7 @@ function Fixture() {
             </MatchVotedContainer> */}
           </Match>
         ))}
+      </div>
       </div>
     </>
   );

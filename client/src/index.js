@@ -13,7 +13,11 @@ import { Provider } from "react-redux";
 import store from "./state/store";
 
 //ContextProvider
-import { ContextProvider } from "./contexts/ContextProvider"
+import { ContextProvider } from "./contexts/ContextProvider";
+
+//chakra ui
+import { ChakraProvider } from "@chakra-ui/react";
+import { theme } from "./utils/chakraui";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -22,7 +26,7 @@ root.render(
       <Provider store={store}>
         <GoogleOAuthProvider clientId="1003614733230-e43jmqg38ura9fdcru8n7nb2qknpab1l.apps.googleusercontent.com">
           <ContextProvider>
-            <App />
+              <App />
           </ContextProvider>
         </GoogleOAuthProvider>
       </Provider>

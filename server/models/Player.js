@@ -14,8 +14,7 @@ Player.init({
         type : S.INTEGER
     },
     img : {
-        type: S.STRING,
-        defaultValue: "https://img2.freepng.es/20180512/htw/kisspng-computer-icons-user-5af73f4c5d82c9.048741191526153036383.jpg"
+        type: S.STRING
     },
     goals:{
         type:S.INTEGER,
@@ -23,6 +22,10 @@ Player.init({
     },
     info:{
         type:S.TEXT
+    },
+    titular: {
+        type :S.BOOLEAN,
+        defaultValue:false
     }
 },{sequelize:db,modelName:'player'})
 

@@ -57,6 +57,26 @@ class PlayerController{
         }
     }
 
+    static async playerTitular(req,res){
+        try{
+            const player = await PlayerServices.findByid(req.params.id)
+            const titular = await PlayerServices.playerTitular(player)
+            return res.status(200).send(titular)
+        } catch(error){
+            console.log(error)
+        }
+    }
+
+    static async addDataMatchPlayer(req,res){
+        try{
+            const player = await PlayerServices.findByid(req.params.id)
+            const dataMatchPlayer = await PlayerServices.addDataMatchPlayer(player,req.body)
+            return res.status(200).send(dataMatchPlayer)
+        } catch(error){
+            console.log(error)
+        }
+    }
+
     static async deletePlayer(req,res){
         try{
             await PlayerServices.deletePlayer(req.params.id)

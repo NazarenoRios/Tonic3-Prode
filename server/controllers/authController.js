@@ -5,6 +5,8 @@ require("dotenv").config();
 const { createHmac } = require("node:crypto");
 const mailer = require("../utils/mailer");
 
+const geoip = require("geoip-lite");
+
 const { OAuth2Client } = require("google-auth-library");
 const router = require("../routes");
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
@@ -41,6 +43,10 @@ exports.googlelogin = (req, res) => {
               lastname: user.lastname,
               admin: user.admin,
               isVerified: user.isVerified,
+              phone: user.phone,
+              state: user.state,
+              city: user.city,
+              address: user.address,
             };
             const token = tokens.generateToken(payload);
             // sessionStorage.setItem("token", token)
@@ -53,7 +59,7 @@ exports.googlelogin = (req, res) => {
 };
 
 exports.register = (req, res) => {
-  const { email, name, lastname , phone, state, city, address, zip, password } = req.body;
+  const {email,name,lastname,phone,country,state,city,address,zip,password,} = req.body;
   User.findOne({ where: { email: req.body.email } }).then((user) => {
     if (!user) {
       User.create({
@@ -67,6 +73,7 @@ exports.register = (req, res) => {
         isVerified: false,
         admin: false,
         phone: phone,
+        country: country,
         state: state,
         city: city,
         address: address,
@@ -109,124 +116,3 @@ exports.logout = (req, res) => {
   res.clearCookie("token");
   res.sendStatus(204);
 };
-
-//REGISTRO
-
-/* exports.register = (req, res) => {
-  const userData = req.body;
-  User.findOne({ where: { email: req.body.email } }).then((user) => {
-    if (!user) {
-      User.create(userData)
-      .then(() => res.sendStatus(201));
-    } else {
-      res.send({ message: "Usuario ya registrado" });
-    }
-  });
-}; */
-
-//GOOGLELOGIN
-
-/* const { OAuth2Client } = require("google-auth-library");
-const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
-
-exports.googlelogin = (req, res) => {
-  const { credential } = req.body;
-
-  client
-    .verifyIdToken({
-      idToken: credential,
-      audience: process.env.GOOGLE_CLIENT_ID,
-    })
-    .then((userInfo) => {
-      const { email, name } = userInfo.payload;
-      const password = credential;
-      User.findOne({
-        where: { email: email },
-      }).then((user) => {
-        if (!user) {
-          return User.create({
-            email: email,
-            password: password,
-            fullname: name,
-            emailToken: createHmac("sha256", process.env.SECRET).update("vamo la escaloneta").digest("hex"),
-            isVerified: false,
-            admin: false
-          }).then((user) => {
-            user.validatePassword(password).then((isValid) => {
-              if (!isValid) return res.send(401);
-
-              const payload = {
-                id: user.id,
-                email: user.email,
-                fullname: user.fullname,
-                admin: user.admin,
-              };
-              const token = tokens.generateToken(payload);
-              res.cookie("token", token);
-              res.sendStatus(201);
-            });
-          });
-        }
-        user.validatePassword(password).then((isValid) => {
-          if (!isValid) return res.send(401);
-          const payload = {
-            id: user.id,
-            email: user.email,
-            fullname: user.fullname,
-            admin: user.admin
-          };
-          const token = tokens.generateToken(payload);
-          res.cookie("token", token);
-          res.sendStatus(201);
-        });
-      });
-    });
-};
-
-exports.validation = (req, res) => {
-    res.send(req.user);
-};
-
-exports.logout = (req, res) => {
-    res.clearCookie("token");
-    res.sendStatus(204);
-}; */
-
-/* exports.googlelogin = (req, res) => {
-  const { credential } = req.body;
-  client
-    .verifyIdToken({
-      idToken: credential,
-      audience: process.env.GOOGLE_CLIENT_ID,
-    })
-    .then((userInfo) => {
-      const { email, name } = userInfo.payload;
-      const password = credential;
-      User.findOne({
-        where: { email: email },
-      }).then((user) => {
-        if (!user) {
-          return User.create({
-            email: email,
-            password: password,
-            fullname: name,
-            emailToken: createHmac("sha256", process.env.SECRET).update(`${email}`).digest("hex"),
-            isVerified: false,
-            admin: false
-          }).then((user) => mailer.sendMail(user.dataValues.id).then((result)=> console.log("email enviado", result)));
-        }
-        user.validatePassword(password).then((isValid) => {
-          if (!isValid) return res.send(401);
-          const payload = {
-            id: user.id,
-            email: user.email,
-            fullname: user.fullname,
-            admin: user.admin
-          };
-          const token = tokens.generateToken(payload);
-          res.cookie("token", token);
-          res.sendStatus(201);
-        });
-      });
-    });
-}; */

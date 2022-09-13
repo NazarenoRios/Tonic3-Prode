@@ -2,8 +2,9 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import Modal from "../../common/Modal";
 
-import { Img, Img2 } from "./StyledComponents";
+import { FormBackground, Img, Img2 } from "./StyledComponents";
 import leftImg from "../../assets/register/rightLogin1.png";
+import BackgroundVideo from "../../assets/videos/FormBackground.mp4"
 import "./Btn.css";
 
 import { useForm } from "react-hook-form"
@@ -12,6 +13,7 @@ import { sendRegister } from "../../state/user";
 import { useNavigate } from "react-router";
 
 import Cookies from 'js-cookie';
+import axios from "axios";
 
 function RegisterForm() {
 
@@ -19,6 +21,7 @@ function RegisterForm() {
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [country, setCountry] = useState("");
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -33,10 +36,15 @@ function RegisterForm() {
   const { register, handleSubmit, formState: {errors} } = useForm()
 
   const onSubmit = async  (data) => {
-    const register = await dispatch(sendRegister({name: name,lastname: lastname,email: email,password: password,state: data.state,city: data.city,address: data.address,zip: data.zip,phone: data.phone}))
+    const register = await dispatch(sendRegister({name: name,lastname: lastname,email: email,password: password, country: country ,state: data.state,city: data.city,address: data.address,zip: data.zip,phone: data.phone}))
     const clearSession = await sessionStorage.clear();
     const clearCookies = await removeCookies()
     const fullRegister = await navigate("/registered")
+  }
+
+  const getCountry = async () => {
+    const res = await axios.get('https://geolocation-db.com/json/')
+    setCountry(res.data.country_name)
   }
 
   useEffect(() => {
@@ -44,14 +52,16 @@ function RegisterForm() {
     setLastname(sessionStorage.getItem("lastname"));
     setEmail(sessionStorage.getItem("email"));
     setPassword(sessionStorage.getItem("password"));
+    getCountry()
   }, []);
 
   return (
     <>
-      {email ? (
+      {email && email !== undefined ? (
         <div className="flex h-screen bg-[#172236]">
-          <Img className="relative ml-56 imgLeft mt-96" src={leftImg} alt="" />
-          <div className="m-auto">
+          {/* <Img className="relative ml-56 imgLeft mt-96" src={leftImg} alt="" /> */}
+          <FormBackground autoPlay muted alt="" src={BackgroundVideo} />
+          <div className="m-auto bg-[#172236]">
             {/* <h1 className="text-white text-4xl text-center mb-12 mr-2">
               Register
             </h1> */}
@@ -65,7 +75,7 @@ function RegisterForm() {
                     Name
                   </label>
                   <input
-                    className="appearance-none block w-5/6 mx-8 text-center md:text-start md:w-full md:mx-0 bg-transparent text-white border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-[#8eddd8] "
+                    className="appearance-none block w-5/6 mx-8 text-center md:text-start md:w-full md:mx-0 bg-transparent text-white border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-[#e66fea] font-bold"
                     id="first-name"
                     type="text"
                     placeholder={name}
@@ -80,7 +90,7 @@ function RegisterForm() {
                     Last Name
                   </label>
                   <input
-                    className="appearance-none block  w-5/6 mx-8 text-center md:text-start md:w-full md:mx-0 bg-transparent text-white border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-[#8eddd8]"
+                    className="appearance-none block  w-5/6 mx-8 text-center md:text-start md:w-full md:mx-0 bg-transparent text-white border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-[#e66fea] font-bold"
                     id="last-name"
                     type="text"
                     placeholder={lastname}
@@ -98,7 +108,7 @@ function RegisterForm() {
                     Email
                   </label>
                   <input
-                    className="appearance-none block w-5/6 mx-8 text-center md:text-start md:w-full md:mx-0 bg-transparent text-white border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-[#8eddd8]"
+                    className="appearance-none block w-5/6 mx-8 text-center md:text-start md:w-full md:mx-0 bg-transparent text-white border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-[#e66fea] font-bold"
                     id="email"
                     type="email"
                     placeholder={email}
@@ -107,7 +117,7 @@ function RegisterForm() {
                 </div>
               </div>
 
-              <div className="flex flex-wrap -mx-3 mb-6">
+              {/* <div className="flex flex-wrap -mx-3 mb-6">
                 <div className="w-full px-3">
                   <label
                     className="block uppercase tracking-wide text-center mr-3 md:text-start md:mr-0  text-white text-xs font-bold mb-2"
@@ -116,14 +126,14 @@ function RegisterForm() {
                     Password
                   </label>
                   <input
-                    className="appearance-none block w-5/6 mx-8 text-center md:text-start md:w-full md:mx-0 bg-transparent text-white border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-[#8eddd8]"
+                    className="appearance-none block w-5/6 mx-8 text-center md:text-start md:w-full md:mx-0 bg-transparent text-white border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-[#e66fea] font-bold"
                     id="password"
                     type="password"
                     placeholder="******************"
                     disabled
                   />
                 </div>
-              </div>
+              </div> */}
               <div className="flex flex-wrap -mx-3 mb-2">
                 <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                   <label
@@ -133,7 +143,7 @@ function RegisterForm() {
                     State
                   </label>
                   <input
-                    className="appearance-none block w-5/6 mx-8 text-center md:text-start md:w-full md:mx-0 bg-transparent text-white border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-[#8eddd8]"
+                    className="appearance-none block w-5/6 mx-8 text-center md:text-start md:w-full md:mx-0 bg-transparent text-white border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-[#e66fea] font-bold"
                     id="state"
                     type="text"
                     {...register("state", { required:true })}
@@ -149,7 +159,7 @@ function RegisterForm() {
                     City
                   </label>
                   <input
-                    className="appearance-none block w-5/6 mx-8 text-center md:text-start md:w-full md:mx-0 bg-transparent text-white border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-[#8eddd8]"
+                    className="appearance-none block w-5/6 mx-8 text-center md:text-start md:w-full md:mx-0 bg-transparent text-white border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-[#e66fea] font-bold"
                     id="city"
                     type="text"
                     {...register("city", { required:true })}
@@ -164,7 +174,7 @@ function RegisterForm() {
                     Zip
                   </label>
                   <input
-                    className="appearance-none block w-5/6 mx-8 text-center md:text-start md:w-full md:mx-0 bg-transparent text-white border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-[#8eddd8]"
+                    className="appearance-none block w-5/6 mx-8 text-center md:text-start md:w-full md:mx-0 bg-transparent text-white border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-[#e66fea] font-bold"
                     id="zip"
                     type="number"
                     {...register("zip", { required:true })}
@@ -182,7 +192,7 @@ function RegisterForm() {
                     Address
                   </label>
                   <input
-                    className="appearance-none block w-5/6 mx-8 text-center md:text-start md:w-full md:mx-0 bg-transparent text-white border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-[#8eddd8]"
+                    className="appearance-none block w-5/6 mx-8 text-center md:text-start md:w-full md:mx-0 bg-transparent text-white border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-[#e66fea] font-bold"
                     id="address"
                     type="text"
                     {...register("address", { required:true })}
@@ -200,7 +210,7 @@ function RegisterForm() {
                     Phone
                   </label>
                   <input
-                    className="appearance-none block w-5/6 mx-8 text-center md:text-start md:w-full md:mx-0 bg-transparent text-white border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-[#8eddd8]"
+                    className="appearance-none block w-5/6 mx-8 text-center md:text-start md:w-full md:mx-0 bg-transparent text-white border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-[#e66fea] font-bold"
                     id="phone"
                     type="tel"
                     {...register("phone", { required:true })}
@@ -219,12 +229,13 @@ function RegisterForm() {
               </div>
             </form>
           </div>
-          <Img2
+          {/* <Img2
             className="relative mr-56 mt-96 imgRight"
             src={leftImg}
             alt=""
-          />
+          /> */}
         </div>
+        
       ) : (
         <Modal />
       )}

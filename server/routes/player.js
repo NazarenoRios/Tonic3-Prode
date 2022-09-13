@@ -14,6 +14,8 @@ router.get("/search/:name",PlayerController.findByName)
 router.put("/modify/:id",PlayerController.modifyPlayer)
 //ruta para asignar un jugador a un equipo
 router.put("/team/:id",PlayerController.asignTeam)
+//ruta para hacer titular a un Jugador
+router.put("/titular/:id",PlayerController.playerTitular)
 //ruta para eliminar un jugador
 router.delete("/:id",PlayerController.deletePlayer)
 

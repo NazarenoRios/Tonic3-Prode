@@ -6,14 +6,17 @@ import "./App.css";
 
 import Homepage from "./pages/Homepage";
 import { getUser } from "./state/user";
-import Profile from "./pages/Profile";
+
 
 // Admin Section
 
-import { Orders, Calendar, Employees, Dashboard, Customers, Kanban, Line, Area, Bar, Pie, ColorMapping, Tournaments} from "./pages/AdminPanel";
+import { Calendar,Dashboard, Kanban, Line, Area, Bar, Pie, ColorMapping, Tournaments, Teams, Players, Users} from "./pages/AdminPanel";
 import Prode from "./pages/Prode";
 import Register from "./pages/Register";
 import Registered from "./pages/Registered";
+import CustomUser from "./pages/UserPanel/EditUser";
+
+
 
 function App() {
 
@@ -30,9 +33,9 @@ function App() {
         <Routes>
           {/* User Section */}
           <Route path="/" element={<Homepage />} />
-          <Route path="/profile" element={<Profile />} />
           <Route path="/prode" element={<Prode />} />
           <Route path="/register" element={<Register/>} />
+          <Route path="/Edit-User" element={<CustomUser/>} />
 
           {/* Admin Section */}
 
@@ -40,9 +43,10 @@ function App() {
           <Route path="/admin-panel" element={<Dashboard />} />
 
           {/* pages  */}
-          <Route path="/orders" element={<Orders />} />
-          <Route path="/employees" element={<Employees />} />
-          <Route path="/customers" element={<Customers />} />
+          <Route path="/Tournaments" element={<Tournaments />} />
+          <Route path="/Teams" element={<Teams />} />
+          <Route path="/Players" element={<Players />} />
+          <Route path="/Users" element={<Users />} />
 
           {/* apps  */}
           <Route path="/kanban" element={<Kanban />} />

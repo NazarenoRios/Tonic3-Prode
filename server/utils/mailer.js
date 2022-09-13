@@ -1,6 +1,6 @@
 const nodemailer = require("nodemailer");
 const { google } = require("googleapis");
-const { User } = require("../models")
+const { User } = require("../models");
 const OAuth2 = google.auth.OAuth2;
 require("dotenv").config();
 
@@ -28,14 +28,19 @@ async function sendMail(id) {
         accessToken: accessToken,
       },
     });
-    const currentURL = "http://localhost:3001/"
+    const currentURL = "http://localhost:3001/";
     const mailOptions = {
       from: process.env.MAIL_ADDRESS,
       to: `${userLogged.dataValues.email}`,
       subject: "Confirm your Email Address",
-      text: "Please click the link below to confirm your email address.",
-      html: `<h1>Please click the link below to confirm your email address.<h1>
-            <a href= ${currentURL + "api/user/verifyEmail"+ "/" + userLogged.dataValues.emailToken}> Verify your Email</a>`,
+      html: `<h1>Thank you for registering!<h1>
+            <h3>Please click the image below to confirm your email address.<h3>
+            <a href= ${
+              currentURL +
+              "api/user/verifyEmail" +
+              "/" +
+              userLogged.dataValues.emailToken
+            }> <img src="https://info.tonic3.com/hubfs/tonic3-logotype-color.png"></a>`,
     };
     const result = await transport.sendMail(mailOptions);
     return result;
@@ -44,4 +49,4 @@ async function sendMail(id) {
   }
 }
 
-module.exports = {sendMail}
+module.exports = { sendMail };

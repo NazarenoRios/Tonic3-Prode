@@ -1,22 +1,26 @@
 import React from "react";
 import {
   GridComponent,
-  Inject,
   ColumnsDirective,
   ColumnDirective,
-  Search,
   Page,
+  Selection,
+  Inject,
+  Edit,
+  Toolbar,
+  Sort,
+  Filter,
 } from "@syncfusion/ej2-react-grids";
 
-import { employeesData, employeesGrid } from "../../utils/dummy";
+import { customersData, customersGrid } from "../../utils/dummy";
 import { Footer, Header, Navbar, Sidebar } from "../../components/AdminPanel";
 import { useStateContext } from "../../contexts/ContextProvider";
 
-const Employees = () => {
-  
-  const toolbarOptions = ["Search"];
-  const { activeMenu } = useStateContext();
+const Users = () => {
+  const selectionsettings = { persistSelection: true };
+  const toolbarOptions = ["Delete"];
   const editing = { allowDeleting: true, allowEditing: true };
+  const { activeMenu } = useStateContext();
 
   return (
     <>
@@ -42,23 +46,26 @@ const Employees = () => {
               <Navbar />
             </div>
             <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
-              <Header category="Page" title="Employees" />
+              <Header category="Page" title="Customers" />
               <GridComponent
-                dataSource={employeesData}
-                width="auto"
+                dataSource={customersData}
+                enableHover={false}
                 allowPaging
-                allowSorting
                 pageSettings={{ pageCount: 5 }}
-                editSettings={editing}
+                selectionSettings={selectionsettings}
                 toolbar={toolbarOptions}
+                editSettings={editing}
+                allowSorting
               >
                 <ColumnsDirective>
                   {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-                  {employeesGrid.map((item, index) => (
+                  {customersGrid.map((item, index) => (
                     <ColumnDirective key={index} {...item} />
                   ))}
                 </ColumnsDirective>
-                <Inject services={[Search, Page]} />
+                <Inject
+                  services={[Page, Selection, Toolbar, Edit, Sort, Filter]}
+                />
               </GridComponent>
             </div>
             <Footer />
@@ -68,4 +75,5 @@ const Employees = () => {
     </>
   );
 };
-export default Employees;
+
+export default Users;

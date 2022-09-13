@@ -22,7 +22,7 @@ function Modal() {
     const reload = await window.location.reload()
   };
 
-
+  
   return (
     <div className="relative flex justify-center items-center" style={{zIndex:"100000"}}>
       <div
