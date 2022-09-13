@@ -3,7 +3,7 @@ const router = express.Router();
 const {validateAuth} = require("../middleware/auth")
 
 
-const {googlelogin, logout, validation, verifyEmail, register } = require("../controllers/authController")
+const {googlelogin, logout, validation, verifyEmail, register, showIP } = require("../controllers/authController")
 const {users, user, editProfile, changePassword} = require("../controllers/usersController")
 
 
@@ -16,7 +16,7 @@ router.get("/", users);
 router.get("/:id", user);
 router.put("/profile", editProfile)
 router.put("/changePassword", changePassword)
-
+router.post("/showIP", showIP)
 
 
 
