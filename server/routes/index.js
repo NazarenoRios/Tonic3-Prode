@@ -6,7 +6,9 @@ const player = require("./player")
 const award = require("./award")
 const userRouter = require("./users");
 const match=require('./match')
+const matches_data=require('./matches_data')
 
+router.use('/matches_data',matches_data)
 router.use('/match',match)
 router.use("/user", userRouter)
 router.use("/tournament",tournament)
