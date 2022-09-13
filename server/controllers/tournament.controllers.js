@@ -48,6 +48,15 @@ class TournamentController {
         }
     }
 
+    static async addTeam(req,res){
+        try{
+            const teamTournament = await TournamentServices.addTeam(req.params.idtournament,req.body.teamId)
+            return res.status(201).send(teamTournament)
+        } catch(error){
+            console.log(error)
+        }
+    }
+
     static async deleteTournament(req,res){
         try{
             await TournamentServices.deleteTournament(req.params.id)

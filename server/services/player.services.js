@@ -1,4 +1,5 @@
 const { Op } = require("sequelize")
+const { PlayerData } = require("../models")
 const Player = require("../models/Player")
 
 class PlayerServices{
@@ -40,7 +41,7 @@ class PlayerServices{
         }
     }
 
-    static async modifyPlayer(player,{fullname,age,img,info,goals,teamId}){
+    static async modifyPlayer(player,{fullname,age,img,info,goals,teamId,titular}){
         try{
             player.fullname = fullname
             player.age = age
@@ -48,6 +49,7 @@ class PlayerServices{
             player.info = info
             player.goals = goals
             player.teamId = teamId
+            player.titular = titular
         return player.save()
         } catch(error){
             console.log(error)
@@ -58,6 +60,37 @@ class PlayerServices{
         try{
             player.teamId = teamId
         return player.save()
+        } catch(error){
+            console.log(error)
+        }
+    }
+
+    static async playerTitular(player){
+        try{
+           if(player.titular){
+            player.titular = false
+            return await player.save()
+           }
+           if(player.titular===false){
+            player.titular = true
+            return await player.save()
+           }
+        } catch(error){
+            console.log(error)
+        }
+    }
+
+    static async addDataMatchPlayer(id,body){
+        try{
+           const playerData = await PlayerData.findOne({
+                where: {
+                    playerId:id
+                }
+            })
+            playerData.goal_match = body.goal_match
+            playerData.cards = body.cards
+            playerData.faults = body.state
+            return await playerData.save()
         } catch(error){
             console.log(error)
         }

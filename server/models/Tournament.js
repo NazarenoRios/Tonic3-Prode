@@ -33,11 +33,9 @@ Tournament.addHook("afterCreate",(tournament)=>{
   let data = []
   let contador = 0
   for (let i = 0; i < matches; i++) {
-    
    let grupo= Math.ceil((i+1)/2)
    let next=(matches/2)+grupo
    if(i+2>=matches) next = null
-   
    data.push({
     match_end : false,
     tournamentId: tournament.id,
@@ -45,9 +43,6 @@ Tournament.addHook("afterCreate",(tournament)=>{
     match: i+1,
     next:next
   })
-  
-  
-
   contador ++
   if(contador===fase){
     fase=fase/2
