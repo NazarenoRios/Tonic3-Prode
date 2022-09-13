@@ -29,12 +29,23 @@ export const getUser = createAsyncThunk("GET_USER", async () => {
     }
 })
 
+export const editUser = createAsyncThunk("REGISTER", async ({name,lastname,email,password,state,city,address,zip,phone}) => {
+    console.log('ESTO ES EMAIL', email)
+    try {
+        const res = await axios.put("/api/user/profile", {name, lastname, email, password, state, city, address, zip, phone})
+        return res.data
+    } catch (err) {
+        return err.message
+    }
+})
+
 const userReducer = createReducer(
     {},
     {
         [googleLogin.fulfilled]: (state,action) => action.payload,
         [sendRegister.fulfilled]: (state,action) => action.payload,
         [getUser.fulfilled]: (state,action) => action.payload,
+        [editUser.fulfilled]: (state,action) => action.payload,
     }
 )
 
