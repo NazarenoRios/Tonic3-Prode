@@ -4,6 +4,8 @@ const router = express.Router()
 
 //ruta para crear un torneo
 router.post("/create", TournamentController.createTournament)
+//ruta para agregar equipos a un torneo
+router.post("/teams/:idtournament",TournamentController.addTeam)
 //ruta para traer todos los torneos
 router.get("/all",TournamentController.getAllTournament)
 //ruta para encontrar un torneo por id
