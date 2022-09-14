@@ -6,17 +6,24 @@ class Bet extends S.Model{}
 
 
 Bet.init({
-    user_prediction:{
-        type:S.DATE,
-        allowNull:false
-    },
-    winner:{
-        //WINNER VA A SER TEAM_ID DEL EQUIPO GANADOR
-        type:S.INTEGER,
+    winner_id:{
+        type: S.INTEGER,
     },
     goals:{
         type:S.INTEGER
+    },
+    cards: {
+        type :S.INTEGER
+    },
+    faults: {
+        type :S.INTEGER
+    },
+    possession: {
+        type :S.INTEGER
+    },
+    player_goals : {
+        type :S.INTEGER
     }
 },{sequelize:db,modelName:'bet'})
 
-module.exports=Bet
+module.exports = Bet
