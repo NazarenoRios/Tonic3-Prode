@@ -7,6 +7,7 @@ const award = require("./award")
 const userRouter = require("./users");
 const match=require('./match')
 const matches_data=require('./matches_data')
+const bet = require("./bet")
 
 router.use('/matches_data',matches_data)
 router.use('/match',match)
@@ -15,5 +16,6 @@ router.use("/tournament",tournament)
 router.use("/team",team)
 router.use("/player",player)
 router.use("/award",award)
+router.use("/bet",bet)
 
 module.exports = router
