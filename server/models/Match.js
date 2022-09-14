@@ -25,7 +25,7 @@ Match.init({
     fase:{
         type:S.INTEGER
     },
-    match: {
+    number_key: {
         type: S.INTEGER
     },
     next : {
