@@ -1,6 +1,9 @@
 import { initializeApp } from "firebase/app";
 import { getAuth , GoogleAuthProvider ,signInWithPopup } from "firebase/auth"
 
+//Prueba para las push notification
+import { getMessaging } from 'firebase/messaging'
+
 const firebaseConfig = {
   apiKey: "AIzaSyCHvqGAuaAdONtnzCKCeJON2FEMpDPPuBY",
   authDomain: "fir-360201.firebaseapp.com",
@@ -14,6 +17,9 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app)
+
+//Prueba para las push notification
+export const messaging = getMessaging(app);
 
 const provider = new GoogleAuthProvider();
 

@@ -8,10 +8,11 @@ export default function NavBar2() {
   const [navbar, setNavbar] = useState(false);
   return (
     <nav
-      className="w-full"
+      className="w-full fixed"
       style={{
         background:
           "linear-gradient(45deg, #adadad,#bab7b7, #f1f3f8, #bab7b7, #adadad)",
+          zIndex:'9000000'
       }}
     >
       <div
