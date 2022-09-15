@@ -21,7 +21,7 @@ class Match_data_services {
   }
   static get_matches_data(tournamentId) {
     try {
-        if(!tournamentId)
+        if(tournamentId)
       return Data_match.findAll({ include:{
         model:Match,
         where:{tournamentId}

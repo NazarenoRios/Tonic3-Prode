@@ -12,11 +12,23 @@ export const getTournaments = createAsyncThunk("TOURNAMENTS", async (setTourname
     }
 })
 
+export const deleteTournament = createAsyncThunk("DELETE_TOURNAMENT", async (tournament) => {
+    try {
+      const res = await axios.delete(`/api/tournament/${tournament.id}`);
+      return res.data
+    } catch (err) {
+      return err.message;
+    }
+  }
+  );
+
+
 
 const tournamentsReducer = createReducer(
     {},
     {
         [getTournaments.fulfilled]: (state,action) => action.payload,
+        [deleteTournament.fulfilled]: (state,action) => action.payload,
     }
 )
 

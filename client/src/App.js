@@ -15,6 +15,7 @@ import Prode from "./pages/Prode";
 import Register from "./pages/Register";
 import Registered from "./pages/Registered";
 import CustomUser from "./pages/UserPanel/EditUser";
+import Matches from "./pages/AdminPanel/Matches";
 
 
 
@@ -45,6 +46,7 @@ function App() {
           {/* pages  */}
           <Route path="/Tournaments" element={<Tournaments />} />
           <Route path="/Teams" element={<Teams />} />
+          <Route path="/Matches" element={<Matches/>} />
           <Route path="/Players" element={<Players />} />
           <Route path="/Users" element={<Users />} />
 
