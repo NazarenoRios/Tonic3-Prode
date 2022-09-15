@@ -15,9 +15,9 @@ import store from "./state/store";
 //ContextProvider
 import { ContextProvider } from "./contexts/ContextProvider";
 
-//chakra ui
-import { ChakraProvider } from "@chakra-ui/react";
-import { theme } from "./utils/chakraui";
+// //chakra ui
+// import { ChakraProvider } from "@chakra-ui/react";
+// import { theme } from "./utils/chakraui";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

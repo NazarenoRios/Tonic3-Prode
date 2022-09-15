@@ -2,10 +2,9 @@ import React from "react";
 
 import { Footer, Navbar, Sidebar } from "../../components/AdminPanel";
 import { useStateContext } from "../../contexts/ContextProvider";
-import TournamentsModel from "./Tournaments/TournamentsModel.jsx";
+import MatchesModel from "./Matches/MatchesModel";
 
-const Orders = () => {
-
+const Matches = () => {
   const { activeMenu } = useStateContext();
 
   return (
@@ -28,11 +27,14 @@ const Orders = () => {
           }
         >
           <div>
-            <div style={{top:"0"}} className="fixed md:static bg-[#f1f3f8] dark:bg-main-dark-bg navbar w-full ">
+            <div
+              style={{ top: "0" }}
+              className="fixed md:static bg-[#f1f3f8] dark:bg-main-dark-bg navbar w-full "
+            >
               <Navbar />
             </div>
             <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
-              <TournamentsModel/>
+              <MatchesModel/>
             </div>
             <Footer />
           </div>
@@ -41,4 +43,4 @@ const Orders = () => {
     </>
   );
 };
-export default Orders;
+export default Matches;

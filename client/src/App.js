@@ -16,7 +16,9 @@ import Registered from "./pages/Registered";
 
 //User Section
 import CustomUser from "./pages/UserPanel/EditUser";
+import Matches from "./pages/AdminPanel/Matches";
 import TablePoints from "./pages/UserPanel/TablePoints";
+
 
 
 
@@ -48,6 +50,7 @@ function App() {
           {/* pages  */}
           <Route path="/Tournaments" element={<Tournaments />} />
           <Route path="/Teams" element={<Teams />} />
+          <Route path="/Matches" element={<Matches/>} />
           <Route path="/Players" element={<Players />} />
           <Route path="/Users" element={<Users />} />
 

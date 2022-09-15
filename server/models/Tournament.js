@@ -7,7 +7,6 @@ class Tournament extends S.Model { }
 Tournament.init({
       name : {
         type : S.STRING,
-        allowNull: false,
       },
       logo : {
         type : S.STRING
@@ -19,7 +18,7 @@ Tournament.init({
         type: S.INTEGER
       },
       phase : {
-        type: S.INTEGER
+        type: S.STRING
       },
       state : {
         type : S.BOOLEAN,
