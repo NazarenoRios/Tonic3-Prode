@@ -1,6 +1,7 @@
 const db = require('../config/db')
 const S=require('sequelize')
 const Data_match = require('./Data_match')
+const Bet = require('./Bet')
 
 
 class Match extends S.Model{
@@ -24,7 +25,7 @@ Match.init({
     fase:{
         type:S.INTEGER
     },
-    match: {
+    number_key: {
         type: S.INTEGER
     },
     next : {
@@ -39,6 +40,17 @@ Match.addHook('afterBulkCreate',(matches)=>{
         for(let i=0 ;i<2 ; i++)matches_id.push({matchId:match.id})
     })
     Data_match.bulkCreate(matches_id)
+})
+
+Match.addHook("afterUpdate",(match)=>{
+    if(match.winner!=null) {
+        const bets = Bet.findAll()
+        for (let i = 0; i < bets.length; i++) {
+          for(let key in bets[i]) {
+            if(bets[i].winner===match.winner) return console.log("********WINNER***********",bets[i]);
+        }     
+        }
+    }
 })
 
 module.exports=Match

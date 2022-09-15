@@ -9,7 +9,16 @@ Data_match.init({
     id:{
         type: S.INTEGER,
     autoIncrement: true,
-    primaryKey: true
+    primaryKey: true,
+    unique:true
+    },
+    teamId:{
+        type:S.INTEGER,
+        unique:false
+    },
+    matchId:{
+        type:S.INTEGER,
+        unique:false
     }
     ,
     goals:{

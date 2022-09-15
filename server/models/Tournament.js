@@ -39,7 +39,7 @@ Tournament.addHook("afterCreate",(tournament)=>{
     match_end : false,
     tournamentId: tournament.id,
     fase:fase,
-    match: i+1,
+    number_key: i+1,
     next:next
   })
   contador ++

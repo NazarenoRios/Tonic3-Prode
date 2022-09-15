@@ -9,13 +9,16 @@ import { getUser } from "./state/user";
 
 
 // Admin Section
-
 import { Calendar,Dashboard, Kanban, Line, Area, Bar, Pie, ColorMapping, Tournaments, Teams, Players, Users} from "./pages/AdminPanel";
 import Prode from "./pages/Prode";
 import Register from "./pages/Register";
 import Registered from "./pages/Registered";
+
+//User Section
 import CustomUser from "./pages/UserPanel/EditUser";
 import Matches from "./pages/AdminPanel/Matches";
+import TablePoints from "./pages/UserPanel/TablePoints";
+
 
 
 
@@ -37,6 +40,7 @@ function App() {
           <Route path="/prode" element={<Prode />} />
           <Route path="/register" element={<Register/>} />
           <Route path="/Edit-User" element={<CustomUser/>} />
+          <Route path="/TablePoints-User" element={<TablePoints/>} />
 
           {/* Admin Section */}
 
@@ -70,39 +74,6 @@ function App() {
       )}
     </>
   );
-
-  // return (
-  //   <>
-  //     <Routes>
-  //         {/* User Section */}
-  //         <Route path="/" element={<Homepage />} />
-  //         <Route path="/prode" element={<Prode />} />
-  //         <Route path="/register" element={<Register/>} />
-
-  //         {/* Admin Section */}
-
-  //         {/* dashboard  */}
-  //         <Route path="/admin-panel" element={<Dashboard />} />
-
-  //         {/* pages  */}
-  //         <Route path="/orders" element={<Orders />} />
-  //         <Route path="/employees" element={<Employees />} />
-  //         <Route path="/customers" element={<Customers />} />
-
-  //         {/* apps  */}
-  //         <Route path="/kanban" element={<Kanban />} />
-  //         <Route path="/tournaments" element={<Tournaments />} />
-  //         <Route path="/calendar" element={<Calendar />} />
-
-  //         {/* charts  */}
-  //         <Route path="/line" element={<Line />} />
-  //         <Route path="/area" element={<Area />} />
-  //         <Route path="/bar" element={<Bar />} />
-  //         <Route path="/pie" element={<Pie />} />
-  //         <Route path="/color-mapping" element={<ColorMapping />} />
-  //       </Routes>
-  //   </>
-  // );
 }
 
 export default App;

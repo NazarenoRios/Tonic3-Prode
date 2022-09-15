@@ -16,6 +16,14 @@ router.put("/modify/:id",PlayerController.modifyPlayer)
 router.put("/team/:id",PlayerController.asignTeam)
 //ruta para hacer titular a un Jugador
 router.put("/titular/:id",PlayerController.playerTitular)
+
+//ruta para sumar un gol de un jugador en un partido
+router.put("/goal/:id",PlayerController.addGoalsInMatch)
+//ruta para sumar una falta a un jugador en un partido
+router.put("/fault/:id",PlayerController.addFaultsInMatch)
+//ruta para agregar una tarjeta a un jugador en un partido
+router.put("/card/:id",PlayerController.addCardInMatch)
+
 //ruta para eliminar un jugador
 router.delete("/:id",PlayerController.deletePlayer)
 

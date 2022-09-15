@@ -13,4 +13,7 @@ router.get("/:tournamentId", MatchControllers.getMatches);
 // SETEA 'winner','info','date' y 'match_end'
 router.put("/set", MatchControllers.setAllMatches);
 
+//RUTA PARA TERMINAR MATCH/ES
+router.put('/end_match',MatchControllers.end_matches)
+
 module.exports = router;
