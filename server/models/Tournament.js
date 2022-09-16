@@ -18,7 +18,7 @@ Tournament.init({
         type: S.INTEGER
       },
       phase : {
-        type: S.STRING
+        type: S.ARRAY(S.INTEGER)
       },
       state : {
         type : S.BOOLEAN,
@@ -39,7 +39,7 @@ Tournament.addHook("afterCreate",(tournament)=>{
     match_end : false,
     tournamentId: tournament.id,
     fase:fase,
-    number_key: i+1,
+    match: i+1,
     next:next
   })
   contador ++

@@ -6,56 +6,102 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import AddIcon from "@mui/icons-material/Add";
-import { MenuItem } from "@mui/material";
 
 
 import { Header } from "../../../components/AdminPanel";
-import AddModal from "./addModal";
 import MatchesForm from "./MatchesForm";
-import {  } from "./MatchesFunctions.ts";
+import { getTournaments, getMatchesByPhase, getMatchesByPhaseAndMatch } from "./MatchesFunctions.ts";
+// import { getMatchesByPhaseAndMatch } from "./MatchesFunctions";
 
 export default function TeamsModel() {
 
   const [matches, setMatches] = React.useState([]);
-  const [showModal, setShowModal] = React.useState(false);
+  const [tournaments, setTournaments] = React.useState([]);
+  const [phases,setPhases] = React.useState([])
 
-  // React.useEffect(() => {
-  //   getTeams().then((data) => setMatches(data));
-  // }, []);
+  const [actualTournament,setActualTournament] = React.useState()
+  const [actualPhase,setActualPhase] = React.useState()
+  
 
-  function createData(id, name, logo, info, state) {
-    return { id, name, logo, info, state };
+  React.useEffect( () => {
+    getTournaments().then((data) => setTournaments(data))
+  }, []);
+
+
+  function createData( matchId, teamId, goals, winner) {
+    return { matchId, teamId, goals, winner };
   }
 
   const rows = matches.map((team, i) =>
     createData(
-      team.id,
-      team.name,
-      team.logo,
-      team.info,
-      team.state,
+      team.matchId,
+      team.teamId,
+      team.goals,
+      team.winner,
     )
   );
 
+  const getPhases = (e) => {
+    e.preventDefault()
+    tournaments.map((tournament) => setPhases(tournament.phase))
+    setActualTournament(e.target.value)
+  }
+
+  const getMbyPhase = (e) => {
+    e.preventDefault()
+    setActualPhase(e.target.value)
+    getMatchesByPhase({tournamentId: actualTournament, fase: e.target.value}).then(data => setMatches(data))
+  }
+
+  // const getMbyPhase = (e) => {
+  //   e.preventDefault()
+  //   setActualPhase(e.target.value)
+  //   // getMatchesByPhase({tournamentId: actualTournament, fase: e.target.value}).then(data => setMatches(data))
+  // }
+
+  // const getMbyPhaseAndMatch = (e) => {
+  //   e.preventDefault()
+  //   getMatchesByPhaseAndMatch({tournamentId: actualTournament, fase: actualPhase, matchId: e.target.value }).then(data => setMatches(data))
+  // }
+
+
   return (
     <>
-      <Header title="Tournaments" />
+      <Header title="Matches" />
+      <select className="mb-8 rounded p-3" onClick={getPhases}>
+        <option selected disabled value="">Select Tournament</option>
+        {tournaments.map((tournament,i) => (
+          <option key={i} value={tournament.id} >{tournament.name}</option>
+        ))}
+      </select>
+
+          <br></br>
+
+      <select className="mb-8 rounded p-3" onClick={getMbyPhase}>
+        <option selected disabled value="">Select Phase</option>
+        {phases.map((phase,i) => (
+          <option key={i} value={phase} >Phase {phase}</option>
+        ))}
+      </select>
+
+      {/* <br></br>
+
+      <select className="mb-8 rounded p-3" onClick={getMbyPhaseAndMatch}>
+        <option selected disabled value="">Select Match</option>
+        {phases.map((phase,i) => (
+          <option key={i} value={phase} >Match {phase}</option>
+        ))}
+      </select> */}
+
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell align="center">Name</TableCell>
-              <TableCell align="center">Logo&nbsp;</TableCell>
-              <TableCell align="center">Info&nbsp;</TableCell>
-              <TableCell align="center">State&nbsp;</TableCell>
+              <TableCell align="center">Match</TableCell>
+              <TableCell align="center">Team&nbsp;</TableCell>
+              <TableCell align="center">Goals&nbsp;</TableCell>
+              <TableCell align="center">Winner&nbsp;</TableCell>
               <TableCell align="center">Edit&nbsp;</TableCell>
-              <TableCell align="center">Delete&nbsp;</TableCell>
-              <TableCell align="center">
-                <MenuItem sx={{ display: "flex", justifyContent: "center" }} onClick={() => setShowModal(true)}>
-                  <AddIcon style={{ color: "green" }} />
-                </MenuItem>
-              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -65,9 +111,6 @@ export default function TeamsModel() {
           </TableBody>
         </Table>
       </TableContainer>
-      {showModal ? (
-        <AddModal setShowModal={setShowModal} setMatches={setMatches} />
-      ) : null}
     </>
   );
 }

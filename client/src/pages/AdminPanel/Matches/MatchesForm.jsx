@@ -1,53 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import DeleteIcon from "@mui/icons-material/Delete";
 import { MenuItem } from "@mui/material";
 
 import EditModal from "./EditModal";
-
-import {} from "./MatchesFunctions.ts";
-
+import axios from "axios";
 
 function TeamsForm({ row, i , setTeams }) {
 
 
   const [showModal, setShowModal] = React.useState(false);
+  const [teamName, setTeamName] = useState()
 
-  const handleDelete = async (tournament) => {
-    // const deleteT = await deleteTeam(tournament)
-    // const getall = await getTeams().then((data) => setTeams(data));
-  };
-  
+  useEffect(() => {
+    axios.get(`/api/team/${row.teamId}`).then(res => setTeamName(res.data.name))
+  },[])
+
   return (
     <>
       <TableRow
         key={i}
         sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
       >
-        <TableCell component="th" scope="row">
-          {row.name}
-        </TableCell>
-        <TableCell align="center" >
-          <img alt="" src={row.logo}/>
-        </TableCell>
-        <TableCell align="center">{row.info}</TableCell>
-        <TableCell align="center">{`${row.state}`}</TableCell>
+        <TableCell align="center">{row.matchId}</TableCell>
+        <TableCell align="center">{teamName ? teamName : row.teamId}</TableCell>
+        <TableCell align="center">{row.goals}</TableCell>
+        <TableCell align="center">{row.winner}</TableCell>
         <TableCell align="center">
           <MenuItem sx={{ display: "flex", justifyContent: "center" }} onClick={() => setShowModal(true)}>
             <BorderColorIcon color="primary" />
           </MenuItem>
         </TableCell>
-        <TableCell align="center">
-          <MenuItem
-            sx={{ display: "flex", justifyContent: "center" }}
-            onClick={() => handleDelete(row)}
-          >
-            <DeleteIcon className="text-red-500" />
-          </MenuItem>
-        </TableCell>
-        <TableCell align="center"></TableCell>
       </TableRow>
 
       {/* popUp */}

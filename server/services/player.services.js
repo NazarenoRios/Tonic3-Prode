@@ -80,39 +80,16 @@ class PlayerServices{
         }
     }
 
-    static async findPlayerData (id){
+    static async addDataMatchPlayer(id,body){
         try{
-            return await PlayerData.findOne({
+           const playerData = await PlayerData.findOne({
                 where: {
                     playerId:id
                 }
             })
-        }catch (error){
-            console.log(error);
-        }
-    }
-
-    static async addGoalsInMatch(playerData){
-        try{
-            playerData.goal_match = playerData.goal_match+1
-            return await playerData.save()
-        } catch(error){
-            console.log(error)
-        }
-    }
-
-    static async addFaultsInMatch(playerData){
-        try{
-            playerData.faults = playerData.faults+1
-            return await playerData.save()
-        } catch(error){
-            console.log(error)
-        }
-    }
-
-    static async addCardInMatch(playerData,body){
-        try{
-            playerData.cards.push(body)
+            playerData.goal_match = body.goal_match
+            playerData.cards = body.cards
+            playerData.faults = body.state
             return await playerData.save()
         } catch(error){
             console.log(error)
