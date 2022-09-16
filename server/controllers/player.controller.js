@@ -67,30 +67,10 @@ class PlayerController{
         }
     }
 
-    static async addGoalsInMatch(req,res){
+    static async addDataMatchPlayer(req,res){
         try{
-            const dataPlayer = await PlayerServices.findPlayerData(req.params.id)
-            const dataMatchPlayer = await PlayerServices.addGoalsInMatch(dataPlayer)
-            return await res.status(201).send(dataMatchPlayer)
-        }catch(error){
-            console.log(error);
-        }
-    }
-
-    static async addFaultsInMatch(req,res){
-        try{
-            const dataPlayer = await PlayerServices.findPlayerData(req.params.id)
-            const dataMatchPlayer = await PlayerServices.addFaultsInMatch(dataPlayer,req.body)
-            return res.status(200).send(dataMatchPlayer)
-        } catch(error){
-            console.log(error)
-        }
-    }
-
-    static async addCardInMatch(req,res){
-        try{
-            const dataPlayer = await PlayerServices.findPlayerData(req.params.id)
-            const dataMatchPlayer = await PlayerServices.addCardInMatch(dataPlayer,req.body)
+            const player = await PlayerServices.findByid(req.params.id)
+            const dataMatchPlayer = await PlayerServices.addDataMatchPlayer(player,req.body)
             return res.status(200).send(dataMatchPlayer)
         } catch(error){
             console.log(error)

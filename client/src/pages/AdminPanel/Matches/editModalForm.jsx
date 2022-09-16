@@ -1,28 +1,34 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useInput } from "../../../hooks/useInput";
-import { } from "./MatchesFunctions.ts";
+import { getTeams, addTeamToMatch } from "./MatchesFunctions.ts";
 
 const EditModalForm = ({ row, setTeams , setShowModal }) => {
 
-  const name = useInput("name");
-  const logo = useInput("logo");
-  const info = useInput("info");
-  const state = useInput("state");
-  
+  const match = useInput("match");
+  const teams = useInput("teams");
+  const goals = useInput("goals");
+  const winner = useInput("winner");
 
-  const handleEdit = async (team) => {
-    // const editT = await editTeam(team)
-    // const closeModal = await setShowModal(false)
+  const [tournamentTeams,setTournamentTeams] = useState([])
+
+  useEffect(() => {
+    getTeams().then(data => setTournamentTeams(data))
+  },[])
+
+  
+  const handleEdit = async (match) => {
+    const editMatch = await addTeamToMatch(match)
+    const closeModal = await setShowModal(false)
     // const getall = await getTeams().then((data) => setTeams(data));
   }
 
   const onSubmit = async (e) => {
     e.preventDefault()
-    handleEdit({name: name.value,logo: logo.value,info: info.value,state: state.value, team: row})
+    handleEdit([{id: row.matchId, teamId: teams.value}])
   };
 
 
-  console.log(row)
 
   return (
     <div className="relative p-6 flex-auto">
@@ -30,48 +36,54 @@ const EditModalForm = ({ row, setTeams , setShowModal }) => {
         <div className="mb-4">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="name"
+            htmlFor="match"
           >
-            Name
+            Match
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="name"
+            id="match"
             type="text"
-            name="name"
-            defaultValue={row.name}
-            {...name}
-          />
-        </div>
-        <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="color"
-          >
-            Logo
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="logo"
-            type="text"
-            defaultValue={row.logo}
-            {...logo}
+            name="match"
+            defaultValue={row.matchId}
+            {...match}
           />
         </div>
 
         <div className="mb-4">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="size"
+            htmlFor="stock"
           >
-            Info
+            Teams
+          </label>
+
+          <select
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="winner"
+            defaultValue={row.teams}
+            {...teams}
+          >
+            <option selected disabled value="">Select a Team</option>
+            {tournamentTeams.map((team,i) => (
+              <option value={team.id} >{team.name}</option>
+            ))}
+          </select>
+        </div>
+
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="goals"
+          >
+            Goals
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="info"
+            id="goals"
             type="text"
-            defaultValue={row.info}
-            {...info}
+            defaultValue={row.goals}
+            {...goals}
           />
         </div>
         
@@ -80,17 +92,17 @@ const EditModalForm = ({ row, setTeams , setShowModal }) => {
             className="block text-gray-700 text-sm font-bold mb-2"
             htmlFor="stock"
           >
-            Status
+            Winner
           </label>
 
           <select
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="teams"
-            defaultValue={row.state}
-            {...state}
+            id="winner"
+            defaultValue={row.winner}
+            {...winner}
           >
             <option selected disabled value="">
-              Select how many teams
+              Select Winner
             </option>
             <option value={true}>true</option>
             <option value={false}>false</option>

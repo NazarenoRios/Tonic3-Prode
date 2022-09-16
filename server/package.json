@@ -27,7 +27,8 @@
     "postgres": "^3.2.4",
     "request": "^2.88.2",
     "save": "^2.5.0",
-    "sequelize": "^6.21.6"
+    "sequelize": "^6.21.6",
+    "web-push": "^3.5.0"
   },
   "devDependencies": {
     "sequelize-cli": "^6.4.1"

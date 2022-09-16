@@ -28,22 +28,22 @@ const AddModalForm = ({ setShowModal, setTournaments }) => {
 
   useEffect(() => {
     if (participants.value === "2") {
-      setPhase("Final");
+      setPhase([1]);
     }
     if (participants.value === "4") {
-      setPhase("Semifinal");
+      setPhase([2,1]);
     }
     if (participants.value === "8") {
-      setPhase("Cuartos de Final");
+      setPhase([4,2,1]);
     }
     if (participants.value === "16") {
-      setPhase("Octavos de Final");
+      setPhase([8,4,2,1]);
     }
     if (participants.value === "32") {
-      setPhase("16vos de Final");
+      setPhase([16,8,4,2,1]);
     }
     if (participants.value === "64") {
-      setPhase("32vos de Final");
+      setPhase([32,16,8,4,2,1]);
     }
   }, [participants.value]);
   

@@ -1,11 +1,9 @@
 const { User } = require("../models");
 const { generateToken } = require("../config/tokens");
 const tokens = require("../config/tokens");
-require("dotenv").config();
 const { createHmac } = require("node:crypto");
 const mailer = require("../utils/mailer");
 
-const geoip = require("geoip-lite");
 
 const { OAuth2Client } = require("google-auth-library");
 const router = require("../routes");
@@ -47,6 +45,7 @@ exports.googlelogin = (req, res) => {
               state: user.state,
               city: user.city,
               address: user.address,
+              zip: user.zip,
             };
             const token = tokens.generateToken(payload);
             // sessionStorage.setItem("token", token)

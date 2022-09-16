@@ -16,11 +16,7 @@ Award.init({
     },
     info:{
         type:S.TEXT
-    },
-    country : {
-        type: S.STRING
     }
-
 },{sequelize:db,modelName:'award'})
 
 module.exports=Award
