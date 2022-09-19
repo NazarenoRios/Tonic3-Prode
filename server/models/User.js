@@ -22,12 +22,12 @@ User.init(
       allowNull: false,
     },
     lastname: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING, 
       allowNull: false,
     },
     email: {
       type: DataTypes.STRING,
-      unique: true,
+      unique: true, 
     },
     password: {
       type: DataTypes.STRING,
