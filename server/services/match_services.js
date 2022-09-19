@@ -18,8 +18,8 @@ class Match_services {
   }
   static async end_matches(matches){
     for (let i = 0; i < matches.length; i++) {
-      const {id}=matches[i]
-      if (!id || typeof id !== 'number')continue
+      const {number_key,tournamentId}=matches[i]
+      if (!number_key || typeof number_key !== 'number')continue
         let match = await Data_match.findAll({
           where: { matchId: matches[i].id },
           include:{model:Match,where:{id:matches[i].id},attributes:['next']}
@@ -28,27 +28,15 @@ class Match_services {
         if (!match)continue
         const test =await Data_match.findAll({where:{matchId:next}})
         const index=!test[0].teamId?0:1
+        const ix=match[0].goals>match[1].goals?0:1
         try{
-          if(match[0].goals > match[1].goals){
             Match.update(
-              { winner: match[0].teamId, match_end:true },
-            { where: { id } }
-          )
-               Data_match.update({teamId:match[0].teamId},
+              { winner: match[ix].teamId, match_end:true },
+            { where: { [Op.and]:[{number_key},{tournamentId}] } }
+          ).catch(e=>console.log(e))
+               Data_match.update({teamId:match[ix].teamId},
                 {where:{ id:test[index].id }}
-                );
-       
-              }
-              else {
-                console.log(next)
-                Match.update(
-                  { winner: match[1].teamId, match_end:true },
-                  { where: { id } }
-                  );
-                  Data_match.update({teamId:match[1].teamId},
-                    {where:{ id:test[index].id }}
-                    );
-                  }
+                ).catch(e=>console.log(e))
                 }
               
         catch(e){
