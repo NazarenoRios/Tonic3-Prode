@@ -6,7 +6,6 @@ class Team extends S.Model { }
 Team.init({
       name : {
         type : S.STRING,
-        allowNull: false,
         unique: true
       },
       logo : {

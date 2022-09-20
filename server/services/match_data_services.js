@@ -19,9 +19,11 @@ class Match_data_services {
       return false;
     }
   }
+
+
   static get_matches_data(tournamentId) {
     try {
-        if(!tournamentId)
+        if(tournamentId)
       return Data_match.findAll({ include:{
         model:Match,
         where:{tournamentId}
@@ -31,6 +33,33 @@ class Match_data_services {
       return false;
     }
   }
+
+  static get_matches_data_fase({tournamentId, fase}) {
+    try {
+        if(tournamentId)
+      return Data_match.findAll({ include:{
+        model:Match,
+        where:{tournamentId, fase}
+      } })
+    } catch (e) {
+      console.log(e);
+      return false;
+    }
+  }
+
+  static get_matches_data_fase_id({tournamentId, fase, matchId}) {
+    try {
+        if(tournamentId)
+      return Data_match.findAll({ include:{
+        model:Match,
+        where:{tournamentId, fase, matchId: matchId}
+      } })
+    } catch (e) {
+      console.log(e);
+      return false;
+    }
+  }
+
   static get_all_matches_data(){
     return Data_match.findAll()
   }

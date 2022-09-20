@@ -1,13 +1,14 @@
 const S = require("sequelize")
 const db = require("../config/db")
 const Match = require("./Match")
+const Points = require("./Points")
+const User = require("./User")
 
 class Tournament extends S.Model { }
 
 Tournament.init({
       name : {
         type : S.STRING,
-        allowNull: false,
       },
       logo : {
         type : S.STRING
@@ -19,7 +20,7 @@ Tournament.init({
         type: S.INTEGER
       },
       phase : {
-        type: S.INTEGER
+        type: S.ARRAY(S.INTEGER)
       },
       state : {
         type : S.BOOLEAN,
@@ -40,7 +41,7 @@ Tournament.addHook("afterCreate",(tournament)=>{
     match_end : false,
     tournamentId: tournament.id,
     fase:fase,
-    number_key: i+1,
+    match: i+1,
     next:next
   })
   contador ++
@@ -50,6 +51,15 @@ Tournament.addHook("afterCreate",(tournament)=>{
   }
 } 
   Match.bulkCreate(data)
+})
+
+Tournament.addHook("afterCreate",async(tournament)=>{
+  const allUsers = await User.findAll()
+  allUsers.forEach(user=> Points.create({
+  points : 0,
+  userId : user.id,
+  tournamentId : tournament.id
+  }))
 })
 
 module.exports = Tournament

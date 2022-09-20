@@ -17,7 +17,7 @@ router.get("/", validateAuth, users);
 router.get("/:id", validateAuth, user);
 router.put("/profile", validateAuth, editProfile);
 router.put("/changePassword", validateAuth, changePassword);
-router.put("/toggleAdmin", validateAuth, toggleAdmin);
+router.put("/toggleAdmin/:id", validateAuth, toggleAdmin);
 router.post("/userIp", userIp);
 
 

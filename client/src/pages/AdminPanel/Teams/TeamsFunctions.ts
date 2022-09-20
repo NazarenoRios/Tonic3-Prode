@@ -2,11 +2,35 @@ import axios from "axios";
 
 export {};
 
-//get tournaments
+//get teams
 
 export function getTeams() {
   return axios
     .get("/api/team/all")
+    .then((res) => res.data)
+}
+
+//add team
+export function addTeam({name,logo,info,state}) {
+  return axios.post("/api/team/create", {name: name.value, logo: logo.value, info:info.value, state:state.value});
+}
+
+//edit team
+export function editTeam({ name, logo, info, state, team }) {
+  console.log(team)
+  return axios.put(`/api/team/modify/${team.id}`,{name: name, logo: logo, info: info, state: state});
+}
+
+//delete team
+export function deleteTeam(team) {
+  return axios.delete(`/api/team/${team.id}`)
+}
+
+//get tournaments
+
+export function getTournaments() {
+  return axios
+    .get("/api/tournament/all")
     .then((res) => res.data)
     .then((data) => {
       return {
@@ -16,18 +40,9 @@ export function getTeams() {
     });
 }
 
-//add tournament
-export function addTeam({ team }) {
-  return axios.post("/api/team/create", team);
-}
+//add team to tournament
 
-//edit tournament
-export function editTeam({ id, team }) {
-  console.log(team)
-  return axios.put(`/api/team/modify/${id}`,{name: team.name, logo: team.logo, info: team.info, participants: false});
-}
-
-//delete tournament
-export function deleteTeam({id}) {
-  return axios.delete(`/api/team/${id}`)
+export function addTeamToTournament ({idTournament}) {
+  return axios
+    .post(`/api/tournament/teams/${idTournament}`)
 }

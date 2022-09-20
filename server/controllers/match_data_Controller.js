@@ -20,6 +20,30 @@ class Match_data_controller {
       console.log(e)
     }
   }
+
+  static async get_matches_data_fase(req,res,next){
+    if(!req.params.tournamentId)return res.sendStatus(400)
+    try{
+      const matches_data= await Match_data_services.get_matches_data_fase({tournamentId: req.params.tournamentId, fase: req.params.fase})
+      if(!matches_data.length)return res.sendStatus(404)
+      res.status(200).send(matches_data)
+    }catch(e){
+      console.log(e)
+    }
+  }
+
+  static async get_matches_data_fase_id(req,res,next){
+    if(!req.params.tournamentId)return res.sendStatus(400)
+    try{
+      const matches_data= await Match_data_services.get_matches_data_fase_id({tournamentId: req.params.tournamentId, fase: req.params.fase, matchId: req.params.matchId})
+      if(!matches_data.length)return res.sendStatus(404)
+      res.status(200).send(matches_data)
+    }catch(e){
+      console.log(e)
+    }
+  }
+
+
   static async get_all_matches_data(req,res,next){
     try{
       const matches_data=await Match_data_services.get_all_matches_data()

@@ -2,7 +2,7 @@ import React from "react";
 
 import { Footer, Navbar, Sidebar } from "../../components/AdminPanel";
 import { useStateContext } from "../../contexts/ContextProvider";
-import TournamentsModel from "./Tournaments/TournamentsModel.tsx";
+import TournamentsModel from "./Tournaments/TournamentsModel.jsx";
 
 const Orders = () => {
 

@@ -9,14 +9,11 @@ import { useStateContext } from "../../contexts/ContextProvider";
 import avatar from '../../assets/data/avatar.jpg';
 import  UserProfile  from './UserProfile';
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
 
 export default function DropDown() {
   const { handleClick, isClicked } = useStateContext();
-  const usuario = useSelector((state)=>state.user)
-  console.log('USUARIO',usuario)
+  const user = useSelector((state)=>state.user)
+  
 
   return (
     <div className="flex">
@@ -33,7 +30,7 @@ export default function DropDown() {
             <p>
               <span className="text-black text-14">Hi,</span>{' '}
               <span className="text-black font-bold ml-1 text-14">
-                Peter
+                {user.name}
               </span>
             </p>
             <MdKeyboardArrowDown className="text-gray-800 text-14" />

@@ -1,6 +1,7 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/db");
 const bcrypt = require("bcrypt");
+const axios = require("axios");
 
 class User extends Model {
   hash(password, salt) {
@@ -21,12 +22,12 @@ User.init(
       allowNull: false,
     },
     lastname: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING, 
       allowNull: false,
     },
     email: {
       type: DataTypes.STRING,
-      unique: true,
+      unique: true, 
     },
     password: {
       type: DataTypes.STRING,
@@ -47,6 +48,7 @@ User.init(
     },
     country: {
       type: DataTypes.STRING,
+      allowNull: true
     },
     state: {
       type: DataTypes.STRING,
@@ -77,5 +79,16 @@ User.beforeCreate((user) => {
     user.password = hash;
   });
 });
+
+/* User.beforeCreate( async (user) => {
+  try {
+    const data = await axios.get("https://geolocation-db.com/json/")
+    return console.log("AAAAAA",data.data)
+  } catch(error){
+    console.log(error)
+  }
+  
+
+}) */
 
 module.exports = User;
