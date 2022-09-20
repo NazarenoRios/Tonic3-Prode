@@ -14,7 +14,6 @@ Data_match.init({
     ,
     goals:{
         type:S.INTEGER,
-        defaultValue:0
     }
 },{sequelize:db,modelName:'data_match'})
 

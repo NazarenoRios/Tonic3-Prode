@@ -7,7 +7,7 @@ module.exports = {
     return queryInterface.bulkInsert('teams',[
       {
         name:"Boca",
-        logo:"https://imgur.com/a/x9hn0SV",
+        logo:"https://i.imgur.com/xmelf2h.png",
         createdAt:new Date(),
         updatedAt:new Date()
       },
@@ -37,7 +37,7 @@ module.exports = {
       },
       {
         name:"Estudiantes",
-        logo:"https://imgur.com/a/x9hn0SV",
+        logo:"https://i.imgur.com/7S5Nkuc.png",
         createdAt:new Date(),
         updatedAt:new Date()
       },

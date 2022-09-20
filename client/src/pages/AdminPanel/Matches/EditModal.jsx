@@ -1,7 +1,7 @@
 import React from "react";
 import EditModalForm from "./editModalForm";
 
-function editModal({setShowModal, setTeams, row}) {
+function editModal({setShowModal, row}) {
 
   return (
     <>
@@ -28,7 +28,6 @@ function editModal({setShowModal, setTeams, row}) {
             <EditModalForm
               setShowModal={setShowModal}
               row={row}
-              setTournaments={setTeams}
             />
 
             {/*footer*/}

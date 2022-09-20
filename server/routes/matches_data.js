@@ -15,6 +15,9 @@ router.get ('/get_data/:tournamentId',Match_data_controller.get_matches_data)
 //RUTA PARA TRAER DATA_MATCH POR FASE
 router.get ('/get_data/:tournamentId/:fase',Match_data_controller.get_matches_data_fase)
 
+//RUTA PARA TRAER DATA_MATCH POR FASE2
+router.get ('/get_data2/:tournamentId/:fase',Match_data_controller.get_matches_data_fase2)
+
 //RUTA PARA TRAER DATA_MATCH POR MATCH
 router.get ('/get_data/:tournamentId/:fase/:matchId',Match_data_controller.get_matches_data_fase_id)
 

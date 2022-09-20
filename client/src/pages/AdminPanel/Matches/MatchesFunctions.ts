@@ -34,7 +34,6 @@ export function getMatchesByPhase({tournamentId,fase}) {
   return axios
     .get(`api/matches_data/get_data/${tournamentId}/${fase}`)
     .then((res) => {
-      console.log(res.data)
       return res.data
     })
 }
@@ -43,7 +42,6 @@ export function getMatchesByPhaseAndMatch({tournamentId,fase,matchId}) {
   return axios
     .get(`api/matches_data/get_data/${tournamentId}/${fase}/${matchId}`)
     .then((res) => {
-      console.log(res.data)
       return res.data
     })
 }
@@ -60,7 +58,7 @@ export function addTeamToMatch(matchInfo) {
 
 //add team to tournament
 
-export function addTeamToTournament ({idTournament}) {
-  return axios
-    .post(`/api/tournament/teams/${idTournament}`)
-}
+// export function addTeamToTournament ({idTournament}) {
+//   return axios
+//     .post(`/api/tournament/teams/${idTournament}`)
+// }

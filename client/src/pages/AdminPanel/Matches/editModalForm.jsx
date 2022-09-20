@@ -1,9 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useInput } from "../../../hooks/useInput";
-import { getTeams, addTeamToMatch } from "./MatchesFunctions.ts";
+import { setTournament2 } from "../../../state/tournaments";
+import { getTeams, addTeamToMatch, getTournaments } from "./MatchesFunctions.ts";
 
-const EditModalForm = ({ row, setTeams , setShowModal }) => {
+const EditModalForm = ({ row , setShowModal }) => {
 
   const match = useInput("match");
   const teams = useInput("teams");
@@ -12,22 +14,30 @@ const EditModalForm = ({ row, setTeams , setShowModal }) => {
 
   const [tournamentTeams,setTournamentTeams] = useState([])
 
+  const [teamName, setTeamName] = useState();
+
+  useEffect(() => {
+    axios.get(`/api/team/${row.teamId}`).then((res) => setTeamName(res.data.name));
+  }, []);
+
   useEffect(() => {
     getTeams().then(data => setTournamentTeams(data))
   },[])
 
+  const dispatch = useDispatch()
   
   const handleEdit = async (match) => {
     const editMatch = await addTeamToMatch(match)
+    const getT = await getTournaments().then((data) => dispatch(setTournament2(data)))
     const closeModal = await setShowModal(false)
-    // const getall = await getTeams().then((data) => setTeams(data));
   }
 
   const onSubmit = async (e) => {
     e.preventDefault()
-    handleEdit([{id: row.matchId, teamId: teams.value}])
+    handleEdit([{id: row.id, teamId: teams.value, goals: goals.value}])
   };
 
+  console.log(teamName)
 
 
   return (
@@ -61,12 +71,12 @@ const EditModalForm = ({ row, setTeams , setShowModal }) => {
           <select
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="winner"
-            defaultValue={row.teams}
+            defaultValue={teamName}
             {...teams}
           >
             <option selected disabled value="">Select a Team</option>
             {tournamentTeams.map((team,i) => (
-              <option value={team.id} >{team.name}</option>
+              <option key={i} value={team.id} >{team.name}</option>
             ))}
           </select>
         </div>
