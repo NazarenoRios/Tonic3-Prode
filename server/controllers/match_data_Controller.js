@@ -21,6 +21,17 @@ class Match_data_controller {
     }
   }
 
+  static async get_matches_data_fase2(req,res,next){
+    if(!req.params.tournamentId)return res.sendStatus(400)
+    try{
+      const matches_data= await Match_data_services.get_matches_data_fase2({tournamentId: req.params.tournamentId, fase: req.params.fase})
+      if(!matches_data.length)return res.sendStatus(404)
+      res.status(200).send(matches_data)
+    }catch(e){
+      console.log(e)
+    }
+  }
+
   static async get_matches_data_fase(req,res,next){
     if(!req.params.tournamentId)return res.sendStatus(400)
     try{

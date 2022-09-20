@@ -7,91 +7,95 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
-
 import { Header } from "../../../components/AdminPanel";
 import MatchesForm from "./MatchesForm";
-import { getTournaments, getMatchesByPhase, getMatchesByPhaseAndMatch } from "./MatchesFunctions.ts";
-// import { getMatchesByPhaseAndMatch } from "./MatchesFunctions";
+import {
+  getTournaments,
+  getMatchesByPhase,
+} from "./MatchesFunctions.ts";
+import { useDispatch, useSelector } from "react-redux";
+import { setTournament2 } from "../../../state/tournaments";
+import axios from "axios";
 
 export default function TeamsModel() {
-
   const [matches, setMatches] = React.useState([]);
-  const [tournaments, setTournaments] = React.useState([]);
-  const [phases,setPhases] = React.useState([])
+  // const [tournaments, setTournaments] = React.useState([]);
+  const [phases, setPhases] = React.useState([]);
 
-  const [actualTournament,setActualTournament] = React.useState()
-  const [actualPhase,setActualPhase] = React.useState()
-  
+  const [actualTournament, setActualTournament] = React.useState();
 
-  React.useEffect( () => {
-    getTournaments().then((data) => setTournaments(data))
+  const dispatch = useDispatch()
+  const tournaments = useSelector(state => state.tournament)
+
+  React.useEffect(() => {
+    getTournaments().then((data) => dispatch(setTournament2(data)));
   }, []);
 
-
-  function createData( matchId, teamId, goals, winner) {
-    return { matchId, teamId, goals, winner };
+  function createData( id ,matchId, teamId, goals) {
+    return { id , matchId, teamId, goals };
   }
 
   const rows = matches.map((team, i) =>
-    createData(
-      team.matchId,
-      team.teamId,
-      team.goals,
-      team.winner,
-    )
+    createData( team.id , team.matchId, team.teamId, team.goals)
   );
 
+
   const getPhases = (e) => {
-    e.preventDefault()
-    tournaments.map((tournament) => setPhases(tournament.phase))
+    e.preventDefault();
     setActualTournament(e.target.value)
-  }
+    const setP = tournaments.filter(
+      (tournament) =>
+        tournament.id.toString().toLowerCase() === e.target.value.toLowerCase()
+    );
+    setPhases([...setP[0].phase]);
+  };
 
   const getMbyPhase = (e) => {
-    e.preventDefault()
-    setActualPhase(e.target.value)
-    getMatchesByPhase({tournamentId: actualTournament, fase: e.target.value}).then(data => setMatches(data))
-  }
+    e.preventDefault();
+    getMatchesByPhase({
+      tournamentId: actualTournament,
+      fase: e.target.value,
+    }).then((data) => setMatches(data));
+  };
 
-  // const getMbyPhase = (e) => {
-  //   e.preventDefault()
-  //   setActualPhase(e.target.value)
-  //   // getMatchesByPhase({tournamentId: actualTournament, fase: e.target.value}).then(data => setMatches(data))
-  // }
+  const [teamName, setTeamName] = React.useState();
 
-  // const getMbyPhaseAndMatch = (e) => {
-  //   e.preventDefault()
-  //   getMatchesByPhaseAndMatch({tournamentId: actualTournament, fase: actualPhase, matchId: e.target.value }).then(data => setMatches(data))
-  // }
-
+  React.useEffect(() => {
+    axios
+    .get(`/api/team/${row.teamId}`)
+    .then((res) => setTeamName(res.data.name));
+}, []);
 
   return (
     <>
       <Header title="Matches" />
-      <select className="mb-8 rounded p-3" onClick={getPhases}>
-        <option selected disabled value="">Select Tournament</option>
-        {tournaments.map((tournament,i) => (
-          <option key={i} value={tournament.id} >{tournament.name}</option>
+      <select
+        defaultValue={"select tournament"}
+        className="mb-8 rounded p-3"
+        onChange={(e) => getPhases(e)}
+      >
+        <option disabled value={"select tournament"}>
+          Select Tournament
+        </option>
+        {tournaments?.map((tournament, i) => (
+          <option key={i} value={tournament.id}>
+            {tournament.name}
+          </option>
         ))}
       </select>
 
-          <br></br>
+      <br></br>
 
       <select className="mb-8 rounded p-3" onClick={getMbyPhase}>
-        <option selected disabled value="">Select Phase</option>
-        {phases.map((phase,i) => (
-          <option key={i} value={phase} >Phase {phase}</option>
+        <option selected disabled value="">
+          Select Phase
+        </option>
+        {phases?.map((phase, i) => (
+          <option key={i} value={phase}>
+            Phase {phase}
+          </option>
         ))}
       </select>
-
-      {/* <br></br>
-
-      <select className="mb-8 rounded p-3" onClick={getMbyPhaseAndMatch}>
-        <option selected disabled value="">Select Match</option>
-        {phases.map((phase,i) => (
-          <option key={i} value={phase} >Match {phase}</option>
-        ))}
-      </select> */}
 
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -100,13 +104,13 @@ export default function TeamsModel() {
               <TableCell align="center">Match</TableCell>
               <TableCell align="center">Team&nbsp;</TableCell>
               <TableCell align="center">Goals&nbsp;</TableCell>
-              <TableCell align="center">Winner&nbsp;</TableCell>
+              {/* <TableCell align="center">Winner&nbsp;</TableCell> */}
               <TableCell align="center">Edit&nbsp;</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {rows.map((row, i) => (
-              <MatchesForm row={row} key={i} setMatches={setMatches} />
+              <MatchesForm asd={asd} row={row} key={i} setMatches={setMatches} />
             ))}
           </TableBody>
         </Table>

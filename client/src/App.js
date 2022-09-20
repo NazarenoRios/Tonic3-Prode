@@ -33,7 +33,7 @@ function App() {
 
   return (
     <>
-      {user.isVerified ? (
+      {!user.isVerified ? (
         <Routes>
           {/* User Section */}
           <Route path="/" element={<Homepage />} />
