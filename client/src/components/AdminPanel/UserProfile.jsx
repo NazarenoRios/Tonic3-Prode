@@ -5,9 +5,25 @@ import { Button } from '.';
 import { userProfileData } from '../../utils/dummy';
 import { useStateContext } from '../../contexts/ContextProvider';
 import avatar from '../../assets/data/avatar.jpg';
+import axios from 'axios';
+import { useNavigate } from 'react-router';
+import { Link } from 'react-router-dom';
+import { BsPersonCircle } from 'react-icons/bs';
 
 const UserProfile = () => {
   const { currentColor } = useStateContext();
+  const navigate = useNavigate()
+
+  const handleLogout = async () => {
+    try {
+      const logout = await axios.post("/api/user/logout");
+      const clear = await sessionStorage.clear();
+      const home = await navigate('/')
+      const reload = await window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="nav-item absolute right-1 top-16 bg-white dark:bg-[#42464D] p-8 rounded-lg w-96">
@@ -34,34 +50,32 @@ const UserProfile = () => {
         </div>
       </div>
       <div>
-        {userProfileData.map((item, index) => (
-          <div key={index} className="flex gap-5 border-b-1 border-color p-4 hover:bg-light-gray cursor-pointer  dark:hover:bg-[#42464D]">
+        <Link to={"/Edit-User"}>
+          <div className="flex gap-5 border-b-1 border-color p-4 hover:bg-light-gray cursor-pointer  dark:hover:bg-[#42464D]">
             <button
               type="button"
-              style={{ color: item.iconColor, backgroundColor: item.iconBg }}
-              className=" text-xl rounded-lg p-3 hover:bg-light-gray"
+              className=" text-[#03C9D7] bg-[#E5FAFB] text-xl rounded-lg p-3 hover:bg-light-gray"
             >
-              {item.icon}
+              <BsPersonCircle />
             </button>
-
             <div>
-              <p className="font-semibold dark:text-gray-200 ">{item.title}</p>
-              <p className="text-gray-500 text-sm dark:text-gray-400"> {item.desc} </p>
+              <p className="font-semibold dark:text-gray-200 ">Edit Profile</p>
+              <p className="text-gray-500 text-sm dark:text-gray-400">
+                Account Settings
+              </p>
             </div>
           </div>
-        ))}
+        </Link>
       </div>
       <div className="mt-5">
-        <Button
-          color="white"
-          bgColor={currentColor}
-          text="Logout"
-          borderRadius="10px"
-          width="full"
-        />
+        <button
+          className="bg-gray-700 text-white rounded-xl w-full h-10 hover:bg-red-600"
+          onClick={handleLogout}
+        >
+          Logout
+        </button>
       </div>
     </div>
-
   );
 };
 
