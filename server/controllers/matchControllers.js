@@ -26,6 +26,15 @@ class MatchControllers {
             return res.sendStatus(404)
         }
     }
+    static async end_matches(req,res){
+        if(!req.body.id)return res.sendStatus(404)
+        try{
+            const match_ended=await Match_services.end_matches(req.body)
+            if(match_ended)res.sendStatus(204)
+        }catch(e){
+            console.log(e)
+        }
+    }
 }
 
 module.exports=MatchControllers
