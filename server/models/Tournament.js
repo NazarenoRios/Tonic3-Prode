@@ -1,6 +1,8 @@
 const S = require("sequelize")
 const db = require("../config/db")
 const Match = require("./Match")
+const Points = require("./Points")
+const User = require("./User")
 
 class Tournament extends S.Model { }
 
@@ -49,6 +51,15 @@ Tournament.addHook("afterCreate",(tournament)=>{
   }
 } 
   Match.bulkCreate(data)
+})
+
+Tournament.addHook("afterCreate",async(tournament)=>{
+  const allUsers = await User.findAll()
+  allUsers.forEach(user=> Points.create({
+  points : 0,
+  userId : user.id,
+  tournamentId : tournament.id
+  }))
 })
 
 module.exports = Tournament
