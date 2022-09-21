@@ -3,7 +3,7 @@ const Tournament = require("../models/Tournament");
 const Team = require("../models/Team");
 const Player = require("../models/Player");
 const Match = require("../models/Match");
-const Data_match=require('./Data_match')
+const Data_match= require('./Data_match')
 const Tournament_teams = require("./Tournament_teams")
 const PlayerData = require("./Player_data")
 const Bet = require("./Bet")
@@ -32,4 +32,5 @@ Data_match.belongsTo(Match)
 Match.belongsTo(Tournament);
 
 
-module.exports = { User,Tournament,Team,Player,Match ,Data_match, Tournament_teams, PlayerData, Bet, Points };
+module.exports = { User,Tournament,Team,Player,Match , Data_match, Tournament_teams, PlayerData, Bet, Points };
+

@@ -1,6 +1,11 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "categories": ["sports"],
+  "description": "esta es una pwa para Tonic3",
+  "dir": "ltr",
+  "display_override":["standalone","fullscreen"],
+  "display": "standalone",
   "icons": [
     {
       "src": "favicon.ico",
@@ -18,8 +23,11 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "lang": "es-MX",
+  "name": "Pwa Tonic3",
+  "orientation": "portnait",
+  "prefer_related_application": false,
+  "scope": "/",
+  "short_name":"Pwa T3",
+  "start_url": "/"
 }

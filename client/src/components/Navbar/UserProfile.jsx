@@ -72,9 +72,26 @@ const UserProfile = () => {
           </div>
         </Link>
         {user.admin ? (
-          ""
+          <Link to="/Admin-Panel">
+          <div className="flex gap-5 border-b-1 border-color p-4 hover:bg-light-gray cursor-pointer  dark:hover:bg-[#42464D]">
+            <button
+              type="button"
+              className=" text-[#FFF4E5] bg-[#FBCD64] text-xl rounded-lg p-3 hover:bg-light-gray"
+            >
+              <BsCardList />
+            </button>
+            <div>
+              <p className="font-semibold dark:text-gray-200 ">
+                Admin Panel
+              </p>
+              <p className="text-gray-500 text-sm dark:text-gray-400">
+                Manage your world
+              </p>
+            </div>
+          </div>
+        </Link>
         ) : (
-          <Link to={"/TablePoints-User"}>
+          <Link to="/TablePoints-User">
             <div className="flex gap-5 border-b-1 border-color p-4 hover:bg-light-gray cursor-pointer  dark:hover:bg-[#42464D]">
               <button
                 type="button"
