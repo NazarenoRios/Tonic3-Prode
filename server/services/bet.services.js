@@ -49,19 +49,25 @@ class BetServices {
 
     static async countdown (body){
         try {
-            console.log("esto es el body en el contdown",body);
             const match = await Match.findByPk(body.matchId)
-             console.log("*************+",match.date);
-            const total = Date.parse(match.date) - Date.parse(new Date());
-            console.log("esto es el total en milisegundos",total);
+            const total = Date.parse(match.date) - Date.parse(new Date())
+            const seconds = Math.floor( (total/1000) % 60 );
+            const minutes = Math.floor( (total/1000/60) % 60 );
+            const hours = Math.floor( (total/(1000*60*60)) % 24 );
+            const days = Math.floor( total/(1000*60*60*24) );
             if (total < 7200000 || match.date===null ) {
-                console.log("te quedatse sin tiempo!!!!",total);
+                console.log("te quedatse sin tiempo!!!!",total)
                 return false
-            }else return body
+            }else return {body : body, 
+                          time : {
+                            message: `Time remaning : ${days} days,${hours} hours, ${minutes} minutes,${seconds} seconds`,
+                            total:total,days:days,hours:hours,minutes:minutes,seconds:seconds}
+                        }
         } catch (error) {
             console.log(error);
         }
     }
+
 }
 
 module.exports = BetServices
