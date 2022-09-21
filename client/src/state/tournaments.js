@@ -5,7 +5,6 @@ export const setTournament = createAction("SET_TOURNAMENT")
 
 export const setTournament2 = createAction("SET_TOURNAMENT")
 
-
 export const TournamentTeams = createAsyncThunk("SET_TOURNAMENTS", async () => {
     try {
         const res = await axios.get("/api/tournament/all")

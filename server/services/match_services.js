@@ -29,6 +29,10 @@ class Match_services {
     return await Match.findAll({ where: { tournamentId } });
   }
 
+  static async getAllMatches2(tournamentId,fase) {
+    return await Match.findAll({ where: { tournamentId, fase } });
+  }
+
   static async end_matches(matches){
     for (let i = 0; i < matches.length; i++) {
       const {number_key,tournamentId}=matches[i]
