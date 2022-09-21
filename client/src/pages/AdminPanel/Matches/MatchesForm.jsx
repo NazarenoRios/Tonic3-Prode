@@ -1,21 +1,39 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { MenuItem } from "@mui/material";
 
 import EditModal from "./EditModal";
-import axios from "axios";
+import { getMatchesByPhaseAndMatch } from "./MatchesFunctions.ts";
+import { useSelector } from "react-redux";
+import axios from 'axios';
 
-function TeamsForm({ row, i , setTeams }) {
-
+function TeamsForm({ row, i, setMatches, actualTournament }) {
 
   const [showModal, setShowModal] = React.useState(false);
-  const [teamName, setTeamName] = useState()
+  const [matchTeams,setMatchTeams] = React.useState([])
+  const [teamA, setTeamA] = React.useState()
+  const [teamB, setTeamB] = React.useState()
+
+  const phase = useSelector(state => state.phase)
+
+
+  const setData = async (e) => {
+    e.preventDefault()
+    // const setMatches = await getMatchesByPhaseAndMatch({ tournamentId: actualTournament, fase: phase, matchId: row.id}).then((data) => setMatchTeams(data))
+    const setNameA = await axios.get(`/api/team/${matchTeams[0].teamId}`).then((res) => setTeamA(res.data))
+    const setNameB = await axios.get(`/api/team/${matchTeams[1].teamId}`).then((res) => setTeamB(res.data))
+    const showModal = await setShowModal(true)
+  }
 
   useEffect(() => {
-    axios.get(`/api/team/${row.teamId}`).then(res => setTeamName(res.data.name))
+    getMatchesByPhaseAndMatch({ tournamentId: actualTournament, fase: phase, matchId: row.id}).then((data) => setMatchTeams(data))
   },[])
+
+  // console.log(matchTeams)
+  // console.log(teamA.name)
+  console.log(teamA)
 
   return (
     <>
@@ -23,12 +41,42 @@ function TeamsForm({ row, i , setTeams }) {
         key={i}
         sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
       >
-        <TableCell align="center">{row.matchId}</TableCell>
-        <TableCell align="center">{teamName ? teamName : row.teamId}</TableCell>
-        <TableCell align="center">{row.goals}</TableCell>
-        <TableCell align="center">{row.winner}</TableCell>
+        <TableCell align="center">{row.id}</TableCell>
+        {row.date ? (
+          <TableCell align="center">
+            <span className="font-bold text-green-600">{row.date}</span>
+          </TableCell>
+        ) : (
+          <TableCell align="center">
+            <span className="text-red-500">Set Date</span>
+          </TableCell>
+        )}
+
+        {row.winner ? (
+          <TableCell align="center">
+            <span className="font-bold text-green-600">{row.winner}</span>
+          </TableCell>
+        ) : (
+          <TableCell align="center">
+            <span className="text-blue-500">Set a Winner</span>
+          </TableCell>
+        )}
+
+        {row.match_end ? (
+          <TableCell align="center">
+            <span className="font-bold text-green-600">Finished</span>
+          </TableCell>
+        ) : (
+          <TableCell align="center">
+            <span className="text-yellow-500">in course</span>
+          </TableCell>
+        )}
+
         <TableCell align="center">
-          <MenuItem sx={{ display: "flex", justifyContent: "center" }} onClick={() => setShowModal(true)}>
+          <MenuItem
+            sx={{ display: "flex", justifyContent: "center" }}
+            onClick={setData}
+          >
             <BorderColorIcon color="primary" />
           </MenuItem>
         </TableCell>
@@ -36,11 +84,14 @@ function TeamsForm({ row, i , setTeams }) {
 
       {/* popUp */}
       {showModal ? (
-        
         <EditModal
           row={row}
           setShowModal={setShowModal}
-          setTeams={setTeams}
+          setMatches={setMatches}
+          actualTournament={actualTournament}
+          matchTeams={matchTeams}
+          teamA={teamA}
+          teamB={teamB}
         />
       ) : null}
     </>

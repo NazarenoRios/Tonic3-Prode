@@ -1,8 +1,6 @@
 const db = require("../config/db");
 const S = require("sequelize");
 const Data_match = require("./Data_match");
-const Bet = require("./Bet");
-const PointsServices = require("../services/points.services");
 
 class Match extends S.Model {}
 Match.init(
@@ -11,7 +9,6 @@ Match.init(
       type: S.DATE,
     },
     winner: {
-      //WINNER VA A SER TEAM_ID DEL EQUIPO GANADOR
       type: S.INTEGER,
     },
     info: {
@@ -39,24 +36,6 @@ Match.addHook("afterBulkCreate", (matches) => {
     for (let i = 0; i < 2; i++) matches_id.push({ matchId: match.id });
   });
   Data_match.bulkCreate(matches_id);
-});
-
-Match.addHook("afterUpdate", async (match) => {
-  if (match.winner != null) {
-    const bets = await Bet.findAll();
-    bets.map(async (bet) => {
-      if (bet.winner_id === match.winner) {
-        const point = await PointsServices.getTournamentPoints(bet.userId,match.tournamentId);
-        point.points = point.points + 1;
-        point.save();
-      }
-    });
-
-    // const dataMatch = await Data_match.findOne({ where:{matchId : match.next} })
-    // dataMatch.teamId=match.winner
-    // dataMatch.save()
-    // console.log(dataMatch);
-  }
 });
 
 module.exports = Match;

@@ -14,14 +14,14 @@ const cookieParser = require("cookie-parser")
 
 // Express Route File Requires
 const routes = require("./routes");
+
 const metrics_routes=require('./metrics/routes')
 
    app.use(express.json())
    app.use(cookieParser())
    app.use(express.urlencoded({extended:false}))
    app.use(cors()) 
- ///////////////////////////////////////////////////
- ////////////////////////////////////7
+
 // Express Routing
 app.use("/api", routes)
 app.use('/metrics',metrics_routes)

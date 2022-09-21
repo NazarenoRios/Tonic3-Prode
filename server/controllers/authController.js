@@ -1,6 +1,5 @@
 const { User } = require("../models");
 const { generateToken } = require("../config/tokens");
-const tokens = require("../config/tokens");
 const { createHmac } = require("node:crypto");
 const mailer = require("../utils/mailer");
 
@@ -49,8 +48,11 @@ exports.googlelogin = (req, res) => {
               address: user.address,
               zip: user.zip,
             };
+
+            
+
             permanence_counter({id:user.id,name:user.name},'login_date')
-            const token = tokens.generateToken(payload);
+            const token = generateToken(payload);
             // sessionStorage.setItem("token", token)
             res.cookie("token", token);
             res.send(payload);

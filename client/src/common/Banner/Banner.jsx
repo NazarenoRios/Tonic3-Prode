@@ -1,59 +1,18 @@
 import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
-import {
-  Bars3Icon,
-  BookmarkSquareIcon,
-  CalendarIcon,
-  LifebuoyIcon,
-  PlayIcon,
-  ShieldCheckIcon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
+import { Bars3Icon, BookmarkSquareIcon, CalendarIcon, LifebuoyIcon, PlayIcon, ShieldCheckIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
 import estudiantes from "../../assets/teams-logos/estudiantes.png";
 
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom";
 import { BannerDesign } from "./StyledComponents";
+import { useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
+import { setTournament } from "../../state/tournaments";
+import { useDispatch } from "react-redux";
 
-const solutions = [
-  {
-    name: "FIFA",
-    description:
-      "Get a better understanding of where your traffic is coming from.",
-    description2: "Fédération Internationale de Football Association",
-    href: "#",
-    icon: "https://prodeenlinea.com/images/icons/flag_copas_fifa.png",
-  },
-  {
-    name: "UEFA",
-    description: "Speak directly to your customers in a more meaningful way.",
-    description2: "Union of European Football Associations",
-    href: "#",
-    icon: "https://prodeenlinea.com/images/icons/flag_uefa.png",
-  },
-  {
-    name: "Conmebol",
-    description: "Your customers' data will be safe and secure.",
-    description2: "Confederación Sudamericana de Fútbol ",
-    href: "#",
-    icon: "https://prodeenlinea.com/images/icons/flag_conmebol.png",
-  },
-  {
-    name: "Argentina",
-    description: "Connect with third-party tools that you're already using.",
-    description2: "Copa Argentina AXION energy",
-    href: "#",
-    icon: "https://prodeenlinea.com/images/icons/flag_argentina.png",
-  },
-  {
-    name: "Brasil",
-    description: "Build strategic funnels that will drive your customers to convert",
-    description2: "Copa de Brasil",
-    href: "#",
-    icon: "https://prodeenlinea.com/images/icons/flag_brasil.png",
-  },
-];
 const callsToAction = [{ name: "Watch Online", href: "#", icon: PlayIcon }];
 const resources = [
   {
@@ -99,8 +58,29 @@ function classNames(...classes) {
 }
 
 export default function Banner() {
+
+  const [tournaments,setTournaments] = useState([])
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const res = await axios.get("/api/tournament/all");
+        const data = await setTournaments(res.data)
+      } catch (err) {
+        return err.message;
+      }
+    }
+    fetchData()
+  },[])
+
+  const dispatch = useDispatch()
+
+  const getT = (item) => {
+    dispatch(setTournament(item))
+  }
+
   return (
-    <Popover style={{ zIndex: "10000" }} className="relative bg-white">
+    <Popover style={{ zIndex: "10000", paddingTop:"40px" }} className="relative bg-white">
       <BannerDesign className="h-32 md:h-72 px-4 sm:px-6 content-center">
         <div className="flex-1 flex justify-center mr-auto">
           <Link to="#">
@@ -159,15 +139,18 @@ export default function Banner() {
                     <Popover.Panel className="absolute z-10 -ml-4 mt-3 w-screen max-w-md transform px-2 sm:px-0 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2">
                       <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
                         <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
-                          {solutions.map((item) => (
-                            <a
+                          {tournaments.map((item) => (
+                            <Link
                               key={item.name}
-                              href={item.href}
-                              className="-m-3 flex items-start rounded-lg p-3 hover:bg-gray-50"
+                              to={"/"}
+                              // href={item.href}
+                              className="-m-3 flex items-start rounded-lg p-3 hover:bg-gray-50 cursor-pointer"
+                              defaultValue={item.id}
+                              onClick={() => getT(item)}
                             >
                               <img
                                 alt=""
-                                src={item.icon}
+                                src={item.logo}
                                 className="h-6 w-6 flex-shrink-0 text-indigo-600"
                                 aria-hidden="true"
                               />
@@ -179,7 +162,7 @@ export default function Banner() {
                                   {item.description}
                                 </p>
                               </div>
-                            </a>
+                            </Link>
                           ))}
                         </div>
                         <div className="space-y-6 bg-gray-50 px-5 py-5 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8">
@@ -236,15 +219,17 @@ export default function Banner() {
                     <Popover.Panel className="absolute z-10 -ml-4 mt-3 w-screen max-w-md transform px-2 sm:px-0 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2">
                       <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
                         <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
-                          {solutions.map((item) => (
-                            <a
+                          {tournaments.map((item) => (
+                            <Link
                               key={item.name}
-                              href={item.href}
+                              to={"/prode"}
+                              // href={item.href}
                               className="-m-3 flex items-start rounded-lg p-3 hover:bg-gray-50"
+                              onClick={() => getT(item)}
                             >
                               <img
                                 alt=""
-                                src={item.icon}
+                                src={item.logo}
                                 className="h-6 w-6 flex-shrink-0 text-indigo-600"
                                 aria-hidden="true"
                               />
@@ -256,7 +241,7 @@ export default function Banner() {
                                   {item.description}
                                 </p>
                               </div>
-                            </a>
+                            </Link>
                           ))}
                         </div>
                         <div className="space-y-6 bg-gray-50 px-5 py-5 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8">
@@ -401,7 +386,7 @@ export default function Banner() {
           focus
           className="absolute inset-x-0 top-0 origin-top-right transform p-2 transition md:hidden"
         >
-          <div className="divide-y-2 divide-gray-50 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+          <div className="divide-y-2 divide-gray-50 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5 mt-12">
             <div className="px-5 pt-5 pb-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -420,22 +405,28 @@ export default function Banner() {
               </div>
               <div className="mt-6">
                 <nav className="grid gap-y-8">
-                  {solutions.map((item) => (
+                  {tournaments.map((item) => (
                     <a
                       key={item.name}
                       href={item.href}
                       className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
+                      onClick={() => getT(item)}
                     >
                       <img
                         alt=""
-                        src={item.icon}
+                        src={item.logo}
                         className="h-6 w-6 flex-shrink-0 text-indigo-600"
                         aria-hidden="true"
                       />
                       <span className="mx-3 text-base text-gray-900 font-bold">
                         {item.name}
                       </span>
-                      <span className="text-gray-500" style={{fontSize:"14px"}}>{item.description2}</span>
+                      <span
+                        className="text-gray-500"
+                        style={{ fontSize: "14px" }}
+                      >
+                        {item.description}
+                      </span>
                     </a>
                   ))}
                 </nav>
