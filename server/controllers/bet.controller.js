@@ -1,4 +1,3 @@
-const { Bet } = require("../models")
 const BetServices = require("../services/bet.services")
 
 class BetController {
@@ -7,10 +6,9 @@ class BetController {
         try{
            const validate = await BetServices.countdown(req.body)
            console.log("esto es validate",validate);
-            const bet = await BetServices.createBet(validate)
-            console.log("esto es bet despues de pasar por el validate ", bet);
-            if(bet) return res.status(201).send(bet)
-            if(!bet) return res.status(401).send("Time is Over")
+            await BetServices.createBet(validate.body)
+            if(validate) return res.status(201).send(validate.time)
+            if(!validate) return res.status(401).send("Time is Over")
         } catch(error){
             console.log(error)
         }

@@ -4,7 +4,6 @@ const S=require('sequelize')
 
 class Points extends S.Model{}
 
-
 Points.init({
     points:{
         type:S.INTEGER,
