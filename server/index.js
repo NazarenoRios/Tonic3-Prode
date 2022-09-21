@@ -17,8 +17,6 @@ const cookieParser = require("cookie-parser")
 const routes = require("./routes");
 const save_user = require("./metrics/utils");
 
-save_user({name:'sad',age:33})
-
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({extended:false}))

@@ -1,4 +1,4 @@
-const { Bet } = require("../models")
+const { Bet, Match } = require("../models")
 
 class BetServices {
 
@@ -47,6 +47,21 @@ class BetServices {
         }
     }
 
+    static async countdown (body){
+        try {
+            console.log("esto es el body en el contdown",body);
+            const match = await Match.findByPk(body.matchId)
+             console.log("*************+",match.date);
+            const total = Date.parse(match.date) - Date.parse(new Date());
+            console.log("esto es el total en milisegundos",total);
+            if (total < 7200000 || match.date===null ) {
+                console.log("te quedatse sin tiempo!!!!",total);
+                return false
+            }else return body
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
 
 module.exports = BetServices
