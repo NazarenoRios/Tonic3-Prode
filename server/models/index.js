@@ -33,3 +33,4 @@ Match.belongsTo(Tournament);
 
 
 module.exports = { User,Tournament,Team,Player,Match , Data_match, Tournament_teams, PlayerData, Bet, Points };
+

@@ -74,28 +74,6 @@ const EditModalForm = ({ row, setTeams , setShowModal }) => {
             {...info}
           />
         </div>
-        
-        <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="stock"
-          >
-            Status
-          </label>
-
-          <select
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="teams"
-            defaultValue={row.state}
-            {...state}
-          >
-            <option selected disabled value="">
-              Select how many teams
-            </option>
-            <option value={true}>true</option>
-            <option value={false}>false</option>
-          </select>
-        </div>
 
         <button
           onSubmit={onSubmit}

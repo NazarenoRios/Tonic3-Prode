@@ -30,10 +30,9 @@ function TeamsForm({ row, i , setTeams }) {
           {row.name}
         </TableCell>
         <TableCell align="center" >
-          <img alt="" src={row.logo}/>
+          <img alt="" src={row.logo} />
         </TableCell>
         <TableCell align="center">{row.info}</TableCell>
-        <TableCell align="center">{`${row.state}`}</TableCell>
         <TableCell align="center">
           <MenuItem sx={{ display: "flex", justifyContent: "center" }} onClick={() => setShowModal(true)}>
             <BorderColorIcon color="primary" />

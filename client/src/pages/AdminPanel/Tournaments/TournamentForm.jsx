@@ -35,7 +35,6 @@ function TournamentForm({ row, i , setTournaments }) {
         <TableCell align="center">{row.description}</TableCell>
         <TableCell align="center">{row.participants}</TableCell>
         <TableCell align="center">{row.phase}</TableCell>
-        <TableCell align="center">{`${row.state}`}</TableCell>
         <TableCell align="center">
           <MenuItem sx={{ display: "flex", justifyContent: "center" }} onClick={() => setShowModal(true)}>
             <BorderColorIcon color="primary" />
