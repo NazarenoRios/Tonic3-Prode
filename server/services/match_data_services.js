@@ -1,5 +1,5 @@
 const { Op, where } = require("sequelize");
-const { Data_match, Match } = require("../models");
+const { Data_match, Match, Team } = require("../models");
 
 class Match_data_services {
   static async set_matches_data(matches_data) {
@@ -19,18 +19,68 @@ class Match_data_services {
       return false;
     }
   }
-  static get_matches_data(tournamentId) {
+
+
+  static async get_matches_data(tournamentId) {
     try {
-        if(!tournamentId)
+        if(tournamentId)
+      return await Match.findAll({where:{tournamentId:tournamentId},
+        include:{
+          model:Team,
+          as:'teamID'
+        }
+        })
+        console.log(a)
+        if(a)return a
+    } catch (e) {
+      console.log(e);
+      return false;
+    }
+  }
+
+  static async get_matches_data_fase2({tournamentId, fase}) {
+    try {
+        if(tournamentId)
+        return await Match.findAll({where:{tournamentId:tournamentId, fase: fase},
+          include:{
+            model:Team,
+            as:'teamID'
+          }
+          })
+          console.log(a)
+          if(a)return a
+    } catch (e) {
+      console.log(e);
+      return false;
+    }
+  }
+
+  static get_matches_data_fase({tournamentId, fase}) {
+    try {
+        if(tournamentId)
       return Data_match.findAll({ include:{
         model:Match,
-        where:{tournamentId}
+        where:{tournamentId, fase}
       } })
     } catch (e) {
       console.log(e);
       return false;
     }
   }
+
+  static get_matches_data_fase_id({tournamentId, fase, matchId}) {
+    try {
+        if(tournamentId)
+      return Data_match.findAll({ include:{
+        model:Match,
+        where:{tournamentId, fase, id: matchId}
+      } })
+    } catch (e) {
+      console.log(e);
+      return false;
+    }
+  }
+
   static get_all_matches_data(){
     return Data_match.findAll()
   }

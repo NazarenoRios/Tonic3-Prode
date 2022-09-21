@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router } from "react-router-dom";
+import * as serviceWorkerRegistration from './serviceWorkerRegistration'
 
 import "./index.css";
 import App from "./App";
@@ -15,9 +16,9 @@ import store from "./state/store";
 //ContextProvider
 import { ContextProvider } from "./contexts/ContextProvider";
 
-//chakra ui
-import { ChakraProvider } from "@chakra-ui/react";
-import { theme } from "./utils/chakraui";
+// //chakra ui
+// import { ChakraProvider } from "@chakra-ui/react";
+// import { theme } from "./utils/chakraui";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -33,3 +34,13 @@ root.render(
     </Router>
   </React.StrictMode>
 );
+
+serviceWorkerRegistration.register({
+  onUpdate: async (registration) => {
+    if (registration && registration.waiting) {
+      await registration.unregister();
+      registration.waiting.postMessage({ type: "SKIP_WAITING" });
+      window.location.reload();
+    }
+  },
+});

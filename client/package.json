@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@chakra-ui/react": "^2.3.2",
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
     "@fortawesome/fontawesome-free": "^6.2.0",
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
     "@fortawesome/free-brands-svg-icons": "^6.2.0",
@@ -11,6 +12,9 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@headlessui/react": "^1.7.0",
     "@heroicons/react": "^2.0.10",
+    "@mui/icons-material": "^5.10.3",
+    "@mui/material": "^5.10.5",
+    "@mui/x-data-grid-pro": "^5.17.2",
     "@react-oauth/google": "^0.2.6",
     "@reduxjs/toolkit": "^1.8.5",
     "@syncfusion/ej2": "^20.2.48",
@@ -42,13 +46,19 @@
     "redux": "^4.2.0",
     "redux-logger": "^3.0.6",
     "styled-components": "^5.3.5",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "workbox-core": "^6.5.4",
+    "workbox-expiration": "^6.5.4",
+    "workbox-precaching": "^6.5.4",
+    "workbox-routing": "^6.5.4",
+    "workbox-strategies": "^6.5.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start-sw": "http-server ./build"
   },
   "proxy": "http://localhost:3001",
   "eslintConfig": {
@@ -71,6 +81,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.8",
+    "http-server": "^14.1.1",
     "postcss": "^8.4.16",
     "tailwindcss": "^3.1.8"
   }
