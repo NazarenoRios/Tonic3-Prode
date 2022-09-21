@@ -1,12 +1,10 @@
 const { User } = require("../models");
 const { generateToken } = require("../config/tokens");
-const tokens = require("../config/tokens");
 const { createHmac } = require("node:crypto");
 const mailer = require("../utils/mailer");
 
 
 const { OAuth2Client } = require("google-auth-library");
-const router = require("../routes");
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 exports.googlelogin = (req, res) => {
@@ -47,7 +45,7 @@ exports.googlelogin = (req, res) => {
               address: user.address,
               zip: user.zip,
             };
-            const token = tokens.generateToken(payload);
+            const token = generateToken(payload);
             // sessionStorage.setItem("token", token)
             res.cookie("token", token);
             res.send(payload);
