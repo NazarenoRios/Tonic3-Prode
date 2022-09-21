@@ -37,7 +37,7 @@ class Match_services {
     } catch (error) {
       console.log(error);
   }
-  
+}
   static async getAllMatches2(tournamentId,fase) {
     return await Match.findAll({ where: { tournamentId, fase } });
   }
