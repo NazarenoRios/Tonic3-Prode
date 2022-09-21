@@ -9,6 +9,9 @@ const PointsServices = require("../services/points.services");
 // GET : BUSCAR PARTIDOS DE UN TORNEO
 router.get("/:tournamentId", MatchControllers.getMatches);
 
+// GET : BUSCAR PARTIDOS DE UN TORNEO POR FASES
+router.get("/:tournamentId/:fase", MatchControllers.getMatches2);
+
 // SETEA 'winner','info','date' y 'match_end'
 router.put("/set", MatchControllers.setAllMatches);
 

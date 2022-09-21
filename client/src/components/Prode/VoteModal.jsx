@@ -1,7 +1,7 @@
 import React from "react";
-import EditModalForm from "./editModalForm";
+import VoteModalForm from "./VoteModalForm";
 
-function editModal({setShowModal, row, setMatches, actualTournament, matchTeams, teamA, teamB}) {
+function VoteModal({team, setShowModal}) {
 
   return (
     <>
@@ -25,14 +25,9 @@ function editModal({setShowModal, row, setMatches, actualTournament, matchTeams,
               </button>
             </div>
             {/*body*/}
-            <EditModalForm
+            <VoteModalForm
               setShowModal={setShowModal}
-              row={row}
-              setMatches={setMatches}
-              actualTournament={actualTournament}
-              matchTeams={matchTeams}
-              teamA={teamA}
-              teamB={teamB}
+              team={team}
             />
 
             {/*footer*/}
@@ -55,4 +50,4 @@ function editModal({setShowModal, row, setMatches, actualTournament, matchTeams,
   );
 }
 
-export default editModal;
+export default VoteModal;

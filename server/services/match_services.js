@@ -30,14 +30,16 @@ class Match_services {
   static async getAllMatches(tournamentId) {
     return await Match.findAll({ where: { tournamentId } });
   }
-
   
   static async getMatch(id) {
     try {
       return await Match.findByPk(id);
     } catch (error) {
       console.log(error);
-    }
+  }
+  
+  static async getAllMatches2(tournamentId,fase) {
+    return await Match.findAll({ where: { tournamentId, fase } });
   }
 
   static async end_matches(matches) {

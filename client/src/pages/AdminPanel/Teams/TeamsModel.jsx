@@ -24,8 +24,8 @@ export default function TeamsModel() {
     getTeams().then((data) => setTeams(data));
   }, []);
 
-  function createData(id, name, logo, info, state) {
-    return { id, name, logo, info, state };
+  function createData(id, name, logo, info) {
+    return { id, name, logo, info };
   }
 
   const rows = teams.map((team, i) =>
@@ -34,7 +34,6 @@ export default function TeamsModel() {
       team.name,
       team.logo,
       team.info,
-      team.state,
     )
   );
 
@@ -48,7 +47,6 @@ export default function TeamsModel() {
               <TableCell align="center">Name</TableCell>
               <TableCell align="center">Logo&nbsp;</TableCell>
               <TableCell align="center">Info&nbsp;</TableCell>
-              <TableCell align="center">State&nbsp;</TableCell>
               <TableCell align="center">Edit&nbsp;</TableCell>
               <TableCell align="center">Delete&nbsp;</TableCell>
               <TableCell align="center">

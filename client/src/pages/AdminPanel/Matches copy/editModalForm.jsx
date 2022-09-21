@@ -4,42 +4,41 @@ import { useDispatch, useSelector } from "react-redux";
 import { useInput } from "../../../hooks/useInput";
 import { getTeams, addTeamToMatch, getMatchesByPhase } from "./MatchesFunctions.ts";
 
-const EditModalForm = ({ row, setShowModal, setMatches, actualTournament, matchTeams, teamA, teamB }) => {
+const EditModalForm = ({ row , setShowModal, setMatches, actualTournament }) => {
 
   const match = useInput("match");
   const teams = useInput("teams");
   const goals = useInput("goals");
   const winner = useInput("winner");
 
-  const [tournamentTeams, setTournamentTeams] = useState([]);
+  const [tournamentTeams,setTournamentTeams] = useState([])
+  const [teamName, setTeamName] = useState();
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const phase = useSelector((state) => state.phase);
+  const phase = useSelector(state => state.phase)
 
   useEffect(() => {
-    // axios.get(`/api/team/${matchTeams[0].matchId}`).then((res) => console.log(res.data));
-    getTeams().then((data) => setTournamentTeams(data));
+    axios.get(`/api/team/${row.teamId}`).then((res) => setTeamName(res.data.name));
   }, []);
+
+  useEffect(() => {
+    getTeams().then(data => setTournamentTeams(data))
+  },[])
+
   
   const handleEdit = async (match) => {
-    const editMatch = await addTeamToMatch(match);
-    const actualization = await getMatchesByPhase({
-      tournamentId: actualTournament,
-      fase: phase,
+    const editMatch = await addTeamToMatch(match)
+    const actualization = await getMatchesByPhase({ tournamentId: actualTournament, fase: phase,
     }).then((data) => setMatches(data));
-    const closeModal = await setShowModal(false);
-  };
+    const closeModal = await setShowModal(false)
+  }
 
   const onSubmit = async (e) => {
-    e.preventDefault();
-    handleEdit([{ id: row.id, teamId: teams.value, goals: goals.value }]);
+    e.preventDefault()
+    handleEdit([{id: row.id, teamId: teams.value, goals: goals.value}])
   };
 
-
-console.log(matchTeams)
-  // console.log(teamA)
-  // console.log(teamB)
 
   return (
     <div className="relative p-6 flex-auto">
@@ -49,15 +48,15 @@ console.log(matchTeams)
             className="block text-gray-700 text-sm font-bold mb-2"
             htmlFor="match"
           >
-            Team A
+            Match
           </label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-green-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="match"
             type="text"
             name="match"
-            value={teamA.name}
-            disabled
+            defaultValue={row.matchId}
+            {...match}
           />
         </div>
 
@@ -72,15 +71,12 @@ console.log(matchTeams)
           <select
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="winner"
+            defaultValue={teamName}
             {...teams}
           >
-            <option selected disabled value="">
-              Select a Team
-            </option>
-            {tournamentTeams.map((team, i) => (
-              <option key={i} value={team.id}>
-                {team.name}
-              </option>
+            <option selected disabled value="">Select a Team</option>
+            {tournamentTeams.map((team,i) => (
+              <option key={i} value={team.id} >{team.name}</option>
             ))}
           </select>
         </div>
@@ -96,11 +92,11 @@ console.log(matchTeams)
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="goals"
             type="text"
-            // defaultValue={row.goals}
+            defaultValue={row.goals}
             {...goals}
           />
         </div>
-
+        
         {/* <div className="mb-4">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"

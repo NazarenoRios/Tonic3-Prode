@@ -32,19 +32,11 @@ export function getTeams() {
 
 export function getMatchesByPhase({tournamentId,fase}) {
   return axios
-    .get(`api/match/${tournamentId}/${fase}`)
+    .get(`api/matches_data/get_data/${tournamentId}/${fase}`)
     .then((res) => {
       return res.data
     })
 }
-
-// export function getMatchesByPhase({tournamentId,fase}) {
-//   return axios
-//     .get(`api/matches_data/get_data/${tournamentId}/${fase}`)
-//     .then((res) => {
-//       return res.data
-//     })
-// }
 
 export function getMatchesByPhaseAndMatch({tournamentId,fase,matchId}) {
   return axios

@@ -9,12 +9,13 @@ import Paper from "@mui/material/Paper";
 
 import { Header } from "../../../components/AdminPanel";
 import MatchesForm from "./MatchesForm";
-import {  getTournaments, getMatchesByPhase } from "./MatchesFunctions.ts";
+import {
+  getTournaments,
+  getMatchesByPhase,
+} from "./MatchesFunctions.ts";
 import { useDispatch, useSelector } from "react-redux";
 import { setTournament2 } from "../../../state/tournaments";
 import { setActualPhase } from "../../../state/phase";
-
-import axios from "axios"
 
 export default function TeamsModel() {
 
@@ -29,12 +30,12 @@ export default function TeamsModel() {
     getTournaments().then((data) => dispatch(setTournament2(data)));
   }, []);
 
-  function createData( id ,date, winner, match_end) {
-    return { id , date, winner, match_end };
+  function createData( id ,matchId, teamId, goals) {
+    return { id , matchId, teamId, goals };
   }
 
-  const rows = matches.map((team) =>
-    createData( team.id , team.date, team.winner, team.match_end)
+  const rows = matches.map((team, i) =>
+    createData( team.id , team.matchId, team.teamId, team.goals)
   );
 
 
@@ -54,10 +55,6 @@ export default function TeamsModel() {
     getMatchesByPhase({ tournamentId: actualTournament, fase: e.target.value,
     }).then((data) => setMatches(data));
   };
-
-  // React.useEffect(() => {
-  //   axios.get("/api/match/1").then((res) => console.log(res.data))
-  // },[])
 
 
   return (
@@ -96,9 +93,9 @@ export default function TeamsModel() {
           <TableHead>
             <TableRow>
               <TableCell align="center">Match</TableCell>
-              <TableCell align="center">Date&nbsp;</TableCell>
-              <TableCell align="center">Winner&nbsp;</TableCell>
-              <TableCell align="center">State&nbsp;</TableCell>
+              <TableCell align="center">Team&nbsp;</TableCell>
+              <TableCell align="center">Goals&nbsp;</TableCell>
+              {/* <TableCell align="center">Winner&nbsp;</TableCell> */}
               <TableCell align="center">Edit&nbsp;</TableCell>
             </TableRow>
           </TableHead>

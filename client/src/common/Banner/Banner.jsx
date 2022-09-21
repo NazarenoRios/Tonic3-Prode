@@ -140,9 +140,10 @@ export default function Banner() {
                       <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
                         <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
                           {tournaments.map((item) => (
-                            <a
+                            <Link
                               key={item.name}
-                              href={item.href}
+                              to={"/"}
+                              // href={item.href}
                               className="-m-3 flex items-start rounded-lg p-3 hover:bg-gray-50 cursor-pointer"
                               defaultValue={item.id}
                               onClick={() => getT(item)}
@@ -161,7 +162,7 @@ export default function Banner() {
                                   {item.description}
                                 </p>
                               </div>
-                            </a>
+                            </Link>
                           ))}
                         </div>
                         <div className="space-y-6 bg-gray-50 px-5 py-5 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8">
@@ -219,9 +220,10 @@ export default function Banner() {
                       <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
                         <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
                           {tournaments.map((item) => (
-                            <a
+                            <Link
                               key={item.name}
-                              href={item.href}
+                              to={"/prode"}
+                              // href={item.href}
                               className="-m-3 flex items-start rounded-lg p-3 hover:bg-gray-50"
                               onClick={() => getT(item)}
                             >
@@ -239,7 +241,7 @@ export default function Banner() {
                                   {item.description}
                                 </p>
                               </div>
-                            </a>
+                            </Link>
                           ))}
                         </div>
                         <div className="space-y-6 bg-gray-50 px-5 py-5 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8">
