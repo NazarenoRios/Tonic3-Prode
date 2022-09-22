@@ -25,23 +25,6 @@ function TeamsForm({ row, i, setMatches, actualTournament }) {
 
   const phase = useSelector((state) => state.phase);
 
-  // const setData = async (e) => {
-  //   e.preventDefault();
-  //   const getMatches = await getMatchesByPhaseAndMatch({ tournamentId: actualTournament, fase: phase, matchId: row.id,})
-  //   .then((data) => {
-  //     setMatchTeams(data);
-
-  //     setTeamAGoals(data[0].goals)
-  //     setTeamBGoals(data[1].goals)
-
-  //     axios.get(`/api/team/${data[0].teamId}`).then((res) => setTeamA(res.data));
-  //     axios.get(`/api/team/${data[1].teamId}`).then((res) => setTeamB(res.data));
-  //   });
-  //   const showModal = await setShowModal(true);
-  // };
-
- 
-
   useEffect(() => {
     if (phase) {
       getMatchesByPhaseAndMatch({ tournamentId: actualTournament, fase: phase, matchId: row.id,})
@@ -57,6 +40,18 @@ function TeamsForm({ row, i, setMatches, actualTournament }) {
     }
   }, [row.id]);
 
+  const monthNames = ["Jan", "Feb", "March", "April", "May", "June",
+  "July", "Aug", "Sep", "October", "Novr", "Dec"
+  ];
+
+  const date = new Date(row.date)
+  const year = date.getFullYear()
+  const month = date.getMonth()
+  const day = date.getDay()
+  const hours = date.getHours()
+  const mins = date.getMinutes()
+  
+
 
   return (
     <>
@@ -67,7 +62,7 @@ function TeamsForm({ row, i, setMatches, actualTournament }) {
         <TableCell align="center">{row.id}</TableCell>
         {row.date ? (
           <TableCell align="center">
-            <span className="font-bold text-green-600">{row.date}</span>
+            <span className="font-bold text-green-600">{day} {monthNames[month]} of {year} - {hours}:{mins === 0 ? "00" : mins}hs</span>
           </TableCell>
         ) : (
           <TableCell align="center">
@@ -78,14 +73,14 @@ function TeamsForm({ row, i, setMatches, actualTournament }) {
 
         {teamA ? (
           <TableCell align="center">
-            <span className="font-bold text-green-600">{teamA.name}</span>
+            <span className="font-bold text-green-600">{teamA.name} - </span> <span className="font-bold text-blue-600">({teamAGoals})</span>
           </TableCell>
         ) : (
           <TableCell align="center"><span className="text-red-500">Set a Team</span></TableCell>
         )}
         {teamB ? (
           <TableCell align="center">
-          <span className="font-bold text-green-600">{teamB.name}</span>
+          <span className="font-bold text-green-600">{teamB.name}</span> <span className="font-bold text-blue-600">({teamBGoals})</span>
         </TableCell>
         ) : (
           <TableCell align="center"><span className="text-red-500">Set a Team</span></TableCell>
