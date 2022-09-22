@@ -60,12 +60,6 @@ export default function TeamsModel() {
 
   const [teamName, setTeamName] = React.useState();
 
-  React.useEffect(() => {
-    axios
-    .get(`/api/team/${row.teamId}`)
-    .then((res) => setTeamName(res.data.name));
-}, []);
-
   return (
     <>
       <Header title="Matches" />
@@ -110,7 +104,7 @@ export default function TeamsModel() {
           </TableHead>
           <TableBody>
             {rows.map((row, i) => (
-              <MatchesForm asd={asd} row={row} key={i} setMatches={setMatches} />
+              <MatchesForm row={row} key={i} setMatches={setMatches} />
             ))}
           </TableBody>
         </Table>

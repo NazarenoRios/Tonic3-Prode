@@ -28,6 +28,19 @@ exports.changePassword = (req, res) => {
     individualHooks: true,
   }).then(() => res.sendStatus(204));
 };
+
+//Borrar a un usuario, Cualquiera puede borrarlo, faltan las condiciones para que sea solo el admin
+exports.deleteUser = (req,res)=>{
+  const { id } = req.params
+  console.log(id)
+    User.destroy({where:{
+      id: id
+    }})
+    .then(()=> res.sendStatus(204))
+    .catch((error)=> console.log(error))
+  }
+
+
 //togglear un usuario a admin true/false
 exports.toggleAdmin = (req, res) => {
   const { id } = req.params;
