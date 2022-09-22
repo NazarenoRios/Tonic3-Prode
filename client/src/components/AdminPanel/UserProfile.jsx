@@ -9,10 +9,12 @@ import axios from 'axios';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import { BsPersonCircle } from 'react-icons/bs';
+import { useSelector } from "react-redux";
 
 const UserProfile = () => {
   const { currentColor } = useStateContext();
   const navigate = useNavigate()
+  const user = useSelector((state)=>state.user)
 
   const handleLogout = async () => {
     try {
@@ -44,9 +46,9 @@ const UserProfile = () => {
           alt="user-profile"
         />
         <div>
-          <p className="font-semibold text-xl dark:text-gray-200"> Nazareno Rios </p>
-          <p className="text-gray-500 text-sm dark:text-gray-400">  Administrator   </p>
-          <p className="text-gray-500 text-sm font-semibold dark:text-gray-400"> nazarenolrios@gmail.com </p>
+          <p className="font-semibold text-xl dark:text-gray-200">  {`${user.name} ${user.lastname}`} </p>
+          <p className="text-gray-500 text-sm dark:text-gray-400">  {user.admin ? `Admin` : ""}   </p>
+          <p className="text-gray-500 text-sm font-semibold dark:text-gray-400"> {user.email} </p>
         </div>
       </div>
       <div>
