@@ -6,134 +6,112 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     return queryInterface.bulkInsert('teams',[
       {
+        name:"Banfield",
+        logo:"https://i.imgur.com/gwbrjMY.png",
+        createdAt:new Date(),
+        updatedAt:new Date()
+      },
+      {
+        name:"Belgrano",
+        logo:"https://i.imgur.com/iPsgNmk.png",
+        createdAt:new Date(),
+        updatedAt:new Date()
+      },
+      {
         name:"Boca",
         logo:"https://i.imgur.com/xmelf2h.png",
         createdAt:new Date(),
         updatedAt:new Date()
       },
       {
-        name:"River",
-        logo:"https://imgur.com/a/x9hn0SV",
+        name:"Defensa y Justicia",
+        logo:"https://i.imgur.com/LB4NpPu.png",
         createdAt:new Date(),
         updatedAt:new Date()
       },
       {
-        name:"Chicago",
-        logo:"https://imgur.com/a/x9hn0SV",
+        name:"Deportivo Madryn",
+        logo:"https://i.imgur.com/IRHz4OA.png",
         createdAt:new Date(),
         updatedAt:new Date()
       },
       {
-        name:"Cloud9",
-        logo:"https://imgur.com/a/x9hn0SV",
-        createdAt:new Date(),
-        updatedAt:new Date()
-      },
-      {
-        name:"Fnatic",
-        logo:"https://imgur.com/a/x9hn0SV",
-        createdAt:new Date(),
-        updatedAt:new Date()
-      },
-      {
-        name:"Estudiantes",
+        name:"Estudiantes de La Plata",
         logo:"https://i.imgur.com/7S5Nkuc.png",
         createdAt:new Date(),
         updatedAt:new Date()
       },
       {
-        name:"Talleres",
-        logo:"https://imgur.com/a/x9hn0SV",
+        name:"Gimnasia de La Plata",
+        logo:"https://i.imgur.com/IlTaAgI.png",
         createdAt:new Date(),
         updatedAt:new Date()
       },
       {
-        name:"Aldosivi",
-        logo:"https://imgur.com/a/x9hn0SV",
-        createdAt:new Date(),
-        updatedAt:new Date()
-      },
-      {
-        name:"Platense",
-        logo:"https://imgur.com/a/x9hn0SV",
-        createdAt:new Date(),
-        updatedAt:new Date()
-      },
-      {
-        name:"Racing",
-        logo:"https://imgur.com/a/x9hn0SV",
-        createdAt:new Date(),
-        updatedAt:new Date()
-      },
-      {
-        name:"San Martin",
-        logo:"https://imgur.com/a/x9hn0SV",
-        createdAt:new Date(),
-        updatedAt:new Date()
-      },
-      {
-        name:"Chacarita",
-        logo:"https://imgur.com/a/x9hn0SV",
-        createdAt:new Date(),
-        updatedAt:new Date()
-      },
-      {
-        name:"Velez",
-        logo:"https://imgur.com/a/x9hn0SV",
-        createdAt:new Date(),
-        updatedAt:new Date()
-      },
-      {
-        name:"Patronato",
-        logo:"https://imgur.com/a/x9hn0SV",
+        name:"Godoy Cruz",
+        logo:"https://i.imgur.com/pEq15wT.png",
         createdAt:new Date(),
         updatedAt:new Date()
       },
       {
         name:"Independiente",
-        logo:"https://imgur.com/a/x9hn0SV",
+        logo:"https://i.imgur.com/MKHM0tl.png",
         createdAt:new Date(),
         updatedAt:new Date()
       },
       {
-        name:"Colon",
-        logo:"https://imgur.com/a/x9hn0SV",
+        name:"Newell's Old Boys",
+        logo:"https://i.imgur.com/rykAWMa.png",
         createdAt:new Date(),
         updatedAt:new Date()
       },
       {
-        name:"Huracan",
-        logo:"https://imgur.com/a/x9hn0SV",
+        name:"Patronato",
+        logo:"https://i.imgur.com/F2MkcgH.png",
         createdAt:new Date(),
         updatedAt:new Date()
       },
       {
-        name:"Lanus",
-        logo:"https://imgur.com/a/x9hn0SV",
+        name:"Quilmes",
+        logo:"https://i.imgur.com/wWyd5bJ.png",
         createdAt:new Date(),
         updatedAt:new Date()
       },
       {
-        name:"Newells",
-        logo:"https://imgur.com/a/x9hn0SV",
+        name:"Racing",
+        logo:"https://i.imgur.com/iOX4WN0.png",
         createdAt:new Date(),
         updatedAt:new Date()
       },
       {
-        name:"Comunicaciones",
-        logo:"https://imgur.com/a/x9hn0SV",
+        name:"River",
+        logo:"https://i.imgur.com/0NygieF.png",
         createdAt:new Date(),
         updatedAt:new Date()
       },
+      {
+        name:"Rosario Central",
+        logo:"https://i.imgur.com/0qOltim.png",
+        createdAt:new Date(),
+        updatedAt:new Date()
+      },
+      {
+        name:"Velez",
+        logo:"https://i.imgur.com/AEYdFqY.png",
+        createdAt:new Date(),
+        updatedAt:new Date()
+      },
+      {
+        name:"San Lorenzo",
+        logo:"https://i.imgur.com/2qkokwA.png",
+        createdAt:new Date(),
+        updatedAt:new Date()
+      },
+      
   ])
   },
 
   async down (queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
+
   }
 };

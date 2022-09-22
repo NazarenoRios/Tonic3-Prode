@@ -4,15 +4,10 @@ const S=require('sequelize')
 
 class Points extends S.Model{}
 
-
 Points.init({
-    day_points:{
-        type:S.DATE,
-        allowNull:false
-    },
-    total_points:{
-        //WINNER VA A SER TEAM_ID DEL EQUIPO GANADOR
+    points:{
         type:S.INTEGER,
+        defaultValue : 0
     }
 },{sequelize:db,modelName:'point'})
 

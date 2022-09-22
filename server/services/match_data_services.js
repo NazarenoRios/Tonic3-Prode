@@ -73,7 +73,7 @@ class Match_data_services {
         if(tournamentId)
       return Data_match.findAll({ include:{
         model:Match,
-        where:{tournamentId, fase, matchId: matchId}
+        where:{tournamentId, fase, id: matchId}
       } })
     } catch (e) {
       console.log(e);

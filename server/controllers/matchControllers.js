@@ -1,4 +1,5 @@
 const Match_services = require("../services/match_services")
+const PointsServices = require("../services/points.services")
 
 class MatchControllers {
     static async setAllMatches(req,res,next){
@@ -26,11 +27,30 @@ class MatchControllers {
             return res.sendStatus(404)
         }
     }
-    static async end_matches(req,res){
-        if(!req.body.id)return res.sendStatus(404)
+
+    static async getMatches2(req,res){
+        const {tournamentId, fase}=req.params
+        if(!tournamentId)return res.sendStatus(400)
         try{
-            const match_ended=await Match_services.end_matches(req.body)
-            if(match_ended)res.sendStatus(204)
+            const matches= await Match_services.getAllMatches2(tournamentId,fase)
+            if(!matches.length)return res.sendStatus(404)
+            return res.status(200).send(matches)
+        }
+        catch(e){
+            console.log(e)
+            return res.sendStatus(404)
+        }
+    }
+
+    static async end_matches(req,res){
+        try{
+            const match_ended= await Match_services.end_matches(req.body)
+            if(match_ended){
+                const match = await Match_services.getMatch(req.body[0].id)
+                const done = await PointsServices.addPoint(match)
+               return res.status(204).send(done)
+            }
+            res.Status(401).send("no content")
         }catch(e){
             console.log(e)
         }

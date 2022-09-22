@@ -1,4 +1,4 @@
-const { Bet } = require("../models")
+const { Bet, Match } = require("../models")
 
 class BetServices {
 
@@ -44,6 +44,27 @@ class BetServices {
           return await Bet.destroy({ where:{id} })       
         } catch(error){
            return res.sendStatus(500).json({message:error.message})
+        }
+    }
+
+    static async countdown (body){
+        try {
+            const match = await Match.findByPk(body.matchId)
+            const total = Date.parse(match.date) - Date.parse(new Date())
+            const seconds = Math.floor( (total/1000) % 60 );
+            const minutes = Math.floor( (total/1000/60) % 60 );
+            const hours = Math.floor( (total/(1000*60*60)) % 24 );
+            const days = Math.floor( total/(1000*60*60*24) );
+            if (total < 7200000 || match.date===null ) {
+                console.log("te quedatse sin tiempo!!!!",total)
+                return false
+            }else return {body : body, 
+                          time : {
+                            message: `Time remaning : ${days} days,${hours} hours, ${minutes} minutes,${seconds} seconds`,
+                            total:total,days:days,hours:hours,minutes:minutes,seconds:seconds}
+                        }
+        } catch (error) {
+            console.log(error);
         }
     }
 

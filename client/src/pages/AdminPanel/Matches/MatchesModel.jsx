@@ -9,34 +9,31 @@ import Paper from "@mui/material/Paper";
 
 import { Header } from "../../../components/AdminPanel";
 import MatchesForm from "./MatchesForm";
-import {
-  getTournaments,
-  getMatchesByPhase,
-} from "./MatchesFunctions.ts";
+import {  getTournaments, getMatchesByPhase } from "./MatchesFunctions.ts";
 import { useDispatch, useSelector } from "react-redux";
 import { setTournament2 } from "../../../state/tournaments";
-import axios from "axios";
+import { setActualPhase } from "../../../state/phase";
 
 export default function TeamsModel() {
-  const [matches, setMatches] = React.useState([]);
-  // const [tournaments, setTournaments] = React.useState([]);
-  const [phases, setPhases] = React.useState([]);
 
+  const [matches, setMatches] = React.useState([]);
+  const [phases, setPhases] = React.useState([]);
   const [actualTournament, setActualTournament] = React.useState();
 
   const dispatch = useDispatch()
   const tournaments = useSelector(state => state.tournament)
+  const phase = useSelector(state => state.phase)
 
   React.useEffect(() => {
     getTournaments().then((data) => dispatch(setTournament2(data)));
   }, []);
 
-  function createData( id ,matchId, teamId, goals) {
-    return { id , matchId, teamId, goals };
+  function createData( id ,date, winner, match_end) {
+    return { id , date, winner, match_end };
   }
 
-  const rows = matches.map((team, i) =>
-    createData( team.id , team.matchId, team.teamId, team.goals)
+  const rows = matches.map((team) =>
+    createData( team.id , team.date, team.winner, team.match_end)
   );
 
 
@@ -52,11 +49,11 @@ export default function TeamsModel() {
 
   const getMbyPhase = (e) => {
     e.preventDefault();
-    getMatchesByPhase({
-      tournamentId: actualTournament,
-      fase: e.target.value,
+    dispatch(setActualPhase(e.target.value))
+    getMatchesByPhase({ tournamentId: actualTournament, fase: e.target.value,
     }).then((data) => setMatches(data));
   };
+
 
   const [teamName, setTeamName] = React.useState();
 
@@ -80,7 +77,7 @@ export default function TeamsModel() {
 
       <br></br>
 
-      <select className="mb-8 rounded p-3" onClick={getMbyPhase}>
+      <select className="mb-8 rounded p-3" onChange={getMbyPhase}>
         <option selected disabled value="">
           Select Phase
         </option>
@@ -96,15 +93,17 @@ export default function TeamsModel() {
           <TableHead>
             <TableRow>
               <TableCell align="center">Match</TableCell>
-              <TableCell align="center">Team&nbsp;</TableCell>
-              <TableCell align="center">Goals&nbsp;</TableCell>
-              {/* <TableCell align="center">Winner&nbsp;</TableCell> */}
+              <TableCell align="center">Date&nbsp;</TableCell>
+              <TableCell align="center">Team A&nbsp;</TableCell>
+              <TableCell align="center">Team B&nbsp;</TableCell>
+              <TableCell align="center">Winner&nbsp;</TableCell>
+              {/* <TableCell align="center">State&nbsp;</TableCell> */}
               <TableCell align="center">Edit&nbsp;</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {rows.map((row, i) => (
-              <MatchesForm row={row} key={i} setMatches={setMatches} />
+              <MatchesForm row={row} key={i} setMatches={setMatches} actualTournament={actualTournament} />
             ))}
           </TableBody>
         </Table>

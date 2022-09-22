@@ -1,12 +1,13 @@
 const { User } = require("../models");
 const { generateToken } = require("../config/tokens");
-const tokens = require("../config/tokens");
 const { createHmac } = require("node:crypto");
 const mailer = require("../utils/mailer");
 
 
 const { OAuth2Client } = require("google-auth-library");
 const router = require("../routes");
+const { inc_registed_acc } = require("../metrics/utils/registers_summary");
+const { permanence_counter } = require("../metrics/utils/user_summary");
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 exports.googlelogin = (req, res) => {
@@ -47,7 +48,11 @@ exports.googlelogin = (req, res) => {
               address: user.address,
               zip: user.zip,
             };
-            const token = tokens.generateToken(payload);
+
+            
+
+            permanence_counter({id:user.id,name:user.name},'login_date')
+            const token = generateToken(payload);
             // sessionStorage.setItem("token", token)
             res.cookie("token", token);
             res.send(payload);
@@ -99,6 +104,7 @@ exports.verifyEmail = async (req, res) => {
         { isVerified: true, emailToken: null },
         { where: { emailToken: emailToken } }
       );
+      inc_registed_acc()
       res.redirect("http://localhost:3000/");
       res.sendStatus(204);
     }

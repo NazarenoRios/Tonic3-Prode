@@ -2,6 +2,11 @@ import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
+import {getToken, onMessage} from "firebase/messaging"
+import {messaging} from "./firebase"
+import {ToastContainer, toast} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"
+
 import "./App.css";
 
 import Homepage from "./pages/Homepage";
@@ -40,7 +45,11 @@ function App() {
           <Route path="/prode" element={<Prode />} />
           <Route path="/register" element={<Register/>} />
           <Route path="/Edit-User" element={<CustomUser/>} />
+
+        
+
           <Route path="/TablePoints-User" element={<TablePoints/>} />
+
 
           {/* Admin Section */}
 

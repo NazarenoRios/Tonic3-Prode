@@ -25,7 +25,7 @@ export default function TournamentModel() {
   }, []);
 
   function createData(id, name, logo, description, participants, phase, state) {
-    return { id, name, logo, description, participants, phase, state };
+    return { id, name, logo, description, participants, phase };
   }
 
   const rows = tournaments.map((tournament, i) =>
@@ -36,7 +36,6 @@ export default function TournamentModel() {
       tournament.description,
       tournament.participants,
       tournament.phase,
-      tournament.state
     )
   );
 
@@ -52,7 +51,6 @@ export default function TournamentModel() {
               <TableCell align="center">Description&nbsp;</TableCell>
               <TableCell align="center">Teams&nbsp;</TableCell>
               <TableCell align="center">Phase&nbsp;</TableCell>
-              <TableCell align="center">State&nbsp;</TableCell>
               <TableCell align="center">Edit&nbsp;</TableCell>
               <TableCell align="center">Delete&nbsp;</TableCell>
               <TableCell align="center">
