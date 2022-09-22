@@ -10,24 +10,24 @@ import Paper from "@mui/material/Paper";
 import { Header } from "../../../components/AdminPanel";
 import { useDispatch } from "react-redux";
 import { allUsers } from "../../../state/user";
-import { Button, ToggleButton } from "@mui/material";
+import { Button, TextField, ToggleButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { red } from "@mui/material/colors";
 import axios from "axios";
-import { MdCheckCircleOutline } from "react-icons/md";
+import SearchIcon from '@mui/icons-material/Search';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 
 
 export default function UsersModel() {
   const [users, setUsers] = React.useState();
-  const [selected, setSelected] = React.useState();
+  const [search, setSearch] = React.useState("")
+  const [person, setPerson] = React.useState([])
   const dispatch = useDispatch()
 
   React.useEffect(() => {
     dispatch(allUsers(setUsers));
   }, []);
-  
-  console.log(users)
   
   function createData( id ,name, lastname, phone) {
     return { id , name, lastname, phone };
@@ -50,10 +50,36 @@ export default function UsersModel() {
     .then((res)=> res.send)
     .catch(error=> console.log(error))
   }
+
+  const handleSearch = (e)=>{
+    e.preventDefault()
+    setSearch(e.target.value)
+  }
   
+  const findPerson = (e)=>{
+    e.preventDefault()
+    if(search === "") {
+       setPerson(search)
+       dispatch(allUsers(setUsers))
+      }
+    else{
+      axios.get(`/api/user/userName/${search}`)
+      .then((res)=>  setPerson([res.data]))
+      .catch((error)=> console.log(error))
+    }
+  }
+
   return (
     <>
-      <Header title="Users" />
+        <div className="flex justify-between">
+          <Header title="Users" />
+          <div>
+          <TextField id="standard-basic" label="Search user" variant="standard" onChange={handleSearch} />
+            <Button onClick={findPerson} style={{paddingTop:"22px"}}>
+            <SearchIcon />
+            </Button>        
+          </div>
+        </div>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -67,7 +93,31 @@ export default function UsersModel() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows?.map((row, i) => (
+            {person[0]?.id?
+              person.map((row, i) => (
+                <TableRow key={i}>
+                  <TableCell align="center">{row.id}</TableCell>
+                  <TableCell align="center">{row.name}</TableCell>
+                  <TableCell align="center">{row.lastname}</TableCell>
+                  <TableCell align="center">{row.phone}</TableCell>
+                  <TableCell align="center">
+                  <ToggleButton
+                    value="check"
+                    onChange={() => {
+                      toggleAdmin(row.id)
+                    }}
+                  >
+                   <CheckCircleIcon /> 
+                  </ToggleButton>
+                  </TableCell>
+                  <TableCell align="center">
+                    <Button onClick={() => handleDelete(row.id)} className='text-center'>
+                      <DeleteIcon sx={{ color: red[700] }} />
+                    </Button>
+                  </TableCell>
+                  </TableRow>
+              ))
+              :rows?.map((row, i) => (
               <TableRow key={i}>
                 <TableCell align="center">{row.id}</TableCell>
                 <TableCell align="center">{row.name}</TableCell>
@@ -76,12 +126,11 @@ export default function UsersModel() {
                 <TableCell align="center">
                 <ToggleButton
                   value="check"
-                  selected={selected}
                   onChange={() => {
                     toggleAdmin(row.id)
                   }}
                 >
-                  <MdCheckCircleOutline />
+                  <CheckCircleIcon />
                 </ToggleButton>
                 </TableCell>
                 <TableCell align="center">
