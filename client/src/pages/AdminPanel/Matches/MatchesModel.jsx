@@ -55,6 +55,8 @@ export default function TeamsModel() {
   };
 
 
+  const [teamName, setTeamName] = React.useState();
+  
   return (
     <>
       <Header title="Matches" />

@@ -39,8 +39,6 @@ function App() {
   return (
     <>
       {user.isVerified ? (
-        
-
         <Routes>
           {/* User Section */}
           <Route path="/" element={<Homepage />} />
