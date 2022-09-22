@@ -1,21 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useInput } from "../../../hooks/useInput";
-import { getTeams, addTeamToMatch, getMatchesByPhase } from "./MatchesFunctions.ts";
-import { DateTimePicker } from '@material-ui/pickers'
+import { getTeams, addTeamToMatch,getMatchesByPhase } from "./MatchesFunctions.ts";
+import { DateTimePicker } from "@material-ui/pickers";
 
+import axios from "axios";
 
-import axios from 'axios'
-
-const EditModalForm = ({ row, setShowModal, setMatches, actualTournament, matchTeams, teamA, teamB, teamAGoals, teamBGoals }) => {
-
-  const time = useInput("time")
+const EditModalForm = ({
+  row,
+  setShowModal,
+  setMatches,
+  actualTournament,
+  matchTeams,
+  teamA,
+  teamB,
+  teamAGoals,
+  teamBGoals,
+}) => {
 
   const teamsA = useInput("teamsA");
   const teamsB = useInput("teamsB");
 
-  const teamsAGoals = useInput("teamsAGoals")
-  const teamsBGoals = useInput("teamsBGoals")
+  const teamsAGoals = useInput("teamsAGoals");
+  const teamsBGoals = useInput("teamsBGoals");
 
   const [tournamentTeams, setTournamentTeams] = useState([]);
 
@@ -25,12 +32,14 @@ const EditModalForm = ({ row, setShowModal, setMatches, actualTournament, matchT
     getTeams().then((data) => setTournamentTeams(data));
   }, []);
 
-
-  const [selectedDate,setSelectedDate] = useState(new Date())
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   const setTime = () => {
-    axios.put(`api/match/edit/${matchTeams[0].matchId}`,{tournamentId: actualTournament , date: selectedDate})
-  }
+    axios.put(`api/match/edit/${matchTeams[0].matchId}`, {
+      tournamentId: actualTournament,
+      date: selectedDate,
+    });
+  };
 
   const handleEdit = async (match) => {
     const editMatch = await addTeamToMatch(match);
@@ -41,54 +50,68 @@ const EditModalForm = ({ row, setShowModal, setMatches, actualTournament, matchT
     const closeModal = await setShowModal(false);
   };
 
+  const endMatch = async (end) => {
+    const endM = await axios.put('api/match/end_match',end)
+  }
+
   const onSubmit = async (e) => {
     e.preventDefault();
-    handleEdit([
-      { id: matchTeams[0].id,  matchId: matchTeams[0].matchId, teamId: teamsA.value ? teamsA.value : teamA.id, goals: teamsAGoals.value ? teamsAGoals.value : teamAGoals },
-      { id: matchTeams[1].id, matchId: matchTeams[1].matchId, teamId: teamsB.value ? teamsB.value : teamB.id, goals: teamsBGoals.value ? teamsBGoals.value : teamBGoals }]);
-    setTime()
+    if (teamsAGoals.value !== teamsBGoals.value) {
+      handleEdit([
+        {
+          id: matchTeams[0].id,
+          matchId: matchTeams[0].matchId,
+          teamId: teamsA.value ? teamsA.value : teamA.id,
+          goals: teamsAGoals.value ? teamsAGoals.value : teamAGoals,
+        },
+        {
+          id: matchTeams[1].id,
+          matchId: matchTeams[1].matchId,
+          teamId: teamsB.value ? teamsB.value : teamB.id,
+          goals: teamsBGoals.value ? teamsBGoals.value : teamBGoals,
+        },
+      ]);
+
+      endMatch([{id: row.id, number_key: row.number_key, tournamentId: actualTournament}])
+    } 
+
+    if (teamsAGoals.value === teamsBGoals.value) {
+      handleEdit([
+        {
+          id: matchTeams[0].id,
+          matchId: matchTeams[0].matchId,
+          teamId: teamsA.value ? teamsA.value : teamA.id,
+          goals: teamsAGoals.value ? teamsAGoals.value : teamAGoals,
+        },
+        {
+          id: matchTeams[1].id,
+          matchId: matchTeams[1].matchId,
+          teamId: teamsB.value ? teamsB.value : teamB.id,
+          goals: teamsBGoals.value ? teamsBGoals.value : teamBGoals,
+        },
+      ]);
+    }
+    setTime();
   };
 
-  // console.log(selectedDate)
 
   return (
     <div className="relative p-6 flex-auto">
       <form onSubmit={onSubmit}>
-
         <div className="mb-4">
+          <h2 className="text-center mb-5 font-bold underline text-emerald-500">
+            Select a Date
+          </h2>
 
-          <h2 className="text-center mb-5 font-bold underline text-emerald-500">Select a Date</h2>
-
-            <div className="text-center">
-              <DateTimePicker value={selectedDate} onChange={setSelectedDate} />
-            </div>
-            {/*
-            <div className="text-center">
-              <input
-              type="date"
-              {...time}
-              />
-            </div>
-
-            <div className="text-center my-3">
-              <input
-                  className="shadow appearance-none border rounded w-12 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center"
-                  type="number"
-                  placeholder="hour"
-                  {...hours}
-                />
-                <span className="mx-4">:</span>
-                <input
-                  className="shadow appearance-none border rounded w-12 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center"
-                  type="number"
-                  placeholder="min"
-                  {...mins}
-                />
-            </div> */}
+          <div className="text-center">
+            <DateTimePicker value={selectedDate} onChange={setSelectedDate} />
+          </div>
         </div>
 
         <div className="border-b border-solid border-slate-200 my-4"></div>
-        <h2 className="text-center mb-5 font-bold underline text-emerald-500">Team A</h2>
+        <h2 className="text-center mb-5 font-bold underline text-emerald-500">
+          Team A
+        </h2>
 
         <div className="container mx-auto grid md:grid-cols-2 md:gap-2 mt-6">
           <div className="mb-4">
@@ -127,8 +150,7 @@ const EditModalForm = ({ row, setShowModal, setMatches, actualTournament, matchT
               id="match"
               type="text"
               name="match"
-              defaultValue={teamA.name}
-              // value={teamA.name}
+              defaultValue={teamA?.name ? teamA.name : ""}
               disabled
             />
           </div>
@@ -172,7 +194,9 @@ const EditModalForm = ({ row, setShowModal, setMatches, actualTournament, matchT
         </div>
 
         <div className="border-b border-solid border-slate-200 my-4"></div>
-        <h2 className="text-center mb-5 font-bold underline text-emerald-500">Team B</h2>
+        <h2 className="text-center mb-5 font-bold underline text-emerald-500">
+          Team B
+        </h2>
 
         <div className="container mx-auto grid md:grid-cols-2 md:gap-2 mt-6">
           <div className="mb-4">
@@ -211,8 +235,7 @@ const EditModalForm = ({ row, setShowModal, setMatches, actualTournament, matchT
               id="match"
               type="text"
               name="match"
-              defaultValue={teamB.name}
-              // value={teamA.name}
+              defaultValue={teamB?.name ? teamB.name : " "}
               disabled
             />
           </div>
@@ -249,19 +272,19 @@ const EditModalForm = ({ row, setShowModal, setMatches, actualTournament, matchT
               type="text"
               name="match"
               defaultValue={teamBGoals}
-              // value={teamA.name}
               disabled
             />
           </div>
         </div>
 
-
-        <div className="text-center"><button
-          onSubmit={onSubmit}
-          className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-        >
-          Save Changes
-        </button></div>
+        <div className="text-center">
+          <button
+            onSubmit={onSubmit}
+            className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+          >
+            Save Changes
+          </button>
+        </div>
       </form>
     </div>
   );

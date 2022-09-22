@@ -28,12 +28,12 @@ export default function TeamsModel() {
     getTournaments().then((data) => dispatch(setTournament2(data)));
   }, []);
 
-  function createData( id ,date, winner, match_end) {
-    return { id , date, winner, match_end };
+  function createData( id ,date, winner, match_end, number_key) {
+    return { id , date, winner, match_end, number_key };
   }
 
   const rows = matches.map((team) =>
-    createData( team.id , team.date, team.winner, team.match_end)
+    createData( team.id , team.date, team.winner, team.match_end, team.number_key)
   );
 
 
@@ -54,8 +54,6 @@ export default function TeamsModel() {
     }).then((data) => setMatches(data));
   };
 
-
-  const [teamName, setTeamName] = React.useState();
   
   return (
     <>
@@ -97,8 +95,8 @@ export default function TeamsModel() {
               <TableCell align="center">Team A&nbsp;</TableCell>
               <TableCell align="center">Team B&nbsp;</TableCell>
               <TableCell align="center">Winner&nbsp;</TableCell>
-              {/* <TableCell align="center">State&nbsp;</TableCell> */}
               <TableCell align="center">Edit&nbsp;</TableCell>
+              <TableCell align="center">Set Winner&nbsp;</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

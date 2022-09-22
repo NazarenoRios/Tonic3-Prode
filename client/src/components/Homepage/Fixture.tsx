@@ -2,11 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 
 import { useSelector } from "react-redux";
-import {
-  changePhaseToNumber,
-  changePhaseToString,
-  getMatchesByPhase,
-} from "./FixtureFunctions";
+import {changePhaseToNumber, changePhaseToString, getMatchesByPhase } from "./FixtureFunctions";
 import FixturesMatches from "./FixturesMatches";
 
 function Fixture() {
@@ -98,8 +94,8 @@ function Fixture() {
                 className="h-28 min-w-[150px] md:min-w-[160px] md:min-h-[100px] cursor-pointer"
                 onClick={getMbyPhase}
               >
-                <div className="border rounded-3xl h-24 text-center grid justify-center items-center">
-                  <span style={{ fontSize: "12px" }} className="mt-3">
+                <div className="border-2 border-gray-500 rounded-3xl h-24 text-center grid justify-center items-center">
+                <span style={{ fontSize: "14px" }} className="mt-1 font-bold  tracking-wide">
                     {match}
                   </span>
                 </div>
