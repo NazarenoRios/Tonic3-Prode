@@ -16,10 +16,11 @@ const save_user=async(id,name)=>{
 
 
 module.exports={
-    permanence_counter:async(user_data,type)=>{
+    permanence_counter:async(user_data)=>{
         const {name,id}=user_data
+        if(!id)return
         if(!data[id])await save_user(id,name)
-            data[id].permanence_logs=user_json_nav(data[id].permanence_logs,type)
+            data[id].permanence_logs=user_json_nav(data[id].permanence_logs)
             return save_data(dir,data)
     },
     finish_permanence_counter:(user_data)=>{
@@ -29,7 +30,6 @@ module.exports={
                 
                 data[id].permanence_logs[date].last_session=date
                 const updated_data=user_json_nav(data,user_data.id,false)
-                console.log(data)
                 save_data(dir,updated_data)
             
             }
