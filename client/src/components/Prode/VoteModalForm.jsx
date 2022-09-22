@@ -37,10 +37,10 @@ const VoteModalForm = ({ team , setShowModal}) => {
     // handleEdit([{id: row.id, teamId: teams.value, goals: goals.value}])
   };
 
-  console.log(tournament.id)
-  console.log(teams.value)
-  console.log(user.id)
-  console.log(team.teamID[0].data_match.matchId)
+  // console.log(tournament.id)
+  // console.log(teams.value)
+  // console.log(user.id)
+  // console.log(team.teamID[0].data_match.matchId)
 
 
   return (

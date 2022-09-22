@@ -14,8 +14,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { setTournament2 } from "../../../state/tournaments";
 import { setActualPhase } from "../../../state/phase";
 
-import axios from "axios"
-
 export default function TeamsModel() {
 
   const [matches, setMatches] = React.useState([]);
@@ -24,6 +22,7 @@ export default function TeamsModel() {
 
   const dispatch = useDispatch()
   const tournaments = useSelector(state => state.tournament)
+  const phase = useSelector(state => state.phase)
 
   React.useEffect(() => {
     getTournaments().then((data) => dispatch(setTournament2(data)));
@@ -55,11 +54,6 @@ export default function TeamsModel() {
     }).then((data) => setMatches(data));
   };
 
-  // React.useEffect(() => {
-  //   axios.get("/api/match/1").then((res) => console.log(res.data))
-  // },[])
-
-
   return (
     <>
       <Header title="Matches" />
@@ -80,7 +74,7 @@ export default function TeamsModel() {
 
       <br></br>
 
-      <select className="mb-8 rounded p-3" onClick={getMbyPhase}>
+      <select className="mb-8 rounded p-3" onChange={getMbyPhase}>
         <option selected disabled value="">
           Select Phase
         </option>
@@ -97,8 +91,10 @@ export default function TeamsModel() {
             <TableRow>
               <TableCell align="center">Match</TableCell>
               <TableCell align="center">Date&nbsp;</TableCell>
+              <TableCell align="center">Team A&nbsp;</TableCell>
+              <TableCell align="center">Team B&nbsp;</TableCell>
               <TableCell align="center">Winner&nbsp;</TableCell>
-              <TableCell align="center">State&nbsp;</TableCell>
+              {/* <TableCell align="center">State&nbsp;</TableCell> */}
               <TableCell align="center">Edit&nbsp;</TableCell>
             </TableRow>
           </TableHead>
