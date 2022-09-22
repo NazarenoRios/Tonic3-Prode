@@ -25,26 +25,9 @@ function TeamsForm({ row, i, setMatches, actualTournament }) {
 
   const phase = useSelector((state) => state.phase);
 
-  // const setData = async (e) => {
-  //   e.preventDefault();
-  //   const getMatches = await getMatchesByPhaseAndMatch({ tournamentId: actualTournament, fase: phase, matchId: row.id,})
-  //   .then((data) => {
-  //     setMatchTeams(data);
-
-  //     setTeamAGoals(data[0].goals)
-  //     setTeamBGoals(data[1].goals)
-
-  //     axios.get(`/api/team/${data[0].teamId}`).then((res) => setTeamA(res.data));
-  //     axios.get(`/api/team/${data[1].teamId}`).then((res) => setTeamB(res.data));
-  //   });
-  //   const showModal = await setShowModal(true);
-  // };
-
- 
-
-  useEffect(() => {
-    if (phase) {
-      getMatchesByPhaseAndMatch({ tournamentId: actualTournament, fase: phase, matchId: row.id,})
+  const setData = async (e) => {
+    e.preventDefault();
+    const getMatches = await getMatchesByPhaseAndMatch({ tournamentId: actualTournament, fase: phase, matchId: row.id,})
     .then((data) => {
       setMatchTeams(data);
 
@@ -54,8 +37,24 @@ function TeamsForm({ row, i, setMatches, actualTournament }) {
       axios.get(`/api/team/${data[0].teamId}`).then((res) => setTeamA(res.data));
       axios.get(`/api/team/${data[1].teamId}`).then((res) => setTeamB(res.data));
     });
+    const showModal = await setShowModal(true);
+  };
+
+ 
+
+  useEffect(() => {
+    if (phase) {
+      getMatchesByPhaseAndMatch({ tournamentId: actualTournament, fase: phase, matchId: row.id,}).then((data) => {
+      setMatchTeams(data);
+
+      setTeamAGoals(data[0].goals)
+      setTeamBGoals(data[1].goals)
+
+      axios.get(`/api/team/${data[0].teamId}`).then((res) => setTeamA(res.data));
+      axios.get(`/api/team/${data[1].teamId}`).then((res) => setTeamB(res.data));
+    });
     }
-  }, [row.id]);
+  }, [phase]);
 
 
   return (
@@ -114,7 +113,7 @@ function TeamsForm({ row, i, setMatches, actualTournament }) {
         <TableCell align="center">
           <MenuItem
             sx={{ display: "flex", justifyContent: "center" }}
-            onClick={() => setShowModal(true)}
+            onClick={setData}
           >
             <BorderColorIcon color="primary" />
           </MenuItem>

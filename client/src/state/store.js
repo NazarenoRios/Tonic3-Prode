@@ -1,7 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
+import matchesReducer from "./matches";
 import phaseReducer from "./phase";
-import teamAReducer from "./teamA";
-import teamBReducer from "./teamB";
 import tournamentsReducer from "./tournaments";
 // import logger from "redux-logger"
 import userReducer from "./user";
@@ -12,8 +11,7 @@ const store = configureStore({
         user: userReducer,
         tournament: tournamentsReducer,
         phase: phaseReducer,
-        teamA: teamAReducer,
-        teamB: teamBReducer
+        matches: matchesReducer
     }
 })
 
