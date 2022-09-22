@@ -4,8 +4,10 @@ const {validateAuth} = require("../middleware/auth")
 
 
 const {googlelogin, logout, validation, verifyEmail, register, showIP } = require("../controllers/authController")
-const {users, user, editProfile, changePassword, toggleAdmin, deleteUser} = require("../controllers/usersController")
-const {userIp} = require("../controllers/userIpController")
+const {users, user, editProfile, changePassword, toggleAdmin, deleteUser, findByName} = require("../controllers/usersController")
+const {userIp} = require("../controllers/userIpController");
+
+
 
 
 router.post("/register", register);
@@ -20,5 +22,6 @@ router.put("/changePassword", validateAuth, changePassword);
 router.put("/toggleAdmin/:id", validateAuth, toggleAdmin);
 router.post("/userIp", userIp);
 router.delete("/deleteUser/:id", validateAuth, deleteUser)
+router.get("/userName/:name", validateAuth ,findByName )
 
 module.exports = router;
