@@ -16,6 +16,10 @@ import store from "./state/store";
 //ContextProvider
 import { ContextProvider } from "./contexts/ContextProvider";
 
+//Date Picker
+import { MuiPickersUtilsProvider } from '@material-ui/pickers'
+import DateFnsUtils from '@date-io/date-fns'
+
 // //chakra ui
 // import { ChakraProvider } from "@chakra-ui/react";
 // import { theme } from "./utils/chakraui";
@@ -27,7 +31,9 @@ root.render(
       <Provider store={store}>
         <GoogleOAuthProvider clientId="1003614733230-e43jmqg38ura9fdcru8n7nb2qknpab1l.apps.googleusercontent.com">
           <ContextProvider>
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <App />
+            </MuiPickersUtilsProvider>
           </ContextProvider>
         </GoogleOAuthProvider>
       </Provider>

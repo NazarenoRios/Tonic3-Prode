@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar2 from "../../components/Navbar/NavBar2";
 import fondo from "../../assets/register/background-edit.png";
 import avatar from "../../assets/data/avatar.jpg";
@@ -6,11 +6,15 @@ import avatar from "../../assets/data/avatar.jpg";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { editUser } from "../../state/user";
+import AllowNotifications from "../../common/AllowNotif/AllowNotifications";
+import AlertMessage from "../../common/AlertMessage/AlertMessage";
 
 const CustomUser = () => {
   //Imagen del form harcodeada
   const usuario = useSelector((state) => state.user);
   const dispatch = useDispatch();
+
+  const [editStatus, setEditStatus] = useState("");
 
   const {
     register,
@@ -33,6 +37,11 @@ const CustomUser = () => {
         phone: data.phone,
       })
     );
+    if (!data.error) {
+      setEditStatus("success");
+    } else {
+      setEditStatus("error");
+    }
   };
 
   return (
@@ -218,6 +227,7 @@ const CustomUser = () => {
                 )}
               </div>
             </div>
+          <AllowNotifications />
             <div className="text-center mr-2">
               <button data-text="Awesome" className="button">
                 <span className="actual-text">&nbsp;Edit&nbsp;</span>
@@ -227,6 +237,16 @@ const CustomUser = () => {
               </button>
             </div>
           </form>
+          {/* {editStatus && (
+          <AlertMessage
+            type={editStatus}
+            message={
+              editStatus === "success"
+                ? `Cuenta editada`
+                : `Por favor verificar datos ingresados`
+            }
+          />
+        )} */}
         </div>
       </div>
     </>

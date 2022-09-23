@@ -39,6 +39,12 @@ export const editUser = createAsyncThunk("REGISTER", async ({name,lastname,email
     }
 })
 
+export const allUsers = createAsyncThunk("ALL_USERS", (setUsers) => {
+    return axios.get("/api/user")
+     .then((res)=>setUsers(res.data))
+     .catch(error=> console.log(error))
+ })
+ 
 const userReducer = createReducer(
     {},
     {
@@ -46,6 +52,7 @@ const userReducer = createReducer(
         [sendRegister.fulfilled]: (state,action) => action.payload,
         [getUser.fulfilled]: (state,action) => action.payload,
         [editUser.fulfilled]: (state,action) => action.payload,
+        [allUsers.fulfilled]: (state,action) => action.payload,
     }
 )
 
