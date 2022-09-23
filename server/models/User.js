@@ -1,7 +1,6 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/db");
 const bcrypt = require("bcrypt");
-const axios = require("axios");
 
 class User extends Model {
   hash(password, salt) {
@@ -65,6 +64,9 @@ User.init(
     admin: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
+    },
+    registrationToken: {
+      type: DataTypes.STRING,
     },
   },
   { sequelize, modelName: "user" }

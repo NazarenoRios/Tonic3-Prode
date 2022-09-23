@@ -44,6 +44,15 @@ export const allUsers = createAsyncThunk("ALL_USERS", (setUsers) => {
      .then((res)=>setUsers(res.data))
      .catch(error=> console.log(error))
  })
+
+ export const firebaseToken = createAsyncThunk("REG_TOKEN", async ({registrationToken}) => {
+    try {
+        const res = await axios.post("/api/user/pushNotifications", {registrationToken})
+        return res.data
+    } catch (err) {
+        return err.message
+    }
+})
  
 const userReducer = createReducer(
     {},
@@ -53,6 +62,7 @@ const userReducer = createReducer(
         [getUser.fulfilled]: (state,action) => action.payload,
         [editUser.fulfilled]: (state,action) => action.payload,
         [allUsers.fulfilled]: (state,action) => action.payload,
+        [firebaseToken.fulfilled]: (state,action) => action.payload,
     }
 )
 
