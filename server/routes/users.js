@@ -15,7 +15,7 @@ router.get("/verifyEmail/:emailToken", verifyEmail);
 router.put("/googlelogin", googlelogin);
 router.post("/logout", validateAuth, logout);
 router.get("/me", validateAuth, validation);
-router.get("/", validateAuth, users);
+router.get("/", users);
 router.get("/:id", validateAuth, user);
 router.put("/profile", validateAuth, editProfile);
 router.put("/changePassword", validateAuth, changePassword);

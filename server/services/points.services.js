@@ -2,6 +2,16 @@ const Points = require("../models/Points")
 const BetServices = require("./bet.services");
 
 class PointsServices {
+    
+    static async getAllPointsInTournament(tournamentId){
+        try{
+            return await Points.findAll({where:{tournamentId},order: [
+                ['points', 'DESC']
+            ],})
+        }catch(error){
+            console.log(error);
+        }
+    }
 
     static async getTournamentPoints(user, tournament) {
         try {
@@ -12,6 +22,18 @@ class PointsServices {
                 }
             })
         } catch (error) {
+            console.log(error);
+        }
+    }
+
+    static async createTablePoints(user,tournament){
+        try{
+            return await Points.create({
+                points : 0,
+                userId : user.id,
+                tournamentId : tournament.id
+                })
+        }catch(error){
             console.log(error);
         }
     }

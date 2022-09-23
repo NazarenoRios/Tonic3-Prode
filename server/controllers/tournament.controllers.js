@@ -57,6 +57,15 @@ class TournamentController {
         }
     }
 
+    static async endTournament (req,res){
+        try{
+            const tournament = await TournamentServices.endTournament(req.params.id)
+            return res.status(201).send(tournament)
+        }catch(error){
+            console.log(error);
+        }
+    }
+
     static async deleteTournament(req,res){
         try{
             await TournamentServices.deleteTournament(req.params.id)

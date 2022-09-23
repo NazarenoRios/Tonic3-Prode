@@ -66,6 +66,10 @@ User.init(
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
+    awards : {
+      type: DataTypes.ARRAY(DataTypes.INTEGER),
+      defaultValue:[]
+    }
   },
   { sequelize, modelName: "user" }
 );
