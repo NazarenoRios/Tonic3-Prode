@@ -1,10 +1,39 @@
-import React from "react";
+import React, { useEffect } from "react";
+import {ToastContainer, toast} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"
+import {getToken, onMessage} from "firebase/messaging"
+import {messaging} from "../../firebase"
+import { editUser, firebaseToken } from "../../state/user";
+import { useDispatch } from "react-redux";
+
+
 
 const AllowNotifications = () => {
+  const dispatch = useDispatch();
+
+  const activateNotifications = () => {
+    getToken(messaging,{vapidKey:"BI6BCOqKrdnUw9AGExq8oNkusRdhwfNzgutkTIocRXCstzaxwCZ5JZyTrEysvGbQb78ezfpASgRBk3jslP6maw0"})
+    .then((token)=>{
+      if(token) {
+        dispatch(firebaseToken({registrationToken: token}))
+        console.log(token)
+      }
+    })
+  } 
+
+  useEffect(()=>{
+    onMessage(messaging, message=>{
+      console.log("tu mensaje", message)
+      toast(message.notification.title)
+    })
+  },[])
+
+
   return (
     <>
+      <ToastContainer/>
       <div class="flex items-center dark:border-gray-700 mb-4">
-        <input
+        <input onClick={activateNotifications}
           id="bordered-checkbox-1"
           type="checkbox"
           value=""
