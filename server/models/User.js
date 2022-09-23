@@ -68,6 +68,10 @@ User.init(
     registrationToken: {
       type: DataTypes.STRING,
     },
+    awards : {
+      type: DataTypes.ARRAY(DataTypes.INTEGER),
+      defaultValue:[]
+    }
   },
   { sequelize, modelName: "user" }
 );

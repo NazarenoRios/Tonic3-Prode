@@ -14,6 +14,8 @@ router.get("/:id",TournamentController.findByid)
 router.get("/search/:name",TournamentController.findByName)
 //ruta para modificar un torneo
 router.put("/modify/:id",TournamentController.modifyTournament)
+//ruta para Terminar un torneo
+router.put("/end_tournament/:id",TournamentController.endTournament)
 //ruta para eliminar un torneo
 router.delete("/:id",TournamentController.deleteTournament)
 

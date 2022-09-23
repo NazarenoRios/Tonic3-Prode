@@ -1,3 +1,4 @@
+
 module.exports={
     parse_date:(date)=>{
         const day=date.getDate()
@@ -9,9 +10,8 @@ module.exports={
     },
     calculate_log_time:(logout_date,login_date)=>{
         const total_hours= logout_date.hours-login_date.hours
-        console.log(total_hours)
         const total_mins= Math.floor(logout_date.mins-login_date.mins)
-        console.log({hours:total_hours,mins:total_mins})
+        if(total_hours || total_mins>10)return {ausence:true}
         return {total_hours,total_mins}
     }
 }

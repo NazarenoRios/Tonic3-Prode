@@ -68,3 +68,13 @@ exports.toggleAdmin = (req, res) => {
     });
   }
 };
+
+//Buscar usuario por nombre
+exports.findByName = (req,res)=>{
+  const { name } = req.params
+  User.findOne({where:{
+    name: name
+  }})
+  .then((user)=> res.status(200).send(user))
+  .catch((error)=> console.log(error))
+}

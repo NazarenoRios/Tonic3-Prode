@@ -9,10 +9,14 @@ const match=require('./match')
 const matches_data=require('./matches_data')
 const bet = require("./bet")
 const point = require("./points")
+const { validateAuth } = require("../middleware/auth");
+const { user_listener } = require("../middleware/listen_user");
 
+
+router.use("/user", userRouter)
+router.use(validateAuth,user_listener)
 router.use('/matches_data',matches_data)
 router.use('/match',match)
-router.use("/user", userRouter)
 router.use("/tournament",tournament)
 router.use("/team",team)
 router.use("/player",player)

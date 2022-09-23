@@ -11,11 +11,14 @@ Award.init({
         allowNull:false
     },
     img:{
-        //WINNER VA A SER TEAM_ID DEL EQUIPO GANADOR
         type:S.STRING,
     },
     info:{
         type:S.TEXT
+    },
+    country : {
+        type : S.STRING,
+        allowNull : false
     }
 },{sequelize:db,modelName:'award'})
 

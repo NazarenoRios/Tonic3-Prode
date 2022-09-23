@@ -50,7 +50,7 @@ class MatchControllers {
                 const done = await PointsServices.addPoint(match)
                return res.status(204).send(done)
             }
-            res.Status(401).send("no content")
+            res.status(401).send("no content")
         }catch(e){
             console.log(e)
         }
