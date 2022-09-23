@@ -1,0 +1,23 @@
+{
+  "1": {
+    "name": "Fredi",
+    "permanence_logs": {
+      "2022": {
+        "8": {
+          "21": {
+            "login_date": {
+              "hours": 20,
+              "mins": 24
+            }
+          },
+          "22": {
+            "login_date": {
+              "hours": 11,
+              "mins": 31
+            }
+          }
+        }
+      }
+    }
+  }
+}

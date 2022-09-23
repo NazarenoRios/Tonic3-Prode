@@ -2,6 +2,15 @@ const PointsServices = require("../services/points.services");
 
 class PointsControllers {
 
+    static async getAllPointsInTournament(req,res){
+        try{
+            const tournaments =await PointsServices.getAllPointsInTournament(req.params.id)
+            return res.status(201).send(tournaments)
+        }catch(error){
+            console.log(error);
+        }
+    }
+
     static async getTournamentPoints (req,res){
         try{
             const points = await PointsServices.getTournamentPoints(req.params.id,req.body.tournamentId)
