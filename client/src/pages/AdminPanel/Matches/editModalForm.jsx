@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useInput } from "../../../hooks/useInput";
-import { getTeams, addTeamToMatch,getMatchesByPhase } from "./MatchesFunctions.ts";
+import {
+  getTeams,
+  addTeamToMatch,
+  getMatchesByPhase,
+} from "./MatchesFunctions.ts";
 import { DateTimePicker } from "@material-ui/pickers";
 
 import axios from "axios";
@@ -17,7 +21,6 @@ const EditModalForm = ({
   teamAGoals,
   teamBGoals,
 }) => {
-
   const teamsA = useInput("teamsA");
   const teamsB = useInput("teamsB");
 
@@ -35,29 +38,47 @@ const EditModalForm = ({
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const setTime = () => {
+    axios
+      .put(`api/match/edit/${matchTeams[0].matchId}`, {
+        tournamentId: actualTournament,
+        date: selectedDate,
+      })
+      .then(() => {
+        getMatchesByPhase({
+          tournamentId: actualTournament,
+          fase: phase,
+        }).then((data) => {
+          setMatches(data);
+        });
+      });
+  };
+
+  const setTime2 = () => {
     axios.put(`api/match/edit/${matchTeams[0].matchId}`, {
       tournamentId: actualTournament,
       date: selectedDate,
     });
   };
 
-  const handleEdit = async (match) => {
-    const editMatch = await addTeamToMatch(match);
-    const actualization = await getMatchesByPhase({
-      tournamentId: actualTournament,
-      fase: phase,
-    }).then((data) => setMatches(data));
-    const closeModal = await setShowModal(false);
+  const handleEdit = (match) => {
+    addTeamToMatch(match);
   };
 
-  const endMatch = async (end) => {
-    const endM = await axios.put('api/match/end_match',end)
-  }
+  const endMatch = (end) => {
+    axios.put("api/match/end_match", end).then(() => {
+      getMatchesByPhase({
+        tournamentId: actualTournament,
+        fase: phase,
+      }).then((data) => {
+        setMatches(data);
+      });
+    });
+  };
 
   const onSubmit = async (e) => {
     e.preventDefault();
     if (teamsAGoals.value !== teamsBGoals.value) {
-      handleEdit([
+      const edit = await handleEdit([
         {
           id: matchTeams[0].id,
           matchId: matchTeams[0].matchId,
@@ -72,11 +93,19 @@ const EditModalForm = ({
         },
       ]);
 
-      endMatch([{id: row.id, number_key: row.number_key, tournamentId: actualTournament}])
-    } 
+      const setTime12 = await setTime2();
+      const end = await endMatch([
+        {
+          id: row.id,
+          number_key: row.number_key,
+          tournamentId: actualTournament,
+        },
+      ]);
+      const closeModal = await setShowModal(false);
+    }
 
     if (teamsAGoals.value === teamsBGoals.value) {
-      handleEdit([
+      const edit = await handleEdit([
         {
           id: matchTeams[0].id,
           matchId: matchTeams[0].matchId,
@@ -91,9 +120,10 @@ const EditModalForm = ({
         },
       ]);
     }
-    setTime();
-  };
+    const setTime1 = await setTime();
 
+    const closeModal = await setShowModal(false);
+  };
 
   return (
     <div className="relative p-6 flex-auto">

@@ -13,7 +13,7 @@ import FixtureStageParticipants from "../../../jsons/FixtureStageParticipants.js
 
 const Doughnut = () => {
   return (
-    <AccumulationChartComponent  tooltip={{enable:true}} >
+    <AccumulationChartComponent  tooltip={{enable:true}} legendSettings={{position:"Bottom"}} >
       <Inject services={[PieSeries, AccumulationDataLabel, AccumulationLegend, AccumulationTooltip]}></Inject>
       <AccumulationSeriesCollectionDirective>
         <AccumulationSeriesDirective
