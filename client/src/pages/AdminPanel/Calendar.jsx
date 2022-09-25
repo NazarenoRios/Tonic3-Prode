@@ -14,7 +14,6 @@ import {
 } from "@syncfusion/ej2-react-schedule";
 import { DatePickerComponent } from "@syncfusion/ej2-react-calendars";
 
-import { scheduleData } from "../../utils/dummy";
 import { Footer, Header, Navbar, Sidebar } from "../../components/AdminPanel";
 import { useStateContext } from "../../contexts/ContextProvider";
 
@@ -65,7 +64,7 @@ const Scheduler = () => {
                 height="650px"
                 ref={(schedule) => setScheduleObj(schedule)}
                 selectedDate={new Date(2021, 0, 10)}
-                eventSettings={{ dataSource: scheduleData }}
+                // eventSettings={{ dataSource: scheduleData }}
                 dragStart={onDragStart}
               >
                 <ViewsDirective>

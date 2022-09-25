@@ -1,0 +1,6 @@
+[
+  { "name": "Octavos de Final", "value": 36, "text": "36%" },
+  { "name": "Cuartos de Final", "value": 50, "text": "50%" },
+  { "name": "Semifinal", "value": 70, "text": "70%" },
+  { "name": "Final", "value": 45, "text": "45%" }
+]

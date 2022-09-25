@@ -1,14 +1,6 @@
 import React from "react";
 import { useStateContext } from "../../../contexts/ContextProvider";
-
-import { pieChartData } from "../../../utils/dummy";
-import {
-  ChartsHeader,
-  Footer,
-  Navbar,
-  Pie as PieChart,
-  Sidebar,
-} from "../../../components/AdminPanel";
+import { ChartsHeader, Footer, Navbar, Sidebar, Pie as PieChart } from "../../../components/AdminPanel";
 
 const Pie = () => {
   const { activeMenu } = useStateContext();
@@ -37,14 +29,9 @@ const Pie = () => {
               <Navbar />
             </div>
             <div className="m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl">
-              <ChartsHeader category="Pie" title="Project Cost Breakdown" />
+              <ChartsHeader category="Pie" title="Fixture Stage Participants" />
               <div className="w-full">
-                <PieChart
-                  id="chart-pie"
-                  data={pieChartData}
-                  legendVisiblity
-                  height="full"
-                />
+                <PieChart/>
               </div>
             </div>
             <Footer />

@@ -1,0 +1,14 @@
+[
+    { "month": "Jan", "users": 3 },
+    { "month": "Feb", "users": 5 },
+    { "month": "Mar", "users": 3 },
+    { "month": "Apr", "users": 2 },
+    { "month": "May", "users": 4 },
+    { "month": "Jun", "users": 7 },
+    { "month": "July", "users": 2 },
+    { "month": "Aug", "users": 5 },
+    { "month": "Sep", "users": 10 },
+    { "month": "Oct", "users": 12 },
+    { "month": "Nov", "users": 8 },
+    { "month": "Dec", "users": 13 }
+]

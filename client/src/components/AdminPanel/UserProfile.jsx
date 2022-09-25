@@ -2,8 +2,6 @@ import React from 'react';
 import { MdOutlineCancel } from 'react-icons/md';
 
 import { Button } from '.';
-import { userProfileData } from '../../utils/dummy';
-import { useStateContext } from '../../contexts/ContextProvider';
 import avatar from '../../assets/data/avatar.jpg';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
@@ -12,7 +10,6 @@ import { BsPersonCircle } from 'react-icons/bs';
 import { useSelector } from "react-redux";
 
 const UserProfile = () => {
-  const { currentColor } = useStateContext();
   const navigate = useNavigate()
   const user = useSelector((state)=>state.user)
 

@@ -48,10 +48,10 @@ const CustomUser = () => {
     <>
       <Navbar2 />
       <div
-        className="flex h-screen"
-        style={{ backgroundImage: `url(${fondo})` }}
+        className="flex h-auto sm:h-screen overflow-x-hidden"
+        style={{ background:"linear-gradient(45deg, blue, red)" }}
       >
-        <div className="m-auto">
+        <div className="m-auto mt-24 sm:m-auto">
           <div className="flex justify-center pb-5">
             <img
               className="rounded-full"
