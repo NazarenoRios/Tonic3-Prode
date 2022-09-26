@@ -1,0 +1,17 @@
+{
+    "total_points":"Puntos Totales",
+    "top":"Top",
+    "tournaments":"Torneos",
+    "Name":"Nombres",
+    "points":"Puntos",
+    "phase_points":"Puntos por Fases",
+    "phase":"Fase",
+    "round-of-128":"64Avos",
+    "round-of-64":"32Avos",
+    "round-of-32":"16Avos",
+    "round-of-16":"Octavos",
+    "quarter-finals":"Cuartos",
+    "semifinal":"Semifinal",
+    "final":"Final",
+    "second-third":"Segundo & Tercer"
+}

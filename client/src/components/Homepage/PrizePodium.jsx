@@ -9,8 +9,12 @@ import { PodiumTable3 } from "../../common/Podium/PodiumTable3.tsx";
 import { PodiumTable4 } from "../../common/Podium/PodiumTable4.tsx";
 import { PodiumTable5 } from "../../common/Podium/PodiumTable5.tsx";
 
+import { useTranslation } from "react-i18next"
 
 function PrizePodium() {
+
+  const { t } = useTranslation(["home"])
+
   return (
     <>
       <motion.div
@@ -28,7 +32,7 @@ function PrizePodium() {
           },
         }}
       >
-        <h1 style={{ fontSize: "48px", color: "#30316e" }}>Prize Podium</h1>
+        <h1 style={{ fontSize: "48px", color: "#30316e" }}>{t("PrizePodium")}</h1>
       </motion.div>
       <Podium winners={podiumData} />
       <PodiumTable/>

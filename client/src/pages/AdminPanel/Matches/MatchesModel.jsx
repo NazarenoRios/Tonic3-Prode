@@ -13,6 +13,7 @@ import {  getTournaments, getMatchesByPhase } from "./MatchesFunctions.ts";
 import { useDispatch, useSelector } from "react-redux";
 import { setTournament2 } from "../../../state/tournaments";
 import { setActualPhase } from "../../../state/phase";
+import { useTranslation } from "react-i18next";
 
 export default function TeamsModel() {
 
@@ -54,7 +55,8 @@ export default function TeamsModel() {
     }).then((data) => setMatches(data));
   };
 
-  
+  const { t } = useTranslation(["admin-panel"]);
+
   return (
     <>
       <Header title="Matches" />
@@ -64,7 +66,7 @@ export default function TeamsModel() {
         onChange={(e) => getPhases(e)}
       >
         <option disabled value={"select tournament"}>
-          Select Tournament
+        {t("SelectTournament")}
         </option>
         {tournaments?.map((tournament, i) => (
           <option key={i} value={tournament.id}>
@@ -77,7 +79,7 @@ export default function TeamsModel() {
 
       <select className="mb-8 rounded p-3" onChange={getMbyPhase}>
         <option selected disabled value="">
-          Select Phase
+        {t("SelectPhase")}
         </option>
         {phases?.map((phase, i) => (
           <option key={i} value={phase}>
@@ -90,13 +92,13 @@ export default function TeamsModel() {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell align="center">Match</TableCell>
-              <TableCell align="center">Date&nbsp;</TableCell>
-              <TableCell align="center">Team A&nbsp;</TableCell>
-              <TableCell align="center">Team B&nbsp;</TableCell>
-              <TableCell align="center">Winner&nbsp;</TableCell>
-              <TableCell align="center">Edit&nbsp;</TableCell>
-              <TableCell align="center">Set Winner&nbsp;</TableCell>
+              <TableCell align="center">{t("Match")}</TableCell>
+              <TableCell align="center">{t("Date")}&nbsp;</TableCell>
+              <TableCell align="center">{t("TeamA")}&nbsp;</TableCell>
+              <TableCell align="center">{t("TeamB")}&nbsp;</TableCell>
+              <TableCell align="center">{t("Winner")}&nbsp;</TableCell>
+              <TableCell align="center">{t("Edit")}&nbsp;</TableCell>
+              <TableCell align="center">{t("SetWinner")}&nbsp;</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

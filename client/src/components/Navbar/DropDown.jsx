@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 
 import { useSelector } from "react-redux";
 import { MdKeyboardArrowDown } from 'react-icons/md';
@@ -8,12 +7,15 @@ import { useStateContext } from "../../contexts/ContextProvider";
 
 import avatar from '../../assets/data/avatar.jpg';
 import  UserProfile  from './UserProfile';
+import { useTranslation } from "react-i18next";
 
 
 export default function DropDown() {
+
   const { handleClick, isClicked } = useStateContext();
   const user = useSelector((state)=>state.user)
   
+  const { t } = useTranslation(["navbar"]);
 
   return (
     <div className="flex">
@@ -28,7 +30,7 @@ export default function DropDown() {
               alt="user-profile"
             />
             <p>
-              <span className="text-black text-14">Hi,</span>{' '}
+              <span className="text-black text-14">{t("Hi")},</span>{' '}
               <span className="text-black font-bold ml-1 text-14">
                 {user.name}
               </span>

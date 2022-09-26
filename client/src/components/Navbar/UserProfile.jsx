@@ -6,6 +6,7 @@ import axios from "axios";
 import { BsCardList, BsPersonCircle } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 const UserProfile = () => {
   const user = useSelector((state) => state.user);
@@ -21,13 +22,15 @@ const UserProfile = () => {
     }
   };
 
+  const { t } = useTranslation(["navbar"]);
+
   return (
     <div
       className="nav-item absolute right-1 top-16 bg-white dark:bg-[#42464D] p-8 rounded-lg w-96"
       style={{ zIndex: "100000" }}
     >
       <div className="flex justify-between items-center">
-        <p className="font-semibold text-lg dark:text-gray-200">User Profile</p>
+        <p className="font-semibold text-lg dark:text-gray-200">{t("UserProfile")}</p>
         <Button
           icon={<MdOutlineCancel />}
           color="black"
@@ -64,9 +67,9 @@ const UserProfile = () => {
               <BsPersonCircle />
             </button>
             <div>
-              <p className="font-semibold dark:text-gray-200 ">My Profile</p>
+              <p className="font-semibold dark:text-gray-200 ">{t("MyProfile")}</p>
               <p className="text-gray-500 text-sm dark:text-gray-400">
-                Account Settings
+              {t("AccountSettings")}
               </p>
             </div>
           </div>
@@ -82,10 +85,10 @@ const UserProfile = () => {
             </button>
             <div>
               <p className="font-semibold dark:text-gray-200 ">
-                Admin Panel
+              {t("AdminPanel")}
               </p>
               <p className="text-gray-500 text-sm dark:text-gray-400">
-                Manage your world
+              {t("ManageYourWorld")}
               </p>
             </div>
           </div>
@@ -101,10 +104,10 @@ const UserProfile = () => {
               </button>
               <div>
                 <p className="font-semibold dark:text-gray-200 ">
-                  Table Points
+                {t("TablePoints")}
                 </p>
                 <p className="text-gray-500 text-sm dark:text-gray-400">
-                  Check your position
+                {t("CheckYourPosition")}
                 </p>
               </div>
             </div>
@@ -116,7 +119,7 @@ const UserProfile = () => {
           className="bg-gray-700 text-white rounded-xl w-full h-10 hover:bg-red-600"
           onClick={handleLogout}
         >
-          Logout
+          {t("Logout")}
         </button>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Suspense} from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router } from "react-router-dom";
 import * as serviceWorkerRegistration from './serviceWorkerRegistration'
@@ -20,24 +20,24 @@ import { ContextProvider } from "./contexts/ContextProvider";
 import { MuiPickersUtilsProvider } from '@material-ui/pickers'
 import DateFnsUtils from '@date-io/date-fns'
 
-// //chakra ui
-// import { ChakraProvider } from "@chakra-ui/react";
-// import { theme } from "./utils/chakraui";
+import "./i18n"
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Router>
-      <Provider store={store}>
-        <GoogleOAuthProvider clientId="1003614733230-e43jmqg38ura9fdcru8n7nb2qknpab1l.apps.googleusercontent.com">
-          <ContextProvider>
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <App />
-            </MuiPickersUtilsProvider>
-          </ContextProvider>
-        </GoogleOAuthProvider>
-      </Provider>
-    </Router>
+    <Suspense fallback={null}>
+      <Router>
+        <Provider store={store}>
+          <GoogleOAuthProvider clientId="1003614733230-e43jmqg38ura9fdcru8n7nb2qknpab1l.apps.googleusercontent.com">
+            <ContextProvider>
+              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <App />
+              </MuiPickersUtilsProvider>
+            </ContextProvider>
+          </GoogleOAuthProvider>
+        </Provider>
+      </Router>
+    </Suspense>
   </React.StrictMode>
 );
 

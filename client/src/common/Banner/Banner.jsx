@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { setTournament } from "../../state/tournaments";
 import { useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 const callsToAction = [{ name: "Watch Online", href: "#", icon: PlayIcon }];
 const resources = [
@@ -79,6 +80,8 @@ export default function Banner() {
     dispatch(setTournament(item))
   }
 
+  const { t } = useTranslation(["banner"]);
+
   return (
     <Popover style={{ zIndex: "10000", paddingTop:"40px" }} className="relative bg-white">
       <BannerDesign className="h-32 md:h-72 px-4 sm:px-6 content-center">
@@ -117,7 +120,7 @@ export default function Banner() {
                       "group inline-flex items-center rounded-md bg-transparent text-base hover:text-gray-300 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                     )}
                   >
-                    <span>Tournaments</span>
+                    <span>{t("Tournaments")}</span>
                     <ChevronDownIcon
                       className={classNames(
                         open ? "text-white" : "text-white",
@@ -271,13 +274,13 @@ export default function Banner() {
               to="#"
               className="text-base font-medium text-white hover:text-gray-300"
             >
-              Teams
+              {t("Teams")}
             </Link>
             <Link
               to="#"
               className="text-base font-medium text-white hover:text-gray-300"
             >
-              Players
+              {t("Players")}
             </Link>
 
             <Popover className="relative">
@@ -289,7 +292,7 @@ export default function Banner() {
                       "group inline-flex items-center rounded-md bg-transparent text-base font-medium hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                     )}
                   >
-                    <span>More</span>
+                    <span>{t("More")}</span>
                     <ChevronDownIcon
                       className={classNames(
                         open ? "text-white" : "text-white",

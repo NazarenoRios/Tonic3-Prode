@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import { BsPersonCircle } from 'react-icons/bs';
 import { useSelector } from "react-redux";
+import { useTranslation } from 'react-i18next';
 
 const UserProfile = () => {
   const navigate = useNavigate()
@@ -24,10 +25,12 @@ const UserProfile = () => {
     }
   };
 
+  const { t } = useTranslation(["admin-panel"]);
+
   return (
     <div className="nav-item absolute right-1 top-16 bg-white dark:bg-[#42464D] p-8 rounded-lg w-96">
       <div className="flex justify-between items-center">
-        <p className="font-semibold text-lg dark:text-gray-200">User Profile</p>
+        <p className="font-semibold text-lg dark:text-gray-200">{t("UserProfile")}</p>
         <Button
           icon={<MdOutlineCancel />}
           color="rgb(153, 171, 180)"
@@ -58,9 +61,9 @@ const UserProfile = () => {
               <BsPersonCircle />
             </button>
             <div>
-              <p className="font-semibold dark:text-gray-200 ">Edit Profile</p>
+              <p className="font-semibold dark:text-gray-200 ">{t("EditProfile")}</p>
               <p className="text-gray-500 text-sm dark:text-gray-400">
-                Account Settings
+              {t("AccountSettings")}
               </p>
             </div>
           </div>
@@ -71,7 +74,7 @@ const UserProfile = () => {
           className="bg-gray-700 text-white rounded-xl w-full h-10 hover:bg-red-600"
           onClick={handleLogout}
         >
-          Logout
+          {t("Logout")}
         </button>
       </div>
     </div>

@@ -1,13 +1,17 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import ResponsivePlayer from "../../common/ResponsivePlayer/ResponsivePlayer";
 import { TutorialTitle } from "./StyledComponents";
 
 function TutorialSection() {
+
+  const { t } = useTranslation(["home"]);
+
   return (
     <div className="mt-12 bg-[#172236]">
       <div className="flex justify-center">
         <TutorialTitle className="text-center mt-36">
-          HOW TO TAKE PART
+        {t("HowToTakePart")}
         </TutorialTitle>
       </div>
       <div
@@ -16,10 +20,10 @@ function TutorialSection() {
       >
         <div className="text-center">
           <h1 className="mb-5 text-3xl text-cyan-500 tracking-widest">
-            Video Tutorial
+          {t("VideoTutorial")}
           </h1>
           <strong className="text-md tracking-widest">
-            You can start right now{" "}
+          {t("underTitle")}{" "}
           </strong>
           <p className="mt-10 tracking-wider">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit.
