@@ -57,7 +57,16 @@ class PointsServices {
         }
     }
 
-
+    static async deleteATablePoint(userId){
+        try {
+            return Points.destroy({where:{
+                userId: userId
+            }})
+        }
+        catch (error){
+            console.log(error);
+        }
+    }
 
 }
 

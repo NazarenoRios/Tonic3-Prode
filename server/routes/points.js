@@ -6,5 +6,7 @@ const router = express.Router()
 router.get("/:id",PointsControllers.getTournamentPoints)
 //ruta para traer todos los puntos de un torneo
 router.get("/tournaments/:id",PointsControllers.getAllPointsInTournament)
+//ruta para borrar tabla individual de points
+router.delete("/:userId", PointsControllers.deleteTablePoints)
 
 module.exports = router

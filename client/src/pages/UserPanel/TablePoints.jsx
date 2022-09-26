@@ -2,6 +2,7 @@ import React from 'react'
 import NavBar2 from '../../components/Navbar/NavBar2.jsx';
 
 import GeneralTable from '../../components/Prode/GeneralTable/GeneralTable.jsx'
+import PhaseTable from '../../components/Prode/PhasesTables/PhaseTable.jsx';
 import {TableTitle} from "../../components/Prode/StyledComponents";
 
 const TablePoints = () => {
@@ -19,7 +20,7 @@ const TablePoints = () => {
       <div
         className="container mx-auto grid grid-cols-1 md:grid-cols-2 md:gap-2 mt-6 align-middle content-center text-white h-auto font-bold"
       >
-        <GeneralTable/>
+        <PhaseTable />
         <GeneralTable/>
       </div>
     </div>
