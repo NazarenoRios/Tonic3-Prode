@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { useSelector } from "react-redux";
 import GeneralTable from "./GeneralTable/GeneralTable";
+import PhaseTable from "./PhasesTables/PhaseTable";
 import {
   changePhaseToNumber,
   changePhaseToString,
@@ -149,7 +150,7 @@ function Fixture() {
       <div
         className="container mx-auto grid grid-cols-1 md:grid-cols-2 md:gap-2 mt-6 align-middle content-center text-white h-auto font-bold"
       >
-        <GeneralTable/>
+        <PhaseTable />
         <GeneralTable/>
       </div>
     </div>
