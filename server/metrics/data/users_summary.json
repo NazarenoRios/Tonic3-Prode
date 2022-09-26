@@ -1,0 +1,35 @@
+{
+  "1": {
+    "name": "Fredi",
+    "permanence_logs": {
+      "2022": {
+        "8": {
+          "24": {
+            "before_user_update": {
+              "hours": 19,
+              "mins": 54
+            },
+            "total": {
+              "hours": 0,
+              "mins": 1
+            },
+            "last_user_update": {
+              "hours": 19,
+              "mins": 54
+            }
+          },
+          "26": {
+            "before_user_update": {
+              "hours": 10,
+              "mins": 25
+            },
+            "total": {
+              "hours": 0,
+              "mins": 0
+            }
+          }
+        }
+      }
+    }
+  }
+}

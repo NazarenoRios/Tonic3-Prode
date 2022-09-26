@@ -55,25 +55,22 @@ class AwardSevices {
 
     static async sendAward(tournamentId){
         try{
-            const usersPoints = await PointsServices.getAllPointsInTournament(tournamentId)
+            //traigo los puntos de todos los usuarios,pusheo dentro de un arrerglo vacio para encontrar el mayor, 
+            // traigo el usuario ganador con mayor cantidad de puntos en el torneo guardo los valores que tenia en el campo awards
+            //y pusheo dentro de el el nuevo premio, updateo la nueva data y retorno
+
+            const usersPoints = await PointsServices.points(tournamentId)
             const points = []
             usersPoints.forEach(point=>points.push(point.points))
-            console.log("esto son los puntos",points);
             const maxPoint = Math.max(...points)
             const winner = usersPoints.filter(point=>point.points === maxPoint)
-            console.log("este es el winner",winner[0].dataValues.userId);
             const userWinner = await User.findByPk(winner[0].dataValues.userId)
-            console.log("este es el userWinner",userWinner.dataValues.awards);
-            const countryAward = await Award.findOne({where:{country:userWinner.country}})
-            console.log("este es el premio que le corresponde", countryAward);
-            const arrAward = userWinner.dataValues.awards
-            console.log("este es arrAward",arrAward);
-            arrAward.push(countryAward.id)
-            User.bulkBuild
-            console.log("esto es arrAward despues de pushear", arrAward);
-            userWinner.dataValues.awards = arrAward
-            userWinner.save()
-            console.log("EL GANADOR ES !!!!!!!", userWinner );
+            const countryAward = await Award.findOne({where:{country:userWinner.country}})            
+            const winnerAward =    Object.assign([], userWinner.dataValues.awards); 
+            await winnerAward.push(countryAward.id)
+            const winnerUpdated = await userWinner.update({awards : winnerAward})
+
+            return winnerUpdated
         }catch(error){
             console.log(error);
         }
