@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 
 import circleContainerIcon from "../../../assets/icons/circle-container.svg";
 import arrowIcon from "../../../assets/icons/arrow.svg";
@@ -16,7 +15,7 @@ function Other() {
       </Icon>
       <Social>
         <img src={facebook} alt="facebook page" />
-        <a href="https://www.instagram.com/olympicsports833/" alt="" target="_blank" ><img src={instagram} alt="instagram page" /></a>
+        <a href="https://www.instagram.com/" alt="" target="_blank" ><img src={instagram} alt="instagram page" /></a>
       </Social>
     </OtherSection>
   );

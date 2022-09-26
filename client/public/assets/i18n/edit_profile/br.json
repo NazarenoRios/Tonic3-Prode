@@ -1,0 +1,19 @@
+{
+    "edit_profile":"Editar Perfil",
+    "name":"Nome",
+    "last_name":"Sobrenome",
+    "state":"Estado",
+    "city":"Cidade",
+    "zip":"CEP",
+    "address":"Endereço",
+    "phone":"Telefone",
+    "notif_checkbox":"Deseja permitir notificações?",
+    "edit_button":"Editar",
+    "select_name":"Escreva o Nome",
+    "select_lastname":"Escrever Sobrenome",
+    "select_state":"Escrever Província",
+    "select_city":"Escrever a Cidade",
+    "select_zip":"Escrever Zip",
+    "select_address":"O campo de endereço não pode ficar vazio",
+    "select_phone":"O campo telefone não pode ficar vazio"
+}

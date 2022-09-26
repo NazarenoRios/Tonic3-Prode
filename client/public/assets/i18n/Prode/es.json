@@ -1,0 +1,21 @@
+{
+    "ProdeVote": "Voto Prode",
+    "SinDefinir": "Sin Definir",
+    "PorDefinir": "Por Definir",
+    "32vos": "Round of 64",
+    "16vos": "Round of 32",
+    "Octavos" : "Round of 16",
+    "Cuartos": "Quarter finals",
+    "SemiFinal": "Semi-final" ,
+    "Finales": "Final",
+    "VoteNow": "Votar",
+    "SelectWinner": "Seleccionar Ganador",
+    "SelectTeam": "Seleccionar un equipo",
+    "SaveChanges": "Guardar cambios",
+    "Close": "Cerrar",
+    "OutOfTime": "Te quedaste sin tiempo para votar",
+    "TablePoints":"Tabla de Puntos",
+    "YouHave":"Tienes",
+    "ForVote":"para votar",
+    "Vote":"Votar"
+}

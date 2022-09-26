@@ -21,6 +21,7 @@ import {
 } from "./StyledComponents";
 
 import "./DetailsButton.css";
+import { useTranslation } from "react-i18next";
 
 function FixturesMatches({ team, i }) {
   const monthNames = [
@@ -45,6 +46,8 @@ function FixturesMatches({ team, i }) {
   const hours = date.getHours();
   const mins = date.getMinutes();
 
+  const { t } = useTranslation(["home"]);
+
   return (
     <>
       <Match key={i} className="shadow-md">
@@ -55,7 +58,7 @@ function FixturesMatches({ team, i }) {
                 {team.date
                   ? `${day} ${monthNames[month]} of ${year} - ${hours} :
                 ${mins === 0 ? "00" : mins} hs`
-                  : "Sin Definir"}
+                  : <span>{t("Undefined")}</span>}
               </MatchName>
             </MatchInfoData>
           </MatchInfo>
@@ -87,7 +90,7 @@ function FixturesMatches({ team, i }) {
                 {/* <TeamHomeImg alt="" src={team.teamID[0]?.logo} /> */}
               </>
             ) : (
-              "Por Definir"
+              <span>{t("ToDefine")}</span>
             )}
           </TeamHome>
 
@@ -125,7 +128,7 @@ function FixturesMatches({ team, i }) {
                 )}
               </>
             ) : (
-              "Por Definir"
+              <span>{t("ToDefine")}</span>
             )}
           </TeamAway>
         </MatchBase>
@@ -134,7 +137,7 @@ function FixturesMatches({ team, i }) {
           <MatchModalText>
             <button class="cssbuttons-io-button">
               {" "}
-              See Details
+              {t("SeeDetails")}
               <div class="icon">
                 <svg
                   height="24"

@@ -1,0 +1,21 @@
+{
+    "ProdeVote": "Prode Voto",
+    "SinDefinir": "Indefinido",
+    "PorDefinir": "Definir",
+    "32vos":  "32ª",
+    "16vos": "16ª",
+    "Octavos" : "8ª",
+    "Cuartos": "4ª",
+    "SemiFinal": "Semifinal" ,
+    "Finales": "Final",
+    "VoteNow": "Vote agora",
+    "SelectWinner": "Selecionar vencedor",
+    "SelectTeam": "Selecione uma equipe",
+    "SaveChanges": "Salvar alterações",
+    "Close": "Perto",
+    "OutOfTime": "Você não tem mais tempo para votar",
+    "TablePoints":"Pontos da Tabela",
+    "YouHave":"Você tem",
+    "ForVote":"para votar",
+    "Vote":"Voto"
+}

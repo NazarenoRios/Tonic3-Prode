@@ -44,6 +44,7 @@ exports.googlelogin = (req, res) => {
               name: user.name,
               lastname: user.lastname,
               admin: user.admin,
+              country: user.country,
               isVerified: user.isVerified,
               phone: user.phone,
               state: user.state,

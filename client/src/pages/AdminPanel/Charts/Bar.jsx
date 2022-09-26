@@ -5,6 +5,7 @@ import { ChartComponent, SeriesCollectionDirective, SeriesDirective, Inject, Leg
 
 import { ChartsHeader, Footer, Navbar, Sidebar } from "../../../components/AdminPanel";
 import SystemPermanency from '../../../jsons/SystemPermanency.json'
+import { useTranslation } from "react-i18next";
 
 const Bar = () => {
 
@@ -68,6 +69,8 @@ const Bar = () => {
     },
   ];
 
+  const { t } = useTranslation(["admin-panel"]);
+
   return (
     <>
       <div className="flex relative dark:bg-main-dark-bg">
@@ -92,7 +95,7 @@ const Bar = () => {
               <Navbar />
             </div>
             <div className="m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl">
-              <ChartsHeader category="Bar" title="User Permanency Hours by Country" />
+              <ChartsHeader category={t("Permanency")} title={t("UserPermanencyHoursByCountry")} />
               <div className=" w-full">
                 <ChartComponent
                   id="charts"

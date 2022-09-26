@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 
 import { useSelector } from "react-redux";
@@ -47,6 +48,7 @@ function Fixture() {
     }).then((data) => setMatches(data));
   };
 
+  const { t } = useTranslation(["home"]);
 
   return (
     <>
@@ -55,7 +57,7 @@ function Fixture() {
           style={{ fontSize: "48px", color: "#30316e" }}
           className="container mx-auto grid md:grid-cols-2 md:gap-2 mt-12"
         >
-          Fixture & Results
+          {t("Fixture&Results")}
         </h1>
 
         <div

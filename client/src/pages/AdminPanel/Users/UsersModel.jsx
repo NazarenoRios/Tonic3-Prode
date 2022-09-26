@@ -14,9 +14,16 @@ import { Button, TextField } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { green, grey, red } from "@mui/material/colors";
 import axios from "axios";
+
+import SearchIcon from '@mui/icons-material/Search';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import { useTranslation } from "react-i18next";
+
+
 import SearchIcon from "@mui/icons-material/Search";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { deleteTablePoints } from "../../../state/points"
+import { useTranslation } from "react-i18next";
 
 export default function UsersModel() {
   const [users, setUsers] = React.useState();
@@ -78,6 +85,8 @@ export default function UsersModel() {
     }
   };
 
+  const { t } = useTranslation(["admin-panel"]);
+
   return (
     <>
       <div className="flex justify-between">
@@ -99,11 +108,11 @@ export default function UsersModel() {
           <TableHead>
             <TableRow>
               <TableCell align="center">ID</TableCell>
-              <TableCell align="center">Name&nbsp;</TableCell>
-              <TableCell align="center">Last name&nbsp;</TableCell>
-              <TableCell align="center">Phone&nbsp;</TableCell>
-              <TableCell align="center">Toggle Admin&nbsp;</TableCell>
-              <TableCell align="center">Delete&nbsp;</TableCell>
+              <TableCell align="center">{t("Name")}&nbsp;</TableCell>
+              <TableCell align="center">{t("LastName")}&nbsp;</TableCell>
+              <TableCell align="center">{t("Phone")}&nbsp;</TableCell>
+              <TableCell align="center">{t("ToggleAdmin")}&nbsp;</TableCell>
+              <TableCell align="center">{t("Delete")}&nbsp;</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

@@ -2,28 +2,24 @@ import React from "react";
 import { GoPrimitiveDot } from "react-icons/go";
 import { useStateContext } from "../../contexts/ContextProvider";
 
-import {
-  Stacked,
-  DashPie,
-  Button,
-  SparkLine,
-  Navbar,
-  Footer,
-  Sidebar,
-} from "../../components/AdminPanel";
+import { Stacked,DashPie,Button,SparkLine,Navbar,Footer,Sidebar } from "../../components/AdminPanel";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+
 
 const Dashboard = () => {
-  const { currentColor, activeMenu } = useStateContext();
 
+  const { currentColor, activeMenu } = useStateContext();
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
     axios.get("/api/user/").then((res) => setUsers(res.data));
   }, []);
+
+  const { t } = useTranslation(["admin-panel"]);
 
   return (
     <>
@@ -56,13 +52,13 @@ const Dashboard = () => {
                 
                 <div className="bg-white m-3 p-4 rounded-2xl md:w-780">
                   <div className="flex justify-between">
-                    <p className="font-semibold text-xl">Users Stats</p>
+                    <p className="font-semibold text-xl">{t("UsersStats")}</p>
                     <div className="flex items-center gap-4">
                       <p className="flex items-center gap-2 text-green-400 hover:drop-shadow-xl">
                         <span>
                           <GoPrimitiveDot />
                         </span>
-                        <span>Users</span>
+                        <span>{t("Users")}</span>
                       </p>
                     </div>
                   </div>
@@ -75,7 +71,7 @@ const Dashboard = () => {
                             526
                           </span>
                         </p>
-                        <p className="text-gray-500 mt-1">Users</p>
+                        <p className="text-gray-500 mt-1">{t("Users")}</p>
                       </div>
 
                       <div className="mt-5">
@@ -102,13 +98,13 @@ const Dashboard = () => {
                     </div>
 
                     <div className="text-center">
-                      <h2>Go To User Panel</h2>
+                      <h2>{t("GoToUserPanel")}</h2>
                       <br/>
-                      <span>to give admin or delete users</span>
+                      <span>{t("ToGiveAdminOrDeleteUsers")}</span>
                       <br/>
                       <br/>
                       <br/>
-                      <Link to="/Users" className="text-red-500 border-2 p-2">Admin</Link>
+                      <Link to="/Users" className="text-red-500 border-2 p-2">{t("Admin")}</Link>
                     </div>
                   </div>
                 </div>
@@ -121,14 +117,14 @@ const Dashboard = () => {
                   >
                     <div className="flex justify-between items-center ">
                       <p className="font-semibold text-white text-2xl">
-                        Earnings
+                      {t("Users")}
                       </p>
 
                       <div>
                         <p className="text-2xl text-white font-semibold mt-8">
-                          $63,448.78
+                          104
                         </p>
-                        <p className="text-gray-200">Monthly revenue</p>
+                        <p className="text-gray-200">Weekly registers</p>
                       </div>
                     </div>
 
