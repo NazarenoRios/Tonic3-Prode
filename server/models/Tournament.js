@@ -62,13 +62,6 @@ Tournament.addHook("afterCreate",async(tournament)=>{
   }))
 })
 
-Tournament.addHook("afterUpdate", async(tournament)=>{
-  if(tournament.state){
-  const allPoints = await Points.findAll()
-  console.log("esto es todos los puntos",allPoints);
-}
-})
-
 module.exports = Tournament
 
 
