@@ -28,6 +28,9 @@ function TableItems({ person, top }) {
           <td className="border-t-0 px-6 align-center border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-center w-1/3 bg-white bg-opacity-25">
             {person.points}
           </td>
+          <td className="border-t-0 px-6 align-center border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-center w-1/3 bg-white bg-opacity-25">
+            {person.points}
+          </td>
         </>
       ) : (
         <>
@@ -36,6 +39,9 @@ function TableItems({ person, top }) {
           </td>
           <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-center w-1/3">
             {personData?.name}
+          </td>
+          <td className="border-t-0 px-6 align-center border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-center w-1/3">
+            {person.points}
           </td>
           <td className="border-t-0 px-6 align-center border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-center w-1/3">
             {person.points}
