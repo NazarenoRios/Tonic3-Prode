@@ -69,11 +69,10 @@ function App() {
           <Route path="/calendar" element={<Calendar />} />
 
           {/* charts  */}
-          <Route path="/line" element={<Line />} />
-          <Route path="/area" element={<Area />} />
-          <Route path="/bar" element={<Bar />} />
-          <Route path="/pie" element={<Pie />} />
-          <Route path="/color-mapping" element={<ColorMapping />} />
+
+          <Route path="/User-Permanency" element={<Bar />} />
+          <Route path="/Fixture-Stage-Participants" element={<Pie />} />
+          <Route path="/User-Register-by-Use" element={<ColorMapping />} />
         </Routes>
       ) : (
         <Routes>
