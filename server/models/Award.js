@@ -22,4 +22,4 @@ Award.init({
     }
 },{sequelize:db,modelName:'award'})
 
-module.exports=Award
+module.exports = Award

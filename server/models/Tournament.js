@@ -55,7 +55,7 @@ Tournament.addHook("afterCreate",(tournament)=>{
 
 Tournament.addHook("afterCreate",async(tournament)=>{
   const allUsers = await User.findAll()
-  allUsers.forEach(user=> Points.create({
+  allUsers.forEach(async user=> await Points.create({
   points : 0,
   userId : user.id,
   tournamentId : tournament.id
