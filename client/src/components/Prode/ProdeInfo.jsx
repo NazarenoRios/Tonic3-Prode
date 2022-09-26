@@ -44,7 +44,7 @@ function ProdeInfo({ team }) {
   const date = new Date(team.date);
   const year = date.getFullYear();
   const month = date.getMonth();
-  const day = date.getDay();
+  const day = date.getDate();
   const hours = date.getHours();
   const mins = date.getMinutes();
 

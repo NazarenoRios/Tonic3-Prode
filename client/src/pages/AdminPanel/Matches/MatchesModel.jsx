@@ -28,13 +28,13 @@ export default function TeamsModel() {
     getTournaments().then((data) => dispatch(setTournament2(data)));
   }, []);
 
-  function createData( id ,date, winner, match_end, number_key) {
-    return { id , date, winner, match_end, number_key };
-  }
+  // function createData( id ,date, winner, match_end, number_key) {
+  //   return { id , date, winner, match_end, number_key };
+  // }
 
-  const rows = matches.map((team) =>
-    createData( team.id , team.date, team.winner, team.match_end, team.number_key)
-  );
+  // const rows = matches.map((team) =>
+  //   createData( team.id , team.date, team.winner, team.match_end, team.number_key)
+  // );
 
 
   const getPhases = (e) => {
@@ -100,7 +100,7 @@ export default function TeamsModel() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row, i) => (
+            {matches.map((row, i) => (
               <MatchesForm row={row} key={i} setMatches={setMatches} actualTournament={actualTournament} />
             ))}
           </TableBody>

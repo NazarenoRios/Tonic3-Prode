@@ -1,32 +1,72 @@
 import React from "react";
 import { useStateContext } from "../../../contexts/ContextProvider";
 
-import {
-  ChartComponent,
-  SeriesCollectionDirective,
-  SeriesDirective,
-  Inject,
-  Legend,
-  Category,
-  Tooltip,
-  ColumnSeries,
-  DataLabel,
-} from "@syncfusion/ej2-react-charts";
+import { ChartComponent, SeriesCollectionDirective, SeriesDirective, Inject, Legend, Category, Tooltip, ColumnSeries, DataLabel } from "@syncfusion/ej2-react-charts";
 
-import {
-  barCustomSeries,
-  barPrimaryXAxis,
-  barPrimaryYAxis,
-} from "../../../utils/dummy";
-import {
-  ChartsHeader,
-  Footer,
-  Navbar,
-  Sidebar,
-} from "../../../components/AdminPanel";
+import { ChartsHeader, Footer, Navbar, Sidebar } from "../../../components/AdminPanel";
+import SystemPermanency from '../../../jsons/SystemPermanency.json'
 
 const Bar = () => {
-  const { currentMode, activeMenu } = useStateContext();
+
+  const { activeMenu } = useStateContext();
+
+  const barPrimaryXAxis = { 
+    valueType: "Category", 
+    interval: 1, 
+    majorGridLines: { width: 0 } 
+  };
+
+  const barPrimaryYAxis = {
+    majorGridLines: { width: 0 },
+    majorTickLines: { width: 0 },
+    lineStyle: { width: 0 },
+    labelStyle: { color: "transparent" },
+  };
+
+  const barCustomSeries = [
+    {
+      dataSource: SystemPermanency[0],
+      xName: "x",
+      yName: "y",
+      name: "ARG",
+      type: "Column",
+      marker: {
+        dataLabel: {
+          visible: true,
+          position: "Top",
+          font: { fontWeight: "600", color: "#ffffff" },
+        },
+      },
+    },
+    {
+      dataSource: SystemPermanency[1],
+      xName: "x",
+      yName: "y",
+      name: "USA",
+      type: "Column",
+      marker: {
+        dataLabel: {
+          visible: true,
+          position: "Top",
+          font: { fontWeight: "600", color: "#ffffff" },
+        },
+      },
+    },
+    {
+      dataSource: SystemPermanency[2],
+      xName: "x",
+      yName: "y",
+      name: "BR",
+      type: "Column",
+      marker: {
+        dataLabel: {
+          visible: true,
+          position: "Top",
+          font: { fontWeight: "600", color: "#ffffff" },
+        },
+      },
+    },
+  ];
 
   return (
     <>
@@ -52,7 +92,7 @@ const Bar = () => {
               <Navbar />
             </div>
             <div className="m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl">
-              <ChartsHeader category="Bar" title="Olympic Medal Counts - RIO" />
+              <ChartsHeader category="Bar" title="User Permanency Hours by Country" />
               <div className=" w-full">
                 <ChartComponent
                   id="charts"
@@ -60,7 +100,6 @@ const Bar = () => {
                   primaryYAxis={barPrimaryYAxis}
                   chartArea={{ border: { width: 0 } }}
                   tooltip={{ enable: true }}
-                  background={currentMode === "Dark" ? "#33373E" : "#fff"}
                   legendSettings={{ background: "white" }}
                 >
                   <Inject

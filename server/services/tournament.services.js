@@ -74,7 +74,7 @@ class TournamentServices {
             if(!tournament.state){
                 tournament.state = true
                 tournament.save()
-                // await AwardSevices.sendAward(id)
+                await AwardSevices.sendAward(id)
                 return "end of the tournament"
             }
             if(tournament.state){
