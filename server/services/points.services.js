@@ -1,5 +1,5 @@
 const User = require("../models/User");
-const Points = require("../models/Points")
+const {Points,PointsFase} = require("../models/Points")
 const BetServices = require("./bet.services");
 
 class PointsServices {
@@ -53,13 +53,32 @@ class PointsServices {
         }
     }
 
-    static async createTablePoints(user,tournament){
+    static async getFasePoints (tournamentId){
         try{
-            return await Points.create({
+            return await PointsFase.findAll({
+                where:{
+                    tournamentId:tournamentId
+                }
+            })
+        }catch(error){
+            console.log(error);
+        }
+    }
+
+    static async createTablePoints(user,tournament){
+        try{   
+            const pointsTable = await Points.create({
                 points : 0,
                 userId : user.id,
                 tournamentId : tournament.id
                 })
+            const pointsFaseTable = await PointsFase.create({
+                points: 0,
+                fase : 0,
+                userId : user.id,
+                tournamentId : tournament.id
+            })
+            return pointsTable,pointsFaseTable
         }catch(error){
             console.log(error);
         }
@@ -72,14 +91,8 @@ class PointsServices {
                 bets.map(async (bet) => {
                     if (bet.winner_id === match.winner) {
                         const point = await PointsServices.getTournamentPoints(bet.userId, match.tournamentId)
+                        // const fasePoints = await PointsServices.getFasePoints
                         point.points = point.points + 1;
-
-                        //testear si funciona 
-                        const pointsMatch =    Object.assign([], point.match_points); 
-                        await pointsMatch.push({points:pointsMatch.points+1,matchId :bet.match,date:match.date,fase:match.fase})
-                        await point.update({match_points : pointsMatch})
-
-
                         point.save();
                     }
                 })

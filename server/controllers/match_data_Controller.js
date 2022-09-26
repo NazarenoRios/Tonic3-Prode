@@ -10,6 +10,16 @@ class Match_data_controller {
       console.log(e)
     }
   }
+
+  static async penalties (req,res) {
+    try{
+      const penaltiesMatch = await Match_data_services.penalties(req.params.id)
+      return res.status(201).send(penaltiesMatch)
+    }catch(error){
+      console.log(error);
+    }
+  }
+
   static async get_matches_data(req,res,next){
     if(!req.params.tournamentId)return res.sendStatus(400)
     try{

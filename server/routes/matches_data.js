@@ -5,9 +5,11 @@ const router = express.Router();
 //RUTA PARA AGREGAR EQUIPO/S  , SWIPEARLOS Y/O EDITAR EL SCORE
 //EXAMPLES:
 //AGREGAR/SWIPEAR EQUIPOS: [{id:1, teamId:3 },{id:2, teamId:4 }]
-//EDITAR SCORE: [{id:1, goals:3 }]
+//EDITAR SCORE: [{id:1, goals:3 , penalties : 7}]
 router.put('/add_team',Match_data_controller.set_matches_data)
 
+//ruta para agregar 1 penal a la vez 
+router.put("/onepenaltie/:id",Match_data_controller.penalties)
 
 //RUTA PARA TRAER DATA_MATCH POR TORNEO
 router.get ('/get_data/:tournamentId',Match_data_controller.get_matches_data)
