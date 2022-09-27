@@ -1,26 +1,9 @@
 import React from "react";
-import {
-  Match,
-  MatchBase,
-  MatchInfo,
-  MatchInfoData,
-  MatchModal,
-  MatchModalText,
-  MatchName,
-  MatchPointAway,
-  MatchPointDivisor,
-  MatchPointHome,
-  MatchResult,
-  MatchRelated,
-  MatchTime,
-  MatchTop,
-  TeamAway,
-  TeamHome,
-  TeamHomeImg,
-  TeamHomeName,
+import { Match, MatchBase, MatchInfo, MatchInfoData, MatchModal, MatchModalText, MatchName, MatchPointAway, MatchPointDivisor, MatchPointHome, MatchResult, MatchRelated, MatchTime, MatchTop,TeamAway, TeamHome, TeamHomeImg, TeamHomeName,
 } from "./StyledComponents";
 
 import "./DetailsButton.css";
+import { useTranslation } from "react-i18next";
 
 function FixturesMatches({ team, i }) {
   const monthNames = [
@@ -45,6 +28,8 @@ function FixturesMatches({ team, i }) {
   const hours = date.getHours();
   const mins = date.getMinutes();
 
+  const { t } = useTranslation(["home"]);
+
   return (
     <>
       <Match key={i} className="shadow-md">
@@ -52,10 +37,12 @@ function FixturesMatches({ team, i }) {
           <MatchInfo>
             <MatchInfoData>
               <MatchName>
-                {team.date
-                  ? `${day} ${monthNames[month]} of ${year} - ${hours} :
+                {team.date ? (
+                  `${day} ${monthNames[month]} of ${year} - ${hours} :
                 ${mins === 0 ? "00" : mins} hs`
-                  : "Sin Definir"}
+                ) : (
+                  <span>{t("Undefined")}</span>
+                )}
               </MatchName>
             </MatchInfoData>
           </MatchInfo>
@@ -87,7 +74,7 @@ function FixturesMatches({ team, i }) {
                 {/* <TeamHomeImg alt="" src={team.teamID[0]?.logo} /> */}
               </>
             ) : (
-              "Por Definir"
+              <span>{t("ToDefine")}</span>
             )}
           </TeamHome>
 
@@ -95,11 +82,41 @@ function FixturesMatches({ team, i }) {
             {/* <MatchVs>vs</MatchVs> */}
             <MatchResult>
               <MatchPointHome>
+                {team.teamID[0]?.data_match.penalties !== 0 ? (
+                  team.teamID[0]?.data_match.penalties >
+                  team.teamID[1]?.data_match.penalties ? (
+                    <span className="text-green-600">
+                      ({team.teamID[0]?.data_match.penalties})
+                    </span>
+                  ) : (
+                    <span className="text-red-600">
+                      ({team.teamID[0]?.data_match.penalties})
+                    </span>
+                  )
+                ) : (
+                  ""
+                )}{" "}
                 {team.teamID[0]?.data_match.goals}
               </MatchPointHome>
               <MatchPointDivisor>-</MatchPointDivisor>
               <MatchPointAway>
-                {team.teamID[1]?.data_match.goals}
+                {/* {team.teamID[1]?.data_match.goals} {" "}
+                {team.teamID[1]?.data_match.penalties !== 0 ? (<span>({team.teamID[1]?.data_match.penalties})</span>) : ("")} */}
+                {team.teamID[1]?.data_match.goals}{" "}
+                {team.teamID[1]?.data_match.penalties !== 0 ? (
+                  team.teamID[1]?.data_match.penalties >
+                  team.teamID[0]?.data_match.penalties ? (
+                    <span className="text-green-600">
+                      ({team.teamID[1]?.data_match.penalties})
+                    </span>
+                  ) : (
+                    <span className="text-red-600">
+                      ({team.teamID[1]?.data_match.penalties})
+                    </span>
+                  )
+                ) : (
+                  ""
+                )}
               </MatchPointAway>
             </MatchResult>
           </MatchTime>
@@ -125,7 +142,7 @@ function FixturesMatches({ team, i }) {
                 )}
               </>
             ) : (
-              "Por Definir"
+              <span>{t("ToDefine")}</span>
             )}
           </TeamAway>
         </MatchBase>
@@ -134,7 +151,7 @@ function FixturesMatches({ team, i }) {
           <MatchModalText>
             <button class="cssbuttons-io-button">
               {" "}
-              See Details
+              {t("SeeDetails")}
               <div class="icon">
                 <svg
                   height="24"

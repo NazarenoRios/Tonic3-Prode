@@ -1,9 +1,12 @@
 import React from "react";
 import { useStateContext } from "../../../contexts/ContextProvider";
 import { ChartsHeader, Footer, Navbar, Sidebar, Pie as PieChart } from "../../../components/AdminPanel";
+import { useTranslation } from "react-i18next";
 
 const Pie = () => {
   const { activeMenu } = useStateContext();
+
+  const { t } = useTranslation(["admin-panel"]);
 
   return (
     <>
@@ -29,7 +32,7 @@ const Pie = () => {
               <Navbar />
             </div>
             <div className="m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl">
-              <ChartsHeader category="Pie" title="Fixture Stage Participants" />
+              <ChartsHeader category="Fixture" title={t("FixtureStageParticipants")} />
               <div className="w-full">
                 <PieChart/>
               </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 import emailIcon from "../../../assets/icons/news-icon.svg"
 import { Input } from "../../../common/Input";
@@ -10,12 +11,14 @@ function NewsLetters() {
         event.preventDefault();
       };
 
+      const { t } = useTranslation(["footer"])
+
   return (
     <NewsLettersSection>
-        <p>Subscribe to newsletter</p>
+        <p>{t("suscribe_newsletter")}</p>
         <img src={emailIcon} alt=""></img>
         <form onSubmit={submitHandler}>
-          <h4>Subscribe to our newsletter</h4>
+          <h4>{t("suscribe_newsletter")}</h4>
           <Input
             type="email"
             name="email"

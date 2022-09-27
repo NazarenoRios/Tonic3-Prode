@@ -1,4 +1,4 @@
-const { Bet, Match } = require("../models")
+const { Bet, Match, User, Team } = require("../models")
 
 class BetServices {
 
@@ -18,9 +18,17 @@ class BetServices {
         }
     }  
 
-    static async getBet (id){
+    static async getBet (userId,matchId){
         try{  
-           return await Bet.findByPk(id)
+           const bet = await Bet.findOne({
+            where:{
+                userId : userId,
+                matchId : matchId
+            }
+           })
+           const team = await Team.findByPk(bet.winner_id)
+           return [bet,team]
+
         } catch(error){
             console.log(error)
         }

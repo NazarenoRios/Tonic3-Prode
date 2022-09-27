@@ -6,6 +6,10 @@ class Award extends S.Model{}
 
 
 Award.init({
+    place :{
+        type: S.INTEGER,
+        allowNull: true
+    },
     name:{
         type:S.STRING,
         allowNull:false
@@ -22,4 +26,4 @@ Award.init({
     }
 },{sequelize:db,modelName:'award'})
 
-module.exports=Award
+module.exports = Award

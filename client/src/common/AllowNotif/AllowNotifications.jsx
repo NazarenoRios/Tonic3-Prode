@@ -5,6 +5,7 @@ import {getToken, onMessage} from "firebase/messaging"
 import {messaging} from "../../firebase"
 import { editUser, firebaseToken } from "../../state/user";
 import { useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 
 
@@ -28,6 +29,7 @@ const AllowNotifications = () => {
     })
   },[]) */
 
+  const { t } = useTranslation(["edit_profile"]);
 
   return (
     <>
@@ -44,7 +46,7 @@ const AllowNotifications = () => {
           for="bordered-checkbox-1"
           class="py-4 ml-2 w-full text-sm font-medium text-white dark:text-gray-300"
         >
-          Do you want to allow notifications?
+          {t("notif_checkbox")}
         </label>
       </div>
     </>

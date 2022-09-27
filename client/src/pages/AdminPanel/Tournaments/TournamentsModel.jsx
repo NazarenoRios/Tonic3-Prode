@@ -15,6 +15,9 @@ import { Header } from "../../../components/AdminPanel";
 import AddModal from "./addModal";
 import TournamentForm from "./TournamentForm";
 
+import { useTranslation } from "react-i18next";
+
+
 export default function TournamentModel() {
 
   const [tournaments, setTournaments] = React.useState([]);
@@ -39,6 +42,8 @@ export default function TournamentModel() {
     )
   );
 
+  const { t } = useTranslation(["admin-panel"]);
+
   return (
     <>
       <Header title="Tournaments" />
@@ -46,13 +51,13 @@ export default function TournamentModel() {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>Name</TableCell>
-              <TableCell align="center">Logo</TableCell>
-              <TableCell align="center">Description&nbsp;</TableCell>
-              <TableCell align="center">Teams&nbsp;</TableCell>
-              <TableCell align="center">Phase&nbsp;</TableCell>
-              <TableCell align="center">Edit&nbsp;</TableCell>
-              <TableCell align="center">Delete&nbsp;</TableCell>
+              <TableCell>{t("Name")}</TableCell>
+              <TableCell align="center">{t("Logo")}</TableCell>
+              <TableCell align="center">{t("Description")}&nbsp;</TableCell>
+              <TableCell align="center">{t("Teams")}&nbsp;</TableCell>
+              <TableCell align="center">{t("Phase")}&nbsp;</TableCell>
+              <TableCell align="center">{t("Edit")}&nbsp;</TableCell>
+              <TableCell align="center">{t("Delete")}&nbsp;</TableCell>
               <TableCell align="center">
                 <MenuItem sx={{ display: "flex", justifyContent: "center" }} onClick={() => setShowModal(true)}>
                   <AddIcon style={{ color: "green" }} />

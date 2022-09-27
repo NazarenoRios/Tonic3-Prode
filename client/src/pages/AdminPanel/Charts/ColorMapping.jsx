@@ -7,6 +7,7 @@ import { ChartComponent, SeriesCollectionDirective, SeriesDirective, Inject, Col
 import {ChartsHeader,Footer,Navbar,Sidebar} from "../../../components/AdminPanel";
 
 import UserRegisterPerUse from '../../../jsons/UserRegisterPerUse.json'
+import { useTranslation } from "react-i18next";
 
 const ColorMapping = () => {
 
@@ -28,8 +29,9 @@ const ColorMapping = () => {
     majorTickLines: { width: 0 },
     minorTickLines: { width: 0 },
     labelFormat: "{value} users",
-    title: "Temperature",
   };
+
+  const { t } = useTranslation(["admin-panel"]);
 
   return (
     <>
@@ -56,8 +58,8 @@ const ColorMapping = () => {
             </div>
             <div className="m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl">
               <ChartsHeader
-                category="Users"
-                title="REGISTRATION OF USERS BY USE"
+                category={t("Users")}
+                title={t("RegistrationOfUsersByUser")}
               />
               <div className="w-full">
                 <ChartComponent

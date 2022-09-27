@@ -56,24 +56,27 @@ class AwardSevices {
     static async sendAward(tournamentId){
         try{
             const usersPoints = await PointsServices.getAllPointsInTournament(tournamentId)
-            const points = []
-            usersPoints.forEach(point=>points.push(point.points))
-            console.log("esto son los puntos",points);
-            const maxPoint = Math.max(...points)
-            const winner = usersPoints.filter(point=>point.points === maxPoint)
-            console.log("este es el winner",winner[0].dataValues.userId);
-            const userWinner = await User.findByPk(winner[0].dataValues.userId)
-            console.log("este es el userWinner",userWinner.dataValues.awards);
-            const countryAward = await Award.findOne({where:{country:userWinner.country}})
-            console.log("este es el premio que le corresponde", countryAward);
-            const arrAward = userWinner.dataValues.awards
-            console.log("este es arrAward",arrAward);
-            arrAward.push(countryAward.id)
-            User.bulkBuild
-            console.log("esto es arrAward despues de pushear", arrAward);
-            userWinner.dataValues.awards = arrAward
-            userWinner.save()
-            console.log("EL GANADOR ES !!!!!!!", userWinner );
+            usersPoints.sort((a,b)=>{
+                return b.dataValues.points - a.dataValues.points
+            })
+            
+            const winners = []
+            for (let i = 0; i < 5; i++) {
+                let user = await User.findByPk(usersPoints[i].dataValues.userId)
+                winners.push(user.dataValues)
+            }
+
+            for (let i = 0; i < winners.length; i++) {
+               let award = await Award.findOne({
+                where:
+                {country : winners[i].country,
+                 place : [i+1]
+                }})
+                const user = await User.findByPk(winners[i].id)
+               const winnerAwards =    Object.assign([], user.dataValues.awards); 
+               await winnerAwards.push(award.id)
+               await user.update({awards : winnerAwards})
+            }
         }catch(error){
             console.log(error);
         }

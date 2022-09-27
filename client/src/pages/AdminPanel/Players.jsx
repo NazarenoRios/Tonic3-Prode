@@ -2,7 +2,7 @@ import React from "react";
 
 import { Footer, Header, Navbar, Sidebar } from "../../components/AdminPanel";
 import { useStateContext } from "../../contexts/ContextProvider";
-import TeamsModel from "./Teams/TeamsModel.jsx";
+import PlayerModel from "./Players/PlayersModel";
 
 const Players = () => {
   const { activeMenu } = useStateContext();
@@ -34,7 +34,7 @@ const Players = () => {
               <Navbar />
             </div>
             <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
-              <TeamsModel/>
+              <PlayerModel/>
             </div>
             <Footer />
           </div>
