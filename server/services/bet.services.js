@@ -1,4 +1,4 @@
-const { Bet, Match, User } = require("../models")
+const { Bet, Match, User, Team } = require("../models")
 
 class BetServices {
 
@@ -26,8 +26,8 @@ class BetServices {
                 matchId : matchId
             }
            })
-           const user = await User.findByPk(userId)
-           return [bet,user]
+           const team = await Team.findByPk(bet.winner_id)
+           return [bet,team]
 
         } catch(error){
             console.log(error)

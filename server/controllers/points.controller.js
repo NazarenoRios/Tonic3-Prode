@@ -16,7 +16,7 @@ class PointsControllers {
     try {
       const points = await PointsServices.getTournamentPoints(
         req.params.id,
-        req.body.tournamentId
+        req.params.tournamentId
       );
       console.log("esto es points", points);
       return await res.send(points);
@@ -24,6 +24,7 @@ class PointsControllers {
       console.log(error);
     }
   }
+
 
   static async getFasePoints(req ,res){
     try{
@@ -33,6 +34,7 @@ class PointsControllers {
       console.log(error);
     }
   }
+
 
   static async deleteTablePoints(req, res) {
     try {
