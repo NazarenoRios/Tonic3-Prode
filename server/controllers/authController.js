@@ -6,10 +6,12 @@ const mailer = require("../utils/mailer");
 
 const { OAuth2Client } = require("google-auth-library");
 const router = require("../routes");
+
 const { inc_registed_acc } = require("../metrics/utils/registers_summary");
 const { permanence_counter } = require("../metrics/utils/user_summary");
 const TournamentServices = require("../services/tournament.services");
 const PointsServices = require("../services/points.services")
+
 
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
