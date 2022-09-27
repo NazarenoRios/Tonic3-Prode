@@ -1,6 +1,8 @@
 const Points = require("../models/Points")
 const BetServices = require("./bet.services");
 const PointsFase = require("../models/PointsFase");
+const { user } = require("../controllers/usersController");
+const { User } = require("../models");
 
 class PointsServices {
     
@@ -18,27 +20,33 @@ class PointsServices {
         }
     }
 
-    static async getTournamentPoints(user, tournament) {
+    static async getTournamentPoints(userId, tournamentId) {
         try {
-            return await Points.findOne({
+            const points = await Points.findOne({
                 where: {
-                    userId: user,
-                    tournamentId: tournament
-                }
+                    userId: userId,
+                    tournamentId: tournamentId
+                },
+                order: [
+                    ['points', 'DESC']
+                ]
             })
+            return points
         } catch (error) {
             console.log(error);
         }
     }
 
-    static async getFasePoints (tournamentId,userId,fase){
+    static async getFasePoints (userId,tournamentId){
         try{
-            return await PointsFase.findOne({
+            return await PointsFase.findAll({
                 where:{
-                    fase: fase,
-                    tournamentId:tournamentId,
                     userId:userId,
-                }
+                    tournamentId:tournamentId
+                },
+                order: [
+                    ['points', 'DESC']
+                ]
             })
         }catch(error){
             console.log(error);
@@ -73,14 +81,15 @@ class PointsServices {
                 const bets = await BetServices.getAllBets()
                 bets.map(async (bet) => {
                     if (bet.winner_id === match.winner) {
+
                         const point = await PointsServices.getTournamentPoints(bet.userId, match.tournamentId)
                         point.points = point.points + 1;
                         point.save();
-                        
+
                         const pointFase = await PointsServices.getFasePoints(match.tournamentId,bet.userId,match.fase)
                         pointFase.points = pointFase.points + 1;
-                        console.log("FASEEEEEEEEEEEEE",pointFase);
                         pointFase.save()
+
                     }
                 })
                 return "DONE"
