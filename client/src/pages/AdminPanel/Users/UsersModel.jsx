@@ -20,10 +20,10 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { useTranslation } from "react-i18next";
 
 
-import SearchIcon from "@mui/icons-material/Search";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+// import SearchIcon from "@mui/icons-material/Search";
+// import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { deleteTablePoints } from "../../../state/points"
-import { useTranslation } from "react-i18next";
+// import { useTranslation } from "react-i18next";
 
 export default function UsersModel() {
   const [users, setUsers] = React.useState();
