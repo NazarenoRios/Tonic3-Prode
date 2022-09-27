@@ -1,6 +1,6 @@
-const User = require("../models/User");
-const {Points,PointsFase} = require("../models/Points")
+const Points = require("../models/Points")
 const BetServices = require("./bet.services");
+const PointsFase = require("../models/PointsFase");
 
 class PointsServices {
     
@@ -13,28 +13,6 @@ class PointsServices {
                 ['points', 'DESC']
             ],})
             return points
-        }catch(error){
-            console.log(error);
-        }
-    }
-
-    static async points(tournamentId){
-        try{
-            const points = PointsServices.points(tournamentId)
-            const pointsAndUsers= []
-            for (let i = 0; i < points.length; i++) {
-                 const {name,lastname,country,awards} = await User.findByPk(points[i].dataValues.userId)
-                 pointsAndUsers.push({points : points[i].dataValues.points,
-                                      userId : points[i].dataValues.userId,
-                                      tournamentId:points[i].dataValues.tournamentId,
-                                      name:name,
-                                      lastname:lastname,
-                                      country:country,
-                                      awards:awards
-                                    })   
-            }
-            console.log("esto es points and users",pointsAndUsers);
-          return pointsAndUsers  
         }catch(error){
             console.log(error);
         }
@@ -53,11 +31,13 @@ class PointsServices {
         }
     }
 
-    static async getFasePoints (tournamentId){
+    static async getFasePoints (tournamentId,userId,fase){
         try{
-            return await PointsFase.findAll({
+            return await PointsFase.findOne({
                 where:{
-                    tournamentId:tournamentId
+                    fase: fase,
+                    tournamentId:tournamentId,
+                    userId:userId,
                 }
             })
         }catch(error){
@@ -72,13 +52,16 @@ class PointsServices {
                 userId : user.id,
                 tournamentId : tournament.id
                 })
-            const pointsFaseTable = await PointsFase.create({
-                points: 0,
-                fase : 0,
-                userId : user.id,
-                tournamentId : tournament.id
-            })
-            return pointsTable,pointsFaseTable
+
+                for (let i = tournament.participants/2; i >= 2  ; i/=2) {
+                    await PointsFase.create({
+                      points : 0,
+                      fase : i,
+                      tournamentId : tournament.id,
+                      userId : user.id
+                    })
+                  }
+            return pointsTable
         }catch(error){
             console.log(error);
         }
@@ -91,9 +74,13 @@ class PointsServices {
                 bets.map(async (bet) => {
                     if (bet.winner_id === match.winner) {
                         const point = await PointsServices.getTournamentPoints(bet.userId, match.tournamentId)
-                        // const fasePoints = await PointsServices.getFasePoints
                         point.points = point.points + 1;
                         point.save();
+                        
+                        const pointFase = await PointsServices.getFasePoints(match.tournamentId,bet.userId,match.fase)
+                        pointFase.points = pointFase.points + 1;
+                        console.log("FASEEEEEEEEEEEEE",pointFase);
+                        pointFase.save()
                     }
                 })
                 return "DONE"

@@ -25,7 +25,7 @@ class BetController {
 
     static async getBet (req,res){
         try{
-            const bet = await BetServices.getBet()
+            const bet = await BetServices.getBet(req.params.user,req.params.match)
             return res.status(200).send(bet)
         } catch(error){
             console.log(error)

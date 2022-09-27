@@ -6,6 +6,10 @@ class Award extends S.Model{}
 
 
 Award.init({
+    place :{
+        type: S.INTEGER,
+        allowNull: true
+    },
     name:{
         type:S.STRING,
         allowNull:false

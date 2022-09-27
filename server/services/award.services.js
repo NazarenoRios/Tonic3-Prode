@@ -59,10 +59,11 @@ class AwardSevices {
             // traigo el usuario ganador con mayor cantidad de puntos en el torneo guardo los valores que tenia en el campo awards
             //y pusheo dentro de el el nuevo premio, updateo la nueva data y retorno
 
-            const usersPoints = await PointsServices.points(tournamentId)
+            const usersPoints = await PointsServices.getAllPointsInTournament(tournamentId)
             const points = []
             usersPoints.forEach(point=>points.push(point.points))
             const maxPoint = Math.max(...points)
+            
             const winner = usersPoints.filter(point=>point.points === maxPoint)
             const userWinner = await User.findByPk(winner[0].dataValues.userId)
             const countryAward = await Award.findOne({where:{country:userWinner.country}})            
