@@ -1,0 +1,55 @@
+{
+  "1": {
+    "name": "Gaston",
+    "permanence_logs": {
+      "2022": {
+        "8": {
+          "25": {
+            "hours": 20,
+            "mins": 21,
+            "before_user_update": {
+              "hours": 20,
+              "mins": 21
+            },
+            "total": {
+              "hours": 0,
+              "mins": 0
+            }
+          },
+          "26": {
+            "hours": 19,
+            "mins": 4,
+            "before_user_update": {
+              "hours": 19,
+              "mins": 11
+            },
+            "total": {
+              "hours": 0,
+              "mins": 7
+            },
+            "last_user_update": {
+              "hours": 19,
+              "mins": 11
+            }
+          },
+          "27": {
+            "hours": 16,
+            "mins": 0,
+            "before_user_update": {
+              "hours": 16,
+              "mins": 11
+            },
+            "total": {
+              "hours": 0,
+              "mins": 11
+            },
+            "last_user_update": {
+              "hours": 16,
+              "mins": 11
+            }
+          }
+        }
+      }
+    }
+  }
+}
