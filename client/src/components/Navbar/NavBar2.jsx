@@ -1,11 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faInstagram,faFacebook,faTwitter,} from "@fortawesome/free-brands-svg-icons";
 import { Link } from "react-router-dom";
 import DropDown from "./DropDown";
 
+import { useTranslation } from "react-i18next"
+import i18next from "i18next";
+
 export default function NavBar2() {
+
   const [navbar, setNavbar] = useState(false);
+
+  const { i18n, t } = useTranslation(["navbar"])
+
+  useEffect(() => {
+    if (localStorage.getItem("i18nextLng")?.length > 2) {
+      i18next.changeLanguage("en")
+    }
+  },[])
+
+  const handleLenguageChange = (e) => {
+    i18n.changeLanguage(e.target.value)
+  }
+  
+
   return (
     <nav
       className="w-full fixed"
@@ -75,6 +93,15 @@ export default function NavBar2() {
             }`}
           >
             <ul className="items-center space-y-8 md:flex md:space-x-6 md:space-y-0 ml-2">
+
+              <li className="text-black text-xl hover:text-blue-600">
+                <select onChange={handleLenguageChange} value={localStorage.getItem("i18nextLng")} >
+                  <option value="en">English</option>
+                  <option value="es">Español</option>
+                  <option value="br">Português</option>
+                </select>
+              </li>
+
               <li className="text-black text-xl hover:text-blue-600">
                 {navbar ? (
                   <Link to="/">

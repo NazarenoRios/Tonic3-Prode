@@ -1,6 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import {getMessaging} from "firebase/messaging"
+import { getMessaging } from "firebase/messaging";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB-q6M_IJnO-P1nj0qAACHBD3BqX5-jGuQ",
@@ -10,9 +9,8 @@ const firebaseConfig = {
   storageBucket: "prode-tonic3.appspot.com",
   messagingSenderId: "776824448804",
   appId: "1:776824448804:web:55bac67a007a4e032eb5b1",
-  measurementId: "G-C0G7P5J93M"
+  measurementId: "G-C0G7P5J93M",
 };
 
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-export const messaging = getMessaging(app)
+export const messaging = getMessaging(app);

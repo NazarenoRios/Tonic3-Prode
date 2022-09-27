@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { useSelector } from "react-redux";
 import GeneralTable from "./GeneralTable/GeneralTable";
+import PhaseTable from "./PhasesTables/PhaseTable";
 import {
   changePhaseToNumber,
   changePhaseToString,
@@ -51,6 +53,8 @@ function Fixture() {
       fase: phase,
     }).then((data) => setMatches(data));
   };
+
+  const { t } = useTranslation(["Prode"]);
   
 
   return (
@@ -60,7 +64,7 @@ function Fixture() {
           style={{ fontSize: "48px", color: "#30316e" }}
           className="container mx-auto grid md:grid-cols-2 md:gap-2 mt-12"
         >
-          Prode Vote
+          {t("ProdeVote")}
         </h1>
 
         <div
@@ -140,13 +144,13 @@ function Fixture() {
 
       <div className="flex justify-center">
         <TableTitle className="text-center mt-12 z-10">
-          TABLE POINTS
+        {t("TablePoints")}
         </TableTitle>
       </div>
       <div
         className="container mx-auto grid grid-cols-1 md:grid-cols-2 md:gap-2 mt-6 align-middle content-center text-white h-auto font-bold"
       >
-        <GeneralTable/>
+        <PhaseTable />
         <GeneralTable/>
       </div>
     </div>

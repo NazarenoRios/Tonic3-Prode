@@ -15,6 +15,8 @@ import AddModal from "./addModal";
 import TeamsForm from "./TeamsForm";
 import { getTeams } from "./TeamsFunctions.ts";
 
+import { useTranslation } from "react-i18next";
+
 export default function TeamsModel() {
 
   const [teams, setTeams] = React.useState([]);
@@ -37,6 +39,8 @@ export default function TeamsModel() {
     )
   );
 
+  const { t } = useTranslation(["admin-panel"]);
+
   return (
     <>
       <Header title="Teams" />
@@ -44,11 +48,11 @@ export default function TeamsModel() {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell align="center">Name</TableCell>
-              <TableCell align="center">Logo&nbsp;</TableCell>
-              <TableCell align="center">Info&nbsp;</TableCell>
-              <TableCell align="center">Edit&nbsp;</TableCell>
-              <TableCell align="center">Delete&nbsp;</TableCell>
+              <TableCell align="center">{t("Name")}</TableCell>
+              <TableCell align="center">{t("Logo")}&nbsp;</TableCell>
+              <TableCell align="center">{t("Info")}&nbsp;</TableCell>
+              <TableCell align="center">{t("Edit")}&nbsp;</TableCell>
+              <TableCell align="center">{t("Delete")}&nbsp;</TableCell>
               <TableCell align="center">
                 <MenuItem sx={{ display: "flex", justifyContent: "center" }} onClick={() => setShowModal(true)}>
                   <AddIcon style={{ color: "green" }} />

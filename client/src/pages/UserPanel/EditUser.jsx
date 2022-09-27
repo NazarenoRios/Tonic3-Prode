@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { editUser } from "../../state/user";
 import AllowNotifications from "../../common/AllowNotif/AllowNotifications";
 import AlertMessage from "../../common/AlertMessage/AlertMessage";
+import { useTranslation } from "react-i18next";
 
 const CustomUser = () => {
   //Imagen del form harcodeada
@@ -44,14 +45,16 @@ const CustomUser = () => {
     }
   };
 
+  const { t } = useTranslation(["edit_profile"]);
+
   return (
     <>
       <Navbar2 />
       <div
-        className="flex h-screen"
-        style={{ backgroundImage: `url(${fondo})` }}
+        className="flex h-auto sm:h-screen overflow-x-hidden"
+        style={{ background:"linear-gradient(45deg, blue, red)" }}
       >
-        <div className="m-auto">
+        <div className="m-auto mt-24 sm:m-auto">
           <div className="flex justify-center pb-5">
             <img
               className="rounded-full"
@@ -61,7 +64,7 @@ const CustomUser = () => {
             />
           </div>
           <h1 className="text-white text-4xl text-center mb-12 mr-2">
-            Edit Profile
+          {t("edit_profile")}
           </h1>
           <form
             className="relative w-full max-w-lg mt-10 md:mt-0"
@@ -73,7 +76,7 @@ const CustomUser = () => {
                   className="block uppercase tracking-wide text-center mr-3 md:text-start md:mr-0  text-white text-xs font-bold mb-2"
                   forhtml="first-name"
                 >
-                  Name
+                  {t("name")}
                 </label>
                 <input
                   className="appearance-none block w-5/6 mx-8 text-center md:text-start md:w-full md:mx-0 bg-transparent text-white border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-[#8eddd8] "
@@ -83,7 +86,7 @@ const CustomUser = () => {
                 />
                 {errors.name?.type === "required" && (
                   <span className="text-red-500 ml-8 sm:ml-0">
-                    * Select name{" "}
+                    * {t("select_name")}{" "}
                   </span>
                 )}
               </div>
@@ -92,7 +95,7 @@ const CustomUser = () => {
                   className="block uppercase tracking-wide text-center mr-3 md:text-start md:mr-0  text-white text-xs font-bold mb-2"
                   forhtml="last-name"
                 >
-                  Last Name
+                  {t("last_name")}
                 </label>
                 <input
                   className="appearance-none block  w-5/6 mx-8 text-center md:text-start md:w-full md:mx-0 bg-transparent text-white border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-[#8eddd8]"
@@ -102,7 +105,7 @@ const CustomUser = () => {
                 />
                 {errors.lastname?.type === "required" && (
                   <span className="text-red-500 ml-8 sm:ml-0">
-                    * Select last Name{" "}
+                    * {t("select_lastname")}{" "}
                   </span>
                 )}
               </div>
@@ -130,7 +133,7 @@ const CustomUser = () => {
                   className="block uppercase tracking-wide text-center mr-3 md:text-start md:mr-0  text-white text-xs font-bold mb-2"
                   forhtml="state"
                 >
-                  State
+                  {t("state")}
                 </label>
                 <input
                   className="appearance-none block w-5/6 mx-8 text-center md:text-start md:w-full md:mx-0 bg-transparent text-white border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-[#8eddd8]"
@@ -141,7 +144,7 @@ const CustomUser = () => {
 
                 {errors.state?.type === "required" && (
                   <span className="text-red-500 ml-8 sm:ml-0">
-                    * Select State{" "}
+                    * {t("select_state")}{" "}
                   </span>
                 )}
               </div>
@@ -150,7 +153,7 @@ const CustomUser = () => {
                   className="block uppercase tracking-wide text-center mr-3 md:text-start md:mr-0  text-white text-xs font-bold mb-2"
                   forhtml="city"
                 >
-                  City
+                  {t("city")}
                 </label>
                 <input
                   className="appearance-none block w-5/6 mx-8 text-center md:text-start md:w-full md:mx-0 bg-transparent text-white border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-[#8eddd8]"
@@ -160,7 +163,7 @@ const CustomUser = () => {
                 />
                 {errors.city?.type === "required" && (
                   <span className="text-red-500 ml-8 sm:ml-0">
-                    * Select City{" "}
+                    * {t("select_city")}{" "}
                   </span>
                 )}
               </div>
@@ -169,7 +172,7 @@ const CustomUser = () => {
                   className="block uppercase tracking-wide text-center mr-3 md:text-start md:mr-0  text-white text-xs font-bold mb-2"
                   forhtml="zip"
                 >
-                  Zip
+                  {t("zip")}
                 </label>
                 <input
                   className="appearance-none block w-5/6 mx-8 text-center md:text-start md:w-full md:mx-0 bg-transparent text-white border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-[#8eddd8]"
@@ -179,7 +182,7 @@ const CustomUser = () => {
                 />
                 {errors.zip?.type === "required" && (
                   <span className="text-red-500 ml-8 sm:ml-0">
-                    * Zip cant be empty{" "}
+                    * {t("select_zip")}{" "}
                   </span>
                 )}
               </div>
@@ -191,7 +194,7 @@ const CustomUser = () => {
                   className="block uppercase tracking-wide text-center mr-3 md:text-start md:mr-0  text-white text-xs font-bold mb-2"
                   forhtml="address"
                 >
-                  Address
+                  {t("address")}
                 </label>
                 <input
                   className="appearance-none block w-5/6 mx-8 text-center md:text-start md:w-full md:mx-0 bg-transparent text-white border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-[#8eddd8]"
@@ -201,7 +204,7 @@ const CustomUser = () => {
                 />
                 {errors.address?.type === "required" && (
                   <span className="text-red-500 ml-8 sm:ml-0">
-                    * Address field cant be empty{" "}
+                    * {t("select_address")}{" "}
                   </span>
                 )}
               </div>
@@ -212,7 +215,7 @@ const CustomUser = () => {
                   className="block uppercase tracking-wide text-center mr-3 md:text-start md:mr-0  text-white text-xs font-bold mb-2"
                   forhtml="phone"
                 >
-                  Phone
+                  {t("phone")}
                 </label>
                 <input
                   className="appearance-none block w-5/6 mx-8 text-center md:text-start md:w-full md:mx-0 bg-transparent text-white border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-[#8eddd8]"
@@ -222,7 +225,7 @@ const CustomUser = () => {
                 />
                 {errors.phone?.type === "required" && (
                   <span className="text-red-500 ml-8 sm:ml-0">
-                    * Phone field cant be empty{" "}
+                    * {t("select_phone")}{" "}
                   </span>
                 )}
               </div>
@@ -232,7 +235,7 @@ const CustomUser = () => {
               <button data-text="Awesome" className="button">
                 <span className="actual-text">&nbsp;Edit&nbsp;</span>
                 <span className="hover-text" aria-hidden="true">
-                  &nbsp;Edit&nbsp;
+                  &nbsp;{t("edit_button")}&nbsp;
                 </span>
               </button>
             </div>

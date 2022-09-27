@@ -11,4 +11,5 @@ Points.init({
     }
 },{sequelize:db,modelName:'point'})
 
-module.exports=Points
+
+module.exports= Points 

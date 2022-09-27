@@ -20,6 +20,16 @@ class Match_data_services {
     }
   }
 
+  static async penalties (id){
+    try{
+      const matches_data = await Data_match.findByPk(id)
+      matches_data.penalties= matches_data.penalties+1
+      matches_data.save()
+      return matches_data.penalties
+    }catch(error){
+      console.log(error);
+    }
+  }
 
   static async get_matches_data(tournamentId) {
     try {

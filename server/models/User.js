@@ -1,7 +1,6 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/db");
 const bcrypt = require("bcrypt");
-const axios = require("axios");
 
 class User extends Model {
   hash(password, salt) {
@@ -66,6 +65,13 @@ User.init(
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
+    registrationToken: {
+      type: DataTypes.STRING,
+    },
+    awards : {
+      type: DataTypes.ARRAY(DataTypes.INTEGER),
+      defaultValue:[]
+    }
   },
   { sequelize, modelName: "user" }
 );
@@ -90,5 +96,11 @@ User.beforeCreate((user) => {
   
 
 }) */
+
+User.addHook("afterCreate",(user)=>{
+  if(user.id===1){
+    return User.update({admin:true},{where:{id:1}})
+  }
+})
 
 module.exports = User;

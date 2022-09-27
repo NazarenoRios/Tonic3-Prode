@@ -6,8 +6,13 @@ const mailer = require("../utils/mailer");
 
 const { OAuth2Client } = require("google-auth-library");
 const router = require("../routes");
-const { inc_registed_acc } = require("../metrics/custom_metrics/registers_summary");
-const { permanence_counter } = require("../metrics/custom_metrics/user_summary");
+
+const { inc_registed_acc } = require("../metrics/utils/registers_summary");
+const { permanence_counter } = require("../metrics/utils/user_summary");
+const TournamentServices = require("../services/tournament.services");
+const PointsServices = require("../services/points.services")
+
+
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 exports.googlelogin = (req, res) => {
@@ -41,6 +46,7 @@ exports.googlelogin = (req, res) => {
               name: user.name,
               lastname: user.lastname,
               admin: user.admin,
+              country: user.country,
               isVerified: user.isVerified,
               phone: user.phone,
               state: user.state,
@@ -83,11 +89,17 @@ exports.register = (req, res) => {
         address: address,
         zip: zip,
       })
-        .then((user) =>
+        .then( async (user) =>{
+            const tournaments =await TournamentServices.getAllTournament()
+            if(tournaments){
+              tournaments.forEach(async (tournament) => {
+               await PointsServices.createTablePoints(user,tournament)
+              })
+             }
           mailer
             .sendMail(user.dataValues.id)
             .then((result) => console.log("Sending Email", result))
-        )
+    })
         .then(() => res.sendStatus(201));
     } else {
       res.send({ message: "Usuario ya registrado" });

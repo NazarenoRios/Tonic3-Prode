@@ -1,0 +1,19 @@
+{
+    "edit_profile":"Edit Profile",
+    "name":"Name",
+    "last_name":"Last name",
+    "state":"State",
+    "city":"City",
+    "zip":"Zip",
+    "address":"Address",
+    "phone":"Phone",
+    "notif_checkbox":"Do you want to allow notifications?",
+    "edit_button":"Edit",
+    "select_name":"Write a name",
+    "select_lastname":"Write Last Name",
+    "select_state":"Select State",
+    "select_city":"Select City",
+    "select_zip":"Zip cant be empty",
+    "select_address":"Address field cant be empty",
+    "select_phone":"Phone field cant be empty"
+}

@@ -1,34 +1,37 @@
 import React from "react";
 import { useStateContext } from "../../../contexts/ContextProvider";
 
-import {
-  ChartComponent,
-  SeriesCollectionDirective,
-  SeriesDirective,
-  Inject,
-  ColumnSeries,
-  Category,
-  Tooltip,
-  Legend,
-  RangeColorSettingsDirective,
-  RangeColorSettingDirective,
+import { ChartComponent, SeriesCollectionDirective, SeriesDirective, Inject, ColumnSeries, Category, Tooltip,Legend,RangeColorSettingsDirective,RangeColorSettingDirective,
 } from "@syncfusion/ej2-react-charts";
 
-import {
-  colorMappingData,
-  ColorMappingPrimaryXAxis,
-  ColorMappingPrimaryYAxis,
-  rangeColorMapping,
-} from "../../../utils/dummy";
-import {
-  ChartsHeader,
-  Footer,
-  Navbar,
-  Sidebar,
-} from "../../../components/AdminPanel";
+import {ChartsHeader,Footer,Navbar,Sidebar} from "../../../components/AdminPanel";
+
+import UserRegisterPerUse from '../../../jsons/UserRegisterPerUse.json'
+import { useTranslation } from "react-i18next";
 
 const ColorMapping = () => {
+
   const { currentMode, activeMenu } = useStateContext();
+
+  const rangeColorMapping = [
+    { start: "1", end: "20", colors: ['#FFFF99'] },
+    { start: "21",end: "40",colors: ['#FFA500']},
+    { start: "41",end: "100",colors: ['#FF4040'],},
+  ];
+
+  const ColorMappingPrimaryXAxis = {
+    valueType: "Category",
+    majorGridLines: { width: 0 },
+  };
+  
+  const ColorMappingPrimaryYAxis = {
+    lineStyle: { width: 0 },
+    majorTickLines: { width: 0 },
+    minorTickLines: { width: 0 },
+    labelFormat: "{value} users",
+  };
+
+  const { t } = useTranslation(["admin-panel"]);
 
   return (
     <>
@@ -55,8 +58,8 @@ const ColorMapping = () => {
             </div>
             <div className="m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl">
               <ChartsHeader
-                category="Color Mappping"
-                title="USA CLIMATE - WEATHER BY MONTH"
+                category={t("Users")}
+                title={t("RegistrationOfUsersByUser")}
               />
               <div className="w-full">
                 <ChartComponent
@@ -73,8 +76,8 @@ const ColorMapping = () => {
                   />
                   <SeriesCollectionDirective>
                     <SeriesDirective
-                      dataSource={colorMappingData[0]}
-                      name="USA"
+                      dataSource={UserRegisterPerUse}
+                      name="Users per day"
                       xName="x"
                       yName="y"
                       type="Column"
@@ -85,7 +88,6 @@ const ColorMapping = () => {
                     />
                   </SeriesCollectionDirective>
                   <RangeColorSettingsDirective>
-                    {/* eslint-disable-next-line react/jsx-props-no-spreading */}
                     {rangeColorMapping.map((item, index) => (
                       <RangeColorSettingDirective key={index} {...item} />
                     ))}

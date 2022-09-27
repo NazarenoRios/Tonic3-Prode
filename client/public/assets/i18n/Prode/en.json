@@ -1,0 +1,21 @@
+{
+    "ProdeVote": "Prode Vote",
+    "SinDefinir": "Undefined",
+    "PorDefinir": "To define",
+    "32vos": "Round of 64",
+    "16vos": "Round of 32",
+    "Octavos" : "Round of 16",
+    "Cuartos": "Quarter finals",
+    "SemiFinal": "Semi-final" ,
+    "Finales": "Final",
+    "VoteNow": "Vote Now",
+    "SelectWinner": "Select Winner",
+    "SelectTeam": "Select a Team",
+    "SaveChanges": "SAVE CHANGES",
+    "Close": "Close",
+    "OutOfTime": "You don't have more time to vote",
+    "TablePoints":"Table Points",
+    "YouHave":"You Have",
+    "ForVote":"for vote",
+    "Vote":"Vote"
+}

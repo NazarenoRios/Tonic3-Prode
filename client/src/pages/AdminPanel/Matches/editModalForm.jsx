@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useInput } from "../../../hooks/useInput";
-import { getTeams, addTeamToMatch,getMatchesByPhase } from "./MatchesFunctions.ts";
+import { getTeams, addTeamToMatch, getMatchesByPhase } from "./MatchesFunctions.ts";
 import { DateTimePicker } from "@material-ui/pickers";
-
 import axios from "axios";
+
+import { useTranslation } from "react-i18next";
+
 
 const EditModalForm = ({
   row,
@@ -17,7 +19,6 @@ const EditModalForm = ({
   teamAGoals,
   teamBGoals,
 }) => {
-
   const teamsA = useInput("teamsA");
   const teamsB = useInput("teamsB");
 
@@ -35,29 +36,47 @@ const EditModalForm = ({
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const setTime = () => {
+    axios
+      .put(`api/match/edit/${matchTeams[0].matchId}`, {
+        tournamentId: actualTournament,
+        date: selectedDate,
+      })
+      .then(() => {
+        getMatchesByPhase({
+          tournamentId: actualTournament,
+          fase: phase,
+        }).then((data) => {
+          setMatches(data);
+        });
+      });
+  };
+
+  const setTime2 = () => {
     axios.put(`api/match/edit/${matchTeams[0].matchId}`, {
       tournamentId: actualTournament,
       date: selectedDate,
     });
   };
 
-  const handleEdit = async (match) => {
-    const editMatch = await addTeamToMatch(match);
-    const actualization = await getMatchesByPhase({
-      tournamentId: actualTournament,
-      fase: phase,
-    }).then((data) => setMatches(data));
-    const closeModal = await setShowModal(false);
+  const handleEdit = (match) => {
+    addTeamToMatch(match);
   };
 
-  const endMatch = async (end) => {
-    const endM = await axios.put('api/match/end_match',end)
-  }
+  const endMatch = (end) => {
+    axios.put("api/match/end_match", end).then(() => {
+      getMatchesByPhase({
+        tournamentId: actualTournament,
+        fase: phase,
+      }).then((data) => {
+        setMatches(data);
+      });
+    });
+  };
 
   const onSubmit = async (e) => {
     e.preventDefault();
     if (teamsAGoals.value !== teamsBGoals.value) {
-      handleEdit([
+      const edit = await handleEdit([
         {
           id: matchTeams[0].id,
           matchId: matchTeams[0].matchId,
@@ -71,12 +90,21 @@ const EditModalForm = ({
           goals: teamsBGoals.value ? teamsBGoals.value : teamBGoals,
         },
       ]);
+      
 
-      endMatch([{id: row.id, number_key: row.number_key, tournamentId: actualTournament}])
-    } 
+      const setTime12 = await setTime2();
+      const end = await endMatch([
+        {
+          id: row.id,
+          number_key: row.number_key,
+          tournamentId: actualTournament,
+        },
+      ]);
+      const closeModal = await setShowModal(false);
+    }
 
     if (teamsAGoals.value === teamsBGoals.value) {
-      handleEdit([
+      const edit = await handleEdit([
         {
           id: matchTeams[0].id,
           matchId: matchTeams[0].matchId,
@@ -91,16 +119,19 @@ const EditModalForm = ({
         },
       ]);
     }
-    setTime();
+    const setTime1 = await setTime();
+
+    const closeModal = await setShowModal(false);
   };
 
+  const { t } = useTranslation(["admin-panel"]);
 
   return (
     <div className="relative p-6 flex-auto">
       <form onSubmit={onSubmit}>
         <div className="mb-4">
           <h2 className="text-center mb-5 font-bold underline text-emerald-500">
-            Select a Date
+          {t("SelectADate")}
           </h2>
 
           <div className="text-center">
@@ -110,7 +141,7 @@ const EditModalForm = ({
 
         <div className="border-b border-solid border-slate-200 my-4"></div>
         <h2 className="text-center mb-5 font-bold underline text-emerald-500">
-          Team A
+        {t("TeamA")}
         </h2>
 
         <div className="container mx-auto grid md:grid-cols-2 md:gap-2 mt-6">
@@ -119,7 +150,7 @@ const EditModalForm = ({
               className="block text-gray-700 text-sm font-bold mb-2 text-center"
               htmlFor="stock"
             >
-              Select Team A
+              {t("SelectTeamA")}
             </label>
 
             <select
@@ -128,7 +159,7 @@ const EditModalForm = ({
               {...teamsA}
             >
               <option selected disabled value="">
-                Select a Team
+              {t("SelectATeam")}
               </option>
               {tournamentTeams.map((team, i) => (
                 <option key={i} value={team.id}>
@@ -143,7 +174,7 @@ const EditModalForm = ({
               className="block text-gray-700 text-sm font-bold mb-2 text-center"
               htmlFor="match"
             >
-              Team A Selected
+              {t("TeamASelected")}
             </label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-red-700 leading-tight focus:outline-none focus:shadow-outline text-center"
@@ -162,7 +193,7 @@ const EditModalForm = ({
               className="block text-gray-700 text-sm font-bold mb-2 text-center"
               htmlFor="stock"
             >
-              Set how many goals
+              {t("SetHowManyGoals")}
             </label>
 
             <input
@@ -179,7 +210,7 @@ const EditModalForm = ({
               className="block text-gray-700 text-sm font-bold mb-2 text-center"
               htmlFor="match"
             >
-              Team A Goals
+              {t("TeamAGoals")}
             </label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-red-700 leading-tight focus:outline-none focus:shadow-outline text-center"
@@ -195,7 +226,7 @@ const EditModalForm = ({
 
         <div className="border-b border-solid border-slate-200 my-4"></div>
         <h2 className="text-center mb-5 font-bold underline text-emerald-500">
-          Team B
+        {t("TeamB")}
         </h2>
 
         <div className="container mx-auto grid md:grid-cols-2 md:gap-2 mt-6">
@@ -204,7 +235,7 @@ const EditModalForm = ({
               className="block text-gray-700 text-sm font-bold mb-2 text-center"
               htmlFor="stock"
             >
-              Select Team B
+              {t("SelectTeamB")}
             </label>
 
             <select
@@ -213,7 +244,7 @@ const EditModalForm = ({
               {...teamsB}
             >
               <option selected disabled value="">
-                Select a Team
+              {t("SelectATeam")}
               </option>
               {tournamentTeams.map((team, i) => (
                 <option key={i} value={team.id}>
@@ -228,7 +259,7 @@ const EditModalForm = ({
               className="block text-gray-700 text-sm font-bold mb-2 text-center"
               htmlFor="match"
             >
-              Team B Selected
+              {t("TeamBSelected")}
             </label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-red-700 leading-tight focus:outline-none focus:shadow-outline text-center"
@@ -247,7 +278,7 @@ const EditModalForm = ({
               className="block text-gray-700 text-sm font-bold mb-2 text-center"
               htmlFor="stock"
             >
-              Set how many goals
+              {t("SetHowManyGoals")}
             </label>
 
             <input
@@ -264,7 +295,7 @@ const EditModalForm = ({
               className="block text-gray-700 text-sm font-bold mb-2 text-center"
               htmlFor="match"
             >
-              Team B Goals
+              {t("TeamBGoals")}
             </label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-red-700 leading-tight focus:outline-none focus:shadow-outline text-center"
@@ -282,7 +313,7 @@ const EditModalForm = ({
             onSubmit={onSubmit}
             className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
           >
-            Save Changes
+            {t("SaveChanges")}
           </button>
         </div>
       </form>

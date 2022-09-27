@@ -2,19 +2,13 @@ import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import {getToken, onMessage} from "firebase/messaging"
-import {messaging} from "./firebase"
-import {ToastContainer, toast} from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"
-
 import "./App.css";
 
-import Homepage from "./pages/Homepage";
 import { getUser } from "./state/user";
 
-
 // Admin Section
-import { Calendar,Dashboard, Kanban, Line, Area, Bar, Pie, ColorMapping, Tournaments, Teams, Players, Users} from "./pages/AdminPanel";
+import { Calendar,Dashboard, Kanban, Bar, Pie, ColorMapping, Tournaments, Teams, Players, Users} from "./pages/AdminPanel";
+import Homepage from "./pages/Homepage";
 import Prode from "./pages/Prode";
 import Register from "./pages/Register";
 import Registered from "./pages/Registered";
@@ -25,9 +19,14 @@ import Matches from "./pages/AdminPanel/Matches";
 import TablePoints from "./pages/UserPanel/TablePoints";
 
 
-
-
 function App() {
+
+  useEffect(()=>{
+    onMessage(messaging, message=>{
+      console.log("tu mensaje", message)
+      toast(message.notification.title)
+    })
+  },[])
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
@@ -38,6 +37,7 @@ function App() {
 
   return (
     <>
+      <ToastContainer/>
       {user.isVerified ? (
         <Routes>
           {/* User Section */}
@@ -45,11 +45,7 @@ function App() {
           <Route path="/prode" element={<Prode />} />
           <Route path="/register" element={<Register/>} />
           <Route path="/Edit-User" element={<CustomUser/>} />
-
-        
-
           <Route path="/TablePoints-User" element={<TablePoints/>} />
-
 
           {/* Admin Section */}
 
@@ -69,11 +65,10 @@ function App() {
           <Route path="/calendar" element={<Calendar />} />
 
           {/* charts  */}
-          <Route path="/line" element={<Line />} />
-          <Route path="/area" element={<Area />} />
-          <Route path="/bar" element={<Bar />} />
-          <Route path="/pie" element={<Pie />} />
-          <Route path="/color-mapping" element={<ColorMapping />} />
+
+          <Route path="/User-Permanency" element={<Bar />} />
+          <Route path="/Fixture-Stage-Participants" element={<Pie />} />
+          <Route path="/User-Register-by-Use" element={<ColorMapping />} />
         </Routes>
       ) : (
         <Routes>

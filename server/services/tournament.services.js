@@ -1,5 +1,6 @@
 const { Op } = require("sequelize")
 const { Tournament, Tournament_teams } = require("../models")
+const AwardSevices = require("./award.services")
 
 class TournamentServices {
 
@@ -13,7 +14,9 @@ class TournamentServices {
 
     static async getAllTournament (){
         try{
-           return await Tournament.findAll()
+           const tournaments= await Tournament.findAll()
+           if(tournaments) return tournaments
+           if(!tournaments) return false
         } catch(error){
             console.log(error)
         }
@@ -41,12 +44,13 @@ class TournamentServices {
         }
     }
 
-    static async modifyTournament(tournament,{name,logo,description,participants}){
+    static async modifyTournament(tournament,{name,logo,description,participants,state}){
         try{
         tournament.name = name
         tournament.logo = logo
         tournament.description= description
         tournament.participants = participants
+        tournament.state= state
         return await tournament.save()
         } catch(error){
             console.log(error)
@@ -59,6 +63,25 @@ class TournamentServices {
                         teamId : idTeam,
                         tournamentId : idTournament
                   })
+        }catch(error){
+            console.log(error);
+        }
+    }
+
+    static async endTournament (id){
+        try{
+            const tournament = await TournamentServices.findByid(id)
+            if(!tournament.state){
+                tournament.state = true
+                tournament.save()
+                await AwardSevices.sendAward(id)
+                return "end of the tournament"
+            }
+            if(tournament.state){
+                tournament.state = false
+                tournament.save()
+                return "tournament starts again"
+            }
         }catch(error){
             console.log(error);
         }

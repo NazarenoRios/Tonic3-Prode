@@ -1,9 +1,12 @@
 import React from 'react';
 import { SparklineComponent, Inject, SparklineTooltip } from '@syncfusion/ej2-react-charts';
 
+import RegisteredUsersLine from '../../../jsons/RegisteredUsersLine.json'
+
 class SparkLine extends React.PureComponent {
+
   render() {
-    const { id, height, width, color, data, type, currentColor } = this.props;
+    const { id, height, width, color, type, currentColor } = this.props;
 
     return (
       <SparklineComponent
@@ -17,15 +20,15 @@ class SparkLine extends React.PureComponent {
         tooltipSettings={{
           visible: true,
           // eslint-disable-next-line no-template-curly-in-string
-          format: '${x} : data ${yval}',
+          format: '${month} : users ${users}',
           trackLineSettings: {
             visible: true,
           },
         }}
         markerSettings={{ visible: ['All'], size: 2.5, fill: currentColor }}
-        dataSource={data}
-        xName="x"
-        yName="yval"
+        dataSource={RegisteredUsersLine}
+        xName="month"
+        yName="users"
         type={type}
       >
         <Inject services={[SparklineTooltip]} />

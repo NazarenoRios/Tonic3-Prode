@@ -21,6 +21,8 @@ import {
 } from "./StyledComponents";
 import VoteModal from "./VoteModal";
 
+import { useTranslation } from "react-i18next";
+
 import "./VoteButton.css";
 
 function ProdeInfo({ team }) {
@@ -44,7 +46,7 @@ function ProdeInfo({ team }) {
   const date = new Date(team.date);
   const year = date.getFullYear();
   const month = date.getMonth();
-  const day = date.getDay();
+  const day = date.getDate();
   const hours = date.getHours();
   const mins = date.getMinutes();
 
@@ -87,6 +89,8 @@ function ProdeInfo({ team }) {
     };
   }, []);
 
+  const { t } = useTranslation(["Prode"]);
+
   return (
     <>
       <Match className="shadow-md">
@@ -97,7 +101,7 @@ function ProdeInfo({ team }) {
                 {team.date
                   ? `${day} ${monthNames[month]} of ${year} - ${hours} :
                 ${mins === 0 ? "00" : mins} hs`
-                  : "Sin Definir"}
+                  : <span>{t("SinDefinir")}</span>}
               </MatchName>
             </MatchInfoData>
           </MatchInfo>
@@ -127,7 +131,7 @@ function ProdeInfo({ team }) {
                 )}
               </>
             ) : (
-              <div className="mt-4">Por Definir</div>
+              <div className="mt-4">{t("PorDefinir")}</div>
             )}
           </TeamHome>
 
@@ -180,7 +184,7 @@ function ProdeInfo({ team }) {
                 )}
               </>
             ) : (
-              <div className="mt-4">Por Definir</div>
+              <div className="mt-4">{t("PorDefinir")}</div>
             )}
           </TeamAway>
         </MatchBase>
@@ -193,7 +197,7 @@ function ProdeInfo({ team }) {
                 onClick={() => setShowModal(true)}
               >
                 <button class="cssbuttons-io">
-                  <span>Vote Now</span>
+                  <span>{t("VoteNow")}</span>
                 </button>
               </MatchModalText>
             </MatchModal>
@@ -204,13 +208,13 @@ function ProdeInfo({ team }) {
             timerSeconds === "00" ? (
               <div className="mt-8 ">
                 <span className="font-bold text-red-600">
-                  You don't have more time to vote
+                {t("OutOfTime")}
                 </span>
               </div>
             ) : (
               <div>
                 <div className="mt-5">
-                  <span className="font-bold ">You have:</span>
+                  <span className="font-bold ">{t("YouHave")}:</span>
                 </div>
                 <div className="my-3">
                   <span className="font-bold text-red-600">
@@ -219,7 +223,7 @@ function ProdeInfo({ team }) {
                   </span>
                 </div>
                 <div className="mb-2">
-                  <span className="font-bold ">for vote</span>
+                  <span className="font-bold ">{t("ForVote")}</span>
                 </div>
               </div>
             )}

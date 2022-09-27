@@ -1,12 +1,25 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { shuffle } from "lodash";
+import { useSelector } from "react-redux";
 
 export const PodiumTable4 = () => {
-  const [data, setData] = useState([
-    {premio: "Moto verde de batman"},
-  ]);
+
+  const user = useSelector((state) => state.user);
+
+  const [premioArg, setPremioArg] = useState({
+    premio: "Moto verde de batman",
+  });
+
+  const [premioBr, setPremioBr] = useState({
+    premio: "Triciclo na Favela",
+  });
+
+  const [premioUsa, setPremioUsa] = useState({
+    premio: "Camp Travel",
+  });
+
+
 
   const list = {
     hidden: {
@@ -38,11 +51,18 @@ export const PodiumTable4 = () => {
         animate="visible"
         variants={list}
       >
-        {data.map((premio, i) => (
-          <motion.div className="w-96 py-5 px-5 text-center rounded-xl" style={{ background: "#172236" }} key={i} variants={item}>
-            <span className="text-white">{premio.premio}</span>
+          <motion.div className="w-96 py-5 px-5 text-center rounded-xl" style={{ background: "#172236" }} variants={item}>
+          {user.country === "Argentina" ? (
+            <span className="text-white">{premioArg.premio}</span>
+          ) : user.country === "Brazil" ? (
+            <span className="text-white">{premioBr.premio}</span>
+          ) : user.country === "United States" ? (
+            <span className="text-white">{premioUsa.premio}</span>
+          ) : (
+            ""
+          )}
           </motion.div>
-        ))}
+
       </motion.div>
     </>
   );

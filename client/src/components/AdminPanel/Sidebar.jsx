@@ -1,13 +1,13 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { SiShopware } from 'react-icons/si';
 import { MdOutlineCancel } from 'react-icons/md';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
-
-import { links } from '../../utils/dummy';
 import { useStateContext } from '../../contexts/ContextProvider';
+import SiderbarComp from './SiderbarComp';
 
 const Sidebar = () => {
+
   const { activeMenu, setActiveMenu, screenSize } = useStateContext();
 
   const handleCloseSideBar = () => {
@@ -15,9 +15,6 @@ const Sidebar = () => {
       setActiveMenu(false);
     }
   };
-
-  const activeLink = 'flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg  text-white  text-md m-2';
-  const normalLink = 'flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-md text-white hover:bg-[#06b6d4] m-2';
 
   return (
     <div className="bg-[#3a3f54] h-screen md:overflow-hidden overflow-auto md:hover:overflow-auto pb-10">
@@ -38,27 +35,7 @@ const Sidebar = () => {
             </TooltipComponent>
           </div>
           <div className="mt-10 ">
-            {links.map((item) => (
-              <div key={item.title}>
-                <p className="text-white m-3 mt-4 uppercase">
-                  {item.title}
-                </p>
-                {item.links.map((link) => (
-                  <NavLink
-                    to={`/${link.name}`}
-                    key={link.name}
-                    onClick={handleCloseSideBar}
-                    style={({ isActive }) => ({
-                      backgroundColor: isActive ? "#0591aa" : '',
-                    })}
-                    className={({ isActive }) => (isActive ? activeLink : normalLink)}
-                  >
-                    {link.icon}
-                    <span className="capitalize ">{link.name}</span>
-                  </NavLink>
-                ))}
-              </div>
-            ))}
+            <SiderbarComp handleCloseSideBar={handleCloseSideBar}/>
           </div>
         </>
       )}
