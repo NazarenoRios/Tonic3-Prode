@@ -1,7 +1,7 @@
 const S = require("sequelize")
 const db = require("../config/db")
 const Match = require("./Match")
-const Points = require("./Points")
+const {Points} = require("./Points")
 const User = require("./User")
 
 class Tournament extends S.Model { }

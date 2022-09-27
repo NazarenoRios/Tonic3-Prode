@@ -90,6 +90,7 @@ const EditModalForm = ({
           goals: teamsBGoals.value ? teamsBGoals.value : teamBGoals,
         },
       ]);
+      
 
       const setTime12 = await setTime2();
       const end = await endMatch([

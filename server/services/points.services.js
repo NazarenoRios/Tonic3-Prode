@@ -4,7 +4,7 @@ const BetServices = require("./bet.services");
 
 class PointsServices {
     
-    static async points (tournamentId){
+    static async getAllPointsInTournament (tournamentId){
         try{
             const points =  await Points.findAll({where:{
                 tournamentId:tournamentId
@@ -18,7 +18,7 @@ class PointsServices {
         }
     }
 
-    static async getAllPointsInTournament(tournamentId){
+    static async points(tournamentId){
         try{
             const points = PointsServices.points(tournamentId)
             const pointsAndUsers= []

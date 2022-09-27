@@ -21,6 +21,8 @@ function TeamsForm({ row, i, setMatches, actualTournament }) {
   const [teamB, setTeamB] = React.useState();
   const [teamAGoals, setTeamAGoals] = React.useState();
   const [teamBGoals, setTeamBGoals] = React.useState();
+  const [teamAPenGoals, setTeamAPenGoals] = React.useState();
+  const [teamBPenGoals, setTeamBPenGoals] = React.useState();
 
   const [winner, setWinner] = React.useState();
 
@@ -37,6 +39,8 @@ function TeamsForm({ row, i, setMatches, actualTournament }) {
 
         setTeamAGoals(data[0].goals);
         setTeamBGoals(data[1].goals);
+        setTeamAPenGoals(data[0].penalties);
+        setTeamBPenGoals(data[1].penalties);
 
         axios
           .get(`/api/team/${data[0].teamId}`)
@@ -103,6 +107,14 @@ function TeamsForm({ row, i, setMatches, actualTournament }) {
             <span className="font-semibold text-blue-600 tracking-wide">
               ({teamAGoals})
             </span>
+            {teamAPenGoals === 0 ? (
+              ""
+            ) : (
+              <span className="font-semibold text-gray-600 tracking-wide">
+                {" "}
+                - ({teamAPenGoals})
+              </span>
+            )}
           </TableCell>
         ) : (
           <TableCell align="center">
@@ -117,6 +129,14 @@ function TeamsForm({ row, i, setMatches, actualTournament }) {
             <span className="font-semibold text-blue-600 tracking-wide">
               ({teamBGoals})
             </span>
+            {teamBPenGoals === 0 ? (
+              ""
+            ) : (
+              <span className="font-semibold text-gray-600 tracking-wide">
+                {" "}
+                - ({teamBPenGoals})
+              </span>
+            )}
           </TableCell>
         ) : (
           <TableCell align="center">
@@ -175,7 +195,15 @@ function TeamsForm({ row, i, setMatches, actualTournament }) {
       ) : null}
 
       {showWinnerModal ? (
-        <WinnerModal setShowWinnerModal={setShowWinnerModal} row={row} teamA={teamA} teamB={teamB} actualTournament={actualTournament} setMatches={setMatches} />
+        <WinnerModal
+          setShowWinnerModal={setShowWinnerModal}
+          row={row}
+          teamA={teamA}
+          teamB={teamB}
+          actualTournament={actualTournament}
+          setMatches={setMatches}
+          matchTeams={matchTeams}
+        />
       ) : null}
     </>
   );
