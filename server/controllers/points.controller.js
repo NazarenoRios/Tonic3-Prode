@@ -12,18 +12,18 @@ class PointsControllers {
     }
   }
 
-  static async getTournamentPoints(req, res) {
-    try {
-      const points = await PointsServices.getTournamentPoints(
-        req.params.id,
-        req.params.tournamentId
-      );
-      console.log("esto es points", points);
-      return await res.send(points);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  // static async getTournamentPoints(req, res) {
+  //   try {
+  //     const points = await PointsServices.getTournamentPoints(
+  //       req.params.id,
+  //       req.params.tournamentId
+  //     );
+  //     console.log("esto es points", points);
+  //     return await res.send(points);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
 
   static async getFasePoints(req ,res){

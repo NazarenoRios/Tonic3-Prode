@@ -19,7 +19,7 @@ router.get("/", users);
 router.get("/:id", validateAuth, user);
 router.put("/profile", validateAuth, editProfile);
 router.put("/changePassword", validateAuth, changePassword);
-router.put("/toggleAdmin/:id", toggleAdmin);
+router.put("/toggleAdmin/:id", validateAuth, toggleAdmin);
 router.post("/userIp", userIp);
 router.post("/pushNotifications", validateAuth , pushNotifications);
 router.delete("/deleteUser/:id", validateAuth, deleteUser)

@@ -7,17 +7,45 @@
         "8": {
           "27": {
             "before_user_update": {
-              "hours": 17,
-              "mins": 18,
-              "seconds": 10
+              "hours": 18,
+              "mins": 21,
+              "seconds": 24
             },
             "total": {
-              "time_in_sec": 5
+              "time_in_sec": 319
             },
             "last_user_update": {
-              "hours": 17,
-              "mins": 18,
-              "seconds": 10
+              "hours": 18,
+              "mins": 21,
+              "seconds": 24
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": 2,
+    "name": "Pedro",
+    "permanence_logs": {
+      "2022": {
+        "8": {
+          "27": {
+            "hours": 17,
+            "mins": 57,
+            "seconds": 48,
+            "before_user_update": {
+              "hours": 18,
+              "mins": 19,
+              "seconds": 24
+            },
+            "total": {
+              "time_in_sec": -2185
+            },
+            "last_user_update": {
+              "hours": 18,
+              "mins": 19,
+              "seconds": 24
             }
           }
         }

@@ -1,41 +1,39 @@
 const Points = require("../models/Points")
 const BetServices = require("./bet.services");
 const PointsFase = require("../models/PointsFase");
-const { user } = require("../controllers/usersController");
-const { User } = require("../models");
+
 
 class PointsServices {
     
     static async getAllPointsInTournament (tournamentId){
         try{
-            const points =  await Points.findAll({where:{
+            return await Points.findAll({where:{
                 tournamentId:tournamentId
                 },
                order: [
                 ['points', 'DESC']
             ],})
-            return points
         }catch(error){
             console.log(error);
         }
     }
 
-    static async getTournamentPoints(userId, tournamentId) {
-        try {
-            const points = await Points.findOne({
-                where: {
-                    userId: userId,
-                    tournamentId: tournamentId
-                },
-                order: [
-                    ['points', 'DESC']
-                ]
-            })
-            return points
-        } catch (error) {
-            console.log(error);
-        }
-    }
+    // static async getTournamentPoints(userId, tournamentId) {
+    //     try {
+    //         const points = await Points.findOne({
+    //             where: {
+    //                 userId: userId,
+    //                 tournamentId: tournamentId
+    //             },
+    //             order: [
+    //                 ['points', 'DESC']
+    //             ]
+    //         })
+    //         return points
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // }
 
     static async getFasePoints (userId,tournamentId){
         try{
@@ -61,7 +59,7 @@ class PointsServices {
                 tournamentId : tournament.id
                 })
 
-                for (let i = tournament.participants/2; i >= 2  ; i/=2) {
+                for (let i = tournament.participants/2; i >= 1  ; i/=2) {
                     await PointsFase.create({
                       points : 0,
                       fase : i,
