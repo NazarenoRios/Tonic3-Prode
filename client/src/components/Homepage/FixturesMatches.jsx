@@ -1,23 +1,5 @@
 import React from "react";
-import {
-  Match,
-  MatchBase,
-  MatchInfo,
-  MatchInfoData,
-  MatchModal,
-  MatchModalText,
-  MatchName,
-  MatchPointAway,
-  MatchPointDivisor,
-  MatchPointHome,
-  MatchResult,
-  MatchRelated,
-  MatchTime,
-  MatchTop,
-  TeamAway,
-  TeamHome,
-  TeamHomeImg,
-  TeamHomeName,
+import { Match, MatchBase, MatchInfo, MatchInfoData, MatchModal, MatchModalText, MatchName, MatchPointAway, MatchPointDivisor, MatchPointHome, MatchResult, MatchRelated, MatchTime, MatchTop,TeamAway, TeamHome, TeamHomeImg, TeamHomeName,
 } from "./StyledComponents";
 
 import "./DetailsButton.css";
@@ -55,10 +37,12 @@ function FixturesMatches({ team, i }) {
           <MatchInfo>
             <MatchInfoData>
               <MatchName>
-                {team.date
-                  ? `${day} ${monthNames[month]} of ${year} - ${hours} :
+                {team.date ? (
+                  `${day} ${monthNames[month]} of ${year} - ${hours} :
                 ${mins === 0 ? "00" : mins} hs`
-                  : <span>{t("Undefined")}</span>}
+                ) : (
+                  <span>{t("Undefined")}</span>
+                )}
               </MatchName>
             </MatchInfoData>
           </MatchInfo>
@@ -98,11 +82,41 @@ function FixturesMatches({ team, i }) {
             {/* <MatchVs>vs</MatchVs> */}
             <MatchResult>
               <MatchPointHome>
+                {team.teamID[0]?.data_match.penalties !== 0 ? (
+                  team.teamID[0]?.data_match.penalties >
+                  team.teamID[1]?.data_match.penalties ? (
+                    <span className="text-green-600">
+                      ({team.teamID[0]?.data_match.penalties})
+                    </span>
+                  ) : (
+                    <span className="text-red-600">
+                      ({team.teamID[0]?.data_match.penalties})
+                    </span>
+                  )
+                ) : (
+                  ""
+                )}{" "}
                 {team.teamID[0]?.data_match.goals}
               </MatchPointHome>
               <MatchPointDivisor>-</MatchPointDivisor>
               <MatchPointAway>
-                {team.teamID[1]?.data_match.goals}
+                {/* {team.teamID[1]?.data_match.goals} {" "}
+                {team.teamID[1]?.data_match.penalties !== 0 ? (<span>({team.teamID[1]?.data_match.penalties})</span>) : ("")} */}
+                {team.teamID[1]?.data_match.goals}{" "}
+                {team.teamID[1]?.data_match.penalties !== 0 ? (
+                  team.teamID[1]?.data_match.penalties >
+                  team.teamID[0]?.data_match.penalties ? (
+                    <span className="text-green-600">
+                      ({team.teamID[1]?.data_match.penalties})
+                    </span>
+                  ) : (
+                    <span className="text-red-600">
+                      ({team.teamID[1]?.data_match.penalties})
+                    </span>
+                  )
+                ) : (
+                  ""
+                )}
               </MatchPointAway>
             </MatchResult>
           </MatchTime>

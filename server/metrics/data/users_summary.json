@@ -21,19 +21,15 @@
             }
           },
           "26": {
-            "hours": 16,
-            "mins": 21,
+            "hours": 18,
+            "mins": 18,
             "before_user_update": {
-              "hours": 16,
-              "mins": 37
+              "hours": 19,
+              "mins": 10
             },
             "total": {
               "hours": 0,
-              "mins": 16
-            },
-            "last_user_update": {
-              "hours": 16,
-              "mins": 37
+              "mins": 0
             }
           }
         }
