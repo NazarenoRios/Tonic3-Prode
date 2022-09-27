@@ -1,9 +1,11 @@
+const { set_data } = require("../metrics/custom_metrics/user_histogram")
 const { Bet, Match } = require("../models")
 
 class BetServices {
-
     static async createBet(body){
         try{
+            
+            set_data(body)
            return await Bet.create(body)
         } catch(error){
             console.log(error)
