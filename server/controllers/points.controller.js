@@ -25,14 +25,16 @@ class PointsControllers {
     }
   }
 
-    static async getFasePoints(req ,res){
-      try{
-        const fasePoints = await PointsServices.getFasePoints(req.params.id,req.params.tournamentId)
-        return res.status(201).send(fasePoints)
-      }catch(error){
-        console.log(error);
-      }
+
+  static async getFasePoints(req ,res){
+    try{
+      const fasePoints = await PointsServices.getFasePoints(req.params.id, req.params.tournamentId)
+      return res.status(201).send(fasePoints)
+    }catch(error){
+      console.log(error);
     }
+  }
+
 
   static async deleteTablePoints(req, res) {
     try {

@@ -1,6 +1,5 @@
 import React from "react";
 import { useEffect } from "react";
-import { useState } from "react";
 import TableItems from "./TableItems";
 import { useSelector } from "react-redux";
 import axios from "axios";
@@ -9,11 +8,14 @@ function PhaseTable() {
 
   const [point , setPoints] = React.useState([])
   const tournament = useSelector((state) => state.tournament);
+  const user = useSelector((state) => state.user);
+  
 
   useEffect(()=>{
-   axios.get(`/api/point/tournaments/${tournament.id}`)
+   axios.get(`/api/point/fasepoint/${user.id}/${tournament.id}`)
    .then((res)=> setPoints(res.data))
-  },[])
+  },[tournament.id])
+
 
   return (
     <section className="py-1">
@@ -25,10 +27,7 @@ function PhaseTable() {
               <thead>
                 <tr className="flex w-full mb-4">
                   <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center w-1/3">
-                    Top
-                  </th>
-                  <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center w-1/3">
-                    Name
+                    Tournament
                   </th>
                   <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center w-1/3">
                     Phases
@@ -40,8 +39,8 @@ function PhaseTable() {
               </thead>
 
               <tbody class="bg-grey-light flex flex-col items-center justify-between overflow-y-scroll w-full" style={{ zIndex:"100000000"}}>
-                 {point?.map((person,i) => (
-                  <TableItems key={i} person={person} top={i+1}/>
+                 {point?.map((torneo,i) => (
+                  <TableItems key={i} torneo={torneo} top={i+1}/>
                 ))} 
               </tbody>
             </table>

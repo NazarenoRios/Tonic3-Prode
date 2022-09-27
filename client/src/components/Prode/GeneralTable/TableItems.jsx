@@ -6,9 +6,6 @@ function TableItems({ person, top }) {
 
   const user = useSelector((state) => state.user);
 
-  console.log('ESTO ES PERSON', person)
-  console.log('ESTO ES USER', user)
-
   useEffect(() => {
     axios
       .get(`api/user/user/${person.userId}`)
