@@ -31,6 +31,10 @@
               "hours": 0,
               "mins": 0
             }
+          },
+          "27": {
+            "hours": 16,
+            "mins": 42
           }
         }
       }
@@ -55,6 +59,16 @@
             "last_user_update": {
               "hours": 16,
               "mins": 44
+            }
+          },
+          "27": {
+            "before_user_update": {
+              "hours": 16,
+              "mins": 43
+            },
+            "total": {
+              "hours": 0,
+              "mins": 0
             }
           }
         }

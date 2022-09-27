@@ -31,14 +31,16 @@ class PointsServices {
         }
     }
 
-    static async getFasePoints (tournamentId,userId,fase){
+    static async getFasePoints (userId, tournamentId){
         try{
-            return await PointsFase.findOne({
+            return await PointsFase.findAll({
                 where:{
-                    fase: fase,
-                    tournamentId:tournamentId,
                     userId:userId,
-                }
+                    tournamentId: tournamentId
+                },
+                order: [
+                    ['points', 'DESC']
+                ]
             })
         }catch(error){
             console.log(error);

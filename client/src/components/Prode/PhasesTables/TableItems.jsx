@@ -1,53 +1,22 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 import { useSelector } from "react-redux";
-function TableItems({ person, top }) {
-  const [personData, setPersonData] = useState();
+function TableItems({ torneo }) {
 
-  const user = useSelector((state) => state.user);
-
-  console.log('ESTO ES PERSON', person)
-  console.log('ESTO ES USER', user)
-
-  useEffect(() => {
-    axios
-      .get(`api/user/user/${person.userId}`)
-      .then((res) => setPersonData(res.data));
-  }, []);
+  const torneoData = useSelector((state) => state.tournament);
 
   return (
     <tr className="flex w-full mb-4">
-      {user.id === person.userId ? (
         <>
-          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-blueGray-700  text-center w-1/3 bg-white bg-opacity-25 ">
-            {top}
-          </td>
-          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-center w-1/3 bg-white bg-opacity-25">
-            {personData?.name}
-          </td>
-          <td className="border-t-0 px-6 align-center border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-center w-1/3 bg-white bg-opacity-25">
-            {person.points}
-          </td>
-          <td className="border-t-0 px-6 align-center border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-center w-1/3 bg-white bg-opacity-25">
-            {person.points}
-          </td>
-        </>
-      ) : (
-        <>
-          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-blueGray-700  text-center w-1/3">
-            {top}
-          </td>
           <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-center w-1/3">
-            {personData?.name}
+            {torneoData?.name}
           </td>
           <td className="border-t-0 px-6 align-center border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-center w-1/3">
-            {person.points}
+            {torneo?.fase}
           </td>
           <td className="border-t-0 px-6 align-center border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-center w-1/3">
-            {person.points}
+            {torneo?.points}
           </td>
         </>
-      )}
     </tr>
   );
 }
