@@ -3,7 +3,7 @@ const PointsControllers = require("../controllers/points.controller")
 const router = express.Router()
 
 //ruta para obtener todos los puntos de todos los usuarios en un torneo
-router.get("/:id/:tournamentId",PointsControllers.getTournamentPoints)
+// router.get("/:id/:tournamentId",PointsControllers.getTournamentPoints)
 //ruta para traer todos los puntos de un torneo
 router.get("/tournaments/:id",PointsControllers.getAllPointsInTournament)
 //ruta para traer tabla de puntos por fase

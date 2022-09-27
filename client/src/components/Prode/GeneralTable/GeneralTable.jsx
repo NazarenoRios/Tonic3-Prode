@@ -11,7 +11,6 @@ function GeneralTable() {
   const [point , setPoints] = React.useState([])
   const tournament = useSelector((state) => state.tournament);
 
-
   const { t } = useTranslation(["table_points"]);
 
   useEffect(()=>{
@@ -19,6 +18,7 @@ function GeneralTable() {
    .then((res)=> setPoints(res.data))
   },[tournament.id])
 
+  console.log('ESTO ES POINT', point)
   return (
     <section className="py-1">
       <div className=" mb-12 xl:mb-0 px-4 mx-auto mt-24">
