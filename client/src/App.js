@@ -21,6 +21,13 @@ import TablePoints from "./pages/UserPanel/TablePoints";
 
 function App() {
 
+  useEffect(()=>{
+    onMessage(messaging, message=>{
+      console.log("tu mensaje", message)
+      toast(message.notification.title)
+    })
+  },[])
+
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
 
@@ -30,6 +37,7 @@ function App() {
 
   return (
     <>
+      <ToastContainer/>
       {user.isVerified ? (
         <Routes>
           {/* User Section */}
