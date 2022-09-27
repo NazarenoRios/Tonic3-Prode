@@ -15,7 +15,6 @@ module.exports = {
   },
   dec_user_permanency: () => {
     const country_ix = data.indexOf(country);
-    if (!country_ix) return save_country(country);
     data[country_ix].y -= 1;
     save_data(dir, data);
   },

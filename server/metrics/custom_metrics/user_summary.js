@@ -3,9 +3,11 @@ const { user_json_nav } = require("../utils/metrics_utils");
 const { save_data } = require("../utils/save_data");
 
 
+const register_dir = set_dir("users_summary", []);
+const { data, dir } = register_dir;
 
 
-const find_index=(id,data)=>{
+const find_index=(id)=>{
   for(let i = 0; i< data.length;i++){
     if(data[i].id===id)return i
   }
@@ -14,10 +16,8 @@ const find_index=(id,data)=>{
 module.exports = {
   
   permanence_counter: async (user_data) => {
-    const register_dir = set_dir("users_summary", []);
-const { data, dir } = register_dir;
     const { name, id } = user_data;
-    let user_ix= find_index(id,data)
+    let user_ix= find_index(id)
     console.log(user_ix)
     if (!id) return;
     if (!data[user_ix]) {

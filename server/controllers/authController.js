@@ -7,8 +7,8 @@ const mailer = require("../utils/mailer");
 const { OAuth2Client } = require("google-auth-library");
 const router = require("../routes");
 
-const { inc_registed_acc } = require("../metrics/utils/registers_summary");
-const { permanence_counter } = require("../metrics/utils/user_summary");
+const { inc_registed_acc } = require("../metrics/custom_metrics/registers_summary");
+const { permanence_counter } = require("../metrics/custom_metrics/user_summary");
 const TournamentServices = require("../services/tournament.services");
 const PointsServices = require("../services/points.services")
 
