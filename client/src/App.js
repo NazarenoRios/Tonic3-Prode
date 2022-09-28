@@ -18,8 +18,20 @@ import CustomUser from "./pages/UserPanel/EditUser";
 import Matches from "./pages/AdminPanel/Matches";
 import TablePoints from "./pages/UserPanel/TablePoints";
 
+//Push Section
+import { onMessage } from "firebase/messaging";
+import { toast, ToastContainer } from "react-toastify";
+import { messaging } from "./firebase";
+
 
 function App() {
+
+  useEffect(()=>{
+    onMessage(messaging, message=>{
+      console.log("tu mensaje", message)
+      toast(message.notification.title)
+    })
+  },[])
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
@@ -30,6 +42,7 @@ function App() {
 
   return (
     <>
+      <ToastContainer/>
       {user.isVerified ? (
         <Routes>
           {/* User Section */}

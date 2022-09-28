@@ -12,17 +12,16 @@ const set_dates_props=(permanence_logs,date_now)=>{
 
 
 const set_log_data=(prop_day,date_now)=>{
-    const {hours,mins}=date_now
+    const {hours,mins,seconds}=date_now
     if(!prop_day.before_user_update){
-        prop_day[before_user_update]={hours,mins}
-        prop_day[total]={hours:0,mins:0}
+        prop_day[before_user_update]={hours,mins,seconds}
+        prop_day[total]={time_in_sec:0}
         return prop_day
     }
-        prop_day[last_user_update]={hours,mins}
-    const {total_hours,total_mins,ausence}=calculate_log_time(prop_day.last_user_update,prop_day.before_user_update)
+        prop_day[last_user_update]={hours,mins,seconds}
+    const {time_in_sec,ausence}=calculate_log_time(prop_day.last_user_update,prop_day.before_user_update)
     if(ausence)return prop_day[before_user_update]=prop_day[last_user_update]
-    prop_day[total].hours+=total_hours
-    prop_day[total].mins+=total_mins
+    prop_day[total].time_in_sec+=time_in_sec
     prop_day[before_user_update]=prop_day[last_user_update]
     return prop_day
 }
@@ -30,8 +29,8 @@ const set_log_data=(prop_day,date_now)=>{
 
 module.exports={
      user_json_nav:(permanence_logs)=>{
-        const {year,month,day,hours,mins}=parse_date(new Date)
-        const date_now={year,month,day,hours,mins}
+        const {year,month,day,hours,mins,seconds}=parse_date(new Date)
+        const date_now={year,month,day,hours,mins,seconds}
          permanence_logs= set_dates_props(permanence_logs,date_now)
         permanence_logs[year][month][day]= set_log_data(permanence_logs[year][month][day],date_now)
             return permanence_logs

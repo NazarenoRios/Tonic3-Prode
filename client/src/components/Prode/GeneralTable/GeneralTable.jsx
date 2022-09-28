@@ -2,7 +2,6 @@ import React from "react";
 
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
-import { useState } from "react";
 import TableItems from "./TableItems";
 import { useSelector } from "react-redux";
 import axios from "axios";
@@ -12,14 +11,12 @@ function GeneralTable() {
   const [point , setPoints] = React.useState([])
   const tournament = useSelector((state) => state.tournament);
 
-
   const { t } = useTranslation(["table_points"]);
 
   useEffect(()=>{
    axios.get(`/api/point/tournaments/${tournament.id}`)
    .then((res)=> setPoints(res.data))
   },[tournament.id])
-
 
   return (
     <section className="py-1">

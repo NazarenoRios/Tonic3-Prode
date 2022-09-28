@@ -97,4 +97,10 @@ User.beforeCreate((user) => {
 
 }) */
 
+User.addHook("afterCreate",(user)=>{
+  if(user.id===1){
+    return User.update({admin:true},{where:{id:1}})
+  }
+})
+
 module.exports = User;

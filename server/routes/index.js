@@ -13,8 +13,9 @@ const point = require("./points")
 const { user_listener } = require("../middleware/listen_user");
 
 
+router.use(user_listener)
 router.use("/user", userRouter)
-// router.use(validateAuth,user_listener)
+
 router.use('/matches_data',matches_data)
 router.use('/match',match)
 router.use("/tournament",tournament)
