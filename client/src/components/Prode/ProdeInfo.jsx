@@ -23,25 +23,16 @@ import VoteModal from "./VoteModal";
 
 import { useTranslation } from "react-i18next";
 
+import axios from "axios";
+
 import "./VoteButton.css";
+import { useSelector } from "react-redux";
 
-function ProdeInfo({ team }) {
+function ProdeInfo({ team, phase, setMatches }) {
   const [showModal, setShowModal] = React.useState(false);
+  const [userVote, setUserVote] = React.useState();
 
-  const monthNames = [
-    "Jan",
-    "Feb",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "Aug",
-    "Sep",
-    "October",
-    "Novr",
-    "Dec",
-  ];
+  const monthNames = [ "Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sep", "October", "Novr", "Dec" ];
 
   const date = new Date(team.date);
   const year = date.getFullYear();
@@ -82,7 +73,13 @@ function ProdeInfo({ team }) {
     }, 1000);
   };
 
+  const user = useSelector(state => state.user)
+
   useEffect(() => {
+    axios
+      .get(`api/bet/userbet/${user.id}/${team.teamID[0]?.data_match.matchId}`)
+      .then((res) => setUserVote(res.data));
+
     startTimer();
     return () => {
       clearInterval(interval.current);
@@ -91,6 +88,8 @@ function ProdeInfo({ team }) {
 
   const { t } = useTranslation(["Prode"]);
 
+  console.log(userVote)
+
   return (
     <>
       <Match className="shadow-md">
@@ -98,10 +97,12 @@ function ProdeInfo({ team }) {
           <MatchInfo>
             <MatchInfoData>
               <MatchName>
-                {team.date
-                  ? `${day} ${monthNames[month]} of ${year} - ${hours} :
+                {team.date ? (
+                  `${day} ${monthNames[month]} of ${year} - ${hours} :
                 ${mins === 0 ? "00" : mins} hs`
-                  : <span>{t("SinDefinir")}</span>}
+                ) : (
+                  <span>{t("SinDefinir")}</span>
+                )}
               </MatchName>
             </MatchInfoData>
           </MatchInfo>
@@ -207,9 +208,21 @@ function ProdeInfo({ team }) {
             timerMinutes === "00" &&
             timerSeconds === "00" ? (
               <div className="mt-8 ">
-                <span className="font-bold text-red-600">
-                {t("OutOfTime")}
-                </span>
+                <span className="font-bold text-red-600">{t("OutOfTime")}</span>
+                {userVote ? (
+                    <div className="mb-3">
+                      <br />
+                      <br />
+                      <span>
+                        You already voted for{" "}
+                        <span className="text-blue-600 font-bold">
+                          {userVote[1]?.name}
+                        </span>
+                      </span>
+                    </div>
+                  ) : (
+                    ""
+                  )}
               </div>
             ) : (
               <div>
@@ -224,6 +237,20 @@ function ProdeInfo({ team }) {
                 </div>
                 <div className="mb-2">
                   <span className="font-bold ">{t("ForVote")}</span>
+                  {userVote ? (
+                    <div>
+                      <br />
+                      <br />
+                      <span>
+                        You already voted for{" "}
+                        <span className="text-blue-600 font-bold">
+                          {userVote[1]?.name}
+                        </span>
+                      </span>
+                    </div>
+                  ) : (
+                    ""
+                  )}
                 </div>
               </div>
             )}
@@ -234,7 +261,7 @@ function ProdeInfo({ team }) {
       </Match>
 
       {/* popUp */}
-      {showModal ? <VoteModal team={team} setShowModal={setShowModal} /> : null}
+      {showModal ? <VoteModal team={team} setShowModal={setShowModal} phase={phase} setMatches={setMatches} setUserVote={setUserVote} /> : null}
     </>
   );
 }

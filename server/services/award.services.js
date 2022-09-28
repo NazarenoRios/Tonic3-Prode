@@ -76,12 +76,14 @@ class AwardSevices {
             console.log(error);
         }
     }
-    static async modifyAward(award,{name,img,info}){
+    static async modifyAward(award,{name,img,info,country,place}){
         try{
             award.name = name
             award.img = img
             award.info = info
-        return await Award.save()
+            award.country = country
+            award.place = place
+        return await award.save()
         } catch(error){
             console.log(error)
         }

@@ -1,6 +1,5 @@
 import React from "react";
 import { useEffect } from "react";
-import { useState } from "react";
 import TableItems from "./TableItems";
 import { useSelector } from "react-redux";
 import axios from "axios";
@@ -13,7 +12,7 @@ function PhaseTable() {
   useEffect(()=>{
    axios.get(`/api/point/tournaments/${tournament.id}`)
    .then((res)=> setPoints(res.data))
-  },[])
+  },[tournament.id])
 
   return (
     <section className="py-1">

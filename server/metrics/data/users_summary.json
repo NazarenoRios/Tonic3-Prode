@@ -21,11 +21,15 @@
             }
           },
           "26": {
-            "hours": 18,
-            "mins": 18,
+            "hours": 22,
+            "mins": 5
+          },
+          "27": {
+            "hours": 11,
+            "mins": 26,
             "before_user_update": {
-              "hours": 19,
-              "mins": 10
+              "hours": 11,
+              "mins": 28
             },
             "total": {
               "hours": 0,
@@ -55,6 +59,16 @@
             "last_user_update": {
               "hours": 16,
               "mins": 44
+            }
+          },
+          "27": {
+            "before_user_update": {
+              "hours": 18,
+              "mins": 6
+            },
+            "total": {
+              "hours": 0,
+              "mins": 0
             }
           }
         }

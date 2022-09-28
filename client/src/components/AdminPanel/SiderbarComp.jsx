@@ -102,6 +102,19 @@ function SiderbarComp({ handleCloseSideBar }) {
           <RiContactsLine />
           <span className="capitalize ">{t("Users")}</span>
         </NavLink>
+
+        <NavLink
+          to="/Awards"
+          key="Awards"
+          onClick={handleCloseSideBar}
+          style={({ isActive }) => ({
+            backgroundColor: isActive ? "#0591aa" : "",
+          })}
+          className={({ isActive }) => (isActive ? activeLink : normalLink)}
+        >
+          <RiContactsLine />
+          <span className="capitalize ">Awards</span>
+        </NavLink>
       </div>
 
       <div key="Apps">

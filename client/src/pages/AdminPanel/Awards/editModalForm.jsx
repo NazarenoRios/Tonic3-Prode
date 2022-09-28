@@ -1,0 +1,128 @@
+import React from "react";
+import { useTranslation } from "react-i18next";
+import { useInput } from "../../../hooks/useInput";
+import { editAward, getAwards } from "./AwardsFunctions.ts";
+
+const EditModalForm = ({ row, setAwards , setShowModal }) => {
+
+  const name = useInput("name");
+  const img = useInput("logo");
+  const info = useInput("description");
+  const country = useInput("participants");
+  const place = useInput("state");
+
+  const handleEdit = async (award) => {
+    const editT = await editAward(award)
+    const closeModal = await setShowModal(false)
+    const getall = await getAwards().then((data) => setAwards(data));
+  }
+
+  const onSubmit = async (e) => {
+    e.preventDefault()
+    handleEdit({name: name.value,img: img.value,info: info.value,country: country.value,place: place.value, award: row})
+  };
+
+
+  const { t } = useTranslation(["admin-panel"]);
+
+  return (
+    <div className="relative p-6 flex-auto">
+      <form onSubmit={onSubmit}>
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="name"
+          >
+            Name
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="name"
+            type="text"
+            name="name"
+            {...name}
+          />
+        </div>
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="color"
+          >
+            Img
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="logo"
+            type="text"
+            {...img}
+          />
+        </div>
+
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="size"
+          >
+            Info
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="description"
+            type="text"
+            {...info}
+          />
+        </div>
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="brand"
+          >
+            Country
+          </label>
+
+          <select
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="teams"
+            {...country}
+          >
+            <option selected disabled value=""> Select Country </option>
+            <option value="Argentina">Argentina</option>
+            <option value="Brazil">Brazil</option>
+            <option value="United States">United States</option>
+          </select>
+        </div>
+        
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="brand"
+          >
+            Place
+          </label>
+
+          <select
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="teams"
+            {...place}
+          >
+            <option selected disabled value=""> Select Place </option>
+            <option value={1}>1</option>
+            <option value={2}>2</option>
+            <option value={3}>3</option>
+            <option value={4}>4</option>
+            <option value={5}>5</option>
+          </select>
+        </div>
+
+        <button
+          onSubmit={onSubmit}
+          className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+        >
+          {t("SaveChanges")}
+        </button>
+      </form>
+    </div>
+  );
+};
+
+export default EditModalForm;

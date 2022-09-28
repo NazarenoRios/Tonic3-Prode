@@ -5,10 +5,6 @@ function TableItems({ person, top }) {
   const [personData, setPersonData] = useState();
 
   const user = useSelector((state) => state.user);
-
-  console.log('ESTO ES PERSON', person)
-  console.log('ESTO ES USER', user)
-
   useEffect(() => {
     axios
       .get(`api/user/user/${person.userId}`)

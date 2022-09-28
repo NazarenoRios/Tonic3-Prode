@@ -18,7 +18,7 @@ function GeneralTable() {
   useEffect(()=>{
    axios.get(`/api/point/tournaments/${tournament.id}`)
    .then((res)=> setPoints(res.data))
-  },[])
+  },[tournament.id])
 
 
   return (

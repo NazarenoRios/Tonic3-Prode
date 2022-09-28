@@ -133,7 +133,7 @@ function Fixture() {
 
         <div className="container mx-auto grid md:grid-cols-2 md:gap-2 mt-6">
           {matches2.map((team, i) => (
-            <ProdeInfo key={i} team={team}/>
+            <ProdeInfo key={i} team={team} phase={phase} setMatches={setMatches}/>
           ))}
         </div>
       </div>
