@@ -18,22 +18,22 @@ class PointsServices {
         }
     }
 
-    // static async getTournamentPoints(userId, tournamentId) {
-    //     try {
-    //         const points = await Points.findOne({
-    //             where: {
-    //                 userId: userId,
-    //                 tournamentId: tournamentId
-    //             },
-    //             order: [
-    //                 ['points', 'DESC']
-    //             ]
-    //         })
-    //         return points
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
+    static async getTournamentPoints(userId, tournamentId) {
+        try {
+            const points = await Points.findOne({
+                where: {
+                    userId: userId,
+                    tournamentId: tournamentId
+                },
+                order: [
+                    ['points', 'DESC']
+                ]
+            })
+            return points
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     static async getFasePoints (userId,tournamentId){
         try{
@@ -84,7 +84,11 @@ class PointsServices {
                         point.points = point.points + 1;
                         point.save();
 
-                        const pointFase = await PointsServices.getFasePoints(match.tournamentId,bet.userId,match.fase)
+                        const pointFase = await PointsFase.findOne({where: {
+                            tournamentId: match.tournamentId, 
+                            userId: bet.userId,
+                            fase: match.fase
+                        }})
                         pointFase.points = pointFase.points + 1;
                         pointFase.save()
 

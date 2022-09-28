@@ -86,7 +86,7 @@ export default function UsersModel() {
   return (
     <>
       <div className="flex justify-between">
-        <Header title="Users" />
+        <Header title={t("Users")} />
         <div>
           <TextField
             id="standard-basic"

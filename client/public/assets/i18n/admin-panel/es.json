@@ -53,13 +53,14 @@
     "SelectHowManyTeams": "Seleccionar cuantos equipos",
 
     "EditTournament":"Editar Torneo",
-    "EditTeam":"Editar Team",
+    "EditTeam":"Editar Equipo",
     "EditMatch":"Editar Match",
     "EditPlayer":"Editar Jugador",
 
-    "AddTeam":"Add Team",
-    "AddMatch":"Add Match",
-    "AddPlayer":"Add Player",
+    "AddTeam":"Agregar equipo",
+    "AddMatch":"Agregar partido",
+    "AddPlayer":"Agregar player",
+    "AddAward":"Agregar premio",
 
     "Match":"Partido",
     "Date":"Fecha",
@@ -87,6 +88,19 @@
     "TeamBGoals":"Team B Goles",
     "SetHowManyGoals":"Seleccionar cuantos goles",
     "copyright":"© 2022 Todos los derechos reservados por prode.com",
+
+    "SelectAWinner":"Selecciona un ganador",
+    "HowManyPenalGoals":"Indicar cuantos goles de penal",
+
+    "Fullname":"Nombre completo",
+    "Age":"Edad",
+
+    "Awards":"Premios",
+    "Country":"Pais",
+    "Place":"Lugar",
+    "SelectCountry":"Seleccionar pais",
+    "SelectPlace":"Seleccionar Lugar",
+    "EditAward":"Editar Premio",
 
     "UserProfile":"Perfil del usuario",
     "EditProfile":"Editar perfil",

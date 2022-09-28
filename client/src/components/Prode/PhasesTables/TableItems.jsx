@@ -2,14 +2,6 @@ import React from "react";
 import { useSelector } from "react-redux";
 function TableItems({ torneo }) {
 
-
-  const user = useSelector((state) => state.user);
-  useEffect(() => {
-    axios
-      .get(`api/user/user/${person.userId}`)
-      .then((res) => setPersonData(res.data));
-  }, []);
-
   const torneoData = useSelector((state) => state.tournament);
 
   return (

@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import Btn from "../../common/Btn/Btn";
 
 
 const Dashboard = () => {
@@ -104,7 +105,9 @@ const Dashboard = () => {
                       <br/>
                       <br/>
                       <br/>
-                      <Link to="/Users" className="text-red-500 border-2 p-2">{t("Admin")}</Link>
+                      <div className="text-center">
+                        <Btn/>
+                      </div>
                     </div>
                   </div>
                 </div>

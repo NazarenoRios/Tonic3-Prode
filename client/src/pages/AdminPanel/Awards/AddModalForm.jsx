@@ -29,7 +29,7 @@ const AddModalForm = ({ setShowModal, setAwards }) => {
             className="block text-gray-700 text-sm font-bold mb-2"
             htmlFor="name"
           >
-            Name
+            {t("Name")}
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -73,7 +73,7 @@ const AddModalForm = ({ setShowModal, setAwards }) => {
             className="block text-gray-700 text-sm font-bold mb-2"
             htmlFor="brand"
           >
-            Country
+            {t("Country")}
           </label>
 
           <select
@@ -81,7 +81,7 @@ const AddModalForm = ({ setShowModal, setAwards }) => {
             id="teams"
             {...country}
           >
-            <option selected disabled value=""> Select Country </option>
+            <option selected disabled value=""> {t("SelectCountry")} </option>
             <option value="Argentina">Argentina</option>
             <option value="Brazil">Brazil</option>
             <option value="United States">United States</option>
@@ -93,7 +93,7 @@ const AddModalForm = ({ setShowModal, setAwards }) => {
             className="block text-gray-700 text-sm font-bold mb-2"
             htmlFor="brand"
           >
-            Place
+            {t("Place")}
           </label>
 
           <select
@@ -101,7 +101,7 @@ const AddModalForm = ({ setShowModal, setAwards }) => {
             id="teams"
             {...place}
           >
-            <option selected disabled value=""> Select Place </option>
+            <option selected disabled value=""> {t("SelectPlace")} </option>
             <option value={1}>1</option>
             <option value={2}>2</option>
             <option value={3}>3</option>

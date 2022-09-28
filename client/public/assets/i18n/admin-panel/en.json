@@ -57,9 +57,10 @@
     "EditMatch":"Edit Match",
     "EditPlayer":"Edit Player",
 
-    "AddTeam":"Agregar equipo",
-    "AddMatch":"Agregar partido",
-    "AddPlayer":"Agregar player",
+    "AddTeam":"Add Team",
+    "AddMatch":"Add Match",
+    "AddPlayer":"Add Player",
+    "AddAward":"Add Award",
 
     "Match":"Match",
     "Date":"Date",
@@ -87,6 +88,19 @@
     "TeamBGoals":"Team B Goals",
     "SetHowManyGoals":"Set how many goals",
     "copyright":"© 2022 All rights reserved by prode.com",
+
+    "SelectAWinner":"Select a Winner",
+    "HowManyPenalGoals":"Indicate how many goals from penalties",
+
+    "Fullname":"Fullname",
+    "Age":"Age",
+
+    "Awards":"Premios",
+    "Country":"Country",
+    "Place":"Place",
+    "SelectCountry":"Select Country",
+    "SelectPlace":"Select Place",
+    "EditAward":"Edit Award",
 
     "UserProfile":"User Profile",
     "EditProfile":"Edit Profile",

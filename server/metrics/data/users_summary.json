@@ -1,0 +1,55 @@
+[
+  {
+    "id": 1,
+    "name": "Nazareno",
+    "permanence_logs": {
+      "2022": {
+        "8": {
+          "28": {
+            "hours": 10,
+            "mins": 30,
+            "seconds": 25,
+            "before_user_update": {
+              "hours": 11,
+              "mins": 42,
+              "seconds": 14
+            },
+            "total": {
+              "time_in_sec": 828
+            },
+            "last_user_update": {
+              "hours": 11,
+              "mins": 42,
+              "seconds": 14
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": 2,
+    "name": "Nazareno L",
+    "permanence_logs": {
+      "2022": {
+        "8": {
+          "28": {
+            "before_user_update": {
+              "hours": 0,
+              "mins": 35,
+              "seconds": 27
+            },
+            "total": {
+              "time_in_sec": 7
+            },
+            "last_user_update": {
+              "hours": 0,
+              "mins": 35,
+              "seconds": 27
+            }
+          }
+        }
+      }
+    }
+  }
+]
