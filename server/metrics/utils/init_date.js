@@ -1,54 +1,57 @@
 const numMonth_to_letter = (month) => {
   switch (month) {
     case 1:
-      return "January";
+      return "Jan";
 
     case 2:
-      return "February";
+      return "Feb";
 
     case 3:
-      return "March";
+      return "Mar";
 
     case 4:
-      return "April";
+      return "Apr";
 
     case 5:
-      return "may";
+      return "May";
 
     case 6:
-      return "June";
+      return "Jun";
 
     case 7:
       return "July";
 
     case 8:
-      return "August";
+      return "Aug";
 
     case 9:
-      return "September";
+      return "Sept";
 
     case 10:
-      return "October";
+      return "Oct";
 
     case 11:
-      return "November";
+      return "Nov";
 
     case 12:
-      return "December";
+      return "Dec";
     default:
       break;
   }
 };
 module.exports = {
   parse_date: (date) => {
+    const str_day_arr=['Sun',"Mon","Tues","Wed","Thur","Fri","Sat"]
     const day = date.getDate();
+    const day_ix= date.getDay()
+    const str_day= str_day_arr[day_ix]
     const year = date.getFullYear();
     let month = date.getMonth();
     const hours = date.getHours();
     const mins = date.getMinutes();
     const str_month = numMonth_to_letter(month)
     const seconds= date.getSeconds()
-    return { day, year, str_month,month, date, hours, mins, seconds };
+    return { day, year, str_month,month, date, hours, mins, seconds,str_day };
   },
   calculate_log_time: (logout_date, login_date) => {
     const total_hours = (logout_date.hours - login_date.hours)*120;
@@ -58,4 +61,9 @@ module.exports = {
     if (time_in_sec > 600) return { ausence: true };
     return { time_in_sec };
   },
+  get_day_name:(dateStr, locale)=>{
+    var date = new Date(dateStr);
+    return date.toLocaleDateString(locale, { weekday: 'long' });        
+}
+
 };

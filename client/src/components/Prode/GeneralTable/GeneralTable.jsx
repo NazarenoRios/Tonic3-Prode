@@ -8,7 +8,7 @@ import axios from "axios";
 
 function GeneralTable() {
 
-  const [point , setPoints] = React.useState([])
+  const [points , setPoints] = React.useState([])
   const tournament = useSelector((state) => state.tournament);
 
   const { t } = useTranslation(["table_points"]);
@@ -17,6 +17,8 @@ function GeneralTable() {
    axios.get(`/api/point/tournaments/${tournament.id}`)
    .then((res)=> setPoints(res.data))
   },[tournament.id])
+
+  console.log(points)
 
   return (
     <section className="py-1">
@@ -40,9 +42,9 @@ function GeneralTable() {
               </thead>
 
               <tbody class="bg-grey-light flex flex-col items-center justify-between overflow-y-scroll w-full" style={{ zIndex:"100000000"}}>
-                 {point?.map((person,i) => (
+                 {points.length ? points?.map((person,i) => (
                   <TableItems key={i} person={person} top={i+1}/>
-                ))} 
+                )):''} 
               </tbody>
             </table>
           </div>

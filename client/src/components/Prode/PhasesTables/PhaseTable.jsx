@@ -6,7 +6,7 @@ import axios from "axios";
 
 function PhaseTable() {
 
-  const [point , setPoints] = React.useState([])
+  const [points , setPoints] = React.useState([])
   const tournament = useSelector((state) => state.tournament);
   const user = useSelector((state) => state.user);
   
@@ -38,9 +38,9 @@ function PhaseTable() {
               </thead>
 
               <tbody class="bg-grey-light flex flex-col items-center justify-between overflow-y-scroll w-full" style={{ zIndex:"100000000"}}>
-                 {point?.map((torneo,i) => (
+                {points.length ? points?.map((torneo,i) => (
                   <TableItems key={i} torneo={torneo} top={i+1}/>
-                ))} 
+                )):''} 
               </tbody>
             </table>
           </div>

@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import Navbar2 from "../../components/Navbar/NavBar2";
-import fondo from "../../assets/register/background-edit.png";
-import avatar from "../../assets/data/avatar.jpg";
+import Avatar1 from "../../assets/data/Avatar1.png"
 
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { editUser } from "../../state/user";
 import AllowNotifications from "../../common/AllowNotif/AllowNotifications";
-import AlertMessage from "../../common/AlertMessage/AlertMessage";
 import { useTranslation } from "react-i18next";
 
 const CustomUser = () => {
@@ -58,7 +56,7 @@ const CustomUser = () => {
           <div className="flex justify-center pb-5">
             <img
               className="rounded-full"
-              src={avatar}
+              src={Avatar1}
               alt=""
               style={{ height: "100px" }}
             />

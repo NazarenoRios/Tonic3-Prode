@@ -5,7 +5,7 @@ import { MdKeyboardArrowDown } from 'react-icons/md';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 import { useStateContext } from "../../contexts/ContextProvider";
 
-import avatar from '../../assets/data/avatar.jpg';
+import Avatar1 from "../../assets/data/Avatar1.png"
 import  UserProfile  from './UserProfile';
 import { useTranslation } from "react-i18next";
 
@@ -26,7 +26,7 @@ export default function DropDown() {
           >
             <img
               className="rounded-full w-8 h-8"
-              src={avatar}
+              src={Avatar1}
               alt="user-profile"
             />
             <p>
