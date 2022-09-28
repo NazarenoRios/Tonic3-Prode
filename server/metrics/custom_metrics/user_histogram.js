@@ -3,6 +3,7 @@ const { Team, Match } = require("../../models");
 const set_dir = require("../utils");
 const { parse_date } = require("../utils/init_date");
 const { save_data } = require("../utils/save_data");
+const { inc_participants } = require("./participants_counter");
 
 const find_user_ix = (id, prop, data) => {
   for (let i = 0; i < data.length; i++) {
@@ -14,9 +15,11 @@ module.exports = {
     const { day, hours, mins } = parse_date(new Date());
     const register_dir = set_dir("users_histogram", []);
     const { data, dir } = register_dir;
+    console.log(payload)
     const { userId, matchId, tournamentId, winner_id } = payload;
     const {name,logo}=await Team.findByPk(winner_id)
     const {fase}=await Match.findByPk(matchId)
+    inc_participants(fase)
     const user_ix = find_user_ix(userId, "userId", data);
     if (!user_ix) {
       data.push({

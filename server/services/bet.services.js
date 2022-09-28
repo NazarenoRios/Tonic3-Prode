@@ -5,8 +5,7 @@ const { set_data } = require("../metrics/custom_metrics/user_histogram")
 class BetServices {
     static async createBet(body){
         try{
-            
-            set_data(body)
+           await set_data(body)
            return await Bet.create(body)
         } catch(error){
             console.log(error)
