@@ -1,10 +1,10 @@
 import React from "react";
+import EditModalForm from "./editModalForm";
 import { useTranslation } from "react-i18next";
-import VoteModalForm from "./VoteModalForm";
 
-function VoteModal({team, setShowModal, phase, setMatches, setUserVote}) {
+function EditModal({setShowModal, setAwards, row}) {
 
-  const { t } = useTranslation(["Prode"]);
+  const { t } = useTranslation(["admin-panel"]);
 
   return (
     <>
@@ -17,7 +17,7 @@ function VoteModal({team, setShowModal, phase, setMatches, setUserVote}) {
               className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t"
               style={{ width: "100vw" }}
             >
-              <h3 className="text-3xl font-semibold">{t("Vote")}</h3>
+              <h3 className="text-3xl font-semibold">{t("EditTournament")}</h3>
               <button
                 className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
                 onClick={() => setShowModal(false)}
@@ -28,12 +28,10 @@ function VoteModal({team, setShowModal, phase, setMatches, setUserVote}) {
               </button>
             </div>
             {/*body*/}
-            <VoteModalForm
+            <EditModalForm
               setShowModal={setShowModal}
-              team={team}
-              phase={phase}
-              setMatches={setMatches}
-              setUserVote={setUserVote}
+              row={row}
+              setAwards={setAwards}
             />
 
             {/*footer*/}
@@ -56,4 +54,4 @@ function VoteModal({team, setShowModal, phase, setMatches, setUserVote}) {
   );
 }
 
-export default VoteModal;
+export default EditModal;

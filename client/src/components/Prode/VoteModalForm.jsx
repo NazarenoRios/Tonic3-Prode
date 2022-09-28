@@ -1,14 +1,13 @@
 import axios from "axios";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useInput } from "../../hooks/useInput";
+import { getMatchesByPhase } from "./ProdeFunctions";
 
-const VoteModalForm = ({ team , setShowModal}) => {
+const VoteModalForm = ({ team , setShowModal, phase, setMatches, setUserVote}) => {
 
   const teams = useInput("teams");
-
-  const dispatch = useDispatch()
 
   const tournament = useSelector(state => state.tournament)
   const user = useSelector(state => state.user)
@@ -16,10 +15,14 @@ const VoteModalForm = ({ team , setShowModal}) => {
   const onSubmit = async (e) => {
     e.preventDefault()
     const sendData = await axios.post('/api/bet/create',{userId:user.id, winner_id: teams.value, tournamentId: tournament.id, matchId: team.teamID[0].data_match.matchId})
+    const winnerVote = await axios.get(`api/bet/userbet/${user.id}/${team.teamID[0]?.data_match.matchId}`).then((res) => setUserVote(res.data));
+    const actualization = await getMatchesByPhase({ tournamentId: tournament.id, fase: phase }).then((data) => setMatches(data));
     const closeModal = await setShowModal(false)
   };
 
   const { t } = useTranslation(["Prode"]);
+
+  console.log(phase)
 
   return (
     <div className="relative p-6 flex-auto">

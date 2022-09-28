@@ -1,8 +1,6 @@
-
-const { set_data } = require("../metrics/custom_metrics/user_histogram")
-
 const { Bet, Match, User, Team } = require("../models")
 
+const { set_data } = require("../metrics/custom_metrics/user_histogram")
 
 class BetServices {
     static async createBet(body){
@@ -24,7 +22,7 @@ class BetServices {
     }  
 
     static async getBet (userId,matchId){
-        try{  
+        try{
            const bet = await Bet.findOne({
             where:{
                 userId : userId,
@@ -37,7 +35,7 @@ class BetServices {
         } catch(error){
             console.log(error)
         }
-    } 
+    }
 
     static async modifyBet (bet,body){
         try{

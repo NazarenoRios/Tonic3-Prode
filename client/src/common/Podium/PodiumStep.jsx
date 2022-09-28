@@ -7,6 +7,8 @@ export default function PodiumStep({ podium, winner }) {
 
   const user = useSelector((state) => state.user);
 
+  // console.log("winner",winner)
+
   return (
     <div
       style={{

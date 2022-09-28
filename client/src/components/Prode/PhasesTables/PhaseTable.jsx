@@ -16,7 +16,6 @@ function PhaseTable() {
    .then((res)=> setPoints(res.data))
   },[tournament.id])
 
-
   return (
     <section className="py-1">
       <div className=" mb-12 xl:mb-0 px-4 mx-auto mt-24">
