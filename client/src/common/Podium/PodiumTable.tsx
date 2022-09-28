@@ -2,9 +2,9 @@ import * as React from "react";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
+import axios from "axios";
 
 export const PodiumTable = () => {
-
   const user = useSelector((state) => state.user);
 
   const [premioArg, setPremioArg] = useState({
@@ -41,6 +41,19 @@ export const PodiumTable = () => {
     visible: { opacity: 1 },
   };
 
+  const [awards, setAwards] = useState([]);
+
+  function filterAwards(arr, country, place) {
+    const newArr = arr.filter((award) => {
+      return award.country === country && award.place === place;
+    });
+    return newArr;
+  }
+
+  React.useEffect(() => {
+    axios.get("/api/award/all").then((res) => setAwards(res.data));
+  }, [awards.length]);
+
   return (
     <>
       <motion.div
@@ -55,11 +68,23 @@ export const PodiumTable = () => {
           variants={item}
         >
           {user.country === "Argentina" ? (
-            <span className="text-white">{premioArg.premio}</span>
+            <span className="text-white">
+              {filterAwards(awards, "Argentina", 1).length
+                ? `🥇 ${filterAwards(awards, "Argentina", 1)[0].name}`
+                : "🥇 Camiseta de Esdasdstudiantes firmada por Veron"}
+            </span>
           ) : user.country === "Brazil" ? (
-            <span className="text-white">{premioBr.premio}</span>
+            <span className="text-white">
+              {filterAwards(awards, "Brazil", 1).length
+                ? `🥇 ${filterAwards(awards, "Brazil", 1)[0].name}`
+                : "🥇 Casa na Favela"}
+            </span>
           ) : user.country === "United States" ? (
-            <span className="text-white">{premioUsa.premio}</span>
+            <span className="text-white">
+              {filterAwards(awards, "United States", 1).length
+                ? `🥇 ${filterAwards(awards, "United States", 1)[0].name}`
+                : "🥇 Quadricycle"}
+            </span>
           ) : (
             ""
           )}
