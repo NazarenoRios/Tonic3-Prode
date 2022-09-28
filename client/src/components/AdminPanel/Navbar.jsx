@@ -3,6 +3,7 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 
+import Avatar1 from "../../assets/data/Avatar1.png"
 import avatar from "../../assets/data/avatar.jpg";
 import { UserProfile } from ".";
 import { useStateContext } from "../../contexts/ContextProvider";
@@ -95,7 +96,7 @@ const Navbar = () => {
           >
             <img
               className="rounded-full w-8 h-8"
-              src={avatar}
+              src={Avatar1}
               alt="user-profile"
             />
             <p>

@@ -2,6 +2,7 @@ import React from 'react';
 import { MdOutlineCancel } from 'react-icons/md';
 
 import { Button } from '.';
+import Avatar1 from "../../assets/data/Avatar1.png"
 import avatar from '../../assets/data/avatar.jpg';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
@@ -41,8 +42,8 @@ const UserProfile = () => {
       </div>
       <div className="flex gap-5 items-center mt-6 border-color border-b-1 pb-6">
         <img
-          className="rounded-full h-24 w-24"
-          src={avatar}
+          className="rounded-full h-14 w-14"
+          src={Avatar1}
           alt="user-profile"
         />
         <div>
