@@ -4,7 +4,7 @@ const { save_data } = require("../utils/save_data");
 
 const find_country=(country,data)=>{
   for(let i= 0; i< data.length; i++){
-    if(data[i].x.toLowerCase===country.toLowerCase)return i
+    if(data[i].x.toLowerCase()===country.toLowerCase())return i
   }
 }
 
