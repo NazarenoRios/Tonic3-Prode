@@ -58,7 +58,7 @@ const UserProfile = () => {
         </div>
       </div>
       <div>
-        <Link to={user.admin ? "/Admin-Panel" : "/Edit-User"}>
+        <Link to='/Edit-User'>
           <div className="flex gap-5 border-b-1 border-color p-4 hover:bg-light-gray cursor-pointer  dark:hover:bg-[#42464D]">
             <button
               type="button"

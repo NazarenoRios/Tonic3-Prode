@@ -46,16 +46,16 @@ export default function AwardsModel() {
 
   return (
     <>
-      <Header title="Awards" />
+      <Header title={t("Awards")} />
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>Name</TableCell>
+              <TableCell>{t("Name")}</TableCell>
               <TableCell align="center">Img</TableCell>
-              <TableCell align="center">Description&nbsp;</TableCell>
-              <TableCell align="center">Country&nbsp;</TableCell>
-              <TableCell align="center">Place&nbsp;</TableCell>
+              <TableCell align="center">{t("Description")}&nbsp;</TableCell>
+              <TableCell align="center">{t("Country")}&nbsp;</TableCell>
+              <TableCell align="center">{t("Place")}&nbsp;</TableCell>
               <TableCell align="center">{t("Edit")}&nbsp;</TableCell>
               <TableCell align="center">{t("Delete")}&nbsp;</TableCell>
               <TableCell align="center">

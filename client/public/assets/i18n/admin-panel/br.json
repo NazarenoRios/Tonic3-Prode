@@ -60,6 +60,7 @@
     "AddTeam":"Adicionar equipe",
     "AddMatch":"Adicionar correspondência",
     "AddPlayer":"Adicionar jogador",
+    "AddAward":"Adicionar prêmio",
 
     "Match":"Correspondência",
     "Date":"Data",
@@ -87,6 +88,19 @@
     "TeamBGoals":"Gols da Equipe B",
     "SetHowManyGoals":"Definir quantos gols",
     "copyright":"© 2022 Todos os direitos reservados por prode.com",
+
+    "SelectAWinner":"Selecione um vencedor",
+    "HowManyPenalGoals":"Indique quantos gols de pênaltis",
+
+    "Fullname":"Nome completo",
+    "Age":"Idade",
+
+    "Awards":"Prêmios",
+    "Country":"País",
+    "Place":"Lugar",
+    "SelectCountry":"Selecione o pais",
+    "SelectPlace":"Selecionar lugar",
+    "EditAward":"Editar prêmio",
 
     "UserProfile":"Perfil de usuário",
     "EditProfile":"Editar Perfil",
