@@ -18,7 +18,6 @@ module.exports = {
   permanence_counter: async (user_data) => {
     const { name, id } = user_data;
     let user_ix= find_index(id)
-    console.log(user_ix)
     if (!id) return;
     if (!data[user_ix]) {
         data.push({
@@ -26,7 +25,6 @@ module.exports = {
         name,
         permanence_logs: {},
       })
-      console.log(data,'apwodkapwod')
     user_ix=0
     }
     data[user_ix].permanence_logs = await user_json_nav(data[user_ix].permanence_logs);

@@ -6,21 +6,21 @@
       "2022": {
         "8": {
           "28": {
-            "hours": 10,
-            "mins": 30,
-            "seconds": 25,
+            "hours": 18,
+            "mins": 55,
+            "seconds": 28,
             "before_user_update": {
-              "hours": 11,
-              "mins": 42,
-              "seconds": 14
+              "hours": 19,
+              "mins": 37,
+              "seconds": 29
             },
             "total": {
-              "time_in_sec": 828
+              "time_in_sec": -963
             },
             "last_user_update": {
-              "hours": 11,
-              "mins": 42,
-              "seconds": 14
+              "hours": 19,
+              "mins": 37,
+              "seconds": 29
             }
           }
         }

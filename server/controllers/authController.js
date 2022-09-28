@@ -2,6 +2,7 @@ const { User } = require("../models");
 const { generateToken } = require("../config/tokens");
 const { createHmac } = require("node:crypto");
 const mailer = require("../utils/mailer");
+const push = require("../utils/webpush")
 
 
 const { OAuth2Client } = require("google-auth-library");
@@ -58,6 +59,7 @@ exports.googlelogin = (req, res) => {
             
 
             permanence_counter({id:user.id,name:user.name},'login_date')
+            push.sendPush("Bienvenido a Prode", "")
             const token = generateToken(payload);
             // sessionStorage.setItem("token", token)
             res.cookie("token", token);

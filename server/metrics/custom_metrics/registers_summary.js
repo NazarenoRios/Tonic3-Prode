@@ -5,7 +5,6 @@ const { save_data } = require("../utils/save_data");
 const find_obj_ix = (date_obj, data) => {
   const { year, month } = date_obj;
   for (let i = 0; i < data.length; i++) {
-    console.log(data[i]['year'],year,data[i]['month'],month,'eeeeeeeeeeeeeeeees')
     if (data[i]["year"] === year && data[i]["month"] === month) return i;
   }
 };
@@ -13,7 +12,6 @@ const find_obj_ix = (date_obj, data) => {
 const save_date = (dir, data) => {
   const { year, str_month } = parse_date(new Date(), true);
   const obj_ix = find_obj_ix({ month: str_month, year },data);
-  console.log(obj_ix,'awdiawdoi')
   if (obj_ix!==0 && !obj_ix) {
     data.push({ year, month: str_month, users: 1 });
     return save_data(dir, data);

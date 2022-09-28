@@ -29,7 +29,9 @@ function App() {
   useEffect(()=>{
     onMessage(messaging, message=>{
       console.log("tu mensaje", message)
-      toast(message.notification.title)
+      toast(<>{message.notification.title}  <br/> {message.notification.body}</>,{
+        className: "toasty"
+      })
     })
   },[])
 
@@ -42,7 +44,7 @@ function App() {
 
   return (
     <>
-      <ToastContainer/>
+      <ToastContainer style={{ width: "500px", height: "100px", zIndex:"999999999999", position:"absolute" } } />
       {user.isVerified ? (
         <Routes>
           {/* User Section */}
