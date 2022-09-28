@@ -20,6 +20,14 @@ router.get('/permanency',(req,res,next)=>{
       res.sendStatus(404)
    }
 })
+router.get('/logs_per_day',(req,res,next)=>{
+   try{
+      const file_data=get_json_data('week_loggs_summary')
+      return res.status(200).send(file_data)
+   }catch(e){
+      console.log(e)
+   }
+})
 
 
 

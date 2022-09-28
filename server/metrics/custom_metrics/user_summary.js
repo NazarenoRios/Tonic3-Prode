@@ -37,7 +37,6 @@ module.exports = {
         user_country:country,
         permanence_logs: {},
       })
-      console.log(data,'apwodkapwod')
     user_ix=0
     }
     data[user_ix].permanence_logs = await user_json_nav(data[user_ix].permanence_logs,abreved_country);
