@@ -1,0 +1,62 @@
+[
+  { "name": "Octavos de Final", "value": 36, "text": "36%" },
+  { "name": "Cuartos de Final", "value": 50, "text": "50%" },
+  { "name": "Semifinal", "value": 70, "text": "70%" },
+  { "name": "Final", "value": 45, "text": "45%" }
+]
+
+
+[
+    { "month": "Jan", "users": 3 },
+    { "month": "Feb", "users": 5 },
+    { "month": "Mar", "users": 3 },
+    { "month": "Apr", "users": 2 },
+    { "month": "May", "users": 4 },
+    { "month": "Jun", "users": 7 },
+    { "month": "July", "users": 2 },
+    { "month": "Aug", "users": 5 },
+    { "month": "Sep", "users": 10 },
+    { "month": "Oct", "users": 12 },
+    { "month": "Nov", "users": 8 },
+    { "month": "Dec", "users": 13 }
+]
+
+
+[
+  { "month": 1, "users": 3 },
+  { "month": 2, "users": 5 },
+  { "month": 3, "users": 3 },
+  { "month": 4, "users": 2 },
+  { "month": 5, "users": 4 },
+  { "month": 6, "users": 7 },
+  { "month": 7, "users": 2 },
+  { "month": 8, "users": 5 },
+  { "month": 9, "users": 10 },
+  { "month": 10, "users": 12 },
+  { "month": 11, "users": 8 },
+  { "month": 12, "users": 13 }
+]
+
+
+[
+    [
+      { "x": "AR", "y": 7 }
+    ],
+    [
+      { "x": "US", "y": 2 }
+    ],
+    [
+      { "x": "BR", "y": 5 }
+    ]
+]
+
+
+[
+  { "x": "Mon", "y": 15 },
+  { "x": "Tues", "y": 10 },
+  { "x": "Wed", "y": 25 },
+  { "x": "Thur", "y": 41 },
+  { "x": "Fri", "y": 57 },
+  { "x": "Sat", "y": 35 },
+  { "x": "Sun", "y": 30 }
+]

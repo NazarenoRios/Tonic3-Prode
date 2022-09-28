@@ -1,40 +1,40 @@
 const numMonth_to_letter = (month) => {
   switch (month) {
     case 1:
-      return "January";
+      return "Jan";
 
     case 2:
-      return "February";
+      return "Feb";
 
     case 3:
-      return "March";
+      return "Mar";
 
     case 4:
-      return "April";
+      return "Apr";
 
     case 5:
-      return "may";
+      return "May";
 
     case 6:
-      return "June";
+      return "Jun";
 
     case 7:
       return "July";
 
     case 8:
-      return "August";
+      return "Aug";
 
     case 9:
-      return "September";
+      return "Sept";
 
     case 10:
-      return "October";
+      return "Oct";
 
     case 11:
-      return "November";
+      return "Nov";
 
     case 12:
-      return "December";
+      return "Dec";
     default:
       break;
   }
