@@ -1,17 +1,25 @@
 const express=require('express')
+const { validateToken } = require('../../config/tokens')
 const router=express.Router()
-const {validateAuth}=require('../../middleware/auth')
-const set_dir = require('../utils')
-const summary_file=set_dir('register_summary')
-const {data}=summary_file
+const { get_json_data, get_prop_index } = require('../utils/routes_utils')
 
 
-
-router.get('/',(req,res,next)=>{
-    //if(!req.user.admin)return res.sendStatus(401)
-    res.send(data)
+router.get('/',async (req,res,next)=>{
+   const str_file= get_json_data('register_summary')
+   const num_file= get_json_data('register_summary_num')
+   res.status(200).send({str_file,num_file})
+   
 })
 
+router.get('/permanency',(req,res,next)=>{
+   try{
+      const file_data= get_json_data('user_permanency')
+         return res.status(200).send(file_data)
+   }catch(e){
+      console.log(e)
+      res.sendStatus(404)
+   }
+})
 
 
 

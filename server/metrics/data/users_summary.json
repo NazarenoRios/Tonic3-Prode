@@ -2,22 +2,23 @@
   {
     "id": 1,
     "name": "Nahuel",
+    "user_country": "Argentina",
     "permanence_logs": {
       "2022": {
         "8": {
-          "27": {
+          "28": {
             "before_user_update": {
-              "hours": 17,
-              "mins": 18,
-              "seconds": 10
+              "hours": 11,
+              "mins": 58,
+              "seconds": 27
             },
             "total": {
-              "time_in_sec": 5
+              "time_in_sec": 2
             },
             "last_user_update": {
-              "hours": 17,
-              "mins": 18,
-              "seconds": 10
+              "hours": 11,
+              "mins": 58,
+              "seconds": 27
             }
           }
         }
