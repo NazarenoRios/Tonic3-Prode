@@ -2,7 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import VoteModalForm from "./VoteModalForm";
 
-function VoteModal({team, setShowModal}) {
+function VoteModal({team, setShowModal, phase, setMatches, setUserVote}) {
 
   const { t } = useTranslation(["Prode"]);
 
@@ -31,6 +31,9 @@ function VoteModal({team, setShowModal}) {
             <VoteModalForm
               setShowModal={setShowModal}
               team={team}
+              phase={phase}
+              setMatches={setMatches}
+              setUserVote={setUserVote}
             />
 
             {/*footer*/}

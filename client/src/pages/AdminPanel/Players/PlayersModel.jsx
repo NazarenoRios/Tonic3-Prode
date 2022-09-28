@@ -45,18 +45,18 @@ export default function PlayerModel() {
 
   return (
     <>
-      <Header title="Tournaments" />
+      <Header title={t("Players")} />
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell>id</TableCell>
-              <TableCell align="center">Fullname</TableCell>
-              <TableCell align="center">Age&nbsp;</TableCell>
+              <TableCell align="center">{t("Fullname")}</TableCell>
+              <TableCell align="center">{t("Age")}&nbsp;</TableCell>
               <TableCell align="center">Img&nbsp;</TableCell>
               <TableCell align="center">Info&nbsp;</TableCell>
-              <TableCell align="center">Edit&nbsp;</TableCell>
-              <TableCell align="center">Delete&nbsp;</TableCell>
+              <TableCell align="center">{t("Edit")}&nbsp;</TableCell>
+              <TableCell align="center">{t("Delete")}&nbsp;</TableCell>
               <TableCell align="center">
                 <MenuItem sx={{ display: "flex", justifyContent: "center" }} onClick={() => setShowModal(true)}>
                   <AddIcon style={{ color: "green" }} />
@@ -66,7 +66,7 @@ export default function PlayerModel() {
           </TableHead>
           <TableBody>
             {rows.map((row, i) => (
-              <PlayerForm row={row} key={i} setTournaments={setPlayers} />
+              <PlayerForm row={row} key={i} setPlayers={setPlayers} />
             ))}
           </TableBody>
         </Table>

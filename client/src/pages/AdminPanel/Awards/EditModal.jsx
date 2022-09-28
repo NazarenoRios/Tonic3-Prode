@@ -1,8 +1,8 @@
 import React from "react";
+import EditModalForm from "./editModalForm";
 import { useTranslation } from "react-i18next";
-import AddModalForm from "./AddModalForm";
 
-function AddModal({ setShowModal,setPlayers }) {
+function EditModal({setShowModal, setAwards, row}) {
 
   const { t } = useTranslation(["admin-panel"]);
 
@@ -17,7 +17,7 @@ function AddModal({ setShowModal,setPlayers }) {
               className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t"
               style={{ width: "100vw" }}
             >
-              <h3 className="text-3xl font-semibold">{t("AddMatch")}</h3>
+              <h3 className="text-3xl font-semibold">{t("EditAward")}</h3>
               <button
                 className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
                 onClick={() => setShowModal(false)}
@@ -28,7 +28,11 @@ function AddModal({ setShowModal,setPlayers }) {
               </button>
             </div>
             {/*body*/}
-            <AddModalForm  setShowModal={setShowModal} setPlayers={setPlayers} />
+            <EditModalForm
+              setShowModal={setShowModal}
+              row={row}
+              setAwards={setAwards}
+            />
 
             {/*footer*/}
             <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
@@ -50,4 +54,4 @@ function AddModal({ setShowModal,setPlayers }) {
   );
 }
 
-export default AddModal;
+export default EditModal;

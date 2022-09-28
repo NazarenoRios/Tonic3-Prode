@@ -64,7 +64,7 @@ Tournament.addHook("afterCreate",async(tournament)=>{
   tournamentId : tournament.id
   })
 
-  for (let i = tournament.participants/2; i >= 2  ; i/=2) {
+  for (let i = tournament.participants/2; i >= 1  ; i/=2) {
     await PointsFase.create({
       points : 0,
       fase : i,

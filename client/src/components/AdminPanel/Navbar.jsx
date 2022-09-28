@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 
-const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
+const NavButton = ({ title, customFunc, icon, dotColor }) => (
   <TooltipComponent content={title} position="BottomCenter">
     <button
       type="button"
@@ -81,6 +81,7 @@ const Navbar = () => {
           <select
             onChange={handleLenguageChange}
             value={localStorage.getItem("i18nextLng")}
+            className="bg-transparent text-center font-semibold"
           >
             <option value="en">English</option>
             <option value="es">Español</option>

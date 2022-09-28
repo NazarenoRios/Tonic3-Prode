@@ -1,25 +1,27 @@
-import React  from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { useInput } from "../../../hooks/useInput";
-import { editPlayer, getPlayers } from "./PlayersFunctions.ts";
+import { editAward, getAwards } from "./AwardsFunctions.ts";
 
-const EditModalForm = ({ row, setPlayers , setShowModal }) => {
+const EditModalForm = ({ row, setAwards , setShowModal }) => {
 
-  const fullname = useInput("fullname");
-  const age = useInput("age");
-  const img = useInput("img");
-  const info = useInput("info");
-  
-  const handleEdit = async (player) => {
-    const editT = await editPlayer(player)
+  const name = useInput("name");
+  const img = useInput("logo");
+  const info = useInput("description");
+  const country = useInput("participants");
+  const place = useInput("state");
+
+  const handleEdit = async (award) => {
+    const editT = await editAward(award)
     const closeModal = await setShowModal(false)
-    const getall = await getPlayers().then((data) => setPlayers(data));
+    const getall = await getAwards().then((data) => setAwards(data));
   }
 
   const onSubmit = async (e) => {
     e.preventDefault()
-    handleEdit({player: row, fullname: fullname.value ,age: age.value,img: img.value,info: info.value})
+    handleEdit({name: name.value,img: img.value,info: info.value,country: country.value,place: place.value, award: row})
   };
+
 
   const { t } = useTranslation(["admin-panel"]);
 
@@ -31,41 +33,26 @@ const EditModalForm = ({ row, setPlayers , setShowModal }) => {
             className="block text-gray-700 text-sm font-bold mb-2"
             htmlFor="name"
           >
-            {t("Fullname")}
+            {t("Name")}
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="name"
             type="text"
             name="name"
-            {...fullname}
+            {...name}
           />
         </div>
         <div className="mb-4">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="age"
-          >
-            {t("Age")}
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="age"
-            type="number"
-            {...age}
-          />
-        </div>
-
-        <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="img"
+            htmlFor="color"
           >
             Img
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="img"
+            id="logo"
             type="text"
             {...img}
           />
@@ -74,16 +61,57 @@ const EditModalForm = ({ row, setPlayers , setShowModal }) => {
         <div className="mb-4">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="info"
+            htmlFor="size"
           >
             Info
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="info"
+            id="description"
             type="text"
             {...info}
           />
+        </div>
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="brand"
+          >
+            {t("Country")}
+          </label>
+
+          <select
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="teams"
+            {...country}
+          >
+            <option selected disabled value=""> {t("SelectCountry")} </option>
+            <option value="Argentina">Argentina</option>
+            <option value="Brazil">Brazil</option>
+            <option value="United States">United States</option>
+          </select>
+        </div>
+        
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="brand"
+          >
+            {t("Place")}
+          </label>
+
+          <select
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="teams"
+            {...place}
+          >
+            <option selected disabled value=""> {t("SelectPlace")} </option>
+            <option value={1}>1</option>
+            <option value={2}>2</option>
+            <option value={3}>3</option>
+            <option value={4}>4</option>
+            <option value={5}>5</option>
+          </select>
         </div>
 
         <button

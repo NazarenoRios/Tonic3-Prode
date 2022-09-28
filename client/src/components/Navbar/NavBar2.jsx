@@ -95,7 +95,7 @@ export default function NavBar2() {
             <ul className="items-center space-y-8 md:flex md:space-x-6 md:space-y-0 ml-2">
 
               <li className="text-black text-xl hover:text-blue-600">
-                <select onChange={handleLenguageChange} value={localStorage.getItem("i18nextLng")} >
+                <select onChange={handleLenguageChange} value={localStorage.getItem("i18nextLng")} className="bg-transparent text-center font-semibold" >
                   <option value="en">English</option>
                   <option value="es">Español</option>
                   <option value="br">Português</option>

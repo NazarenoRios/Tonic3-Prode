@@ -7,7 +7,7 @@ import "./App.css";
 import { getUser } from "./state/user";
 
 // Admin Section
-import { Calendar,Dashboard, Kanban, Bar, Pie, ColorMapping, Tournaments, Teams, Players, Users} from "./pages/AdminPanel";
+import { Calendar,Dashboard, Kanban, Bar, Pie, ColorMapping, Tournaments, Teams, Players, Users, Awards} from "./pages/AdminPanel";
 import Homepage from "./pages/Homepage";
 import Prode from "./pages/Prode";
 import Register from "./pages/Register";
@@ -63,6 +63,7 @@ function App() {
           <Route path="/Matches" element={<Matches/>} />
           <Route path="/Players" element={<Players />} />
           <Route path="/Users" element={<Users />} />
+          <Route path="/Awards" element={<Awards />} />
 
           {/* apps  */}
           <Route path="/kanban" element={<Kanban />} />

@@ -9,33 +9,36 @@ import Paper from "@mui/material/Paper";
 import AddIcon from "@mui/icons-material/Add";
 import { MenuItem } from "@mui/material";
 
+import { getAwards } from "./AwardsFunctions.ts";
 
 import { Header } from "../../../components/AdminPanel";
 import AddModal from "./addModal";
-import TeamsForm from "./TeamsForm";
-import { getTeams } from "./TeamsFunctions.ts";
+import AwardsForm from "./AwardsForm";
 
 import { useTranslation } from "react-i18next";
 
-export default function TeamsModel() {
 
-  const [teams, setTeams] = React.useState([]);
+export default function AwardsModel() {
+
+  const [awards, setAwards] = React.useState([]);
   const [showModal, setShowModal] = React.useState(false);
 
   React.useEffect(() => {
-    getTeams().then((data) => setTeams(data));
+    getAwards().then((data) => setAwards(data));
   }, []);
 
-  function createData(id, name, logo, info) {
-    return { id, name, logo, info };
+  function createData(id, name, img, info, country, place) {
+    return { id, name, img, info, country, place };
   }
 
-  const rows = teams.map((team, i) =>
+  const rows = awards.map((award, i) =>
     createData(
-      team.id,
-      team.name,
-      team.logo,
-      team.info,
+      award.id,
+      award.name,
+      award.img,
+      award.info,
+      award.country,
+      award.place,
     )
   );
 
@@ -43,14 +46,16 @@ export default function TeamsModel() {
 
   return (
     <>
-      <Header title={t("Teams")} />
+      <Header title={t("Awards")} />
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell align="center">{t("Name")}</TableCell>
-              <TableCell align="center">{t("Logo")}&nbsp;</TableCell>
-              <TableCell align="center">{t("Info")}&nbsp;</TableCell>
+              <TableCell>{t("Name")}</TableCell>
+              <TableCell align="center">Img</TableCell>
+              <TableCell align="center">{t("Description")}&nbsp;</TableCell>
+              <TableCell align="center">{t("Country")}&nbsp;</TableCell>
+              <TableCell align="center">{t("Place")}&nbsp;</TableCell>
               <TableCell align="center">{t("Edit")}&nbsp;</TableCell>
               <TableCell align="center">{t("Delete")}&nbsp;</TableCell>
               <TableCell align="center">
@@ -62,13 +67,13 @@ export default function TeamsModel() {
           </TableHead>
           <TableBody>
             {rows.map((row, i) => (
-              <TeamsForm row={row} key={i} setTeams={setTeams} />
+              <AwardsForm row={row} key={i} setAwards={setAwards} />
             ))}
           </TableBody>
         </Table>
       </TableContainer>
       {showModal ? (
-        <AddModal setShowModal={setShowModal} setTeams={setTeams} />
+        <AddModal setShowModal={setShowModal} setAwards={setAwards} />
       ) : null}
     </>
   );

@@ -54,14 +54,14 @@ const WinnerModalForm = ({setShowWinnerModal,row, teamA, teamB, actualTournament
       <form onSubmit={onSubmit}>
 
         <div className="mb-4">
-          <h2 className="text-center mb-5 font-bold underline text-emerald-500">Select a Winner</h2>
+          <h2 className="text-center mb-5 font-bold underline text-emerald-500">{t("SelectAWinner")}</h2>
             <div className="text-center">
             <select
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center"
               id="winner"
               {...winner}
             >
-              <option selected disabled value="">Select a Team</option>
+              <option selected disabled value="">{t("SelectATeam")}</option>
               <option value={teamA.id}>{teamA.name}</option>
               <option value={teamB.id} >{teamB.name}</option>
             </select>
@@ -70,7 +70,7 @@ const WinnerModalForm = ({setShowWinnerModal,row, teamA, teamB, actualTournament
 
         <div className="border-b border-solid border-slate-200 my-8"></div>
 
-        <h2 className="text-center mb-5 font-bold underline text-emerald-500">Indicate how many goals from penalties</h2>
+        <h2 className="text-center mb-5 font-bold underline text-emerald-500">{t("HowManyPenalGoals")}</h2>
 
         <div className="container mx-auto grid md:grid-cols-2 md:gap-2 mt-6">
           <div className="mb-4">

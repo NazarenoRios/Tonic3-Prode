@@ -1,20 +1,18 @@
 const Points = require("../models/Points")
 const BetServices = require("./bet.services");
 const PointsFase = require("../models/PointsFase");
-const { user } = require("../controllers/usersController");
-const { User } = require("../models");
+
 
 class PointsServices {
     
     static async getAllPointsInTournament (tournamentId){
         try{
-            const points =  await Points.findAll({where:{
+            return await Points.findAll({where:{
                 tournamentId:tournamentId
                 },
                order: [
                 ['points', 'DESC']
             ],})
-            return points
         }catch(error){
             console.log(error);
         }
@@ -61,7 +59,7 @@ class PointsServices {
                 tournamentId : tournament.id
                 })
 
-                for (let i = tournament.participants/2; i >= 2  ; i/=2) {
+                for (let i = tournament.participants/2; i >= 1  ; i/=2) {
                     await PointsFase.create({
                       points : 0,
                       fase : i,
@@ -86,7 +84,11 @@ class PointsServices {
                         point.points = point.points + 1;
                         point.save();
 
-                        const pointFase = await PointsServices.getFasePoints(match.tournamentId,bet.userId,match.fase)
+                        const pointFase = await PointsFase.findOne({where: {
+                            tournamentId: match.tournamentId, 
+                            userId: bet.userId,
+                            fase: match.fase
+                        }})
                         pointFase.points = pointFase.points + 1;
                         pointFase.save()
 

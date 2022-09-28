@@ -46,7 +46,7 @@ export default function TournamentModel() {
 
   return (
     <>
-      <Header title="Tournaments" />
+      <Header title={t("Tournaments")} />
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>

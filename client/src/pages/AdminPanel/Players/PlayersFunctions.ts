@@ -20,17 +20,17 @@ export function addPlayer({fullname,age,img,info}) {
 //edit player
 export function editPlayer({player,fullname,age,img,info}) {
   return axios.put(`/api/player/modify/${player.id}`, {
-    fullname: fullname.value,
-    age: age.value,
-    img: img.value,
-    info: info.value,
+    fullname: fullname,
+    age: age,
+    img: img,
+    info: info,
   });
 }
 
 //delete player
 export async function deletePlayer(row) {
   try {
-    const res = await axios.delete(`/api/tournament/${row.id}`);
+    const res = await axios.delete(`/api/player/${row.id}`);
     return res.data;
   } catch (err) {
     return err.message;
