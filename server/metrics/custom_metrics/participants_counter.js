@@ -1,5 +1,6 @@
+const set_dir = require("../utils");
 const { to_str } = require("../utils/fase_to_str");
-const save_data = require("../utils/save_data");
+const { save_data } = require("../utils/save_data");
 
 const register_dir = set_dir("phase_participants_summary", []);
 const { data, dir } = register_dir;
@@ -11,8 +12,7 @@ const find_prop = (to_find, prop, data) => {
 };
 
 module.exports = {
-  inc_participants: (participant_data) => {
-    const { fase } = participant_data;
+  inc_participants: (fase) => {
     const str_fase = to_str(fase);
     const phase_ix = find_prop(str_fase, "name", data);
     if (!phase_ix) {
