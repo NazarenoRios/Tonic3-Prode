@@ -22,7 +22,9 @@ const push_num_date=(year,month,index)=>{
 const save_date = (dir, data) => {
   const { year, str_month,month } = parse_date(new Date());
   const obj_ix = find_obj_ix({ month: str_month, year },data);
+
   push_num_date(year,month,obj_ix)
+
   if (obj_ix!==0 && !obj_ix) {
     data.push({ year, month: str_month, users: 1 });
     return save_data(dir, data);

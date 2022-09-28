@@ -28,7 +28,6 @@ module.exports = {
     const {country}=user_country
     const abreved_country=abrev_country(country)
     let user_ix= find_index(id)
-    console.log(user_ix)
     if (!id) return;
     if (!data[user_ix]) {
         data.push({

@@ -1,7 +1,8 @@
 const Points = require("../models/Points")
 const BetServices = require("./bet.services");
 const PointsFase = require("../models/PointsFase");
-
+const push = require("../utils/webpush");
+const { Team } = require("../models");
 
 class PointsServices {
     
@@ -83,7 +84,9 @@ class PointsServices {
                         const point = await PointsServices.getTournamentPoints(bet.userId, match.tournamentId)
                         point.points = point.points + 1;
                         point.save();
-
+                        const team = await Team.findByPk(bet.winner_id)
+                        console.log(team)
+                        await push.sendPush(`Ganaste 1 punto por tu apuesta a :`,`${team.name}`)
                         const pointFase = await PointsFase.findOne({where: {
                             tournamentId: match.tournamentId, 
                             userId: bet.userId,
