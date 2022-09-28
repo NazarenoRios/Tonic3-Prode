@@ -1,6 +1,5 @@
 import PodiumStep from './PodiumStep'
 export default function Podium({ winners }) {
-  console.log("winners",winners)
   const podium = [8, 6, 4, 2, 0, 1, 3, 5, 7, 9]
     .reduce((podiumOrder, position) => [...podiumOrder, winners[position]], [])
     .filter(Boolean)

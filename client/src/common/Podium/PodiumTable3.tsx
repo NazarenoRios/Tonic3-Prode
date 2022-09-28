@@ -2,24 +2,10 @@ import * as React from "react";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
+import axios from "axios";
 
 export const PodiumTable3 = () => {
-
-
   const user = useSelector((state) => state.user);
-
-  const [premioArg, setPremioArg] = useState({
-    premio: "🥉 Auto 0km BMW",
-  });
-
-  const [premioBr, setPremioBr] = useState({
-    premio: "🥉 Moto na Favela",
-  });
-
-  const [premioUsa, setPremioUsa] = useState({
-    premio: "🥉 Bike",
-  });
-
 
   const list = {
     hidden: {
@@ -43,6 +29,19 @@ export const PodiumTable3 = () => {
     visible: { opacity: 1 },
   };
 
+  const [awards, setAwards] = useState([]);
+
+  function filterAwards(arr, country, place) {
+    const newArr = arr.filter((award) => {
+      return award.country === country && award.place === place;
+    });
+    return newArr;
+  }
+
+  React.useEffect(() => {
+    axios.get("/api/award/all").then((res) => setAwards(res.data));
+  }, [awards.length]);
+
   return (
     <>
       <motion.div
@@ -51,17 +50,33 @@ export const PodiumTable3 = () => {
         animate="visible"
         variants={list}
       >
-          <motion.div className="w-96 py-5 px-5 text-center rounded-xl" style={{ background: "#172236" }} variants={item}>
+        <motion.div
+          className="w-96 py-5 px-5 text-center rounded-xl"
+          style={{ background: "#172236" }}
+          variants={item}
+        >
           {user.country === "Argentina" ? (
-            <span className="text-white">{premioArg.premio}</span>
+            <span className="text-white">
+              {filterAwards(awards, "Argentina", 3).length
+                ? `🥉 ${filterAwards(awards, "Argentina", 3)[0].name}`
+                : "🥉 Auto 0km BMW"}
+            </span>
           ) : user.country === "Brazil" ? (
-            <span className="text-white">{premioBr.premio}</span>
+            <span className="text-white">
+              {filterAwards(awards, "Brazil", 3).length
+                ? `🥉 ${filterAwards(awards, "Brazil", 3)[0].name}`
+                : "🥉 Moto na Favela"}
+            </span>
           ) : user.country === "United States" ? (
-            <span className="text-white">{premioUsa.premio}</span>
+            <span className="text-white">
+              {filterAwards(awards, "United States", 3).length
+                ? `🥉 ${filterAwards(awards, "United States", 3)[0].name}`
+                : "🥉 Bike"}
+            </span>
           ) : (
             ""
           )}
-          </motion.div>
+        </motion.div>
       </motion.div>
     </>
   );
