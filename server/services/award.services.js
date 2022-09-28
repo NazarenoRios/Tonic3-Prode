@@ -55,23 +55,28 @@ class AwardSevices {
 
     static async sendAward(tournamentId){
         try{
-            //traigo los puntos de todos los usuarios,pusheo dentro de un arrerglo vacio para encontrar el mayor, 
-            // traigo el usuario ganador con mayor cantidad de puntos en el torneo guardo los valores que tenia en el campo awards
-            //y pusheo dentro de el el nuevo premio, updateo la nueva data y retorno
-
             const usersPoints = await PointsServices.getAllPointsInTournament(tournamentId)
-            const points = []
-            usersPoints.forEach(point=>points.push(point.points))
-            const maxPoint = Math.max(...points)
+            usersPoints.sort((a,b)=>{
+                return b.dataValues.points - a.dataValues.points
+            })
             
-            const winner = usersPoints.filter(point=>point.points === maxPoint)
-            const userWinner = await User.findByPk(winner[0].dataValues.userId)
-            const countryAward = await Award.findOne({where:{country:userWinner.country}})            
-            const winnerAward =    Object.assign([], userWinner.dataValues.awards); 
-            await winnerAward.push(countryAward.id)
-            const winnerUpdated = await userWinner.update({awards : winnerAward})
+            const winners = []
+            for (let i = 0; i < 5; i++) {
+                let user = await User.findByPk(usersPoints[i].dataValues.userId)
+                winners.push(user.dataValues)
+            }
 
-            return winnerUpdated
+            for (let i = 0; i < winners.length; i++) {
+               let award = await Award.findOne({
+                where:
+                {country : winners[i].country,
+                 place : [i+1]
+                }})
+                const user = await User.findByPk(winners[i].id)
+               const winnerAwards =    Object.assign([], user.dataValues.awards); 
+               await winnerAwards.push(award.id)
+               await user.update({awards : winnerAwards})
+            }
         }catch(error){
             console.log(error);
         }

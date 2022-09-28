@@ -22,12 +22,12 @@ const AllowNotifications = () => {
     })
   } 
 
-  useEffect(()=>{
+ /*  useEffect(()=>{
     onMessage(messaging, message=>{
       console.log("tu mensaje", message)
       toast(message.notification.title)
     })
-  },[])
+  },[]) */
 
   const { t } = useTranslation(["edit_profile"]);
 
