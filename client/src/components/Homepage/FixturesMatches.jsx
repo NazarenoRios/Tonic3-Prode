@@ -70,8 +70,6 @@ function FixturesMatches({ team, i }) {
                 ) : (
                   <TeamHomeImg alt="" src={team.teamID[0]?.logo} />
                 )}
-
-                {/* <TeamHomeImg alt="" src={team.teamID[0]?.logo} /> */}
               </>
             ) : (
               <span>{t("ToDefine")}</span>

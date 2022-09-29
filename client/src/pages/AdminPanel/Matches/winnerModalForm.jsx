@@ -42,7 +42,7 @@ const WinnerModalForm = ({setShowWinnerModal,row, teamA, teamB, actualTournament
         penalties: teamBPen.value
       },
     ])
-    const win = await setWinner([{id: row.id, number_key: row.number_key, tournamentId: actualTournament, winner: winner.value}])
+    const win = await setWinner([{id: row.id, number_key: row.number_key, tournamentId: actualTournament}])
     const actualization = await getMatchesByPhase({ tournamentId: actualTournament, fase: phase }).then((data) => setMatches(data));
     const close = await setShowWinnerModal(false)
   };

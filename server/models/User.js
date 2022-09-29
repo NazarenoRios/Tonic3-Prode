@@ -20,7 +20,6 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
       validate:{
-        isAlpha:true,
         len: [3,20]
       }
     },
@@ -28,7 +27,6 @@ User.init(
       type: DataTypes.STRING, 
       allowNull: false,
       validate:{
-        isAlpha:true,
         len: [3,20]
       }
     },
@@ -76,7 +74,6 @@ User.init(
     address: {
       type: DataTypes.TEXT,
       validate:{
-        isAlphanumeric:true,
         len: [3,25]
       }
     },
@@ -84,7 +81,7 @@ User.init(
       type: DataTypes.INTEGER,
       validate:{
         isInt:true,
-        len: [7,15]
+        len: [1,15]
       }
     },
     admin: {

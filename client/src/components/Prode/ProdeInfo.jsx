@@ -132,20 +132,48 @@ function ProdeInfo({ team, phase, setMatches }) {
                 )}
               </>
             ) : (
-              <div className="mt-4">{t("PorDefinir")}</div>
+              <div className="mt-4">{t("ToDefine")}</div>
             )}
           </TeamHome>
 
           {team.date ? (
             <MatchTime>
               <MatchResult>
-                <MatchPointHome>
-                  {team.teamID[0]?.data_match.goals}
-                </MatchPointHome>
+              <MatchPointHome>
+                {team.teamID[0]?.data_match.penalties !== 0 ? (
+                  team.teamID[0]?.data_match.penalties >
+                  team.teamID[1]?.data_match.penalties ? (
+                    <span className="text-green-600">
+                      ({team.teamID[0]?.data_match.penalties})
+                    </span>
+                  ) : (
+                    <span className="text-red-600">
+                      ({team.teamID[0]?.data_match.penalties})
+                    </span>
+                  )
+                ) : (
+                  ""
+                )}{" "}
+                {team.teamID[0]?.data_match.goals}
+              </MatchPointHome>
                 <MatchPointDivisor>-</MatchPointDivisor>
                 <MatchPointAway>
-                  {team.teamID[1]?.data_match.goals}
-                </MatchPointAway>
+                {team.teamID[1]?.data_match.goals}{" "}
+                {team.teamID[1]?.data_match.penalties !== 0 ? (
+                  team.teamID[1]?.data_match.penalties >
+                  team.teamID[0]?.data_match.penalties ? (
+                    <span className="text-green-600">
+                      ({team.teamID[1]?.data_match.penalties})
+                    </span>
+                  ) : (
+                    <span className="text-red-600">
+                      ({team.teamID[1]?.data_match.penalties})
+                    </span>
+                  )
+                ) : (
+                  ""
+                )}
+              </MatchPointAway>
               </MatchResult>
             </MatchTime>
           ) : (

@@ -57,6 +57,7 @@ function NotificationsForm({ row, i , setNotifications }) {
               {mins === 0 ? "00" : mins}hs
             </span>
           </TableCell>
+          <TableCell align="center">Usuarios</TableCell>
         <TableCell align="center">
           <MenuItem sx={{ display: "flex", justifyContent: "center" }} onClick={() => setShowModal(true)}>
             <BorderColorIcon color="primary" />

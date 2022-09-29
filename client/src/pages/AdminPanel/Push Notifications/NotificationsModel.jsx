@@ -27,8 +27,8 @@ export default function NotificationsModel() {
     getNotifications().then((data) => setNotifications(data));
   }, []);
 
-  function createData(id, tittle, body, date) {
-    return { id, tittle, body, date };
+  function createData(id, tittle, body, date, userId) {
+    return { id, tittle, body, date, userId };
   }
 
   const rows = notifications.map((award, i) =>
@@ -37,8 +37,11 @@ export default function NotificationsModel() {
       award.tittle,
       award.body,
       award.date,
+      award.userId,
     )
   );
+
+  console.log(notifications)
 
   const { t } = useTranslation(["admin-panel"]);
 
@@ -53,6 +56,7 @@ export default function NotificationsModel() {
               <TableCell align="center">Title</TableCell>
               <TableCell align="center">Info&nbsp;</TableCell>
               <TableCell align="center">Date&nbsp;</TableCell>
+              <TableCell align="center">userId&nbsp;</TableCell>
               <TableCell align="center">{t("Edit")}&nbsp;</TableCell>
               <TableCell align="center">{t("Delete")}&nbsp;</TableCell>
               <TableCell align="center">

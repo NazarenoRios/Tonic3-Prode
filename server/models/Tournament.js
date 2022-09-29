@@ -11,7 +11,6 @@ Tournament.init({
       name : {
         type : S.STRING,
         validate:{
-            isAlpha:true,
             len:[5,20]
         }
       },
