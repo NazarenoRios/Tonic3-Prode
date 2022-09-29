@@ -31,7 +31,7 @@ function App() {
   useEffect(()=>{
     onMessage(messaging, message=>{
       console.log("tu mensaje", message)
-      toast(<>{message.notification.title}  <br/> {message.notification.body}</>,{
+      toast(<>{message.notification.title}  <br/> {message.notification.body}<br/> {message.notification.image} </>,{
         className: "toasty"
       })
     })

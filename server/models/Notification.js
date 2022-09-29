@@ -13,7 +13,8 @@ Notification.init({
         defaultValue: ""
     },
     img: {
-        type: S.STRING
+        type: S.STRING,
+        defaultValue :""
     },
     date : {
         type: S.DATE

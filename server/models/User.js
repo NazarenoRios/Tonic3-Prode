@@ -66,7 +66,8 @@ User.init(
       defaultValue: false,
     },
     registrationToken: {
-      type: DataTypes.STRING,
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      defaultValue : []
     },
     awards : {
       type: DataTypes.ARRAY(DataTypes.INTEGER),
