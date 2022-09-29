@@ -8,7 +8,6 @@ Team.init({
         type : S.STRING,
         unique: true,
         validate:{
-          isAlpha:true,
           min:3,
           max:23
         }
