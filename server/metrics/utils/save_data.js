@@ -10,6 +10,5 @@ module.exports={
         }
         const json_data=JSON.stringify(data,null,2)
         await fs.writeFileSync(file,json_data,finished)
-       return console.log('metric saved successfully')
     }
 }

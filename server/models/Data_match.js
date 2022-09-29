@@ -27,4 +27,6 @@ Data_match.init({
     }
 },{sequelize:db,modelName:'data_match'})
 
+
+
 module.exports=Data_match

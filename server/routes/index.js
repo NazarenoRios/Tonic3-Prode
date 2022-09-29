@@ -10,13 +10,13 @@ const matches_data=require('./matches_data')
 const bet = require("./bet")
 const point = require("./points")
 const notification = require("./notification")
-// const { validateAuth } = require("../middleware/auth");
 const { user_listener } = require("../middleware/listen_user");
+const { validateAuth } = require("../middleware/auth")
 
 
 router.use(user_listener)
 router.use("/user", userRouter)
-
+router.use(validateAuth)
 router.use('/matches_data',matches_data)
 router.use('/match',match)
 router.use("/tournament",tournament)
