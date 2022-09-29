@@ -5,17 +5,18 @@
       {
         "1": [
           {
-            "matchId": 2,
-            "winner_name": "Defensa y Justicia",
-            "logo": "https://i.imgur.com/LB4NpPu.png",
+            "matchId": 1,
+            "winner_name": "Banfield",
+            "logo": "https://i.imgur.com/gwbrjMY.png",
             "match_phase": 8,
-            "last_vote": [
-              {
-                "day": 28,
-                "hours": 23,
-                "mins": 57
-              }
-            ]
+            "last_vote": "day 29, 10hs 59min"
+          },
+          {
+            "matchId": 2,
+            "winner_name": "Boca",
+            "match_phase": 8,
+            "logo": "https://i.imgur.com/xmelf2h.png",
+            "last_vote": "day 29, 10hs 59min"
           }
         ]
       }

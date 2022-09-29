@@ -2,7 +2,9 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 import { AiOutlineCalendar, AiOutlineShoppingCart, AiOutlineBarChart } from "react-icons/ai";
-import { FiShoppingBag, FiPieChart } from "react-icons/fi";
+import { FiShoppingBag, FiPieChart, FiAward } from "react-icons/fi";
+import { GiBabyfootPlayers} from 'react-icons/gi'
+import { IoNotificationsOutline } from "react-icons/io5"
 import { BsBarChart } from "react-icons/bs";
 import { IoMdContacts } from "react-icons/io";
 import { RiContactsLine } from "react-icons/ri";
@@ -86,7 +88,7 @@ function SiderbarComp({ handleCloseSideBar }) {
           })}
           className={({ isActive }) => (isActive ? activeLink : normalLink)}
         >
-          <RiContactsLine />
+          <GiBabyfootPlayers />
           <span className="capitalize ">{t("Players")}</span>
         </NavLink>
 
@@ -112,8 +114,21 @@ function SiderbarComp({ handleCloseSideBar }) {
           })}
           className={({ isActive }) => (isActive ? activeLink : normalLink)}
         >
-          <RiContactsLine />
+          <FiAward />
           <span className="capitalize ">Awards</span>
+        </NavLink>
+
+        <NavLink
+          to="/Notifications"
+          key="Notifications"
+          onClick={handleCloseSideBar}
+          style={({ isActive }) => ({
+            backgroundColor: isActive ? "#0591aa" : "",
+          })}
+          className={({ isActive }) => (isActive ? activeLink : normalLink)}
+        >
+          <IoNotificationsOutline />
+          <span className="capitalize ">Notifications</span>
         </NavLink>
       </div>
 

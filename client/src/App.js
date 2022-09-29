@@ -22,8 +22,8 @@ import TablePoints from "./pages/UserPanel/TablePoints";
 import { onMessage } from "firebase/messaging";
 import { toast, ToastContainer } from "react-toastify";
 import { messaging } from "./firebase";
-import UserInfo from "./pages/AdminPanel/Users/UserInfo";
 import UserInfoPage from "./pages/AdminPanel/UserInfoPage";
+import PushNotifications from "./pages/AdminPanel/PushNotifications";
 
 
 function App() {
@@ -70,6 +70,7 @@ function App() {
           <Route path="/Users" element={<Users />} />
           <Route path="/Awards" element={<Awards />} />
           <Route path="/user/:id" element={<UserInfoPage />} />
+          <Route path="/Notifications" element={<PushNotifications />} />
 
           {/* apps  */}
           <Route path="/kanban" element={<Kanban />} />
