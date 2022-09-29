@@ -9,21 +9,39 @@ class Bet extends S.Model { }
 Bet.init({
     winner_id: {
         type: S.INTEGER,
+        validate:{
+            isInt:true
+        }
     },
     goals: {
-        type: S.INTEGER
+        type: S.INTEGER,
+        validate:{
+            isInt:true
+        }
     },
     cards: {
-        type: S.INTEGER
+        type: S.INTEGER,
+        validate:{
+            isInt:true
+        }
     },
     faults: {
-        type: S.INTEGER
+        type: S.INTEGER,
+        validate:{
+            isInt:true
+        }
     },
     possession: {
-        type: S.INTEGER
+        type: S.INTEGER,
+        validate:{
+            isInt:true
+        }
     },
     player_goals: {
         type: S.INTEGER,
+        validate:{
+            isInt:true
+        }
     },
     tournamentId: {
         type: S.INTEGER

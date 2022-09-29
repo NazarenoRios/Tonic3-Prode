@@ -11,14 +11,24 @@ Player.init({
         allowNull:false
     },
     age : {
-        type : S.INTEGER
+        type : S.INTEGER,
+        validate:{
+            isInt:true,
+            min:17,
+            max:60
+        }
     },
     img : {
         type: S.STRING
     },
     goals:{
         type:S.INTEGER,
-        defaultValue:0
+        defaultValue:0,
+        validate:{
+            isInt:true,
+            min:0,
+            max:180
+        }
     },
     info:{
         type:S.TEXT

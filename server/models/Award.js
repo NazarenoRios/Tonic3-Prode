@@ -12,7 +12,11 @@ Award.init({
     },
     name:{
         type:S.STRING,
-        allowNull:false
+        allowNull:false,
+        validate:{
+            isAlpha:true,
+            len:[2,15]
+        }
     },
     img:{
         type:S.STRING,
