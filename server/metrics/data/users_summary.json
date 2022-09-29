@@ -1,0 +1,75 @@
+[
+  {
+    "id": 1,
+    "name": "Pedro",
+    "user_country": "Argentina",
+    "permanence_logs": {
+      "2022": {
+        "8": {
+          "28": {
+            "before_user_update": {
+              "hours": 23,
+              "mins": 15,
+              "seconds": 45
+            },
+            "total": {
+              "time_in_sec": -1039
+            },
+            "last_user_update": {
+              "hours": 23,
+              "mins": 15,
+              "seconds": 45
+            }
+          },
+          "29": {
+            "hours": 17,
+            "mins": 50,
+            "seconds": 9,
+            "before_user_update": {
+              "hours": 18,
+              "mins": 5,
+              "seconds": 19
+            },
+            "total": {
+              "time_in_sec": -2570
+            },
+            "last_user_update": {
+              "hours": 18,
+              "mins": 5,
+              "seconds": 19
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": 2,
+    "name": "Magic",
+    "user_country": "Argentina",
+    "permanence_logs": {
+      "2022": {
+        "8": {
+          "29": {
+            "hours": 16,
+            "mins": 48,
+            "seconds": 43,
+            "before_user_update": {
+              "hours": 17,
+              "mins": 27,
+              "seconds": 33
+            },
+            "total": {
+              "time_in_sec": -1150
+            },
+            "last_user_update": {
+              "hours": 17,
+              "mins": 27,
+              "seconds": 33
+            }
+          }
+        }
+      }
+    }
+  }
+]

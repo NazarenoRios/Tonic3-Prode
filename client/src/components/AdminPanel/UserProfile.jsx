@@ -13,7 +13,7 @@ import { useTranslation } from 'react-i18next';
 
 const UserProfile = () => {
   const navigate = useNavigate()
-  const user = useSelector((state)=>state.user)
+  const profile = useSelector((state)=>state.profile)
 
   const handleLogout = async () => {
     try {
@@ -47,9 +47,9 @@ const UserProfile = () => {
           alt="user-profile"
         />
         <div>
-          <p className="font-semibold text-xl dark:text-gray-200">  {`${user.name} ${user.lastname}`} </p>
-          <p className="text-gray-500 text-sm dark:text-gray-400">  {user.admin ? `Admin` : ""}   </p>
-          <p className="text-gray-500 text-sm font-semibold dark:text-gray-400"> {user.email} </p>
+          <p className="font-semibold text-xl dark:text-gray-200">  {`${profile.name} ${profile.lastname}`} </p>
+          <p className="text-gray-500 text-sm dark:text-gray-400">  {profile.admin ? `Admin` : ""}   </p>
+          <p className="text-gray-500 text-sm font-semibold dark:text-gray-400"> {profile.email} </p>
         </div>
       </div>
       <div>

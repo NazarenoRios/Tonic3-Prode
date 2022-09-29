@@ -7,7 +7,7 @@ const ResponsivePlayer = () => {
     <div className="player-wrapper">
       <ReactPlayer
         className="react-player"
-        url="https://www.youtube.com/watch?v=mCdA4bJAGGk"
+        url="https://www.youtube.com/watch?v=vknnmKgck7o&ab_channel=PedroBauso"
         width="100%"
         height="100%"
         controls={true}

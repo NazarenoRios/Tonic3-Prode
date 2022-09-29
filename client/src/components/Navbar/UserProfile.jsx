@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
 const UserProfile = () => {
-  const user = useSelector((state) => state.user);
+  const profile = useSelector((state) => state.profile);
   const navigate = useNavigate()
   const handleLogout = async () => {
     try {
@@ -47,13 +47,13 @@ const UserProfile = () => {
         />
         <div>
           <p className="font-semibold text-xl dark:text-gray-200">
-            {`${user.name} ${user.lastname}`}
+            {`${profile.name} ${profile.lastname}`}
           </p>
           <p className="text-gray-500 text-sm dark:text-gray-400">
-            {user.admin ? `Admin` : ""}
+            {profile.admin ? `Admin` : ""}
           </p>
           <p className="text-gray-500 text-sm font-semibold dark:text-gray-400">
-            {user.email}
+            {profile.email}
           </p>
         </div>
       </div>
@@ -74,7 +74,7 @@ const UserProfile = () => {
             </div>
           </div>
         </Link>
-        {user.admin ? (
+        {profile.admin ? (
           <Link to="/Admin-Panel">
           <div className="flex gap-5 border-b-1 border-color p-4 hover:bg-light-gray cursor-pointer  dark:hover:bg-[#42464D]">
             <button

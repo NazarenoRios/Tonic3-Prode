@@ -1,0 +1,90 @@
+[
+  {
+    "userId": 2,
+    "tournaments": [
+      {
+        "1": [
+          {
+            "matchId": 1,
+            "winner_name": "Banfield",
+            "logo": "https://i.imgur.com/gwbrjMY.png",
+            "match_phase": 8,
+            "last_vote": [
+              {
+                "day": 29,
+                "hours": 16,
+                "mins": 49
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "userId": 2,
+    "tournaments": [
+      {
+        "1": [
+          {
+            "matchId": 8,
+            "winner_name": "Boca",
+            "logo": "https://i.imgur.com/xmelf2h.png",
+            "match_phase": 8,
+            "last_vote": [
+              {
+                "day": 29,
+                "hours": 16,
+                "mins": 49
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "userId": 2,
+    "tournaments": [
+      {
+        "1": [
+          {
+            "matchId": 7,
+            "winner_name": "Deportivo Madryn",
+            "logo": "https://i.imgur.com/IRHz4OA.png",
+            "match_phase": 8,
+            "last_vote": [
+              {
+                "day": 29,
+                "hours": 16,
+                "mins": 52
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "userId": 2,
+    "tournaments": [
+      {
+        "1": [
+          {
+            "matchId": 7,
+            "winner_name": "Estudiantes de La Plata",
+            "logo": "https://i.imgur.com/7S5Nkuc.png",
+            "match_phase": 8,
+            "last_vote": [
+              {
+                "day": 29,
+                "hours": 16,
+                "mins": 52
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

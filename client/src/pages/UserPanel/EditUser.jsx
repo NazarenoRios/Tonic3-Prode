@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar2 from "../../components/Navbar/NavBar2";
 import Avatar1 from "../../assets/data/Avatar1.png"
 
@@ -7,20 +7,32 @@ import { useDispatch, useSelector } from "react-redux";
 import { editUser } from "../../state/user";
 import AllowNotifications from "../../common/AllowNotif/AllowNotifications";
 import { useTranslation } from "react-i18next";
+import AlertMessage from "../../common/AlertMessage/AlertMessage";
+import axios from "axios";
+import { setActualProfile } from "../../state/profile";
 
 const CustomUser = () => {
-  //Imagen del form harcodeada
+
   const usuario = useSelector((state) => state.user);
+  const profile = useSelector((state)=>state.profile)
+  const [editStatus, setEditStatus] = useState("");
+  
   const dispatch = useDispatch();
 
-  const [editStatus, setEditStatus] = useState("");
+  useEffect(() => {
+    if (usuario.id) {
+      axios
+      .get(`/api/user/${usuario.id}`)
+      .then((res) => dispatch(setActualProfile(res.data)));
+    }
+  }, []);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    defaultValues: usuario,
+    defaultValues: profile?.name? (profile):(usuario)
   });
 
   const onSubmit = async (data) => {
@@ -35,9 +47,10 @@ const CustomUser = () => {
         zip: data.zip,
         phone: data.phone,
       })
-    );
+    )
     if (!data.error) {
-      setEditStatus("success");
+      setEditStatus("success")
+      setTimeout(() => window.location.reload(), 3000);
     } else {
       setEditStatus("error");
     }
@@ -238,7 +251,7 @@ const CustomUser = () => {
               </button>
             </div>
           </form>
-          {/* {editStatus && (
+          {editStatus && (
           <AlertMessage
             type={editStatus}
             message={
@@ -247,7 +260,7 @@ const CustomUser = () => {
                 : `Por favor verificar datos ingresados`
             }
           />
-        )} */}
+        )}
         </div>
       </div>
     </>

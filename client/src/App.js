@@ -22,6 +22,8 @@ import TablePoints from "./pages/UserPanel/TablePoints";
 import { onMessage } from "firebase/messaging";
 import { toast, ToastContainer } from "react-toastify";
 import { messaging } from "./firebase";
+import axios from "axios";
+import { setActualProfile } from "./state/profile";
 
 
 function App() {
@@ -39,6 +41,14 @@ function App() {
   useEffect(() => {
     dispatch(getUser());
   }, [user.id]);
+
+  useEffect(() => {
+    if (user.id) {
+      axios
+      .get(`/api/user/${user.id}`)
+      .then((res) => dispatch(setActualProfile(res.data)));
+    }
+  }, [user]);
 
   return (
     <>
