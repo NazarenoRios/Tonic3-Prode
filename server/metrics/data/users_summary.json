@@ -1,0 +1,46 @@
+[
+  {
+    "id": 1,
+    "name": "Fredi",
+    "user_country": "Argentina",
+    "permanence_logs": {
+      "2022": {
+        "8": {
+          "28": {
+            "hours": 23,
+            "mins": 46,
+            "seconds": 17,
+            "before_user_update": {
+              "hours": 23,
+              "mins": 58,
+              "seconds": 49
+            },
+            "total": {
+              "time_in_sec": 750
+            },
+            "last_user_update": {
+              "hours": 23,
+              "mins": 58,
+              "seconds": 49
+            }
+          },
+          "29": {
+            "before_user_update": {
+              "hours": 0,
+              "mins": 10,
+              "seconds": 37
+            },
+            "total": {
+              "time_in_sec": 100
+            },
+            "last_user_update": {
+              "hours": 0,
+              "mins": 10,
+              "seconds": 37
+            }
+          }
+        }
+      }
+    }
+  }
+]
