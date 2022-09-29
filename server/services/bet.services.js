@@ -48,12 +48,12 @@ class BetServices {
             console.log(error);
         }
     }
-
+//token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJlbWFpbCI6Im5haHVlbC5ydXNzbzE4QGdtYWlsLmNvbSIsIm5hbWUiOiJOYWh1ZWwiLCJsYXN0bmFtZSI6IlJ1c3NvIiwiYWRtaW4iOnRydWUsImNvdW50cnkiOiJBcmdlbnRpbmEiLCJpc1ZlcmlmaWVkIjp0cnVlLCJwaG9uZSI6IjU3NTYiLCJzdGF0ZSI6ImhnaGpnIiwiY2l0eSI6ImpnaCIsImFkZHJlc3MiOiJ5Z3lqIiwiemlwIjo1Njc1fSwiaWF0IjoxNjY0NDY2MTA3LCJleHAiOjE2NjQ2Mzg5MDd9.8dwDJ9jml3oylOJuVCCn8owJYPrz2RjRbcZLrv0fsoM"; Path=/; Expires=Fri, 1 Oct 2022 19:55:19 GMT;
     static async deleteBet(id){
         try{
-          return await Bet.destroy({ where:{id} })       
+          return await Bet.destroy({ where:{winner_id:id} })       
         } catch(error){
-           return res.sendStatus(500).json({message:error.message})
+           return console.log(error.message)
         }
     }
 

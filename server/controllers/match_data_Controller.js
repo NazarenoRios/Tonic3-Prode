@@ -20,7 +20,7 @@ class Match_data_controller {
     }
   }
 
-  static async get_matches_data(req,res,next){
+  static async get_matches_data(req,res,next){z
     if(!req.params.tournamentId)return res.sendStatus(400)
     try{
       const matches_data= await Match_data_services.get_matches_data(req.params.tournamentId)

@@ -1,15 +1,16 @@
 const express = require("express");
 const Match_data_controller = require("../controllers/match_data_Controller");
+const {validate_admin} = require("../middleware/validate_admin");
 const router = express.Router();
 
 //RUTA PARA AGREGAR EQUIPO/S  , SWIPEARLOS Y/O EDITAR EL SCORE
 //EXAMPLES:
 //AGREGAR/SWIPEAR EQUIPOS: [{id:1, teamId:3 },{id:2, teamId:4 }]
 //EDITAR SCORE: [{id:1, goals:3 , penalties : 7}]
-router.put('/add_team',Match_data_controller.set_matches_data)
+router.put('/add_team',validate_admin,Match_data_controller.set_matches_data)
 
 //ruta para agregar 1 penal a la vez 
-router.put("/onepenaltie/:id",Match_data_controller.penalties)
+router.put("/onepenaltie/:id",validate_admin,Match_data_controller.penalties)
 
 //RUTA PARA TRAER DATA_MATCH POR TORNEO
 router.get ('/get_data/:tournamentId',Match_data_controller.get_matches_data)
