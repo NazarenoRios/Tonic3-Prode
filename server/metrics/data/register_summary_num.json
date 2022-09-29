@@ -1,32 +1,50 @@
 [
   {
-    "year": 2022,
-    "month": 8,
-    "users": 1
+    "month": 1,
+    "users": 7
   },
   {
-    "year": 2022,
-    "month": 8,
-    "users": 1
+    "month": 2,
+    "users": 10
   },
   {
-    "year": 2022,
-    "month": 8,
-    "users": 1
+    "month": 3,
+    "users": 7
   },
   {
-    "year": 2022,
-    "month": 8,
-    "users": 1
+    "month": 4,
+    "users": 13
   },
   {
-    "year": 2022,
-    "month": 8,
-    "users": 1
+    "month": 5,
+    "users": 11
   },
   {
-    "year": 2022,
+    "month": 6,
+    "users": 7
+  },
+  {
+    "month": 7,
+    "users": 10
+  },
+  {
     "month": 8,
-    "users": 1
+    "users": 16
+  },
+  {
+    "month": 9,
+    "users": 10
+  },
+  {
+    "month": 10,
+    "users": 12
+  },
+  {
+    "month": 11,
+    "users": 15
+  },
+  {
+    "month": 12,
+    "users": 13
   }
 ]

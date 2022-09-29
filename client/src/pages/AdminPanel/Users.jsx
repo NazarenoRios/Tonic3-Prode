@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Footer, Header, Navbar, Sidebar } from "../../components/AdminPanel";
+import { Footer, Navbar, Sidebar } from "../../components/AdminPanel";
 import { useStateContext } from "../../contexts/ContextProvider";
 import UsersModel from "./Users/UsersModel";
 

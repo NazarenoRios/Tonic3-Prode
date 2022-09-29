@@ -1,15 +1,18 @@
-import React, { useEffect } from "react";
-import {ToastContainer, toast} from "react-toastify";
+import React, { useState } from "react";
 import "react-toastify/dist/ReactToastify.css"
-import {getToken, onMessage} from "firebase/messaging"
+import {getToken} from "firebase/messaging"
 import {messaging} from "../../firebase"
-import { editUser, firebaseToken } from "../../state/user";
+import { firebaseToken } from "../../state/user";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 
 
 
 const AllowNotifications = () => {
+
+  const [isTokenFound, setIsTokenFound] = useState(false)
+
+
   const dispatch = useDispatch();
 
   const activateNotifications = () => {
@@ -17,23 +20,18 @@ const AllowNotifications = () => {
     .then((token)=>{
       if(token) {
         dispatch(firebaseToken({registrationToken: token}))
+        setIsTokenFound(true)
         console.log(token)
+      } else {
+        setIsTokenFound(false)
       }
     })
   } 
-
- /*  useEffect(()=>{
-    onMessage(messaging, message=>{
-      console.log("tu mensaje", message)
-      toast(message.notification.title)
-    })
-  },[]) */
 
   const { t } = useTranslation(["edit_profile"]);
 
   return (
     <>
-      <ToastContainer/>
       <div class="flex items-center dark:border-gray-700 mb-4">
         <input onClick={activateNotifications}
           id="bordered-checkbox-1"

@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ChartComponent, SeriesCollectionDirective, SeriesDirective, Inject, Legend, Category, StackingColumnSeries, Tooltip } from '@syncfusion/ej2-react-charts';
 
-import RegisteredUsers from '../../../jsons/RegisteredUsers.json'
+// import RegisteredUsers from '../../../jsons/RegisteredUsers.json'
+import axios from 'axios'
 
 const Stacked = ({ width, height }) => {
+
+  const [RegisteredUsers,setRegisteredUsers] = useState([])
+
+  useEffect(() => {
+    axios.get("/metrics/register_summary").then(res => setRegisteredUsers(res.data))
+  },[RegisteredUsers.length])
+
 
  const stackedPrimaryXAxis = {
     majorGridLines: { width: 0 },
@@ -30,7 +38,7 @@ const Stacked = ({ width, height }) => {
 
   const stackedCustomSeries = [
     {
-      dataSource: RegisteredUsers,
+      dataSource: RegisteredUsers.str_file,
       xName: "month",
       yName: "users",
       name: "Users",

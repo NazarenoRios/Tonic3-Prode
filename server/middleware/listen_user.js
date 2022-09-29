@@ -5,7 +5,6 @@ module.exports={
     user_listener:(req,res,next)=>{
         if(!req.cookies.token)return next()
         const {user}=validateToken(req.cookies.token)
-        console.log(user)
         if(!user)return next()
             permanence_counter({id:user.id,name:user.name})
            next()

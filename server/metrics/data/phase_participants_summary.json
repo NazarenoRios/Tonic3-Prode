@@ -1,22 +1,22 @@
 [
   {
     "name": "Octavos de Final",
-    "value": 1,
-    "text": "1%"
+    "value": 73,
+    "text": "73%"
   },
   {
-    "name": "Octavos de Final",
-    "value": 1,
-    "text": "1%"
+    "name": "Cuartos de Final",
+    "value": 52,
+    "text": "52%"
   },
   {
-    "name": "Octavos de Final",
-    "value": 1,
-    "text": "1%"
+    "name": "Semifinal",
+    "value": 70,
+    "text": "70%"
   },
   {
-    "name": "Octavos de Final",
-    "value": 1,
-    "text": "1%"
+    "name": "Final",
+    "value": 45,
+    "text": "45%"
   }
 ]

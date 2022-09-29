@@ -1,4 +1,6 @@
 const BetServices = require("../services/bet.services")
+const push = require("../utils/webpush")
+const { Team } = require("../models")
 
 class BetController {
 
@@ -7,7 +9,11 @@ class BetController {
            const validate = await BetServices.countdown(req.body)
            console.log("esto es validate",validate);
             await BetServices.createBet(validate.body)
-            if(validate) return res.status(201).send(validate.time)
+            if(validate) {
+                const team = await Team.findByPk(req.body.winner_id)
+                await push.sendPush("Felicidades",`Tu voto a ${team.dataValues.name} se registro con exito`)
+                return res.status(201).send(validate.time)
+            }
             if(!validate) return res.status(401).send("Time is Over")
         } catch(error){
             console.log(error)

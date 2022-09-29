@@ -12,14 +12,16 @@ import { useDispatch } from "react-redux";
 import { allUsers } from "../../../state/user";
 import { Button, TextField } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { green, grey, red } from "@mui/material/colors";
+import { green, grey, red, blue } from "@mui/material/colors";
 import axios from "axios";
 
 
 import SearchIcon from "@mui/icons-material/Search";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import QueryStatsIcon from '@mui/icons-material/QueryStats';
 import { deleteTablePoints } from "../../../state/points"
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 export default function UsersModel() {
   const [users, setUsers] = React.useState();
@@ -109,6 +111,7 @@ export default function UsersModel() {
               <TableCell align="center">{t("Phone")}&nbsp;</TableCell>
               <TableCell align="center">{t("ToggleAdmin")}&nbsp;</TableCell>
               <TableCell align="center">{t("Delete")}&nbsp;</TableCell>
+              <TableCell align="center">Stats&nbsp;</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -184,6 +187,12 @@ export default function UsersModel() {
                       >
                         <DeleteIcon sx={{ color: red[700] }} />
                       </Button>
+                    </TableCell>
+
+                    <TableCell align="center">
+                      <Link to={`/user/${row.id}`} >
+                        <QueryStatsIcon sx={{ color: blue[700] }} />
+                      </Link>
                     </TableCell>
                   </TableRow>
                 ))}

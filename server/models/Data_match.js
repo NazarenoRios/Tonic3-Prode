@@ -14,10 +14,16 @@ Data_match.init({
     ,
     goals:{
         type: S.INTEGER,
+        validate:{
+            isInt:true
+        }
     },
     penalties : {
         type: S.INTEGER,
-        defaultValue : 0
+        defaultValue : 0,
+        validate:{
+            isInt:true
+        }
     }
 },{sequelize:db,modelName:'data_match'})
 

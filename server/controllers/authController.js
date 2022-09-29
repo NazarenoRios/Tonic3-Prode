@@ -2,10 +2,10 @@ const { User } = require("../models");
 const { generateToken } = require("../config/tokens");
 const { createHmac } = require("node:crypto");
 const mailer = require("../utils/mailer");
+const push = require("../utils/webpush")
 
 
 const { OAuth2Client } = require("google-auth-library");
-const router = require("../routes");
 
 const { inc_registed_acc } = require("../metrics/custom_metrics/registers_summary");
 const { permanence_counter } = require("../metrics/custom_metrics/user_summary");
@@ -34,11 +34,12 @@ exports.googlelogin = (req, res) => {
           res.cookie("email", email);
           res.cookie("password", password);
           res.sendStatus(200);
-          // sessionStorage.setItem("email", email)
-          // sessionStorage.setItem("name", name)
-          // sessionStorage.setItem("password", password)
         } else {
           user.validatePassword(password).then((isValid) => {
+            res.cookie("name", given_name);
+            res.cookie("lastname", family_name);
+            res.cookie("email", email);
+            res.cookie("password", password);
             if (!isValid) return res.send(401);
             const payload = {
               id: user.id,
@@ -54,12 +55,9 @@ exports.googlelogin = (req, res) => {
               address: user.address,
               zip: user.zip,
             };
-
-            
-
             permanence_counter({id:user.id,name:user.name},'login_date')
+            push.sendPush("Bienvenido a Prode", "")
             const token = generateToken(payload);
-            // sessionStorage.setItem("token", token)
             res.cookie("token", token);
             res.send(payload);
           });
@@ -100,7 +98,9 @@ exports.register = (req, res) => {
             .sendMail(user.dataValues.id)
             .then((result) => console.log("Sending Email", result))
     })
-        .then(() => res.sendStatus(201));
+    .catch(err => console.log(err))
+        .then(() => res.sendStatus(201))
+        .catch((err) => console.log(err))
     } else {
       res.send({ message: "Usuario ya registrado" });
     }

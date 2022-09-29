@@ -5,16 +5,28 @@ class PlayerData extends S.Model{}
 
 PlayerData.init({
     goal_match: {
-        type : S.INTEGER
+        type : S.INTEGER,
+        validate:{
+            isInt:true
+        }
     },
     cards:{
-        type : S.ARRAY(S.INTEGER)
+        type : S.ARRAY(S.INTEGER),
+        validate:{
+            isInt:true
+        }
     },
     faults : {
-        type : S.INTEGER
+        type : S.INTEGER,
+        validate:{
+            isInt:true
+        }
     },
     state : {
-        type : S.BOOLEAN
+        type : S.BOOLEAN,
+        validate:{
+            isInt:true
+        }
     }
 },{
     sequelize:db , modelName: "player_data"

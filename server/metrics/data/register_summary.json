@@ -1,7 +1,50 @@
 [
   {
-    "year": 2022,
-    "month": "Aug",
+    "month": "Jan",
+    "users": 8
+  },
+  {
+    "month": "Feb",
+    "users": 10
+  },
+  {
+    "month": "Mar",
     "users": 7
+  },
+  {
+    "month": "Apr",
+    "users": 13
+  },
+  {
+    "month": "May",
+    "users": 11
+  },
+  {
+    "month": "Jun",
+    "users": 7
+  },
+  {
+    "month": "July",
+    "users": 10
+  },
+  {
+    "month": "Aug",
+    "users": 16
+  },
+  {
+    "month": "Sep",
+    "users": 10
+  },
+  {
+    "month": "Oct",
+    "users": 12
+  },
+  {
+    "month": "Nov",
+    "users": 15
+  },
+  {
+    "month": "Dec",
+    "users": 13
   }
 ]

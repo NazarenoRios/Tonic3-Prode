@@ -1,24 +1,7 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-import Modal from "../../common/Modal";
-import Cookies from "js-cookie";
-
-import { FormBackground } from "./StyledComponents";
-import BackgroundVideo from "../../assets/videos/FormBackground.mp4";
+import React from "react";
 
 function RegisterForm() {
-  const [name, setName] = useState("");
-  const [lastname, setLastname] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  useEffect(() => {
-    setName(sessionStorage.getItem("name"));
-    setLastname(sessionStorage.getItem("lastname"));
-    setEmail(sessionStorage.getItem("email"));
-    setPassword(sessionStorage.getItem("password"));
-  }, []);
-
+  
   return (
     <div
       className="relative flex justify-center items-center"

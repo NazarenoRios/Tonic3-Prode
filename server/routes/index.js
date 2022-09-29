@@ -9,6 +9,7 @@ const match=require('./match')
 const matches_data=require('./matches_data')
 const bet = require("./bet")
 const point = require("./points")
+const notification = require("./notification")
 // const { validateAuth } = require("../middleware/auth");
 const { user_listener } = require("../middleware/listen_user");
 
@@ -24,5 +25,5 @@ router.use("/player",player)
 router.use("/award",award)
 router.use("/bet",bet)
 router.use("/point",point)
-
+router.use("/notification",notification)
 module.exports = router

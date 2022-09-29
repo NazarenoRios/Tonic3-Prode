@@ -6,7 +6,6 @@ import { Stacked,DashPie,Button,SparkLine,Navbar,Footer,Sidebar } from "../../co
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Btn from "../../common/Btn/Btn";
 
@@ -68,8 +67,8 @@ const Dashboard = () => {
                       <div>
                         <p>
                           <span className="text-3xl font-semibold">
-                            {/* {users.length} */}
-                            526
+                            {users.length}
+                            {/* 526 */}
                           </span>
                         </p>
                         <p className="text-gray-500 mt-1">{t("Users")}</p>
@@ -125,7 +124,8 @@ const Dashboard = () => {
 
                       <div>
                         <p className="text-2xl text-white font-semibold mt-8">
-                          104
+                        {users.length}
+                          {/* 104 */}
                         </p>
                         <p className="text-gray-200">Weekly registers</p>
                       </div>

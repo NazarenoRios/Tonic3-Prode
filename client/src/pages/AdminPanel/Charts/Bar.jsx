@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useStateContext } from "../../../contexts/ContextProvider";
 
 import { ChartComponent, SeriesCollectionDirective, SeriesDirective, Inject, Legend, Category, Tooltip, ColumnSeries, DataLabel } from "@syncfusion/ej2-react-charts";
 
 import { ChartsHeader, Footer, Navbar, Sidebar } from "../../../components/AdminPanel";
-import SystemPermanency from '../../../jsons/SystemPermanency.json'
+// import SystemPermanency1 from '../../../jsons/SystemPermanency.json'
 import { useTranslation } from "react-i18next";
+
+import axios from 'axios'
 
 const Bar = () => {
 
@@ -23,6 +25,13 @@ const Bar = () => {
     lineStyle: { width: 0 },
     labelStyle: { color: "transparent" },
   };
+
+  const [SystemPermanency,setSystemPermanency] = useState([])
+
+
+  useEffect(() => {
+    axios.get("/metrics/register_summary/permanency").then(res => setSystemPermanency(res.data))
+  },[SystemPermanency.length])
 
   const barCustomSeries = [
     {

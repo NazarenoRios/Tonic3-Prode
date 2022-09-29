@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useStateContext } from "../../../contexts/ContextProvider";
 
 import { ChartComponent, SeriesCollectionDirective, SeriesDirective, Inject, ColumnSeries, Category, Tooltip,Legend,RangeColorSettingsDirective,RangeColorSettingDirective,
@@ -6,8 +6,9 @@ import { ChartComponent, SeriesCollectionDirective, SeriesDirective, Inject, Col
 
 import {ChartsHeader,Footer,Navbar,Sidebar} from "../../../components/AdminPanel";
 
-import UserRegisterPerUse from '../../../jsons/UserRegisterPerUse.json'
+// import UserRegisterPerUse1 from '../../../jsons/UserRegisterPerUse.json'
 import { useTranslation } from "react-i18next";
+import axios from 'axios'
 
 const ColorMapping = () => {
 
@@ -33,6 +34,13 @@ const ColorMapping = () => {
 
   const { t } = useTranslation(["admin-panel"]);
 
+  const [UserRegisterPerUse,setUserRegisterPerUse] = useState([])
+
+  useEffect(() => {
+    axios.get("/metrics/register_summary/logs_per_day").then(res => setUserRegisterPerUse(res.data))
+  },[UserRegisterPerUse.length])
+
+  
   return (
     <>
       <div className="flex relative dark:bg-main-dark-bg">

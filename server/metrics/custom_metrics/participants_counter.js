@@ -15,7 +15,9 @@ module.exports = {
   inc_participants: (fase) => {
     const str_fase = to_str(fase);
     const phase_ix = find_prop(str_fase, "name", data);
-    if (!phase_ix) {
+    console.log("asdasd",str_fase)
+    console.log("bbbb",phase_ix)
+    if (!phase_ix && phase_ix !== 0) {
         data.push({"name":str_fase,value:1,text:`1%`})
         return save_data(dir,data)
     }
