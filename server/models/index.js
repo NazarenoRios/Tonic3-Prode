@@ -9,6 +9,7 @@ const PlayerData = require("./Player_data")
 const Bet = require("./Bet")
 const Points = require("./Points")
 const PointsFase = require("./PointsFase")
+const Notification = require("./Notification")
 
 
 User.hasMany(Tournament);
@@ -33,5 +34,5 @@ Data_match.belongsTo(Match)
 Match.belongsTo(Tournament);
 
 
-module.exports = { User,Tournament,Team,Player,Match , Data_match, Tournament_teams, PlayerData, Bet, Points , PointsFase };
+module.exports = { User,Tournament,Team,Player,Match , Data_match, Tournament_teams, PlayerData, Bet, Points , PointsFase , Notification};
 
