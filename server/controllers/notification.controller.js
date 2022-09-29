@@ -49,7 +49,7 @@ class NotificationsController {
 
     static async deleteNotification (req,res){
         try{
-            await BetServices.deleteNotification(req.params.id)
+            await NotificationServices.deleteNotification(req.params.id)
             return res.status(200).send("deleted")
         }catch(error){
             console.log(error);
