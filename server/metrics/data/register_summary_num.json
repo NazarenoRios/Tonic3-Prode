@@ -1,23 +1,23 @@
 [
   {
     "month": 1,
-    "users": 3
+    "users": 7
   },
   {
     "month": 2,
-    "users": 5
+    "users": 10
   },
   {
     "month": 3,
-    "users": 3
+    "users": 7
   },
   {
     "month": 4,
-    "users": 2
+    "users": 13
   },
   {
     "month": 5,
-    "users": 4
+    "users": 11
   },
   {
     "month": 6,
@@ -25,11 +25,11 @@
   },
   {
     "month": 7,
-    "users": 2
+    "users": 10
   },
   {
     "month": 8,
-    "users": 24
+    "users": 16
   },
   {
     "month": 9,
@@ -41,7 +41,7 @@
   },
   {
     "month": 11,
-    "users": 8
+    "users": 15
   },
   {
     "month": 12,
