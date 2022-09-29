@@ -1,5 +1,7 @@
+const { Data_match, Team } = require("../models")
 const Match_services = require("../services/match_services")
 const PointsServices = require("../services/points.services")
+const push = require("../utils/webpush")
 
 class MatchControllers {
     static async setAllMatches(req,res,next){
@@ -48,6 +50,10 @@ class MatchControllers {
             if(match_ended){
                 const match = await Match_services.getMatch(req.body[0].id)
                 const done = await PointsServices.addPoint(match)
+                const dataMatch = await Data_match.findAll({where: {matchId: match.id}})
+                const team1 = await Team.findByPk(dataMatch[0].dataValues.teamId)
+                const team2 = await Team.findByPk(dataMatch[1].dataValues.teamId)
+                await push.sendPush(`Partido finalizado`,`${team1.name} ${dataMatch[0].dataValues.goals} - ${team2.name} ${dataMatch[1].dataValues.goals}`)
                return res.status(204).send(done)
             }
             res.status(401).send("no content")

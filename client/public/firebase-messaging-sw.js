@@ -16,7 +16,7 @@ const firebaseConfig = {
 const app = firebase.initializeApp(firebaseConfig)
 const messaging = firebase.messaging(app)
 
-/* 
+
 messaging.onBackgroundMessage(payload => {
     console.log("Recibiste mensaje apasdpapap")
 
@@ -30,4 +30,4 @@ messaging.onBackgroundMessage(payload => {
       notificationTitle,
       notificationOptions
     )
-}) */
+})

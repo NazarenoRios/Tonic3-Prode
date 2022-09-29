@@ -88,7 +88,7 @@ function ProdeInfo({ team, phase, setMatches }) {
 
   const { t } = useTranslation(["Prode"]);
 
-  console.log(userVote)
+  //console.log(userVote)
 
   return (
     <>
