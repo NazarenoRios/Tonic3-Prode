@@ -6,7 +6,12 @@ class Team extends S.Model { }
 Team.init({
       name : {
         type : S.STRING,
-        unique: true
+        unique: true,
+        validate:{
+          isAlpha:true,
+          min:3,
+          max:23
+        }
       },
       logo : {
         type : S.STRING

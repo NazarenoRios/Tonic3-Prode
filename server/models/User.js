@@ -19,10 +19,18 @@ User.init(
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate:{
+        isAlpha:true,
+        len: [3,20]
+      }
     },
     lastname: {
       type: DataTypes.STRING, 
       allowNull: false,
+      validate:{
+        isAlpha:true,
+        len: [3,20]
+      }
     },
     email: {
       type: DataTypes.STRING,
@@ -44,6 +52,10 @@ User.init(
     },
     phone: {
       type: DataTypes.BIGINT,
+      validate:{
+        isInt:true,
+        len: [8,13]
+      }
     },
     country: {
       type: DataTypes.STRING,
@@ -51,15 +63,29 @@ User.init(
     },
     state: {
       type: DataTypes.STRING,
+      validate:{
+        len: [4,25]
+      }
     },
     city: {
       type: DataTypes.STRING,
+      validate:{
+        len: [4,25]
+      }
     },
     address: {
       type: DataTypes.TEXT,
+      validate:{
+        isAlphanumeric:true,
+        len: [3,25]
+      }
     },
     zip: {
       type: DataTypes.INTEGER,
+      validate:{
+        isInt:true,
+        len: [7,15]
+      }
     },
     admin: {
       type: DataTypes.BOOLEAN,
@@ -93,8 +119,7 @@ User.beforeCreate((user) => {
   } catch(error){
     console.log(error)
   }
-  
-
+1131267055
 }) */
 
 User.addHook("afterCreate",(user)=>{

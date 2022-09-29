@@ -10,6 +10,10 @@ class Tournament extends S.Model { }
 Tournament.init({
       name : {
         type : S.STRING,
+        validate:{
+            isAlpha:true,
+            len:[5,20]
+        }
       },
       logo : {
         type : S.STRING
