@@ -1,0 +1,50 @@
+[
+  {
+    "month": 1,
+    "users": 3
+  },
+  {
+    "month": 2,
+    "users": 5
+  },
+  {
+    "month": 3,
+    "users": 3
+  },
+  {
+    "month": 4,
+    "users": 2
+  },
+  {
+    "month": 5,
+    "users": 4
+  },
+  {
+    "month": 6,
+    "users": 7
+  },
+  {
+    "month": 7,
+    "users": 2
+  },
+  {
+    "month": 8,
+    "users": 13
+  },
+  {
+    "month": 9,
+    "users": 10
+  },
+  {
+    "month": 10,
+    "users": 12
+  },
+  {
+    "month": 11,
+    "users": 8
+  },
+  {
+    "month": 12,
+    "users": 13
+  }
+]

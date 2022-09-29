@@ -1,6 +1,6 @@
 import React from "react";
 
-function RegisterForm() {
+function CountryModal() {
   
   return (
     <div
@@ -18,18 +18,17 @@ function RegisterForm() {
                 role="main"
                 className="text-3xl dark:text-white lg:text-4xl font-semibold leading-7 lg:leading-9 text-center text-gray-800"
               >
-                Congratulations! 😊
+                Sorry! 😔
               </h1>
             </div>
             <div className="mt">
               <p className="mt-6 sm:w-80 text-base dark:text-white leading-7 text-center text-gray-800 mb-5">
-                You have successfully registered, now you must accept the
-                verification email
+              Your country isnt in the enabled countries
               </p>
             </div>
             <div className="mt">
               <span className="mt-6 text-center text-sm font-bold text-red-500">
-                Don't forget to check the spam folder
+              Try again at another time
               </span>
             </div>
           </div>
@@ -39,4 +38,4 @@ function RegisterForm() {
   );
 }
 
-export default RegisterForm;
+export default CountryModal;

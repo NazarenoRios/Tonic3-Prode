@@ -97,13 +97,13 @@ module.exports = {
       },
       {
         name:"Velez",
-        logo:"https://i.imgur.com/AEYdFqY.png",
+        logo:"https://i.imgur.com/2qkokwA.png",
         createdAt:new Date(),
         updatedAt:new Date()
       },
       {
         name:"San Lorenzo",
-        logo:"https://i.imgur.com/2qkokwA.png",
+        logo:"https://i.imgur.com/AEYdFqY.png",
         createdAt:new Date(),
         updatedAt:new Date()
       },

@@ -34,11 +34,12 @@ exports.googlelogin = (req, res) => {
           res.cookie("email", email);
           res.cookie("password", password);
           res.sendStatus(200);
-          // sessionStorage.setItem("email", email)
-          // sessionStorage.setItem("name", name)
-          // sessionStorage.setItem("password", password)
         } else {
           user.validatePassword(password).then((isValid) => {
+            res.cookie("name", given_name);
+            res.cookie("lastname", family_name);
+            res.cookie("email", email);
+            res.cookie("password", password);
             if (!isValid) return res.send(401);
             const payload = {
               id: user.id,
@@ -54,9 +55,6 @@ exports.googlelogin = (req, res) => {
               address: user.address,
               zip: user.zip,
             };
-
-            
-
             permanence_counter({id:user.id,name:user.name},'login_date')
             const token = generateToken(payload);
             // sessionStorage.setItem("token", token)

@@ -34,3 +34,4 @@ db.sync({ force: false }).then(() => {
     console.log(`Server listening at port ${process.env.PORT}`);
   });
 });
+

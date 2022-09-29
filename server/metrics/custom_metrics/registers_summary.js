@@ -3,16 +3,16 @@ const { parse_date } = require("../utils/init_date");
 const { save_data } = require("../utils/save_data");
 
 const find_obj_ix = (date_obj, data) => {
-  const { year, month } = date_obj;
+  const { month } = date_obj;
   for (let i = 0; i < data.length; i++) {
-    if (data[i]["year"] === year && data[i]["month"] === month) return i;
+    if (data[i]["month"] === month) return i;
   }
 };
-const push_num_date=(year,month,index)=>{
+const push_num_date=(month,index)=>{
   const register_dir = set_dir("register_summary_num", []);
     const { data, dir } = register_dir;
     if(!index){
-      data.push({year,month,users:1})
+      data.push({month,users:1})
      return save_data(dir,data)
     }
     data[index].users+=1
@@ -20,11 +20,11 @@ const push_num_date=(year,month,index)=>{
 }
 
 const save_date = (dir, data) => {
-  const { year, str_month,month } = parse_date(new Date());
-  const obj_ix = find_obj_ix({ month: str_month, year },data);
-  push_num_date(year,month,obj_ix)
+  const { str_month,month } = parse_date(new Date());
+  const obj_ix = find_obj_ix({ month: str_month },data);
+  push_num_date(month,obj_ix)
   if (obj_ix!==0 && !obj_ix) {
-    data.push({ year, month: str_month, users: 1 });
+    data.push({ month: str_month, users: 1 });
     return save_data(dir, data);
   } else {
     data[obj_ix].users += 1;
