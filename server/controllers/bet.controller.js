@@ -1,6 +1,6 @@
 const BetServices = require("../services/bet.services")
 const push = require("../utils/webpush")
-const { Team } = require("../models")
+const { Team } = require("../models");
 
 class BetController {
 
@@ -40,7 +40,7 @@ class BetController {
 
     static async modifyBet (req,res){
         try{
-            const bet = await BetServices.getBet(req.params.id)
+            const bet = await BetServices.getBet(req.user.id)
             const validate = await BetServices.countdown(bet)
             const modifyBet = await BetServices.modifyBet(validate,req.body)
             if(bet)return res.status(200).send(modifyBet)
@@ -52,7 +52,7 @@ class BetController {
 
     static async deleteBet (req,res){
         try{
-            await BetServices.deleteBet(req.params.id)
+            await BetServices.deleteBet(req.user.id)
             return res.status(200).send("deleted")
         }catch(error){
             console.log(error);

@@ -1,4 +1,5 @@
-const { User } = require("../models");
+const { User, Points, Bet } = require("../models");
+const BetServices = require("../services/bet.services");
 
 //traer todos los usuarios
 exports.users = (req, res) => {
@@ -30,8 +31,12 @@ exports.changePassword = (req, res) => {
 };
 
 //Borrar a un usuario, Cualquiera puede borrarlo, faltan las condiciones para que sea solo el admin
-exports.deleteUser = (req,res)=>{
+exports.deleteUser = async (req,res)=>{
   const { id } = req.params
+  const user_points= await Points.findAll({where:{userId:id}})
+  const user_bets= await Bet.findAll({where:{userId:id}})
+  if(user_points.length)user_points.map((point_table)=>point_table.destroy())
+  if(user_bets.length)user_bets.map(user_bet=>user_bet.destroy())
     User.destroy({where:{
       id: id
     }})
