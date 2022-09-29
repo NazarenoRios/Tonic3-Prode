@@ -2,8 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import Modal from "../../common/Modal";
 
-import { FormBackground, Img, Img2 } from "./StyledComponents";
-import leftImg from "../../assets/register/rightLogin1.png";
+import { FormBackground} from "./StyledComponents";
 import BackgroundVideo from "../../assets/videos/FormBackground.mp4"
 import "./Btn.css";
 
@@ -14,6 +13,7 @@ import { useNavigate } from "react-router";
 
 import Cookies from 'js-cookie';
 import axios from "axios";
+import CheckCountryModal from "../../pages/CheckCountryModal";
 
 function RegisterForm() {
 
@@ -27,6 +27,7 @@ function RegisterForm() {
   const navigate = useNavigate()
 
   const removeCookies = async () => {
+    const removeToken = await Cookies.remove('token')
     const removeName = await Cookies.remove('name')
     const removeLastname = await Cookies.remove('lastname')
     const removeEmail = await Cookies.remove('email')
@@ -117,23 +118,6 @@ function RegisterForm() {
                 </div>
               </div>
 
-              {/* <div className="flex flex-wrap -mx-3 mb-6">
-                <div className="w-full px-3">
-                  <label
-                    className="block uppercase tracking-wide text-center mr-3 md:text-start md:mr-0  text-white text-xs font-bold mb-2"
-                    forhtml="password"
-                  >
-                    Password
-                  </label>
-                  <input
-                    className="appearance-none block w-5/6 mx-8 text-center md:text-start md:w-full md:mx-0 bg-transparent text-white border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-[#e66fea] font-bold"
-                    id="password"
-                    type="password"
-                    placeholder="******************"
-                    disabled
-                  />
-                </div>
-              </div> */}
               <div className="flex flex-wrap -mx-3 mb-2">
                 <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                   <label
@@ -237,7 +221,8 @@ function RegisterForm() {
         </div>
         
       ) : (
-        <Modal />
+        // <Modal />
+        <CheckCountryModal/>
       )}
     </>
   );

@@ -1,42 +1,126 @@
 [
   {
     "id": 1,
-    "name": "Fredi",
+    "name": "Nazareno",
     "user_country": "Argentina",
     "permanence_logs": {
       "2022": {
         "8": {
           "28": {
             "hours": 23,
-            "mins": 46,
-            "seconds": 17,
+            "mins": 55,
+            "seconds": 35,
             "before_user_update": {
               "hours": 23,
-              "mins": 58,
-              "seconds": 49
+              "mins": 55,
+              "seconds": 36
             },
             "total": {
-              "time_in_sec": 750
+              "time_in_sec": 1
             },
             "last_user_update": {
               "hours": 23,
-              "mins": 58,
-              "seconds": 49
+              "mins": 55,
+              "seconds": 36
             }
           },
           "29": {
             "before_user_update": {
               "hours": 0,
-              "mins": 10,
-              "seconds": 37
+              "mins": 12,
+              "seconds": 17
             },
             "total": {
-              "time_in_sec": 100
+              "time_in_sec": 148
             },
             "last_user_update": {
               "hours": 0,
-              "mins": 10,
-              "seconds": 37
+              "mins": 12,
+              "seconds": 17
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": 2,
+    "name": "Nazareno L",
+    "user_country": "Australia",
+    "permanence_logs": {
+      "2022": {
+        "8": {
+          "28": {
+            "hours": 23,
+            "mins": 55,
+            "seconds": 26,
+            "before_user_update": {
+              "hours": 23,
+              "mins": 55,
+              "seconds": 27
+            },
+            "total": {
+              "time_in_sec": 1
+            },
+            "last_user_update": {
+              "hours": 23,
+              "mins": 55,
+              "seconds": 27
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": 3,
+    "name": "Tenshi",
+    "user_country": "Argentina",
+    "permanence_logs": {
+      "2022": {
+        "8": {
+          "28": {
+            "hours": 19,
+            "mins": 40,
+            "seconds": 20,
+            "before_user_update": {
+              "hours": 20,
+              "mins": 12,
+              "seconds": 8
+            },
+            "total": {
+              "time_in_sec": -1572
+            },
+            "last_user_update": {
+              "hours": 20,
+              "mins": 12,
+              "seconds": 8
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": 4,
+    "name": "qwretuqe",
+    "user_country": "Argentina",
+    "permanence_logs": {
+      "2022": {
+        "8": {
+          "28": {
+            "before_user_update": {
+              "hours": 20,
+              "mins": 42,
+              "seconds": 11
+            },
+            "total": {
+              "time_in_sec": 696
+            },
+            "last_user_update": {
+              "hours": 20,
+              "mins": 42,
+              "seconds": 11
             }
           }
         }

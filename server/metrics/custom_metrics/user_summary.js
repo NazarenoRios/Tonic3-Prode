@@ -25,8 +25,11 @@ module.exports = {
   permanence_counter: async (user_data) => {
     const { name, id } = user_data;
     const user_country=await User.findOne({where:{id}})
-    // const {country}=user_country
-    const abreved_country=abrev_country(user_country.country)
+
+    if (!user_country) return 
+    const {country}=user_country
+    const abreved_country=abrev_country(country)
+
     let user_ix= find_index(id)
     if (!id) return;
     if (!data[user_ix]) {

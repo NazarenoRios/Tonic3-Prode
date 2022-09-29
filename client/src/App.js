@@ -22,6 +22,8 @@ import TablePoints from "./pages/UserPanel/TablePoints";
 import { onMessage } from "firebase/messaging";
 import { toast, ToastContainer } from "react-toastify";
 import { messaging } from "./firebase";
+import UserInfo from "./pages/AdminPanel/Users/UserInfo";
+import UserInfoPage from "./pages/AdminPanel/UserInfoPage";
 
 
 function App() {
@@ -41,6 +43,7 @@ function App() {
   useEffect(() => {
     dispatch(getUser());
   }, [user.id]);
+  
 
   return (
     <>
@@ -66,6 +69,7 @@ function App() {
           <Route path="/Players" element={<Players />} />
           <Route path="/Users" element={<Users />} />
           <Route path="/Awards" element={<Awards />} />
+          <Route path="/user/:id" element={<UserInfoPage />} />
 
           {/* apps  */}
           <Route path="/kanban" element={<Kanban />} />

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   AccumulationChartComponent,
   AccumulationSeriesCollectionDirective,
@@ -9,9 +9,17 @@ import {
   AccumulationLegend,
   AccumulationTooltip
 } from "@syncfusion/ej2-react-charts";
-import FixtureStageParticipants from "../../../jsons/FixtureStageParticipants.json";
+// import FixtureStageParticipants from "../../../jsons/FixtureStageParticipants.json";
+import axios from 'axios'
 
 const Doughnut = () => {
+
+  const [FixtureStageParticipants,setFixtureStageParticipants] = useState([])
+
+  useEffect(() => {
+    axios.get("/metrics/tournament_summary/").then(res => setFixtureStageParticipants(res.data))
+  },[FixtureStageParticipants.length])
+
   return (
     <AccumulationChartComponent  tooltip={{enable:true}} legendSettings={{position:"Bottom"}} >
       <Inject services={[PieSeries, AccumulationDataLabel, AccumulationLegend, AccumulationTooltip]}></Inject>

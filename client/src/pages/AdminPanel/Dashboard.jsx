@@ -6,7 +6,6 @@ import { Stacked,DashPie,Button,SparkLine,Navbar,Footer,Sidebar } from "../../co
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Btn from "../../common/Btn/Btn";
 

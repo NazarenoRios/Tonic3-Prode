@@ -14,23 +14,24 @@ router.get('/',async (req,res,next)=>{
 router.get('/permanency',(req,res,next)=>{
    try{
       const file_data= get_json_data('user_permanency')
-         return res.status(200).send(file_data)
+      file_data.forEach((data,i) => {
+         file_data[i] = [data]
+      });
+         return res.send(file_data)
    }catch(e){
       console.log(e)
       res.sendStatus(404)
    }
 })
+
 router.get('/logs_per_day',(req,res,next)=>{
    try{
-      const file_data=get_json_data('week_loggs_summary')
+      const file_data=get_json_data('week_logs_summary')
       return res.status(200).send(file_data)
    }catch(e){
       console.log(e)
    }
 })
-
-
-
 
 
 module.exports=router

@@ -2,10 +2,9 @@ import React from "react";
 
 import { Footer, Navbar, Sidebar } from "../../components/AdminPanel";
 import { useStateContext } from "../../contexts/ContextProvider";
-import UsersModel from "./Users/UsersModel";
+import UserInfo from "./Users/UserInfo";
 
-
-const Users = () => {
+const UserInfoPage = () => {
   const { activeMenu } = useStateContext();
 
   return (
@@ -35,7 +34,7 @@ const Users = () => {
               <Navbar />
             </div>
             <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
-              <UsersModel />
+              <UserInfo/>
             </div>
             <Footer />
           </div>
@@ -44,4 +43,4 @@ const Users = () => {
     </>
   );
 };
-export default Users;
+export default UserInfoPage;
