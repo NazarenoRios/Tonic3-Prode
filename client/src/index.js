@@ -20,7 +20,12 @@ import { ContextProvider } from "./contexts/ContextProvider";
 import { MuiPickersUtilsProvider } from '@material-ui/pickers'
 import DateFnsUtils from '@date-io/date-fns'
 
+//translate
 import "./i18n"
+
+//syncfusion
+import { registerLicense } from '@syncfusion/ej2-base';
+registerLicense('ORg4AjUWIQA/Gnt2VVhjQlFaclhJXGNWfFppR2NbfU50flVGal1YVBYiSV9jS3xTf0dqWHlecXBURWBbWQ==');
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
