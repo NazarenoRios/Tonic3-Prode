@@ -13,7 +13,7 @@ import { useTranslation } from "react-i18next";
 export default function DropDown() {
 
   const { handleClick, isClicked } = useStateContext();
-  const user = useSelector((state)=>state.user)
+  const profile = useSelector((state)=>state.profile)
   
   const { t } = useTranslation(["navbar"]);
 
@@ -32,7 +32,7 @@ export default function DropDown() {
             <p>
               <span className="text-black text-14">{t("Hi")},</span>{' '}
               <span className="text-black font-bold ml-1 text-14">
-                {user.name}
+                {profile.name}
               </span>
             </p>
             <MdKeyboardArrowDown className="text-gray-800 text-14" />

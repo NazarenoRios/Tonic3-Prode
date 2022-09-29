@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import matchesReducer from "./matches";
 import phaseReducer from "./phase";
 import pointsReducer from "./points";
+import profileReducer from "./profile";
 import tournamentsReducer from "./tournaments";
 // import logger from "redux-logger"
 import userReducer from "./user";
@@ -13,7 +14,8 @@ const store = configureStore({
         tournament: tournamentsReducer,
         phase: phaseReducer,
         matches: matchesReducer,
-        points: pointsReducer
+        points: pointsReducer,
+        profile: profileReducer
     }
 })
 
