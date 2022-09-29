@@ -98,7 +98,9 @@ exports.register = (req, res) => {
             .sendMail(user.dataValues.id)
             .then((result) => console.log("Sending Email", result))
     })
-        .then(() => res.sendStatus(201));
+    .catch(err => console.log(err))
+        .then(() => res.sendStatus(201))
+        .catch((err) => console.log(err))
     } else {
       res.send({ message: "Usuario ya registrado" });
     }

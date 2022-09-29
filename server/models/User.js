@@ -19,18 +19,16 @@ User.init(
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        isAlpha: true,
-        len: [3, 20],
-      },
+      validate:{
+        len: [3,20]
+      }
     },
     lastname: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        isAlpha: true,
-        len: [3, 20],
-      },
+      validate:{
+        len: [3,20]
+      }
     },
     email: {
       type: DataTypes.STRING,
@@ -75,17 +73,16 @@ User.init(
     },
     address: {
       type: DataTypes.TEXT,
-      validate: {
-        isAlphanumeric: true,
-        len: [3, 25],
-      },
+      validate:{
+        len: [3,25]
+      }
     },
     zip: {
       type: DataTypes.INTEGER,
-      validate: {
-        isInt: true,
-        len: [7, 15],
-      },
+      validate:{
+        isInt:true,
+        len: [1,15]
+      }
     },
     admin: {
       type: DataTypes.BOOLEAN,

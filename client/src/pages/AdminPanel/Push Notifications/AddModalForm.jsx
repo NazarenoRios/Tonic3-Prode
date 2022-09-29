@@ -1,22 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useInput } from "../../../hooks/useInput";
 import { DateTimePicker } from "@material-ui/pickers";
-import { getNotifications, addNotification } from "./NotificationsFunctions.ts";
+import { getNotifications, addNotification, getUsers } from "./NotificationsFunctions.ts";
 
 const AddModalForm = ({ setShowModal, setNotifications }) => {
 
   const title = useInput("title");
   const info = useInput("logo");
+  const userSelected = useInput("userSelected")
 
+  const [users,setUsers] = useState([])
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const onSubmit = async (e) => {
     e.preventDefault()
-    const addT = await addNotification({title, info, selectedDate});
+    const addT = await addNotification({title, info, selectedDate, userSelected});
     const getall = await getNotifications().then((data) => setNotifications(data));
     const close = await setShowModal(false);
   };
+
+  useEffect(() => {
+    getUsers().then((data) => setUsers(data))
+  },[])
   
   const { t } = useTranslation(["admin-panel"]);
 
@@ -52,6 +58,25 @@ const AddModalForm = ({ setShowModal, setNotifications }) => {
             type="text"
             {...info}
           />
+        </div>
+
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="size"
+          >
+            User/s
+          </label>
+          <select
+           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center"
+           id="winner"
+           {...userSelected}
+          >
+            <option selected value="">All users</option>
+            {users?.map((user,i) => 
+              <option key={i} value={user.id}>{user.name}</option>
+            )}
+          </select>
         </div>
 
         <div className="mb-4">
