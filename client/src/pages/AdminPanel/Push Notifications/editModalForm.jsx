@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useInput } from "../../../hooks/useInput";
 import { DateTimePicker } from "@material-ui/pickers";
-import { editNotification, getNotifications } from "./NotificationsFunctions.ts";
+import { editNotification, getNotifications, getUsers } from "./NotificationsFunctions.ts";
 
 const EditModalForm = ({ row, setNotifications , setShowModal }) => {
 
   const title = useInput("title");
   const info = useInput("logo");
+  const userSelected = useInput("userSelected")
 
+  const [users,setUsers] = useState([])
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const handleEdit = async (award) => {
@@ -19,8 +21,12 @@ const EditModalForm = ({ row, setNotifications , setShowModal }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault()
-    handleEdit({title: title.value,info: info.value, selectedDate, notification: row})
+    handleEdit({title: title.value,info: info.value, selectedDate, userSelected: userSelected.value, notification: row})
   };
+
+  useEffect(() => {
+    getUsers().then((data) => setUsers(data))
+  },[])
 
 
   const { t } = useTranslation(["admin-panel"]);
@@ -57,6 +63,25 @@ const EditModalForm = ({ row, setNotifications , setShowModal }) => {
             type="text"
             {...info}
           />
+        </div>
+
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="size"
+          >
+            User/s
+          </label>
+          <select
+           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center"
+           id="winner"
+           {...userSelected}
+          >
+            <option selected value="">All users</option>
+            {users?.map((user,i) => 
+              <option key={i} value={user.id}>{user.name}</option>
+            )}
+          </select>
         </div>
 
         <div className="mb-4">

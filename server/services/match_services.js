@@ -57,10 +57,10 @@ class Match_services {
       if (!match) continue;
       const test = await Data_match.findAll({ where: { matchId: next } });
       const index = !test[0].teamId ? 0 : 1;
-      const ix = match[0].goals > match[1].goals ? 0 : 1;
-
+      let ix
+      if(match[0].penalties || match[1].penalties)ix = match[0].penalties > match[1].penalties ? 0 : 1;
+      else ix = match[0].goals > match[1].goals ? 0 : 1;
       try {
-
         await Match.update(
           { winner: match[ix].teamId, match_end: true },
           { where: { [Op.and]: [{ number_key }, { tournamentId }] } }
@@ -75,7 +75,6 @@ class Match_services {
         console.log(e);
       }
     }
-  }
-}
+  }}
 
 module.exports = Match_services;

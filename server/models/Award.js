@@ -14,7 +14,6 @@ Award.init({
         type:S.STRING,
         allowNull:false,
         validate:{
-            isAlpha:true,
             len:[2,15]
         }
     },
