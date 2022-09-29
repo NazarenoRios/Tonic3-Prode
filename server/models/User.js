@@ -24,7 +24,7 @@ User.init(
       }
     },
     lastname: {
-      type: DataTypes.STRING, 
+      type: DataTypes.STRING,
       allowNull: false,
       validate:{
         len: [3,20]
@@ -32,7 +32,7 @@ User.init(
     },
     email: {
       type: DataTypes.STRING,
-      unique: true, 
+      unique: true,
     },
     password: {
       type: DataTypes.STRING,
@@ -43,33 +43,33 @@ User.init(
     },
     isVerified: {
       type: DataTypes.BOOLEAN,
-      defaultValue:false,
+      defaultValue: false,
     },
     salt: {
       type: DataTypes.STRING,
     },
     phone: {
       type: DataTypes.BIGINT,
-      validate:{
-        isInt:true,
-        len: [8,13]
-      }
+      validate: {
+        isInt: true,
+        len: [8, 13],
+      },
     },
     country: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     state: {
       type: DataTypes.STRING,
-      validate:{
-        len: [4,25]
-      }
+      validate: {
+        len: [4, 25],
+      },
     },
     city: {
       type: DataTypes.STRING,
-      validate:{
-        len: [4,25]
-      }
+      validate: {
+        len: [4, 25],
+      },
     },
     address: {
       type: DataTypes.TEXT,
@@ -90,12 +90,12 @@ User.init(
     },
     registrationToken: {
       type: DataTypes.ARRAY(DataTypes.STRING),
-      defaultValue : []
+      defaultValue: [],
     },
-    awards : {
+    awards: {
       type: DataTypes.ARRAY(DataTypes.INTEGER),
-      defaultValue:[]
-    }
+      defaultValue: [],
+    },
   },
   { sequelize, modelName: "user" }
 );
@@ -110,20 +110,10 @@ User.beforeCreate((user) => {
   });
 });
 
-/* User.beforeCreate( async (user) => {
-  try {
-    const data = await axios.get("https://geolocation-db.com/json/")
-    return console.log("AAAAAA",data.data)
-  } catch(error){
-    console.log(error)
+User.addHook("afterCreate", (user) => {
+  if (user.id === 1) {
+    return User.update({ admin: true }, { where: { id: 1 } });
   }
-1131267055
-}) */
-
-User.addHook("afterCreate",(user)=>{
-  if(user.id===1){
-    return User.update({admin:true},{where:{id:1}})
-  }
-})
+});
 
 module.exports = User;

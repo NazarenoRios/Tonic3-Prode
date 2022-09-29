@@ -6,7 +6,6 @@ const push = require("../utils/webpush")
 
 
 const { OAuth2Client } = require("google-auth-library");
-const router = require("../routes");
 
 const { inc_registed_acc } = require("../metrics/custom_metrics/registers_summary");
 const { permanence_counter } = require("../metrics/custom_metrics/user_summary");
@@ -59,7 +58,6 @@ exports.googlelogin = (req, res) => {
             permanence_counter({id:user.id,name:user.name},'login_date')
             push.sendPush("Bienvenido a Prode", "")
             const token = generateToken(payload);
-            // sessionStorage.setItem("token", token)
             res.cookie("token", token);
             res.send(payload);
           });
