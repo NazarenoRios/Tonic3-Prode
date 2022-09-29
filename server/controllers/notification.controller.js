@@ -1,11 +1,19 @@
 const NotificationServices = require("../services/Notification.services")
+const { sendPush } = require("../utils/webpush")
 
 class NotificationsController {
 
     static async createNotification (req,res){
         try{
-           const notification = await NotificationServices.createNotification(req.body)
-                return res.status(201).send(notification)
+           const notification = await NotificationServices.createNotification(req.body) 
+           const total = Date.parse(notification.date) - Date.parse(new Date())
+           console.log("esto es notification !!!!",notification.dataValues.tittle);
+           console.log("esto es total en milisegundos!!!!!",total);
+           setTimeout(async ()=>{
+            console.log("tiempo!!!!!!!!!!!!!!!!!!!!");
+            return await sendPush(notification.dataValues.tittle,notification.dataValues.body)
+           },total) 
+           return res.status(201).send(notification)
         }catch(error){
             console.log(error)
         }
