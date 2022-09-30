@@ -37,7 +37,7 @@ const Navbar = () => {
     setScreenSize,
     screenSize,
   } = useStateContext();
-  const profile = useSelector((state) => state.profile);
+  const profile = useSelector((state) => state.user);
   useEffect(() => {
     const handleResize = () => setScreenSize(window.innerWidth);
 

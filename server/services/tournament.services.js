@@ -114,13 +114,13 @@ class TournamentServices {
         await match.destroy();
         return await data_matches;
       });
-
       console.log(data_matches, tournament_bets);
-      if (tournament_points.length)
-        await tournament_points.forEach(async(tournament_point) =>
-        await tournament_point.destroy()
-        );
-      if (data_matches.length)await data_matches.forEach(async (data_match_tournament) =>{
+      if (Array.isArray(tournament_matches))
+      await tournament_points.forEach(async(tournament_point) =>
+      await tournament_point.destroy()
+      );
+      
+     if (Array.isArray(data_matches))await data_matches.forEach(async (data_match_tournament) =>{
         console.log(data_matches,data_match_tournament)
         await data_match_tournament.destroy()}
         );

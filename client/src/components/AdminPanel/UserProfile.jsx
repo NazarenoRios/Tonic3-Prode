@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { MdOutlineCancel } from 'react-icons/md';
 
 import { Button } from '.';
@@ -8,23 +8,24 @@ import axios from 'axios';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import { BsPersonCircle } from 'react-icons/bs';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from 'react-i18next';
+import { get_my_user } from '../../state/user';
 
 const UserProfile = () => {
   const navigate = useNavigate()
-  const profile = useSelector((state)=>state.profile)
-
+  const dispatch = useDispatch()
+  const profile = useSelector((state)=>state.user)
   const handleLogout = async () => {
     try {
       const logout = await axios.post("/api/user/logout");
       const clear = await sessionStorage.clear();
-      const home = await navigate('/')
       const reload = await window.location.reload();
     } catch (error) {
       console.log(error);
     }
   };
+
 
   const { t } = useTranslation(["admin-panel"]);
 

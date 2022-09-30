@@ -3,12 +3,12 @@ import Cookies from 'js-cookie';
 
 import { useDispatch } from "react-redux"
 import { GoogleLogin } from "@react-oauth/google";
-import { googleLogin } from "../state/user";
+import {  get_my_user, googleLogin } from "../state/user";
 
 function Modal() {
 
   const dispatch = useDispatch();
-
+  
   const fetchData = async () => {
     const setName = await sessionStorage.setItem("name", Cookies.get('name'))
     const setLastName = await sessionStorage.setItem("lastname", Cookies.get('lastname'))
@@ -19,6 +19,7 @@ function Modal() {
   const sucessGoogleResponse = async (tokenResponse) => {
     const log = await dispatch(googleLogin(tokenResponse))
     const setInfo = await fetchData()
+    console.log(log,setInfo,tokenResponse)
     const reload = await window.location.reload()
   };
 
