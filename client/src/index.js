@@ -25,7 +25,8 @@ import "./i18n"
 
 //syncfusion
 import { registerLicense } from '@syncfusion/ej2-base';
-registerLicense('ORg4AjUWIQA/Gnt2VVhjQlFaclhJXGNWfFppR2NbfU50flVGal1YVBYiSV9jS3xTf0dqWHlecXBURWBbWQ==');
+registerLicense(`${process.env.REACT_APP_SYNCFUSION_KEY}`);
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -33,7 +34,7 @@ root.render(
     <Suspense fallback={null}>
       <Router>
         <Provider store={store}>
-          <GoogleOAuthProvider clientId="1003614733230-e43jmqg38ura9fdcru8n7nb2qknpab1l.apps.googleusercontent.com">
+          <GoogleOAuthProvider clientId={process.env.REACT_APP_FIREBASE_KEY}>
             <ContextProvider>
               <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <App />
