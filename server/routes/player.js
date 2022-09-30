@@ -258,6 +258,8 @@ router.put("/titular/:id",validate_admin,PlayerController.playerTitular)
 *               $ref: '#/components/schemas/Player'
 *       404: 
 *         description: player not found
+*/
+
 router.delete("/:id",validate_admin,PlayerController.deletePlayer)
 
 module.exports = router
