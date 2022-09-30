@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "name": "Gaston",
+    "user_country": "Argentina",
+    "permanence_logs": {
+      "2022": {
+        "8": {
+          "30": {
+            "hours": 1,
+            "mins": 43,
+            "seconds": 48
+          }
+        }
+      }
+    }
+  }
+]
