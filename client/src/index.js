@@ -27,7 +27,6 @@ import "./i18n"
 import { registerLicense } from '@syncfusion/ej2-base';
 registerLicense(`${process.env.REACT_APP_SYNCFUSION_KEY}`);
 
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
