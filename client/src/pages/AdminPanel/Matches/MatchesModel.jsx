@@ -11,7 +11,6 @@ import { Header } from "../../../components/AdminPanel";
 import MatchesForm from "./MatchesForm";
 import {  getTournaments, getMatchesByPhase } from "./MatchesFunctions.ts";
 import { useDispatch, useSelector } from "react-redux";
-import { setTournament2 } from "../../../state/tournaments";
 import { setActualPhase } from "../../../state/phase";
 import { useTranslation } from "react-i18next";
 
@@ -20,13 +19,13 @@ export default function TeamsModel() {
   const [matches, setMatches] = React.useState([]);
   const [phases, setPhases] = React.useState([]);
   const [actualTournament, setActualTournament] = React.useState();
+  const [tournaments,setTournaments] = React.useState()
 
   const dispatch = useDispatch()
-  const tournaments = useSelector(state => state.tournament)
   const phase = useSelector(state => state.phase)
 
   React.useEffect(() => {
-    getTournaments().then((data) => dispatch(setTournament2(data)));
+    getTournaments().then(data => setTournaments(data))
   }, []);
 
   const getPhases = (e) => {
