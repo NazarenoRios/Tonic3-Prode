@@ -22,21 +22,21 @@
             }
           },
           "29": {
-            "hours": 17,
-            "mins": 50,
-            "seconds": 9,
+            "hours": 18,
+            "mins": 47,
+            "seconds": 11,
             "before_user_update": {
               "hours": 18,
-              "mins": 5,
-              "seconds": 19
+              "mins": 48,
+              "seconds": 46
             },
             "total": {
-              "time_in_sec": -2570
+              "time_in_sec": 94
             },
             "last_user_update": {
               "hours": 18,
-              "mins": 5,
-              "seconds": 19
+              "mins": 48,
+              "seconds": 46
             }
           }
         }
