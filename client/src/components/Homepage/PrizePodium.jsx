@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import axios from 'axios'
+import Cookies from 'js-cookie';
 
 import Podium from "../../common/Podium/Podium";
 import { PodiumTable } from "../../common/Podium/PodiumTable.tsx";
@@ -27,6 +28,14 @@ function PrizePodium() {
     })
     return newArr
   }
+
+  useEffect(() => {
+    sessionStorage.clear()
+    Cookies.remove('name')
+    Cookies.remove('lastname')
+    Cookies.remove('email')
+    Cookies.remove('password')
+  },[])
   
   const data = [
     {
