@@ -9,7 +9,20 @@
           "30": {
             "hours": 1,
             "mins": 43,
-            "seconds": 48
+            "seconds": 48,
+            "before_user_update": {
+              "hours": 3,
+              "mins": 55,
+              "seconds": 41
+            },
+            "total": {
+              "time_in_sec": 2948
+            },
+            "last_user_update": {
+              "hours": 3,
+              "mins": 55,
+              "seconds": 41
+            }
           }
         }
       }
