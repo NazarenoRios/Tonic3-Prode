@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import "./App.css";
 
-import { getUser } from "./state/user";
+import {  get_my_user } from "./state/user";
 
 // Admin Section
 import { Calendar,Dashboard, Kanban, Bar, Pie, ColorMapping, Tournaments, Teams, Players, Users, Awards} from "./pages/AdminPanel";
@@ -32,7 +32,7 @@ import PushNotifications from "./pages/AdminPanel/PushNotifications";
 
 
 function App() {
-
+  const dispatch=useDispatch()
   useEffect(()=>{
     onMessage(messaging, message=>{
       console.log("tu mensaje", message)
@@ -41,22 +41,12 @@ function App() {
       })
     })
   },[])
-
-  const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  useEffect(()=>{
+    dispatch(get_my_user())
+  },[user])
 
-  useEffect(() => {
-    dispatch(getUser());
-  }, [user.id]);
-  
 
-  useEffect(() => {
-    if (user.id) {
-      axios
-      .get(`/api/user/${user.id}`)
-      .then((res) => dispatch(setActualProfile(res.data)));
-    }
-  }, [user]);
 
   return (
     <>

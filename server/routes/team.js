@@ -1,6 +1,7 @@
 const express = require("express")
 const router = express.Router()
 const TeamController = require("../controllers/team.controllers")
+const { validate_admin } = require("../middleware/validate_admin")
 
 
 /** 
@@ -52,8 +53,7 @@ const TeamController = require("../controllers/team.controllers")
 *       200:
 *         description: new Team created!
 */
-router.post("/create",TeamController.createTeam)
-
+router.post("/create",validate_admin,TeamController.createTeam)
 
 //ruta para traer todos los equipos
 /**
@@ -127,6 +127,7 @@ router.get("/:id",TeamController.findByid)
 *         description: team not found
 */
 router.get("/search/:name",TeamController.findByName)
+
 //ruta para modificar un equipo
 /**
 *  @swagger 
@@ -154,7 +155,7 @@ router.get("/search/:name",TeamController.findByName)
 *       404: 
 *         description: team not found
 */
-router.put("/modify/:id",TeamController.modifyTeam)
+router.put("/modify/:id",validate_admin,TeamController.modifyTeam)
 
 
 //ruta para eliminar un equipo
@@ -183,6 +184,6 @@ router.put("/modify/:id",TeamController.modifyTeam)
 *       404: 
 *         description: team not found
 */
-router.delete("/:id",TeamController.deleteTeam)
+router.delete("/:id",validate_admin,TeamController.deleteTeam)
 
 module.exports = router

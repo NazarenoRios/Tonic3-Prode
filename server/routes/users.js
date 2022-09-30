@@ -8,6 +8,7 @@ const {users, user, editProfile, changePassword, toggleAdmin, deleteUser, findBy
 const {userIp} = require("../controllers/userIpController");
 const { User } = require("../models");
 const {pushNotifications} = require("../controllers/pushNotificationsController");
+const { validate_admin, validate_user } = require("../middleware/validate_admin");
 
 
 router.post("/register", register);
@@ -19,10 +20,10 @@ router.get("/", users);
 router.get("/:id", validateAuth, user);
 router.put("/profile", validateAuth, editProfile);
 router.put("/changePassword", validateAuth, changePassword);
-router.put("/toggleAdmin/:id", validateAuth, toggleAdmin);
+router.put("/toggleAdmin/:id", validateAuth,validate_admin, toggleAdmin);
 router.post("/userIp", userIp);
 router.post("/pushNotifications", validateAuth , pushNotifications);
-router.delete("/deleteUser/:id", validateAuth, deleteUser)
+router.delete("/deleteUser/:id", validateAuth,validate_user, deleteUser)
 router.get("/userName/:name", validateAuth ,findByName )
 router.get("/user/:id", (req,res)=>{
     const { id } = req.params

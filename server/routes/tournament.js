@@ -1,5 +1,6 @@
 const express = require("express")
 const TournamentController = require("../controllers/tournament.controllers")
+const { validate_admin } = require("../middleware/validate_admin")
 const router = express.Router()
 
 
@@ -61,7 +62,7 @@ const router = express.Router()
 *       200:
 *         description: new Tournament created!
 */
-router.post("/create", TournamentController.createTournament)
+router.post("/create",validate_admin, TournamentController.createTournament)
 
 
 //ruta para agregar equipos a un torneo
@@ -85,8 +86,7 @@ router.post("/create", TournamentController.createTournament)
 *       200:
 *         description: new Tournament created!
 */
-router.post("/teams/:idtournament",TournamentController.addTeam)
-
+router.post("/teams/:idtournament",validate_admin,TournamentController.addTeam)
 
 //ruta para traer todos los torneos
 /**
@@ -189,7 +189,7 @@ router.get("/search/:name",TournamentController.findByName)
 *       404: 
 *         description: tournament not found
 */
-router.put("/modify/:id",TournamentController.modifyTournament)
+router.put("/modify/:id",validate_admin,TournamentController.modifyTournament)
 
 
 //ruta para Terminar un torneo
@@ -219,7 +219,7 @@ router.put("/modify/:id",TournamentController.modifyTournament)
 *       404: 
 *         description: tournament not found
 */
-router.put("/end_tournament/:id",TournamentController.endTournament)
+router.put("/end_tournament/:id",validate_admin,TournamentController.endTournament)
 
 
 //ruta para eliminar un torneo
@@ -247,6 +247,6 @@ router.put("/end_tournament/:id",TournamentController.endTournament)
 *       404: 
 *         description: team not found
 */
-router.delete("/:id",TournamentController.deleteTournament)
+router.delete("/:id",validate_admin,TournamentController.deleteTournament)
 
 module.exports = router

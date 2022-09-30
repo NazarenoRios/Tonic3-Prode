@@ -1,5 +1,6 @@
 const express = require("express")
 const NotificationsController = require("../controllers/notification.controller")
+const { validate_admin } = require("../middleware/validate_admin")
 const router = express.Router()
 
 
@@ -59,8 +60,7 @@ const router = express.Router()
 *       200:
 *         description: new notification created!
 */
-router.post("/create",NotificationsController.createNotification)
-
+router.post("/create",validate_admin,NotificationsController.createNotification)
 
 //ruta para traer todas las push
 /**
@@ -136,7 +136,7 @@ router.get("/usernotification/:userId",NotificationsController.getNotification)
 *       404: 
 *         description: notification not found
 */
-router.put("/modify/:id",NotificationsController.modifyNotification)
+router.put("/modify/:id",validate_admin,NotificationsController.modifyNotification)
 
 
 //ruta para eliminar una push
@@ -164,6 +164,6 @@ router.put("/modify/:id",NotificationsController.modifyNotification)
 *       404: 
 *         description: notification not found
 */
-router.delete("/delete/:id",NotificationsController.deleteNotification)
+router.delete("/delete/:id",validate_admin,NotificationsController.deleteNotification)
 
 module.exports = router

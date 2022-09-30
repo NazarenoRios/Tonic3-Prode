@@ -1,5 +1,5 @@
 const { Op } = require("sequelize")
-const { Team } = require("../models")
+const { Team, Player } = require("../models")
 
 class TeamServices {
 
@@ -21,6 +21,7 @@ class TeamServices {
 
     static async findByid(id){
         try{
+            if(!id || id===null || id === 'null')return
            return await Team.findByPk(id)
             
         } catch(error){
@@ -55,6 +56,8 @@ class TeamServices {
 
     static async deleteTeam(id){
         try{
+            const players=await Player.findAll({where:{teamId:id}})
+            if(players.length)players.forEach(player=>player.destroy())
           return await Team.destroy({ where:{id} })       
         } catch(error){
            return res.sendStatus(500).json({message:error.message})

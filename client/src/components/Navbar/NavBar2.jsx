@@ -3,17 +3,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faInstagram,faFacebook,faTwitter,} from "@fortawesome/free-brands-svg-icons";
 import { Link } from "react-router-dom";
 import DropDown from "./DropDown";
-
+import Cookies from 'js-cookie';
 import { useTranslation } from "react-i18next"
 import i18next from "i18next";
+import { useDispatch, useSelector } from "react-redux";
+import {  get_my_user } from "../../state/user";
 
 export default function NavBar2() {
-
-  const [navbar, setNavbar] = useState(false);
-
-  const { i18n, t } = useTranslation(["navbar"])
-
-  useEffect(() => {
+  const user = useSelector(state=>state.user)
+    //Cookies.remove("token")
+    const [navbar, setNavbar] = useState(false);
+    const dispatch= useDispatch()
+    const { i18n, t } = useTranslation(["navbar"])
+    
+    useEffect(() => {
+    dispatch(get_my_user())
     if (localStorage.getItem("i18nextLng")?.length > 2) {
       i18next.changeLanguage("en")
     }

@@ -1,5 +1,6 @@
 const express = require("express")
 const PlayerController = require("../controllers/player.controller")
+const { validate_admin } = require("../middleware/validate_admin")
 const router = express.Router()
 
 /** 
@@ -58,8 +59,7 @@ const router = express.Router()
 *       200:
 *         description: new player created!
 */
-router.post("/create",PlayerController.createPlayer)
-
+router.post("/create",validate_admin,PlayerController.createPlayer)
 
 //ruta para traer todos los jugadores
 /**
@@ -162,7 +162,7 @@ router.get("/search/:name",PlayerController.findByName)
 *       404: 
 *         description: player not found
 */
-router.put("/modify/:id",PlayerController.modifyPlayer)
+router.put("/modify/:id",validate_admin,PlayerController.modifyPlayer)
 
 
 //ruta para asignar un jugador a un equipo
@@ -197,7 +197,7 @@ router.put("/modify/:id",PlayerController.modifyPlayer)
 *       404: 
 *         description: player not found
 */
-router.put("/team/:id",PlayerController.asignTeam)
+router.put("/team/:id",validate_admin,PlayerController.asignTeam)
 
 
 //ruta para hacer titular a un Jugador
@@ -232,8 +232,7 @@ router.put("/team/:id",PlayerController.asignTeam)
 *       404: 
 *         description: player not found
 */
-router.put("/titular/:id",PlayerController.playerTitular)
-
+router.put("/titular/:id",validate_admin,PlayerController.playerTitular)
 
 //ruta para eliminar un jugador
 /**
@@ -259,7 +258,6 @@ router.put("/titular/:id",PlayerController.playerTitular)
 *               $ref: '#/components/schemas/Player'
 *       404: 
 *         description: player not found
-*/
-router.delete("/:id",PlayerController.deletePlayer)
+router.delete("/:id",validate_admin,PlayerController.deletePlayer)
 
 module.exports = router

@@ -1,5 +1,6 @@
 const express = require("express")
 const PointsControllers = require("../controllers/points.controller")
+const { validate_admin } = require("../middleware/validate_admin")
 const router = express.Router()
 
 
@@ -108,6 +109,6 @@ router.get("/fasepoint/:id/:tournamentId", PointsControllers.getFasePoints)
 *       404: 
 *         description: team not found
 */  
-router.delete("/:userId", PointsControllers.deleteTablePoints)
+router.delete("/:userId",validate_admin, PointsControllers.deleteTablePoints)
 
 module.exports = router
