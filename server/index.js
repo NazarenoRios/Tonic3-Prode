@@ -31,7 +31,27 @@ const db = require("./config/db")
 
 const cookieParser = require("cookie-parser")
 
+
+//swagger
+const swaggerUI = require("swagger-ui-express")
+const swaggerJsDoc = require("swagger-jsdoc")
+const swaggerSpec = {
+    definition : {
+        openapi : "3.0.0",
+        info : {
+            title : "Node Prode API",
+            version : "1.0.0"
+        },
+    servers : [
+        {
+            url : "http://localhost:3001"
+        }
+    ]
+    },
+apis : [`${path.join(__dirname, "./routes/*.js")}`], 
+}
 // Express Route File Requires
+
 const routes = require("./routes");
 
 const metrics_routes=require('./metrics/routes')
