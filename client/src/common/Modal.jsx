@@ -47,7 +47,7 @@ function Modal() {
             <GoogleLogin
               onSuccess={sucessGoogleResponse}
               onError={() => {
-                console.log("Login Failed!");
+                console.log("Login Failed");
               }}
             />
           </div>
