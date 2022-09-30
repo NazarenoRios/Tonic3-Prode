@@ -270,7 +270,7 @@ function ProdeInfo({ team, phase, setMatches }) {
                       <br />
                       <br />
                       <span>
-                        You already voted for{" "}
+                        {t("voto")}{" "}
                         <span className="text-blue-600 font-bold">
                           {userVote[1]?.name}
                         </span>
