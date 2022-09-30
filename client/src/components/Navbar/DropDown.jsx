@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { useSelector } from "react-redux";
 import { MdKeyboardArrowDown } from 'react-icons/md';
@@ -13,8 +13,7 @@ import { useTranslation } from "react-i18next";
 export default function DropDown() {
 
   const { handleClick, isClicked } = useStateContext();
-  const profile = useSelector((state)=>state.profile)
-  
+  const profile = useSelector((state)=>state.user)
   const { t } = useTranslation(["navbar"]);
 
   return (

@@ -19,10 +19,24 @@ export const sendRegister = createAsyncThunk("REGISTER", async ({name,lastname,e
         return err.message
     }
 })
-
+/*
 export const getUser = createAsyncThunk("GET_USER", async () => {
     try {
         const res = await axios.get("/api/user/me")
+        console.log(res.data)
+        return {}
+    } catch (err) {
+        return err.message
+    }
+})
+*/
+export const get_my_user= createAsyncThunk("GET_MY_USER", async (_,thunkApi) => {
+    try {
+        const me= await axios.get('/api/user/me')
+        console.log(me)
+        const {id}=me.data
+        const res = await axios.get(`/api/user/${id}`)
+        console.log(res.data)
         return res.data
     } catch (err) {
         return err.message
@@ -33,7 +47,8 @@ export const editUser = createAsyncThunk("REGISTER", async ({name,lastname,email
     console.log('ESTO ES EMAIL', email)
     try {
         const res = await axios.put("/api/user/profile", {name, lastname, email, password, state, city, address, zip, phone})
-        return res.data
+        console.log({name,lastname,email,password,state,city,address,zip,phone})
+        if(res)return {name,lastname,email,password,state,city,address,zip,phone}
     } catch (err) {
         return err.message
     }
@@ -59,10 +74,11 @@ const userReducer = createReducer(
     {
         [googleLogin.fulfilled]: (state,action) => action.payload,
         [sendRegister.fulfilled]: (state,action) => action.payload,
-        [getUser.fulfilled]: (state,action) => action.payload,
+        //[getUser.fulfilled]: (state,action) => action.payload,
         [editUser.fulfilled]: (state,action) => action.payload,
         [allUsers.fulfilled]: (state,action) => action.payload,
         [firebaseToken.fulfilled]: (state,action) => action.payload,
+        [get_my_user.fulfilled]:(_,action)=>action.payload
     }
 )
 

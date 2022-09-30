@@ -1,22 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { MdOutlineCancel } from "react-icons/md";
 import Button from "./Button";
 import Avatar1 from "../../assets/data/Avatar1.png"
 import axios from "axios";
 import { BsCardList, BsPersonCircle } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
+import {  get_my_user } from "../../state/user";
 
 const UserProfile = () => {
-  const profile = useSelector((state) => state.profile);
-  const navigate = useNavigate()
+  const profile = useSelector((state) => state.user);
+  const dispatch=useDispatch()
+  useEffect(()=>{
+    dispatch(get_my_user())
+  },[])
   const handleLogout = async () => {
     try {
       const logout = await axios.post("/api/user/logout");
       const clear = await sessionStorage.clear();
-      const home = await navigate('/')
       const reload = await window.location.reload();
+
     } catch (error) {
       console.log(error);
     }

@@ -19,22 +19,14 @@ const CustomUser = () => {
   
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (usuario.id) {
-      axios
-      .get(`/api/user/${usuario.id}`)
-      .then((res) => dispatch(setActualProfile(res.data)));
-    }
-  }, []);
-
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    defaultValues: profile?.name? (profile):(usuario)
+    defaultValues: usuario?.name? (usuario):(usuario)
   });
-
+  console.log(usuario)
   const onSubmit = async (data) => {
     const edit = await dispatch(
       editUser({
@@ -50,7 +42,7 @@ const CustomUser = () => {
     )
     if (!data.error) {
       setEditStatus("success")
-      setTimeout(() => window.location.reload(), 3000);
+      setTimeout(() =>'' , 3000);
     } else {
       setEditStatus("error");
     }

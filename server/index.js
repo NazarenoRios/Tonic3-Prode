@@ -26,7 +26,7 @@ const metrics_routes=require('./metrics/routes')
 app.use("/api", routes)
 app.use('/metrics',metrics_routes)
 
-db.sync({ force: true }).then(() => {
+db.sync({ force: false }).then(() => {
  // start_metrics()
   console.log("db connected");  
   app.listen(process.env.PORT, () => {
