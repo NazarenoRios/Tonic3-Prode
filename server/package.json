@@ -34,6 +34,8 @@
     "request": "^2.88.2",
     "save": "^2.5.0",
     "sequelize": "^6.21.6",
+    "swagger-jsdoc": "^6.2.5",
+    "swagger-ui-express": "^4.5.0",
     "web-push": "^3.5.0"
   },
   "devDependencies": {
